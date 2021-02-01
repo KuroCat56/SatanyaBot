@@ -3,6 +3,7 @@ import os
 import requests
 import json
 import random
+#keep_alive: formato para mantener al bot activo 24/7 mediante un ping generado cada 5 min
 from keep_alive import keep_alive
 
 client = discord.Client()
@@ -10,6 +11,7 @@ client = discord.Client()
 #lista de palabras en un mensaje común que hacen trigger al bot 
 sad_words = ["triste", "depresivo", "mal", "depresión"]
 
+#lista de respuestas a los triggers de sad_words
 starter_encouragments = [
   "¡No te preocupes! Estamos aquí para apoyarte.",
   "¿Te sientes desanimado? Prueba a descansar un poco haciendo algo que te guste.",
@@ -28,9 +30,6 @@ def get_quote():
 @client.event
 async def on_ready():
   print('Nos hemos conectado como {0.user}'.format(client))
-
-@client.event
-  await client.change_presence(activity=discord.Game(name='>nya'))
 
 @client.event
 #on_message: Cuando recibe un mensaje, actúa si el mensaje es de otro miembro y no del propio bot.
