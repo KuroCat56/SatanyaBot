@@ -30,6 +30,9 @@ def get_quote():
 @client.event
 async def on_ready():
   print('Nos hemos conectado como {0.user}'.format(client))
+  #Genera el estado de "Jugando" con la descripción name=''
+  await client.change_presence(activity=discord.Game(name='>nya'))
+
 
 @client.event
 #on_message: Cuando recibe un mensaje, actúa si el mensaje es de otro miembro y no del propio bot.
