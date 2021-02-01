@@ -12,17 +12,6 @@ client = discord.Client()
 hola = ["hola", "buenas", "wenas", "hi", "hello"]
 readHola = open("hello_list.txt")
 
-#Se genera un random para elegig aleatoriamente un mensaje de la lista
-rando_line = random.randrange(1, 9)
-
-
-#lista de respuestas a lista de triggers
-starter_encouragments = [
-  "¡No te preocupes! Estamos aquí para apoyarte.",
-  "¿Te sientes desanimado? Prueba a descansar un poco haciendo algo que te guste.",
-  "¿Te sientes mal? Toma, un chocolate para ti 🍫",
-]
-
 #Zenquotes api para experimentar con las api
 #q = quote ; a = author
 def get_quote():
@@ -46,11 +35,12 @@ async def on_message(message):
     return
   # variable msg para acortar 
   msg = message.content
-#.startwith: El trigger que lee el bot para reaccionar.
+#.startwith: El trigger que lee el bot para reaccionar según el comando especificado
   if msg.startswith('>quote'):
     quote = get_quote()
     await message.channel.send(quote)
-  if any (word in msg for word in hola):
+#Sección de trigger para saludar
+  if any (word in msg.lower() for word in hola):
     await message.channel.send(readHola.readline())
 keep_alive()
 client.run(os.getenv('Token'))
