@@ -13,6 +13,8 @@ client = discord.Client()
 #lista de palabras triggers en un mensaje común que hacen trigger al bot 
 hola = ["hola", "buenas", "wenas", "hello"]
 readHola = open("hello_list.txt")
+adios = ["adios", "bye", "chao"]
+readAdios = open("bye_list.txt")
 
 #Zenquotes api para experimentar con las api
 #q = quote ; a = author
@@ -35,14 +37,6 @@ async def on_ready():
   #Genera el estado de "Jugando" con la descripción name=''
   await client.change_presence(activity=discord.Game(name='>nya'))
 
-#Uso del framework de comandos de discord.exit
-#Se especifica el prefijo para todos los demás comandos
-bot = commands.Bot(command_prefix='>')
-
-@bot.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
-
 @client.event
 #on_message: Cuando recibe un mensaje, actúa si el mensaje es de otro miembro y no del propio bot.
 async def on_message(message):
@@ -57,8 +51,10 @@ async def on_message(message):
   if msg.startswith('>kao'):
     kaomoji = get_kao()
     await message.channel.send(kaomoji)
-#Sección de trigger para saludar
+#Sección de trigger para saludar y despedir
   if any (word in msg.lower() for word in hola):
     await message.channel.send(readHola.readline())
+  if any (word in msg.lowe() for word in adios):
+    await message.channel.send(readAdios.readline())
 keep_alive()
 client.run(os.getenv('Token'))
