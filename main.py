@@ -16,7 +16,7 @@ readHola = random.choice(open("hello_list.txt").readlines())
 satanyaSaluda = readHola
 
 
-adios = ["adios", "bye", "chao"]
+adios = ["adiós", "adios", "bye", "chao"]
 readAdios = random.choice(open("bye_list.txt").readlines())
 satanyaDespide = readAdios
 
@@ -42,7 +42,7 @@ def get_kao():
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(client))
     #Genera el estado de "Jugando" con la descripción name=''
-    await client.change_presence(activity=discord.Game(name='>nya'))
+    await client.change_presence(activity=discord.Game(name='nya>help | v0.1.2'))
 
 
 @client.event
