@@ -63,8 +63,8 @@ async def on_message(message):
 
 #Sección de trigger para saludar y despedir
     if any(word in msg.lower() for word in hola):
-        await message.channel.send(satanyaSaluda + '{}'.format(message.author.name))
+        await message.add_reaction("👋")
     if any(word in msg.lower() for word in adios):
-        await message.channel.send(satanyaDespide + '{}'.format(message.author.name))
+        await message.add_reaction("🖐️")
 keep_alive()
 client.run(os.getenv('Token'))
