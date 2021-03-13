@@ -11,7 +11,7 @@ from keep_alive import keep_alive
 client = discord.Client()
 
 #Prefijo de comando de discord.ext
-bot = commands.Bot(command_prefix="nya>")
+client = commands.Bot(command_prefix="nya>")
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @client.event
@@ -20,7 +20,12 @@ async def on_ready():
     #Genera el estado de "Jugando" con la descripción name=''
     await client.change_presence(activity=discord.Game(name='nya>help | v0.1.2'))
 
-#Zenquotes api para experimentar con las api
+#Comando de test/ping
+@client.command()
+async def ping(ctx):
+  await ctx.send(f'Pong {round(client.latency * 1000)}ms')
+
+#API de Zenquotes
 #q = quote ; a = author
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -28,11 +33,22 @@ def get_quote():
     quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
     return (quote)
 
+@client.command()
+async def quo(ctx):
+  quote = get_quote()
+  await ctx.send(quote)
+
+#API de Kaomojis
 def get_kao():
     response = requests.get("http://kaomoji.n-at.me/random.json")
     json_data = json.loads(response.text)
     kaomoji = json_data['record']['text']
     return (kaomoji)
+
+@client.command()
+async def kao(ctx):
+  kao = get_kao()
+  await ctx.send(kao)
 
 
 #Sección de trigger para saludar y despedir
@@ -42,22 +58,11 @@ adios = ["adiós", "adios", "bye", "chao"]
 
 @client.event
 async def on_message(msg):
-  if any(word in msg.lower() for word in hola):
-   await msg.content.add_reaction("👋")
-  if any(word in msg.lower() for word in adios):
-    await msg.content.add_reaction("🖐️")
-await client.process_commands(msg)
-
-@commands.comand()
-async def quo(ctx):
-    quote = get_quote()
-    await message.channel.send(quote)
-    
-    
-#if msg.startswith('>kao'):
-        kaomoji = get_kao()
-        await message.channel.send(kaomoji)
-
+  if any(word in msg.content.lower() for word in hola):
+   await msg.add_reaction("👋")
+  if any(word in msg.content.lower() for word in adios):
+    await msg.add_reaction("🖐️")
+  await client.process_commands(msg)
 
 #Sección de mantenimiento 24/7 encendido e iniciado del bot
 keep_alive()
