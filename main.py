@@ -4,6 +4,7 @@ import os
 import requests
 import json
 import random
+import asyncio
 
 #keep_alive: formato para mantener al bot activo 24/7 mediante un ping generado cada 5 min
 from keep_alive import keep_alive
@@ -41,9 +42,17 @@ def get_kao():
 @client.event
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(client))
-    #Genera el estado de "Jugando" con la descripción name=''
-    await client.change_presence(activity=discord.Game(name='nya>help | v0.1.2'))
 
+#Creación de un estado que cambia cada 10 segundos
+@client.event
+async def random_pr():
+    await client.wait_until_ready()
+    statuses = ['nya>help | v0.1.2', f'en {len(client.guilds)} servidores', 'gracias a Discord.py']
+    while not client.is_closed():
+        status = random.choice(statuses)
+        await client.change_presence(activity = discord.Game(name=status))
+        await asyncio.sleep(10)
+client.loop.create_task(random_pr())
 
 @client.event
 #on_message: Cuando recibe un mensaje, actúa si el mensaje es de otro miembro y no del propio bot.
