@@ -11,37 +11,14 @@ from keep_alive import keep_alive
 
 client = discord.Client()
 
-#lista de palabras triggers en un mensaje común que hacen trigger al bot
-hola = ["hola", "buenas", "wenas", "hello"]
-readHola = random.choice(open("hello_list.txt").readlines())
-satanyaSaluda = readHola
-
-
-adios = ["adiós", "adios", "bye", "chao"]
-readAdios = random.choice(open("bye_list.txt").readlines())
-satanyaDespide = readAdios
-
-
-#Zenquotes api para experimentar con las api
-#q = quote ; a = author
-def get_quote():
-    response = requests.get("https://zenquotes.io/api/random")
-    json_data = json.loads(response.text)
-    quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
-    return (quote)
-
-
-def get_kao():
-    response = requests.get("http://kaomoji.n-at.me/random.json")
-    json_data = json.loads(response.text)
-    kaomoji = json_data['record']['text']
-    return (kaomoji)
-
+#Prefijo de comando de discord.ext
+client = commands.Bot(command_prefix="nya>")
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @client.event
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(client))
+    #Genera el estado de "Jugando" con la descripción name=''
 
 #Creación de un estado que cambia cada 10 segundos
 @client.event
@@ -54,26 +31,50 @@ async def random_pr():
         await asyncio.sleep(10)
 client.loop.create_task(random_pr())
 
-@client.event
-#on_message: Cuando recibe un mensaje, actúa si el mensaje es de otro miembro y no del propio bot.
-async def on_message(message):
-    if message.author == client.user:
-        return
-    # variable msg para acortar
-    msg = message.content
-    #.startwith: El trigger que lee el bot para reaccionar según el comando especificado
-    if msg.startswith('>quo'):
-        quote = get_quote()
-        await message.channel.send(quote)
-    if msg.startswith('>kao'):
-        kaomoji = get_kao()
-        await message.channel.send(kaomoji)
-    
+#Comando de test/ping
+@client.command()
+async def ping(ctx):
+  await ctx.send(f'Pong {round(client.latency * 1000)}ms')
 
-#Sección de trigger para saludar y despedir
-    if any(word in msg.lower() for word in hola):
-        await message.add_reaction("👋")
-    if any(word in msg.lower() for word in adios):
-        await message.add_reaction("🖐️")
+#API de Zenquotes
+#q = quote ; a = author
+def get_quote():
+    response = requests.get("https://zenquotes.io/api/random")
+    json_data = json.loads(response.text)
+    quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
+    return (quote)
+
+@client.command()
+async def quo(ctx):
+  quote = get_quote()
+  await ctx.send(quote)
+
+#API de Kaomojis
+def get_kao():
+    response = requests.get("http://kaomoji.n-at.me/random.json")
+    json_data = json.loads(response.text)
+    kaomoji = json_data['record']['text']
+    return (kaomoji)
+
+@client.command()
+async def kao(ctx):
+  kao = get_kao()
+  await ctx.send(kao)
+
+#on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
+@client.event
+async def on_ready():
+    print('Nos hemos conectado como {0.user}'.format(client))
+
+
+@client.event
+async def on_message(msg):
+  if any(word in msg.content.lower() for word in hola):
+   await msg.add_reaction("👋")
+  if any(word in msg.content.lower() for word in adios):
+    await msg.add_reaction("🖐️")
+  await client.process_commands(msg)
+
+#Sección de mantenimiento 24/7 encendido e iniciado del bot
 keep_alive()
 client.run(os.getenv('Token'))
