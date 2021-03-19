@@ -1,10 +1,9 @@
 import discord
 from discord.ext import commands
 import os
-import requests
-import json
 import random
 import asyncio
+import config
 
 #keep_alive: formato para mantener al bot activo 24/7 mediante un ping generado cada 5 min
 from keep_alive import keep_alive
@@ -15,30 +14,23 @@ client = discord.Client()
 client = commands.Bot(command_prefix="nya>")
 
 client.load_extension("apis_commands")
+client.load_extension("general_commands")
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @client.event
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(client))
-    #Genera el estado de "Jugando" con la descripción name=''
 
 #Creación de un estado que cambia cada 10 segundos
 @client.event
 async def random_pr():
     await client.wait_until_ready()
-    statuses = ['nya>help | v0.1.3', f'a moderar en {len(client.guilds)} servidores', 'Discord.py']
+    statuses = [f'nya>help | v{config.VERSION}', f'a moderar en {len(client.guilds)} servidores', 'Discord.py']
     while not client.is_closed():
         status = random.choice(statuses)
         await client.change_presence(activity = discord.Game(name=status))
         await asyncio.sleep(10)
 client.loop.create_task(random_pr())
-
-#Comando de test/ping
-@client.command()
-async def ping(ctx):
-  await ctx.send(f'Pong {round(client.latency * 1000)}ms')
-
-
 
 hola = ["hola", "buenas", "wenas", "hello"]
 adios = ["adiós", "adios", "bye", "chao"]
