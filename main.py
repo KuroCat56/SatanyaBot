@@ -36,18 +36,6 @@ client.loop.create_task(random_pr())
 async def ping(ctx):
   await ctx.send(f'Pong {round(client.latency * 1000)}ms')
 
-#API de Zenquotes
-#q = quote ; a = author
-def get_quote():
-    response = requests.get("https://zenquotes.io/api/random")
-    json_data = json.loads(response.text)
-    quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
-    return (quote)
-
-@client.command()
-async def quo(ctx):
-  quote = get_quote()
-  await ctx.send(quote)
 
 #API de Kaomojis
 def get_kao():
