@@ -2,13 +2,14 @@ from discord.ext import commands
 import requests
 import json
 
-class apis_commands(commands.Cog):
-  """Comandos que requieren de alguna API"""
+#API de Kaomojis
+def get_kao():
+    response = requests.get("http://kaomoji.n-at.me/random.json")
+    json_data = json.loads(response.text)
+    kaomoji = json_data['record']['text']
+    return (kaomoji)
 
-  def __init__(self, client: commands.Bot):
-    self.bot = bot
-
-    #API de Zenquotes
+#API de Zenquotes
 #q = quote ; a = author
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
@@ -16,10 +17,22 @@ def get_quote():
     quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
     return (quote)
 
-@client.command()
-async def quo(ctx):
-  quote = get_quote()
-  await ctx.send(quote)
+class apis_commands(commands.Cog):
+  """Comandos que requieren de alguna API"""
 
-def setup(bot: commands.Bot):
-    bot.add_cog(apis_commands(bot))
+  def __init__(self, client: commands.Bot):
+    self.client = client
+
+  @commands.command(name="quo")
+  async def quo(self, ctx: commands.Context):
+    quote = get_quote()
+    await ctx.send(quote)
+
+  @commands.command(name="kao")
+  async def kao(self, ctx: commands.Context):
+    kao = get_kao()
+    await ctx.send(kao)
+
+
+def setup(client: commands.Bot):
+    client.add_cog(apis_commands(client))

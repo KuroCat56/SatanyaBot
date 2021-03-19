@@ -14,6 +14,8 @@ client = discord.Client()
 #Prefijo de comando de discord.ext
 client = commands.Bot(command_prefix="nya>")
 
+client.load_extension("apis_commands")
+
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @client.event
 async def on_ready():
@@ -36,18 +38,6 @@ client.loop.create_task(random_pr())
 async def ping(ctx):
   await ctx.send(f'Pong {round(client.latency * 1000)}ms')
 
-
-#API de Kaomojis
-def get_kao():
-    response = requests.get("http://kaomoji.n-at.me/random.json")
-    json_data = json.loads(response.text)
-    kaomoji = json_data['record']['text']
-    return (kaomoji)
-
-@client.command()
-async def kao(ctx):
-  kao = get_kao()
-  await ctx.send(kao)
 
 
 hola = ["hola", "buenas", "wenas", "hello"]
