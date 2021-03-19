@@ -24,7 +24,7 @@ async def on_ready():
 @client.event
 async def random_pr():
     await client.wait_until_ready()
-    statuses = ['nya>help | v0.1.2', f'en {len(client.guilds)} servidores', 'gracias a Discord.py']
+    statuses = ['nya>help | v0.1.3', f'a moderar en {len(client.guilds)} servidores', 'Discord.py']
     while not client.is_closed():
         status = random.choice(statuses)
         await client.change_presence(activity = discord.Game(name=status))
