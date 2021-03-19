@@ -61,12 +61,9 @@ async def kao(ctx):
   kao = get_kao()
   await ctx.send(kao)
 
-#on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
-@client.event
-async def on_ready():
-    print('Nos hemos conectado como {0.user}'.format(client))
 
-
+hola = ["hola", "buenas", "wenas", "hello"]
+adios = ["adiós", "adios", "bye", "chao"]
 @client.event
 async def on_message(msg):
   if any(word in msg.content.lower() for word in hola):
