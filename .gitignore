@@ -1,1 +1,6 @@
-/keep_alive.py
+__pycache__/
+keep_alive.py
+private
+.lock
+.toml
+.env
