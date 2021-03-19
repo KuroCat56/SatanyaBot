@@ -3,7 +3,6 @@ import config
 from discord.ext import commands
 
 class general(commands.Cog):
-  """Comandos que requieren de alguna API"""
 
   def __init__(self, client: commands.Bot):
     self.client = client
@@ -22,14 +21,14 @@ class general(commands.Cog):
         Información útil (y no tan útil) del bot.
         """
         embed = discord.Embed(
-            description=f"SatanyaBot versión {config.VERSION}",
-            color=0x000000
+            description=f"SatanyaBot v{config.VERSION}",
+            color=0xffffff
         )
         embed.set_author(
             name="Información del bot"
         )
         embed.add_field(
-            name="Propietario:",
+            name="Creador:",
             value="KuroCat#4816",
             inline=True
         )

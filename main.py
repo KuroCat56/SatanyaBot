@@ -13,13 +13,27 @@ client = discord.Client()
 #Prefijo de comando de discord.ext
 client = commands.Bot(command_prefix="nya>")
 
-client.load_extension("apis_commands")
-client.load_extension("general_commands")
+
+@client.command()
+async def load(cog, extension):
+  client.load_extension(f"cogs.{extension}")
+@client.command()
+async def unload(cog, extension):
+  client.unload_extension(f"cog.{extension}")
+@client.command()
+async def reload(cog, extension):
+  client.unload_extension(f"cog.{extension}")
+  client.load_extension(f"cogs.{extension}")
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @client.event
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(client))
+
+#Busca todos los cogs y los carga al iniciar
+for filename in os.listdir("./cogs"):
+  if filename.endswith(".py"):
+    client.load_extension(f"cogs.{filename[:-3]}")
 
 #Creación de un estado que cambia cada 10 segundos
 @client.event

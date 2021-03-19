@@ -36,7 +36,7 @@ for submission in top:
   random_sub_memes = random.choice(all_subs_memes)
   #Creación del embed
   url_memes = random_sub_memes.url
-  em_memes = discord.Embed(title = None)
+  em_memes = discord.Embed(title = None, color = 0xeded2d)
   em_memes.set_image(url = url_memes)
 #Construcción para comando nya>animeme
 subreddit_animemes = reddit.subreddit("animemes")
@@ -47,7 +47,7 @@ for submission in top:
   random_sub_animemes = random.choice(all_subs_animemes)
   #Creación del embed
   url_animemes = random_sub_animemes.url
-  em_animemes = discord.Embed(title = None)
+  em_animemes = discord.Embed(title = None, color = 0xed2dc0)
   em_animemes.set_image(url = url_animemes)
 
 class apis_commands(commands.Cog):
