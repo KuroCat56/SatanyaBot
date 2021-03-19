@@ -26,18 +26,17 @@ reddit = praw.Reddit(client_id = private.reddit.client_id,
                     client_secret = private.reddit.secret,
                     username = private.reddit.username,
                     password = private.reddit.password,
-                    user_agent = private.reddit.user_agent)
+                    user_agent = private.reddit.user_agent,
+                    check_for_async=False)
 #Construcción para comando nya>meme
-subreddit_memes = reddit.subreddit("memes")
-all_subs_memes = []
-top = subreddit_memes.top(limit = 50)
-for submission in top:
-  all_subs_memes.append(submission)
-  random_sub_memes = random.choice(all_subs_memes)
+submissions = reddit.subreddit("memes").hot()
+post = random.randint(1,20)
+ran_submission = (x for x in submissions if not x.stickied)
+for x in range (post):
   #Creación del embed
-  url_memes = random_sub_memes.url
-  em_memes = discord.Embed(title = None, color = 0xeded2d)
-  em_memes.set_image(url = url_memes)
+    url_memes = next(ran_submission).url
+    em_memes = discord.Embed(title = None, color = 0xeded2d)
+    em_memes.set_image(url = url_memes)
 #Construcción para comando nya>animeme
 subreddit_animemes = reddit.subreddit("animemes")
 all_subs_animemes = []
