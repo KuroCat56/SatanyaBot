@@ -41,7 +41,7 @@ for filename in os.listdir("./cogs"):
 @client.event
 async def random_pr():
     await client.wait_until_ready()
-    statuses = [f'nya>help | v{config.VERSION}', f'a moderar en {len(client.guilds)} servidores', 'Discord.py']
+    statuses = [f'nya>help | v{config.VERSION}', f'moderar en {len(client.guilds)} servidores', 'Discord.py']
     while not client.is_closed():
         status = random.choice(statuses)
         await client.change_presence(activity = discord.Game(name=status))
