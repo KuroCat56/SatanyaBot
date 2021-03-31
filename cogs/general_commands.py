@@ -14,7 +14,13 @@ class general(commands.Cog):
         """
         ¡Pong!
         """
-        await ctx.send(f'Pong {round(self.client.latency * 1000)}ms')
+        embed = discord.Embed(
+          title="🏓 Pong",
+            description=(f'📨 Envío de mensajes: **{round(self.client.latency * 1000)}ms**'),
+            color=0xfbf9fa,
+            timestamp=datetime.utcnow()
+        )
+        await ctx.send(embed=embed)
   
   @commands.command(name="git")
   async def git(self, ctx: commands.Context):

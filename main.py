@@ -50,7 +50,7 @@ client.loop.create_task(random_pr())
 
 hola = ["hola", "buenas", "wenas", "hello"]
 adios = ["adiós", "adios", "bye", "chao"]
-@client.event
+#@client.event
 async def on_message(msg):
   if any(word in msg.content.lower() for word in hola):
    await msg.add_reaction("👋")
