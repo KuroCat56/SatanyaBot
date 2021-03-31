@@ -29,34 +29,26 @@ reddit = praw.Reddit(client_id = private.reddit.client_id,
                     user_agent = private.reddit.user_agent,
                     check_for_async=False)
 
-#Construcción para comando nya>animeme
-subreddit_animemes = reddit.subreddit("animemes")
-all_subs_animemes = []
-top = subreddit_animemes.top(limit = 50)
-for submission in top:
-  all_subs_animemes.append(submission)
-  random_sub_animemes = random.choice(all_subs_animemes)
-  #Creación del embed
-  url_animemes = random_sub_animemes.url
-  em_animemes = discord.Embed(title = None, color = 0xed2dc0)
-  em_animemes.set_image(url = url_animemes)
-
 class apis_commands(commands.Cog):
   """Comandos que requieren de alguna API"""
 
   def __init__(self, client: commands.Bot):
     self.client = client
+
 #Comando que envía quotes
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
     quote = get_quote()
     await ctx.send(quote)
+
 #Comando que envía kaomojis
   @commands.command(name="kao")
   async def kao(self, ctx: commands.Context):
     kao = get_kao()
     await ctx.send(kao)
+
 #Comandos que envían memes
+
 #Construcción para comando nya>meme
   @commands.command(name="meme")
   async def meme(self, ctx: commands.Context):
@@ -66,9 +58,10 @@ class apis_commands(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_memes = next(ran_submission).url
-    em_memes = discord.Embed(title = None, color = 0xeded2d)
-    em_memes.set_image(url = url_memes)
+     em_memes = discord.Embed(title = None, color = 0xeded2d)
+     em_memes.set_image(url = url_memes)
     await ctx.send(embed = em_memes)
+
 #Construcción para comando nya>animeme
   @commands.command(name="animeme")
   async def animeme(self, ctx: commands.Context):
@@ -78,9 +71,10 @@ class apis_commands(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_memes = next(ran_submission).url
-    em_animemes = discord.Embed(title = None, color = 0xed2dc0)
-    em_animemes.set_image(url = url_memes)
+     em_animemes = discord.Embed(title = None, color = 0xed2dc0)
+     em_animemes.set_image(url = url_memes)
     await ctx.send(embed = em_animemes)
+    
 #Construcción para comando nya>antimeme
   @commands.command(name="antimeme")
   async def antimeme(self, ctx: commands.Context):
@@ -90,8 +84,8 @@ class apis_commands(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_memes = next(ran_submission).url
-    em_antimemes = discord.Embed(title = None, color = 0xbbc61b)
-    em_antimemes.set_image(url = url_memes)
+     em_antimemes = discord.Embed(title = None, color = 0xbbc61b)
+     em_antimemes.set_image(url = url_memes)
     await ctx.send(embed = em_antimemes)
 
 def setup(client: commands.Bot):
