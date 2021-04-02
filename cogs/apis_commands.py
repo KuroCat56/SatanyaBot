@@ -1,10 +1,6 @@
 from discord.ext import commands
-import discord
 import requests
 import json
-import praw
-import private.reddit
-import random
 
 #API de Kaomojis
 def get_kao():
@@ -20,14 +16,6 @@ def get_quote():
     json_data = json.loads(response.text)
     quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
     return (quote)
-
-#API de Reddit
-reddit = praw.Reddit(client_id = private.reddit.client_id,
-                    client_secret = private.reddit.secret,
-                    username = private.reddit.username,
-                    password = private.reddit.password,
-                    user_agent = private.reddit.user_agent,
-                    check_for_async=False)
 
 class apis_commands(commands.Cog):
   """Comandos que requieren de alguna API"""
@@ -46,47 +34,6 @@ class apis_commands(commands.Cog):
   async def kao(self, ctx: commands.Context):
     kao = get_kao()
     await ctx.send(kao)
-
-#Comandos que envían memes
-
-#Construcción para comando nya>meme
-  @commands.command(name="meme")
-  async def meme(self, ctx: commands.Context):
-    submissions = reddit.subreddit("memes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_memes = next(ran_submission).url
-     em_memes = discord.Embed(title = None, color = 0xeded2d)
-     em_memes.set_image(url = url_memes)
-    await ctx.send(embed = em_memes)
-
-#Construcción para comando nya>animeme
-  @commands.command(name="animeme")
-  async def animeme(self, ctx: commands.Context):
-    submissions = reddit.subreddit("animemes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_memes = next(ran_submission).url
-     em_animemes = discord.Embed(title = None, color = 0xed2dc0)
-     em_animemes.set_image(url = url_memes)
-    await ctx.send(embed = em_animemes)
-    
-#Construcción para comando nya>antimeme
-  @commands.command(name="antimeme")
-  async def antimeme(self, ctx: commands.Context):
-    submissions = reddit.subreddit("antimemes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_memes = next(ran_submission).url
-     em_antimemes = discord.Embed(title = None, color = 0xbbc61b)
-     em_antimemes.set_image(url = url_memes)
-    await ctx.send(embed = em_antimemes)
 
 def setup(client: commands.Bot):
     client.add_cog(apis_commands(client))
