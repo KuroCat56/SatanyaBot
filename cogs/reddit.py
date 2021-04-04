@@ -32,7 +32,7 @@ class reddit(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_memes = next(ran_submission).url
-     em_memes = discord.Embed(title = None, color = 0xeded2d)
+     em_memes = discord.Embed(color = 0xeded2d)
      em_memes.set_image(url = url_memes)
      em_memes.set_footer(text= "r/memes")
     await ctx.send(embed = em_memes)
@@ -49,7 +49,7 @@ class reddit(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_animemes = next(ran_submission).url
-     em_animemes = discord.Embed(title = None, color = 0xed2dc0)
+     em_animemes = discord.Embed(color = 0xed2dc0)
      em_animemes.set_image(url = url_animemes)
      em_animemes.set_footer(text= "r/animemes")
     await ctx.send(embed = em_animemes)
@@ -66,7 +66,7 @@ class reddit(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_antimemes = next(ran_submission).url
-     em_antimemes = discord.Embed(title = None, color = 0xbbc61b)
+     em_antimemes = discord.Embed(color = 0xbbc61b)
      em_antimemes.set_image(url = url_antimemes)
      em_antimemes.set_footer(text= "r/antimemes")
     await ctx.send(embed = em_antimemes)
@@ -83,7 +83,7 @@ class reddit(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_hmmm = next(ran_submission).url
-     em_hmmm = discord.Embed(title = None, color = 0xe26d46)
+     em_hmmm = discord.Embed(color = 0xe26d46)
      em_hmmm.set_image(url = url_hmmm)
      em_hmmm.set_footer(text= "r/hmmm")
     await ctx.send(embed = em_hmmm)
@@ -100,7 +100,7 @@ class reddit(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_dank = next(ran_submission).url
-     em_dank = discord.Embed(title = None, color = 0x3f2921)
+     em_dank = discord.Embed(color = 0x8c5e1e)
      em_dank.set_image(url = url_dank)
      em_dank.set_footer(text= "r/dankmemes")
     await ctx.send(embed = em_dank)
@@ -117,7 +117,7 @@ class reddit(commands.Cog):
     for x in range (post):
   #Creación del embed
      url_chantext = next(ran_submission).url
-     em_chantext = discord.Embed(title = None, color = 0x3bf94e)
+     em_chantext = discord.Embed(color = 0x3bf94e)
      em_chantext.set_image(url = url_chantext)
      em_chantext.set_footer(text= "r/greentext")
     await ctx.send(embed = em_chantext)
