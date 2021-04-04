@@ -216,6 +216,14 @@ version = "1.15.0"
 
 [[package]]
 category = "main"
+description = "OwO"
+name = "texttoowo"
+optional = false
+python-versions = "*"
+version = "2.0.1"
+
+[[package]]
+category = "main"
 description = "Backported and Experimental Type Hints for Python 3.5+"
 name = "typing-extensions"
 optional = false
@@ -248,6 +256,18 @@ requests = ">=2.3.0"
 dev = ["black", "flake8", "pytest (>=2.7.3)"]
 lint = ["black", "flake8"]
 test = ["pytest (>=2.7.3)"]
+
+[[package]]
+category = "main"
+description = "A versatile LavaLink wrapper for Discord.py"
+name = "wavelink"
+optional = false
+python-versions = ">=3.7"
+version = "0.9.9"
+
+[package.dependencies]
+aiohttp = ">=3.6.0,<3.8.0"
+"discord.py" = ">=1.2.5"
 
 [[package]]
 category = "main"
@@ -284,8 +304,16 @@ version = "1.6.3"
 idna = ">=2.0"
 multidict = ">=4.0"
 
+[[package]]
+category = "main"
+description = "YouTube video downloader"
+name = "youtube-dl"
+optional = false
+python-versions = "*"
+version = "2021.4.1"
+
 [metadata]
-content-hash = "2c7849bc589614ce13fd93fceb1248acb1f5e0185c539132d20d16f902685874"
+content-hash = "7ec3185bfe4c5c53557ede96739158c80eea30258ef2ee6de75174031f221750"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -480,6 +508,9 @@ six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
     {file = "six-1.15.0.tar.gz", hash = "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"},
 ]
+texttoowo = [
+    {file = "TextToOwO-2.0.1.tar.gz", hash = "sha256:594f9dd459d4a9044c75ad73e5a10f5f1ab569d91cd60553b5648dc064bcb9bc"},
+]
 typing-extensions = [
     {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
     {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
@@ -491,6 +522,10 @@ typish = [
 update-checker = [
     {file = "update_checker-0.18.0-py3-none-any.whl", hash = "sha256:cbba64760a36fe2640d80d85306e8fe82b6816659190993b7bdabadee4d4bbfd"},
     {file = "update_checker-0.18.0.tar.gz", hash = "sha256:6a2d45bb4ac585884a6b03f9eade9161cedd9e8111545141e9aa9058932acb13"},
+]
+wavelink = [
+    {file = "wavelink-0.9.9-py3-none-any.whl", hash = "sha256:01be503ad94dd8ab0723e9d9967e52b8de84803afe5be46a5472a939f6559194"},
+    {file = "wavelink-0.9.9.tar.gz", hash = "sha256:83972398b07e2502dfb839e102d1e247c976159928394552d84dac10722bdd23"},
 ]
 websocket-client = [
     {file = "websocket_client-0.58.0-py2.py3-none-any.whl", hash = "sha256:44b5df8f08c74c3d82d28100fdc81f4536809ce98a17f0757557813275fbb663"},
@@ -538,4 +573,8 @@ yarl = [
     {file = "yarl-1.6.3-cp39-cp39-win32.whl", hash = "sha256:5b883e458058f8d6099e4420f0cc2567989032b5f34b271c0827de9f1079a424"},
     {file = "yarl-1.6.3-cp39-cp39-win_amd64.whl", hash = "sha256:4953fb0b4fdb7e08b2f3b3be80a00d28c5c8a2056bb066169de00e6501b986b6"},
     {file = "yarl-1.6.3.tar.gz", hash = "sha256:8a9066529240171b68893d60dca86a763eae2139dd42f42106b03cf4b426bf10"},
+]
+youtube-dl = [
+    {file = "youtube_dl-2021.4.1-py2.py3-none-any.whl", hash = "sha256:efbac0e19accccd36e597749a59b095e60439240c777bf1fa1e80ad00e5073dc"},
+    {file = "youtube_dl-2021.4.1.tar.gz", hash = "sha256:2715ca9fc4cd3c0eafa56cba9dfacc699fa6176ca083e903becaddd108d8db7b"},
 ]
