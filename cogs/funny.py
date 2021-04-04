@@ -12,5 +12,12 @@ class funny(commands.Cog):
     await ctx.send(owo)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
+  @commands.command()
+  async def say(self, ctx):
+    say = ctx.message.content
+    say = say.lstrip("nya>say") #Se elimina 'nya>say' del string para que no se imprima en el ctx.send
+    await ctx.send(say)
+    await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
+
 def setup(client: commands.Bot):
     client.add_cog(funny(client))
