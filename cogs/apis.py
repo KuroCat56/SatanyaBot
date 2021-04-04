@@ -17,7 +17,7 @@ def get_quote():
     quote = "**" + json_data[0]['q'] + "**" + " -" + json_data[0]['a']
     return (quote)
 
-class apis_commands(commands.Cog):
+class apis(commands.Cog):
   """Comandos que requieren de alguna API"""
 
   def __init__(self, client: commands.Bot):
@@ -36,4 +36,4 @@ class apis_commands(commands.Cog):
     await ctx.send(kao)
 
 def setup(client: commands.Bot):
-    client.add_cog(apis_commands(client))
+    client.add_cog(apis(client))

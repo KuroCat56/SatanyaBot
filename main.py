@@ -18,14 +18,17 @@ client = commands.Bot(command_prefix="nya>")
 @commands.is_owner()
 async def load(cog, extension):
   client.load_extension(f"cogs.{extension}")
+
 @client.command()
 @commands.is_owner()
 async def unload(cog, extension):
   client.unload_extension(f"cogs.{extension}")
+
 @client.command()
 @commands.is_owner()
 async def reload(cog, extension):
   client.reload_extension(f"cogs.{extension}")
+
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @client.event
