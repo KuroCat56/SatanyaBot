@@ -32,10 +32,10 @@ class utils(commands.Cog):
       await ctx.send("Debes de especificar usando enteros")
       return
 
-    await ctx.send(f"{ctx.author.mention}, tu recordatorio para **{task}** fue activado y serás recordado en **{time}**")
+    await ctx.send(f"⏱️ {ctx.author.mention}, tu recordatorio para **{task}** fue activado y serás recordado en **{time}**")
 
     await asyncio.sleep(converted_time)
-    await ctx.send(f"{ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
+    await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
   
 
 def setup(client: commands.Bot):
