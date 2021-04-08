@@ -308,18 +308,6 @@ test = ["pytest (>=2.7.3)"]
 
 [[package]]
 category = "main"
-description = "A versatile LavaLink wrapper for Discord.py"
-name = "wavelink"
-optional = false
-python-versions = ">=3.7"
-version = "0.9.9"
-
-[package.dependencies]
-aiohttp = ">=3.6.0,<3.8.0"
-"discord.py" = ">=1.2.5"
-
-[[package]]
-category = "main"
 description = "WebSocket client for Python with low level API options"
 name = "websocket-client"
 optional = false
@@ -362,7 +350,7 @@ python-versions = "*"
 version = "2021.4.1"
 
 [metadata]
-content-hash = "5af8031e00207809ff9d78e7dd1999770101984245b6edd078d91725a0f66536"
+content-hash = "bcfab6281dfc2b4816a938a9858d4bb9d16e93b8cc549aad36159f70d9a49192"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -638,10 +626,6 @@ typish = [
 update-checker = [
     {file = "update_checker-0.18.0-py3-none-any.whl", hash = "sha256:cbba64760a36fe2640d80d85306e8fe82b6816659190993b7bdabadee4d4bbfd"},
     {file = "update_checker-0.18.0.tar.gz", hash = "sha256:6a2d45bb4ac585884a6b03f9eade9161cedd9e8111545141e9aa9058932acb13"},
-]
-wavelink = [
-    {file = "wavelink-0.9.9-py3-none-any.whl", hash = "sha256:01be503ad94dd8ab0723e9d9967e52b8de84803afe5be46a5472a939f6559194"},
-    {file = "wavelink-0.9.9.tar.gz", hash = "sha256:83972398b07e2502dfb839e102d1e247c976159928394552d84dac10722bdd23"},
 ]
 websocket-client = [
     {file = "websocket_client-0.58.0-py2.py3-none-any.whl", hash = "sha256:44b5df8f08c74c3d82d28100fdc81f4536809ce98a17f0757557813275fbb663"},

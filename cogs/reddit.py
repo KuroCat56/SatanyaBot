@@ -139,5 +139,22 @@ class reddit(commands.Cog):
      em_shower.set_footer(text= "r/ShowerThoughts")
     await ctx.send(embed = em_shower)
 
+#Construcción para comando nya>hispameme
+  @commands.command(name="hispameme")
+  async def hispameme(self, ctx: commands.Context):
+    """
+    Memes hispanos
+    """
+    submissions = reddit_api.subreddit("SpanishMeme").hot()
+    post = random.randint(1,50)
+    ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post):
+  #Creación del embed
+     url_hispa = next(ran_submission).url
+     em_hispa = discord.Embed(color = 0xf4f27a)
+     em_hispa.set_image(url = url_hispa)
+     em_hispa.set_footer(text= "r/SpanishMeme")
+    await ctx.send(embed = em_hispa)
+
 def setup(client: commands.Bot):
     client.add_cog(reddit(client))

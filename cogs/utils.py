@@ -1,7 +1,6 @@
 from discord.ext import commands
 import asyncio
 
-
 class utils(commands.Cog):
   def __init__(self, client: commands.Bot):
     self.client = client
@@ -36,7 +35,6 @@ class utils(commands.Cog):
 
     await asyncio.sleep(converted_time)
     await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
-  
 
 def setup(client: commands.Bot):
     client.add_cog(utils(client))
