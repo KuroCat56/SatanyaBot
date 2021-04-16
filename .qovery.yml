@@ -1,0 +1,11 @@
+---
+application:
+  name: "satanya"
+  project: "SatanyaBot"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-satanya"
+  routes:
+  - application_name: "satanya"
+    paths:
+    - "/*"
