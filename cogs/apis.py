@@ -1,6 +1,8 @@
+import os
 from discord.ext import commands
 import requests
 import json
+DAGPI_TOKEN = os.environ['Dagpi']
 
 #API de Kaomojis
 def get_kao():

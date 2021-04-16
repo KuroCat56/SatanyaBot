@@ -27,6 +27,17 @@ version = "3.0.1"
 
 [[package]]
 category = "main"
+description = "An Asynchronos API wrapper for https://dagpi.xyz"
+name = "asyncdagpi"
+optional = false
+python-versions = ">=3.6,<4.0"
+version = "3.3.2"
+
+[package.dependencies]
+aiohttp = ">=3.7.3,<4.0.0"
+
+[[package]]
+category = "main"
 description = "Classes Without Boilerplate"
 name = "attrs"
 optional = false
@@ -350,7 +361,7 @@ python-versions = "*"
 version = "2021.4.1"
 
 [metadata]
-content-hash = "bcfab6281dfc2b4816a938a9858d4bb9d16e93b8cc549aad36159f70d9a49192"
+content-hash = "8cdc7a4c6942e134df7e7ac6dc833ec89c14d96e172dd880d4d569a4907ac8d0"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -396,6 +407,10 @@ aiohttp = [
 async-timeout = [
     {file = "async-timeout-3.0.1.tar.gz", hash = "sha256:0c3c816a028d47f659d6ff5c745cb2acf1f966da1fe5c19c77a70282b25f4c5f"},
     {file = "async_timeout-3.0.1-py3-none-any.whl", hash = "sha256:4291ca197d287d274d0b6cb5d6f8f8f82d434ed288f962539ff18cc9012f9ea3"},
+]
+asyncdagpi = [
+    {file = "asyncdagpi-3.3.2-py3-none-any.whl", hash = "sha256:d7f86ab50e2a82de1dd7486d3944cf71f322da7306809ea0de0e2ef1fd00b725"},
+    {file = "asyncdagpi-3.3.2.tar.gz", hash = "sha256:7f9d9e436ecbf8b46638673194394d99cd416197401f5d293635f9974bb62626"},
 ]
 attrs = [
     {file = "attrs-20.3.0-py2.py3-none-any.whl", hash = "sha256:31b2eced602aa8423c2aea9c76a724617ed67cf9513173fd3a4f03e3a929c7e6"},
