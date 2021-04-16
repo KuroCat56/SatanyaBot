@@ -5,8 +5,8 @@ from datetime import datetime
 
 class general(commands.Cog):
 
-  def __init__(self, client: commands.Bot):
-    self.client = client
+  def __init__(self, bot: commands.Bot):
+    self.bot = bot
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -16,7 +16,7 @@ class general(commands.Cog):
         """
         embed = discord.Embed(
           title="🏓 Pong",
-            description=(f'📨 Envío de mensajes: **{round(self.client.latency * 1000)}ms**'),
+            description=(f'📨 Envío de mensajes: **{round(self.bot.latency * 1000)}ms**'),
             color=0xfbf9fa,
             timestamp=datetime.utcnow()
         )
@@ -121,5 +121,5 @@ class general(commands.Cog):
         )
         await context.send(embed=embed)
 
-def setup(client: commands.Bot):
-    client.add_cog(general(client))
+def setup(bot: commands.Bot):
+    bot.add_cog(general(bot))

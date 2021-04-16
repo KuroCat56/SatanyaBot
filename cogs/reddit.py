@@ -15,8 +15,8 @@ reddit_api = praw.Reddit(client_id = private.reddit.client_id,
 class reddit(commands.Cog):
   """Comandos que requieren de alguna API"""
 
-  def __init__(self, client: commands.Bot):
-    self.client = client
+  def __init__(self, bot: commands.Bot):
+    self.bot = bot
 
 #Comandos que envían memes
 
@@ -156,5 +156,5 @@ class reddit(commands.Cog):
      em_hispa.set_footer(text= "r/SpanishMeme")
     await ctx.send(embed = em_hispa)
 
-def setup(client: commands.Bot):
-    client.add_cog(reddit(client))
+def setup(bot: commands.Bot):
+    bot.add_cog(reddit(bot))

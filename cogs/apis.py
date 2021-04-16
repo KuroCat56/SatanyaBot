@@ -20,8 +20,8 @@ def get_quote():
 class apis(commands.Cog):
   """Comandos que requieren de alguna API"""
 
-  def __init__(self, client: commands.Bot):
-    self.client = client
+  def __init__(self, bot: commands.Bot):
+    self.bot = bot
 
 #Comando que envía quotes
   @commands.command(name="quo")
@@ -35,5 +35,5 @@ class apis(commands.Cog):
     kao = get_kao()
     await ctx.send(kao)
 
-def setup(client: commands.Bot):
-    client.add_cog(apis(client))
+def setup(bot: commands.Bot):
+    bot.add_cog(apis(bot))

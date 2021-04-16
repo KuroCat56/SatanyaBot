@@ -2,8 +2,8 @@ from TextToOwO.owo import text_to_owo
 from discord.ext import commands
 
 class funny(commands.Cog):
-  def __init__(self, client: commands.Bot):
-    self.client = client
+  def __init__(self, bot: commands.Bot):
+    self.bot = bot
   
   @commands.command()
   async def owo(self, ctx):
@@ -19,5 +19,5 @@ class funny(commands.Cog):
     await ctx.send(say)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
-def setup(client: commands.Bot):
-    client.add_cog(funny(client))
+def setup(bot: commands.Bot):
+    bot.add_cog(funny(bot))
