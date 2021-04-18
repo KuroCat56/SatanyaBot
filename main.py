@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from datetime import datetime
 import os
 import random
 import asyncio
@@ -10,6 +11,7 @@ from keep_alive import keep_alive
 
 #Prefijo de comando de discord.ext
 bot = commands.Bot(command_prefix="nya>")
+bot.launch_time = datetime.utcnow()
 
 
 @bot.command()
@@ -26,6 +28,14 @@ async def unload(cog, extension):
 @commands.is_owner()
 async def reload(cog, extension):
   bot.reload_extension(f"cogs.{extension}")
+
+@bot.command()
+async def uptime(ctx):
+    delta_uptime = datetime.utcnow() - bot.launch_time
+    hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+    minutes, seconds = divmod(remainder, 60)
+    days, hours = divmod(hours, 24)
+    await ctx.send(f"{days}d, {hours}h, {minutes}m, {seconds}s")
 
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
