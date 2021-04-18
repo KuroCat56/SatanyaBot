@@ -22,14 +22,14 @@ class img(commands.Cog):
     async def pet(ctx, member: discord.Member):
       url_ptpt = str(member.avatar_url_as(static_format="png", size=1024))
       img_ptpt = await dagpi.image_process(ImageFeatures.petpet(), url_ptpt)
-      file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pixel.{img_ptpt.format}")
+      file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
       await ctx.send(file=file_ptpt)
     
     @bot.command()
     async def rainbow(ctx, member: discord.Member):
       url_rnbw = str(member.avatar_url_as(static_format="png", size=1024))
       img_rnbw = await dagpi.image_process(ImageFeatures.rainbow(), url_rnbw)
-      file_rnbw = discord.File(fp=img_rnbw.image,filename=f"pixel.{img_rnbw.format}")
+      file_rnbw = discord.File(fp=img_rnbw.image,filename=f"rainbow.{img_rnbw.format}")
       await ctx.send(file=file_rnbw)
 
 def setup(bot: commands.Bot):
