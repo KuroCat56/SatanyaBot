@@ -13,60 +13,69 @@ class img(commands.Cog):
 
   @commands.command()
   async def pixel(self, ctx, member: discord.Member):
-    url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
-    img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
-    file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
-    await ctx.send(file=file_pxl)
+    """
+    Censura el perfil de otro, porque sí.
+    """
+    async with ctx.typing():
+      url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
+      img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
+      file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
+      await ctx.send(file=file_pxl)
 
   @commands.command()
   async def pet(self, ctx, member: discord.Member):
     """
     Hazle un patpat a un miembro.
     """
-    url_ptpt = str(member.avatar_url_as(static_format="png", size=1024))
-    img_ptpt = await dagpi.image_process(ImageFeatures.petpet(), url_ptpt)
-    file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
-    await ctx.send(file=file_ptpt)
+    async with ctx.typing():
+      url_ptpt = str(member.avatar_url_as(static_format="png", size=1024))
+      img_ptpt = await dagpi.image_process(ImageFeatures.petpet(), url_ptpt)
+      file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
+      await ctx.send(file=file_ptpt)
   
   @commands.command()
   async def triggered(self, ctx, member: discord.Member):
     """
     T R I G G E R E D
     """
-    url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
-    img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
-    file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
-    await ctx.send(file=file_trgg)
+    async with ctx.typing():
+      url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
+      img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
+      file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
+      await ctx.send(file=file_trgg)
 
   @commands.command()
   async def ussr(self, ctx, member: discord.Member):
     """
     USSR
     """
-    url_ussr = str(member.avatar_url_as(static_format="png", size=1024))
-    img_ussr = await dagpi.image_process(ImageFeatures.communism(), url_ussr)
-    file_ussr = discord.File(fp=img_ussr.image,filename=f"ussr.{img_ussr.format}")
-    await ctx.send(file=file_ussr)
+    async with ctx.typing():
+      url_ussr = str(member.avatar_url_as(static_format="png", size=1024))
+      img_ussr = await dagpi.image_process(ImageFeatures.communism(), url_ussr)
+      file_ussr = discord.File(fp=img_ussr.image,filename=f"ussr.{img_ussr.format}")
+      await ctx.send(file=file_ussr)
 
   @commands.command()
   async def colors(self, ctx, member: discord.Member):
     """
     Analiza los colores de la foto de perfil de alguien.
     """
-    url_clrs = str(member.avatar_url_as(static_format="png", size=1024))
-    img_clrs = await dagpi.image_process(ImageFeatures.colors(), url_clrs)
-    file_clrs = discord.File(fp=img_clrs.image,filename=f"colors.{img_clrs.format}")
-    await ctx.send(file=file_clrs)
+    async with ctx.typing():
+      url_clrs = str(member.avatar_url_as(static_format="png", size=1024))
+      img_clrs = await dagpi.image_process(ImageFeatures.colors(), url_clrs)
+      file_clrs = discord.File(fp=img_clrs.image,filename=f"colors.{img_clrs.format}")
+      await ctx.send(file=file_clrs)
 
   @commands.command()
   async def gay(self, ctx, member: discord.Member):
     """
     #Pride
     """
-    url_gy = str(member.avatar_url_as(static_format="png", size=1024))
-    img_gy = await dagpi.image_process(ImageFeatures.gay(), url_gy)
-    file_gy = discord.File(fp=img_gy.image,filename=f"gay.{img_gy.format}")
-    await ctx.send(file=file_gy)
+    async with ctx.typing():
+      url_gy = str(member.avatar_url_as(static_format="png", size=1024))
+      img_gy = await dagpi.image_process(ImageFeatures.gay(), url_gy)
+      file_gy = discord.File(fp=img_gy.image,filename=f"gay.{img_gy.format}")
+      await ctx.send(file=file_gy)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
