@@ -11,7 +11,6 @@ from dotenv import load_dotenv
 bot = commands.Bot(command_prefix="nya>")
 bot.launch_time = datetime.utcnow()
 
-
 @bot.command()
 @commands.is_owner()
 async def load(cog, extension):
