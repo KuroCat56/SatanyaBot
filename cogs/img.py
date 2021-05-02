@@ -77,5 +77,28 @@ class img(commands.Cog):
       file_gy = discord.File(fp=img_gy.image,filename=f"gay.{img_gy.format}")
       await ctx.send(file=file_gy)
 
+  @commands.command()
+  async def fedora(self, ctx, member: discord.Member):
+    """
+    Ma'lady
+    """
+    async with ctx.typing():
+      url_fdr = str(member.avatar_url_as(static_format="png", size=1024))
+      img_fdr = await dagpi.image_process(ImageFeatures.fedora(), url_fdr)
+      file_fdr = discord.File(fp=img_fdr.image,filename=f"fedora.{img_fdr.format}")
+      await ctx.send(file=file_fdr)
+
+  @commands.command()
+  async def jail(self, ctx, member: discord.Member):
+    """
+    Para mandar a cualquiera a la carcel
+    """
+    async with ctx.typing():
+      url_jl = str(member.avatar_url_as(static_format="png", size=1024))
+      img_jl = await dagpi.image_process(ImageFeatures.jail(), url_jl)
+      file_jl = discord.File(fp=img_jl.image,filename=f"jail.{img_jl.format}")
+      await ctx.send(file=file_jl)
+
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))

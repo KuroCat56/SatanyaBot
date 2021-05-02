@@ -1,3 +1,4 @@
+import discord
 from discord.ext import commands
 import asyncio
 
@@ -35,6 +36,11 @@ class utils(commands.Cog):
 
     await asyncio.sleep(converted_time)
     await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
+
+  @commands.command()
+  async def commands(self, ctx):
+    value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
+    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))

@@ -1,3 +1,4 @@
+#Extraído de https://github.com/Daishiky/music-discord/blob/main/cogs/music.py
 import asyncio
 import functools
 import itertools

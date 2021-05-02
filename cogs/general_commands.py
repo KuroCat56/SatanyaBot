@@ -62,6 +62,11 @@ class general(commands.Cog):
             inline=True
         )
         embed.add_field(
+          name= "# Comandos:",
+          value=f"{len([x.name for x in self.bot.commands])}",
+          inline=True
+        )
+        embed.add_field(
             name="Mi código fuente:",
             value="[Github](https://github.com/KuroCat56/SatanyaBot)",
             inline=True
