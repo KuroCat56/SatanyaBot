@@ -70,5 +70,4 @@ async def on_message(msg):
   await bot.process_commands(msg)
 
 #Sección de mantenimiento 24/7 encendido e iniciado del bot
-keep_alive()
 bot.run(os.getenv('Token'))
