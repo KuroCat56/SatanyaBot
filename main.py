@@ -5,9 +5,7 @@ import os
 import random
 import asyncio
 import config
-
-#keep_alive: formato para mantener al bot activo 24/7 mediante un ping generado cada 5 min
-from keep_alive import keep_alive
+from dotenv import load_dotenv
 
 #Prefijo de comando de discord.ext
 bot = commands.Bot(command_prefix="nya>")
@@ -70,4 +68,5 @@ async def on_message(msg):
   await bot.process_commands(msg)
 
 #Sección de mantenimiento 24/7 encendido e iniciado del bot
+load_dotenv()
 bot.run(os.getenv('Token'))

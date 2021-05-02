@@ -2,6 +2,8 @@ from discord.ext import commands
 import discord
 from asyncdagpi import Client, ImageFeatures
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 dagpi = Client(os.getenv('Dagpi'))
 
