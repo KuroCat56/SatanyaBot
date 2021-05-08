@@ -7,6 +7,7 @@ import asyncio
 import config
 from dotenv import load_dotenv
 
+#test
 #Prefijo de comando de discord.ext
 bot = commands.Bot(command_prefix="nya>")
 bot.launch_time = datetime.utcnow()
