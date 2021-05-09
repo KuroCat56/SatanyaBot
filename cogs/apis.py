@@ -18,7 +18,7 @@ def get_quote():
     json_data = json.loads(response.text)
     quote_quo = json_data[0]['q'] 
     #quote_a = json_data[0]['a']
-    return ()
+    return (quote_quo)
 
 class apis(commands.Cog):
   """Comandos que requieren de alguna API"""
@@ -29,9 +29,9 @@ class apis(commands.Cog):
 #Comando que envía quotes
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
-    #quote = get_quote()
+    quote = get_quote()
     embed = discord.Embed(
-      title=get_quote()
+      title=quote
     )
     await ctx.send(embed=embed)
 
