@@ -46,7 +46,7 @@ class general(commands.Cog):
       )
       embed.add_field(
           name="Link SatanyaBot:",
-          value="[Invítame]https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511"
+          value="[Invítame]https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511",
           inline=False
       )
       await ctx.send(embed=embed)
