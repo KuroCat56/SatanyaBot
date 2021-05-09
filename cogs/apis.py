@@ -18,7 +18,7 @@ def get_quote():
     json_data = json.loads(response.text)
     quote_quo = json_data[0]['q'] 
     quote_a = json_data[0]['a']
-    return (quote_quo, quote_a)
+    return (quote_quo)
 
 class apis(commands.Cog):
   """Comandos que requieren de alguna API"""
