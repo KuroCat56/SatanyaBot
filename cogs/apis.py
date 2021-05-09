@@ -17,8 +17,8 @@ def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
     json_data = json.loads(response.text)
     quote_quo = json_data[0]['q'] 
-    #quote_a = json_data[0]['a']
-    return (quote_quo)
+    quote_a = json_data[0]['a']
+    return (quote_quo, quote_a)
 
 class apis(commands.Cog):
   """Comandos que requieren de alguna API"""
@@ -29,9 +29,11 @@ class apis(commands.Cog):
 #Comando que envía quotes
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
-    quote = get_quote()
+    quote = get_quote(quote_quo)
+    author = get_quote(quote_a)
     embed = discord.Embed(
-      title=quote
+      title=quote,
+      description=author
     )
     await ctx.send(embed=embed)
 
