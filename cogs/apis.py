@@ -30,10 +30,10 @@ class apis(commands.Cog):
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
     quote = get_quote(quote_quo)
-    author = get_quote(quote_a)
+    #author = get_quote(quote_a)
     embed = discord.Embed(
       title=quote,
-      description=author
+      #description=author
     )
     await ctx.send(embed=embed)
 
