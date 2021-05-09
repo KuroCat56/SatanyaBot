@@ -29,6 +29,13 @@ class general(commands.Cog):
         """
         await ctx.send("Puedes revisar mi código fuente en https://github.com/KuroCat56/SatanyaBot")
   
+  @commands.command(name="invite")
+  async def invite(self, ctx: commands.Context):
+      """
+      Links de invitsación de SatanyaBot y al server
+      """
+      await ctx.send("Puedes agregarme a tu servidor mediante este link: https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511")
+  
   @commands.command(name="info", aliases=["botinfo"])
   async def info(self, context):
         """
