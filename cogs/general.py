@@ -34,7 +34,21 @@ class general(commands.Cog):
       """
       Links de invitsación de SatanyaBot y al server
       """
-      await ctx.send("Puedes agregarme a tu servidor mediante este link: https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511")
+      embed = discord.Embed(
+          title="¿Quieres agregarme a tu servidor o unirte al mío?",
+          description="Enlaces útiles de invitación",
+          color=0xfbf9fa,
+      )
+      embed.add_field(
+          name="Link de server:",
+          value="[「SatanyaBot」]https://discord.gg/bqcdKxuW3X",
+          inline=False
+      )
+      embed.add_field(
+          name="Link SatanyaBot:",
+          value="[Invítame]https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511"
+      )
+      await context.send(embed=embed)
   
   @commands.command(name="info", aliases=["botinfo"])
   async def info(self, context):
