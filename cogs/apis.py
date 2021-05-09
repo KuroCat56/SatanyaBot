@@ -2,6 +2,7 @@ import os
 from discord.ext import commands
 import requests
 import json
+import discord
 
 #API de Kaomojis
 def get_kao():
@@ -15,8 +16,9 @@ def get_kao():
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
     json_data = json.loads(response.text)
-    quote = "**" + json_data[0]['q'] #+ "**" + " -" + json_data[0]['a']
-    return (quote)
+    quote_quo = json_data[0]['q'] 
+    #quote_a = json_data[0]['a']
+    return ()
 
 class apis(commands.Cog):
   """Comandos que requieren de alguna API"""
@@ -28,7 +30,10 @@ class apis(commands.Cog):
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
     quote = get_quote()
-    await ctx.send(quote)
+    embed = discord.Embed(
+      title=quote
+    )
+    await ctx.send(embed=embed)
 
 #Comando que envía kaomojis
   @commands.command(name="kao")
