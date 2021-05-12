@@ -112,5 +112,16 @@ class img(commands.Cog):
       file_bnk = discord.File(fp=img_bnk.image,filename=f"bonk.{img_bnk.format}")
       await ctx.send(file=file_bnk)
 
+  @commands.command()
+  async def bonk(self, ctx, member: discord.Member):
+    """
+    ¿Alguien anda horny?
+    """
+    async with ctx.typing():
+      url_stn= str(member.avatar_url_as(static_format="png", size=1024))
+      img_stn = await dagpi.image_process(ImageFeatures.satan(), url_stn)
+      file_stn = discord.File(fp=img_stn.image,filename=f"satan.{img_stn.format}")
+      await ctx.send(file=file_stn)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
