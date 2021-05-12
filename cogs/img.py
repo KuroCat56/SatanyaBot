@@ -101,6 +101,16 @@ class img(commands.Cog):
       file_jl = discord.File(fp=img_jl.image,filename=f"jail.{img_jl.format}")
       await ctx.send(file=file_jl)
 
+  @commands.command()
+  async def bonk(self, ctx, member: discord.Member):
+    """
+    ¿Alguien anda horny?
+    """
+    async with ctx.typing():
+      url_bnk= str(member.avatar_url_as(static_format="png", size=1024))
+      img_bnk = await dagpi.image_process(ImageFeatures.bonk(), url_bnk)
+      file_bnk = discord.File(fp=img_bnk.image,filename=f"jail.{img_bnk.format}")
+      await ctx.send(file=file_bnk)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
