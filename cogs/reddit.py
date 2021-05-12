@@ -36,7 +36,7 @@ class reddit(commands.Cog):
         em_memes = discord.Embed(color = 0xeded2d)
         em_memes.set_image(url = url_memes)
         em_memes.set_footer(text= "r/memes")
-        await ctx.send(embed = em_memes)
+      await ctx.send(embed = em_memes)
 
 #Construcción para comando nya>animeme
   @commands.command(name="animeme")
