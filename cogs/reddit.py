@@ -25,7 +25,6 @@ class reddit(commands.Cog):
   async def meme(self, ctx: commands.Context):
     """
     Obtén un meme de r/memes
-    
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("memes").hot()
@@ -44,17 +43,17 @@ class reddit(commands.Cog):
     """
     Enviaré un meme otaku de r/animemes
     """
-    submissions = reddit_api.subreddit("animemes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_animemes = next(ran_submission).url
-     em_animemes = discord.Embed(color = 0xed2dc0)
-     em_animemes.set_image(url = url_animemes)
-     em_animemes.set_footer(text= "r/animemes")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("animemes").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+      for x in range (post): #Creación del embed
+        url_animemes = next(ran_submission).url
+        em_animemes = discord.Embed(color = 0xed2dc0)
+        em_animemes.set_image(url = url_animemes)
+        em_animemes.set_footer(text= "r/animemes")
     await ctx.send(embed = em_animemes)
-    
+
 #Construcción para comando nya>antimeme
   @commands.command(name="antimeme")
   async def antimeme(self, ctx: commands.Context):
