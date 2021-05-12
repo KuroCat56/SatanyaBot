@@ -77,15 +77,15 @@ class reddit(commands.Cog):
     """
     Hmmm...
     """
-    submissions = reddit_api.subreddit("hmmm").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_hmmm = next(ran_submission).url
-     em_hmmm = discord.Embed(color = 0xe26d46)
-     em_hmmm.set_image(url = url_hmmm)
-     em_hmmm.set_footer(text= "r/hmmm")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("hmmm").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_hmmm = next(ran_submission).url
+        em_hmmm = discord.Embed(color = 0xe26d46)
+        em_hmmm.set_image(url = url_hmmm)
+        em_hmmm.set_footer(text= "r/hmmm")
     await ctx.send(embed = em_hmmm)
 
 #Construcción para comando nya>dank
@@ -94,15 +94,15 @@ class reddit(commands.Cog):
     """
     Memes densos de r/dankmemes
     """
-    submissions = reddit_api.subreddit("dankmemes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_dank = next(ran_submission).url
-     em_dank = discord.Embed(color = 0x8c5e1e)
-     em_dank.set_image(url = url_dank)
-     em_dank.set_footer(text= "r/dankmemes")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("dankmemes").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_dank = next(ran_submission).url
+        em_dank = discord.Embed(color = 0x8c5e1e)
+        em_dank.set_image(url = url_dank)
+        em_dank.set_footer(text= "r/dankmemes")
     await ctx.send(embed = em_dank)
 
 #Construcción para comando nya>chantext
@@ -111,15 +111,15 @@ class reddit(commands.Cog):
     """
     Extractos de 4chan en r/greentext
     """
-    submissions = reddit_api.subreddit("greentext").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_chantext = next(ran_submission).url
-     em_chantext = discord.Embed(color = 0x3bf94e)
-     em_chantext.set_image(url = url_chantext)
-     em_chantext.set_footer(text= "r/greentext")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("greentext").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_chantext = next(ran_submission).url
+        em_chantext = discord.Embed(color = 0x3bf94e)
+        em_chantext.set_image(url = url_chantext)
+        em_chantext.set_footer(text= "r/greentext")
     await ctx.send(embed = em_chantext)
 
 #Construcción para comando nya>shower
@@ -128,15 +128,15 @@ class reddit(commands.Cog):
     """
     Frases célebres de r/ShowerThoughts
     """
-    submissions = reddit_api.subreddit("showerthoughts").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_shower = next(ran_submission).url
-     title_post = next(ran_submission).title
-     em_shower = discord.Embed(title = title_post, url = url_shower, color = 0x5683ea)
-     em_shower.set_footer(text= "r/ShowerThoughts")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("showerthoughts").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_shower = next(ran_submission).url
+        title_post = next(ran_submission).title
+        em_shower = discord.Embed(title = title_post, url = url_shower, color = 0x5683ea)
+        em_shower.set_footer(text= "r/ShowerThoughts")
     await ctx.send(embed = em_shower)
 
 #Construcción para comando nya>hispameme
@@ -145,15 +145,15 @@ class reddit(commands.Cog):
     """
     Memes hispanos
     """
-    submissions = reddit_api.subreddit("SpanishMeme").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_hispa = next(ran_submission).url
-     em_hispa = discord.Embed(color = 0xf4f27a)
-     em_hispa.set_image(url = url_hispa)
-     em_hispa.set_footer(text= "r/SpanishMeme")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("SpanishMeme").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_hispa = next(ran_submission).url
+        em_hispa = discord.Embed(color = 0xf4f27a)
+        em_hispa.set_image(url = url_hispa)
+        em_hispa.set_footer(text= "r/SpanishMeme")
     await ctx.send(embed = em_hispa)
 
 def setup(bot: commands.Bot):
