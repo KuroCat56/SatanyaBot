@@ -26,16 +26,17 @@ class reddit(commands.Cog):
     """
     Obtén un meme de r/memes
     """
-    submissions = reddit_api.subreddit("memes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_memes = next(ran_submission).url
-     em_memes = discord.Embed(color = 0xeded2d)
-     em_memes.set_image(url = url_memes)
-     em_memes.set_footer(text= "r/memes")
-    await ctx.send(embed = em_memes)
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("memes").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+      for x in range (post):
+      #Creación del embed
+        url_memes = next(ran_submission).url
+        em_memes = discord.Embed(color = 0xeded2d)
+        em_memes.set_image(url = url_memes)
+        em_memes.set_footer(text= "r/memes")
+        await ctx.send(embed = em_memes)
 
 #Construcción para comando nya>animeme
   @commands.command(name="animeme")
