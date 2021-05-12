@@ -113,15 +113,37 @@ class img(commands.Cog):
       await ctx.send(file=file_bnk)
 
   @commands.command()
-  async def test(self, ctx, member: discord.Member):
+  async def delete(self, ctx, member: discord.Member):
     """
-    Test
+    Borra a alguien de la existencia
     """
     async with ctx.typing():
-      url_test= str(member.avatar_url_as(static_format="png", size=1024))
-      img_test = await dagpi.image_process(ImageFeatures.burn(), url_test)
-      file_test = discord.File(fp=img_test.image,filename=f"test.{img_test.format}")
-      await ctx.send(file=file_test)
+      url_dlt= str(member.avatar_url_as(static_format="png", size=1024))
+      img_dlt = await dagpi.image_process(ImageFeatures.delete(), url_dlt)
+      file_dlt = discord.File(fp=img_dlt.image,filename=f"delete.{img_dlt.format}")
+      await ctx.send(file=file_dlt)
+
+  @commands.command()
+  async def kaboom(self, ctx, member: discord.Member):
+    """
+    KABOOM!
+    """
+    async with ctx.typing():
+      url_bmb= str(member.avatar_url_as(static_format="png", size=1024))
+      img_bmb = await dagpi.image_process(ImageFeatures.bomb(), url_bmb)
+      file_bmb = discord.File(fp=img_bmb.image,filename=f"bomb.{img_bmb.format}")
+      await ctx.send(file=file_bmb)
+
+  @commands.command()
+  async def neon(self, ctx, member: discord.Member):
+    """
+    Porque todo es más bonito con el neón
+    """
+    async with ctx.typing():
+      url_nn= str(member.avatar_url_as(static_format="png", size=1024))
+      img_nn = await dagpi.image_process(ImageFeatures.neon(), url_nn)
+      file_nn = discord.File(fp=img_nn.image,filename=f"neon.{img_nn.format}")
+      await ctx.send(file=file_nn)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
