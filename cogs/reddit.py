@@ -60,15 +60,15 @@ class reddit(commands.Cog):
     """
     Kappa
     """
-    submissions = reddit_api.subreddit("antimemes").hot()
-    post = random.randint(1,50)
-    ran_submission = (x for x in submissions if not x.stickied)
-    for x in range (post):
-  #Creación del embed
-     url_antimemes = next(ran_submission).url
-     em_antimemes = discord.Embed(color = 0xbbc61b)
-     em_antimemes.set_image(url = url_antimemes)
-     em_antimemes.set_footer(text= "r/antimemes")
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("antimemes").hot()
+      post = random.randint(1,50)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_antimemes = next(ran_submission).url
+        em_antimemes = discord.Embed(color = 0xbbc61b)
+        em_antimemes.set_image(url = url_antimemes)
+        em_antimemes.set_footer(text= "r/antimemes")
     await ctx.send(embed = em_antimemes)
 
 #Construcción para comando nya>hmmm
