@@ -119,7 +119,7 @@ class img(commands.Cog):
     """
     async with ctx.typing():
       url_test= str(member.avatar_url_as(static_format="png", size=1024))
-      img_test = await dagpi.image_process(ImageFeatures.blur(), url_test)
+      img_test = await dagpi.image_process(ImageFeatures.neon(), url_test)
       file_test = discord.File(fp=img_test.image,filename=f"test.{img_test.format}")
       await ctx.send(file=file_test)
 
