@@ -26,12 +26,11 @@ class reddit(commands.Cog):
     """
     Obtén un meme de r/memes
     """
+    submissions = reddit_api.subreddit("memes").hot()
+    post = random.randint(1,50)
+    ran_submission = (x for x in submissions if not x.stickied)
     async with ctx.typing():
-      submissions = reddit_api.subreddit("memes").hot()
-      post = random.randint(1,50)
-      ran_submission = (x for x in submissions if not x.stickied)
-      for x in range (post):
-      #Creación del embed
+      for x in range (post): #Creación del embed
         url_memes = next(ran_submission).url
         em_memes = discord.Embed(color = 0xeded2d)
         em_memes.set_image(url = url_memes)
