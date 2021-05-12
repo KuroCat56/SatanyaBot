@@ -113,7 +113,7 @@ class img(commands.Cog):
       await ctx.send(file=file_bnk)
 
   @commands.command()
-  async def bonk(self, ctx, member: discord.Member):
+  async def satan(self, ctx, member: discord.Member):
     """
     ¿Alguien anda horny?
     """
