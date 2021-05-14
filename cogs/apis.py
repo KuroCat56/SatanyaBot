@@ -31,8 +31,8 @@ class apis(commands.Cog):
   async def quo(self, ctx: commands.Context):
     quote_em, author_em = get_quote()
     embed = discord.Embed(
-      title=quote_em,
-      description=author_em
+      title=f"{quote_em}",
+      description=f"-{author_em}"
     )
     await ctx.send(embed=embed)
 
