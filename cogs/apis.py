@@ -29,7 +29,7 @@ class apis(commands.Cog):
 #Comando que envía quotes
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
-    quote = get_quote(quote_quo)
+    quote = get_quote()
     #author = get_quote(quote_a)
     embed = discord.Embed(
       title=quote,
