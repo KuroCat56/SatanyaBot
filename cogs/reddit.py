@@ -28,7 +28,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("memes").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
       for x in range (post): #Creación del embed
         url_memes = next(ran_submission).url
@@ -45,7 +45,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("animemes").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
       for x in range (post): #Creación del embed
         url_animemes = next(ran_submission).url
@@ -62,7 +62,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("antimemes").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
     for x in range (post): #Creación del embed
         url_antimemes = next(ran_submission).url
@@ -79,7 +79,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("hmmm").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
     for x in range (post): #Creación del embed
         url_hmmm = next(ran_submission).url
@@ -96,7 +96,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("dankmemes").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
     for x in range (post): #Creación del embed
         url_dank = next(ran_submission).url
@@ -113,7 +113,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("greentext").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
     for x in range (post): #Creación del embed
         url_chantext = next(ran_submission).url
@@ -130,7 +130,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("showerthoughts").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
     for x in range (post): #Creación del embed
         url_shower = next(ran_submission).url
@@ -147,7 +147,7 @@ class reddit(commands.Cog):
     """
     async with ctx.typing():
       submissions = reddit_api.subreddit("SpanishMeme").hot()
-      post = random.randint(1,50)
+      post = random.randint(1,30)
       ran_submission = (x for x in submissions if not x.stickied)
     for x in range (post): #Creación del embed
         url_hispa = next(ran_submission).url
