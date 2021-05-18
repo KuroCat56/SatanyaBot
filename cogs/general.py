@@ -32,7 +32,7 @@ class general(commands.Cog):
         await ctx.send("Puedes revisar mi código fuente en https://github.com/KuroCat56/SatanyaBot")
   
   @commands.command(name="invite")
-  async def invite(self, ctx: commands.Context):
+  async def invite(self, message, ctx: commands.Context):
       """
       Links de invitación de SatanyaBot y al server
       """
@@ -63,7 +63,7 @@ class general(commands.Cog):
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/832458242806120499/bannerSatanyaBot_Logotipo3x.png?width=1024&height=291"
       )
-      await self.add_reaction(nya)
+      await message.add_reaction(nya)
       await ctx.author.send(embed=embed)
   
   @commands.command(name="info", aliases=["botinfo"])
