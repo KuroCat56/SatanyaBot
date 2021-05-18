@@ -57,7 +57,7 @@ async def random_pr():
         await asyncio.sleep(10)
 bot.loop.create_task(random_pr())
 
-mention = ["satanya", "satanyabot", "@satanyabot"]
+mention = ["satanya", "satanyabot"]
 @bot.event
 async def on_message(msg):
   if any(word in msg.content.lower() for word in mention):
