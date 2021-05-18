@@ -40,24 +40,24 @@ class general(commands.Cog):
           color=0xfbf9fa,
       )
       embed.add_field(
-          name="<:NyaLogo:832392344279318569> Link de server:",
+          name="<:NyaLogo:832392344279318569> Link de server",
           value="[「SatanyaBot」](https://discord.gg/bqcdKxuW3X)",
           inline=True
       )
       embed.add_field(
-          name="<:SatanyaBot:832392370472484875> Link SatanyaBot:",
+          name="<:SatanyaBot:832392370472484875> Link SatanyaBot",
           value="[Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
           inline=True
       )
       embed.add_field(
-          name="<:NyasataBot:832398858722082897> Donaciones:",
+          name="<:NyasataBot:832398858722082897> Donaciones",
           value="Próximamente",
-          inline=True
+          inline=False
       )
       embed.add_field(
-          name="<:oke:835631732077101067> Califícame en top.gg:",
+          name="<:oke:835631732077101067> Califícame en top.gg",
           value="[Próximamente](https://top.gg/)",
-          inline=True
+          inline=False
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/832458242806120499/bannerSatanyaBot_Logotipo3x.png?width=1024&height=291"
       )
