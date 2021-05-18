@@ -49,7 +49,8 @@ class general(commands.Cog):
           value="[Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
           inline=False
       )
-      await ctx.send(embed=embed)
+      await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:832392370472484875>")
+      await ctx.author.send(embed=embed)
   
   @commands.command(name="info", aliases=["botinfo"])
   async def info(self, context):
