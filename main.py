@@ -60,6 +60,8 @@ bot.loop.create_task(random_pr())
 mention = ["satanya", "satanyabot"]
 @bot.event
 async def on_message(msg):
+  if msg.author.bot:
+    return
   if any(word in msg.content.lower() for word in mention):
    nya="<:SatanyaBot:832392370472484875>"
    await msg.add_reaction(nya)
