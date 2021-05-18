@@ -50,7 +50,7 @@ for filename in os.listdir("./cogs"):
 @bot.event
 async def random_pr():
     await bot.wait_until_ready()
-    statuses = [f'nya>help | v{config.VERSION}', f'moderar en {len(bot.guilds)} servidores', 'Discord.py']
+    statuses = [f'nya>help | v{config.VERSION}', f'rolear en {len(bot.guilds)} servidores']
     while not bot.is_closed():
         status = random.choice(statuses)
         await bot.change_presence(activity = discord.Game(name=status))
