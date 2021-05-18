@@ -57,14 +57,12 @@ async def random_pr():
         await asyncio.sleep(10)
 bot.loop.create_task(random_pr())
 
-hola = ["hola", "buenas", "wenas", "hello"]
-adios = ["adiós", "adios", "bye", "chao"]
-#@bot.event
+mention = ["satanya", "satanyabot", "@satanyabot"]
+@bot.event
 async def on_message(msg):
-  if any(word in msg.content.lower() for word in hola):
-   await msg.add_reaction("👋")
-  if any(word in msg.content.lower() for word in adios):
-    await msg.add_reaction("🖐️")
+  if any(word in msg.content.lower() for word in mention):
+   nya="<:SatanyaBot:832392370472484875>"
+   await msg.add_reaction(nya)
   await bot.process_commands(msg)
 
 #Sección de mantenimiento 24/7 encendido e iniciado del bot
