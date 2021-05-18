@@ -42,7 +42,7 @@ class utils(commands.Cog):
     value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
     await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
 
-  @commands.command(name="poll")
+  @commands.command()
   async def poll(self, ctx, *args):
     """
     Crea una mini encuesta para lo que gustes
@@ -53,9 +53,7 @@ class utils(commands.Cog):
         description=f"{poll_title}",
         color=0xfbf9fa,
     )
-    embed.set_footer(
-      text=f"Creado por: {ctx.message.author} - ¡Reacciona para votar!"
-     )
+    embed.set_footer(text=f"Creado por: {ctx.message.author} - ¡Reacciona para votar!")
     embed_message = await ctx.send(embed=embed)
     await embed_message.add_reaction("👍")
     await embed_message.add_reaction("👎")
