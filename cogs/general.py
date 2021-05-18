@@ -51,7 +51,6 @@ class general(commands.Cog):
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/832458242806120499/bannerSatanyaBot_Logotipo3x.png?width=1024&height=291"
       )
-      await ctx.add_reaction("<:SatanyaBot:832392370472484875>")
       await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:832392370472484875>")
       await ctx.author.send(embed=embed)
   
