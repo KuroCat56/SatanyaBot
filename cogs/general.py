@@ -3,6 +3,8 @@ import config
 from discord.ext import commands
 from datetime import datetime
 
+nya="<:SatanyaBot:832392370472484875>"
+
 class general(commands.Cog):
 
   def __init__(self, bot: commands.Bot):
@@ -61,7 +63,7 @@ class general(commands.Cog):
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/832458242806120499/bannerSatanyaBot_Logotipo3x.png?width=1024&height=291"
       )
-      await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:832392370472484875>")
+      await message.add_reaction(nya)
       await ctx.author.send(embed=embed)
   
   @commands.command(name="info", aliases=["botinfo"])
