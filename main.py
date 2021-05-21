@@ -46,16 +46,10 @@ for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
     bot.load_extension(f"cogs.{filename[:-3]}")
 
-#Creación de un estado que cambia cada 10 segundos
 @bot.event
-async def random_pr():
-    await bot.wait_until_ready()
-    statuses = [f'nya>help | v{config.VERSION}', f'rolear en {len(bot.guilds)} servidores']
-    while not bot.is_closed():
-        status = random.choice(statuses)
-        await bot.change_presence(activity = discord.Game(name=status))
-        await asyncio.sleep(10)
-bot.loop.create_task(random_pr())
+async def presence():
+  await bot.wait_until_ready()
+  await bot.change_presence(f'nya>help | v{config.VERSION}')
 
 mention = ["satanya", "satanyabot"]
 @bot.event
