@@ -7,7 +7,6 @@ import asyncio
 import config
 from dotenv import load_dotenv
 
-#test
 #Prefijo de comando de discord.ext
 bot = commands.Bot(command_prefix="nya>")
 bot.launch_time = datetime.utcnow()
@@ -40,16 +39,13 @@ async def uptime(ctx):
 @bot.event
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(bot))
+    await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION}'))
 
 #Busca todos los cogs y los carga al iniciar
 for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
     bot.load_extension(f"cogs.{filename[:-3]}")
 
-@bot.event
-async def presence():
-  await bot.wait_until_ready()
-  await bot.change_presence(f'nya>help | v{config.VERSION}')
 
 mention = ["satanya", "satanyabot"]
 @bot.event
