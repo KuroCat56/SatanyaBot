@@ -33,7 +33,7 @@ async def uptime(ctx):
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
     uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-    await ctx.send(f"**{uptime}**")
+    await ctx.send(f"Fuí encencida hace: **{uptime}**")
 
 #Busca todos los cogs y los carga al iniciar
 for filename in os.listdir("./cogs"):
@@ -54,7 +54,7 @@ async def on_message(msg):
 @bot.event
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(bot))
-    await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION}'))
+    await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION} 🔲'))
 
 #Sección de mantenimiento 24/7 encendido e iniciado del bot
 load_dotenv()
