@@ -106,7 +106,7 @@ class general(commands.Cog):
             inline=True
         )
         embed.add_field(
-            name="Uso de memoria:",
+            name="Uso de memoria actual:",
             value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB",
             inline=True
         )
