@@ -32,7 +32,8 @@ async def uptime(ctx):
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
     minutes, seconds = divmod(remainder, 60)
     days, hours = divmod(hours, 24)
-    await ctx.send(f"{days}d, {hours}h, {minutes}m, {seconds}s")
+    uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+    await ctx.send(f"**{uptime}**")
 
 
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.

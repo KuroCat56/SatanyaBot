@@ -1,7 +1,9 @@
+from main import uptime
 import discord, platform
 import config
 from discord.ext import commands
 from datetime import datetime
+from main import uptime
 
 class general(commands.Cog):
 
@@ -89,6 +91,11 @@ class general(commands.Cog):
         embed.add_field(
             name="Mi versión de Python:",
             value=f"{platform.python_version()}",
+            inline=True
+        )
+        embed.add_field(
+            name="Encendida desde hace:",
+            value=uptime,
             inline=True
         )
         embed.add_field(
