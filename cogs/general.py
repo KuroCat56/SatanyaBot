@@ -2,12 +2,13 @@ import discord, platform
 import config
 from discord.ext import commands
 from datetime import datetime
+from psutil import Process
+from os import getpid
 
 class general(commands.Cog):
 
   def __init__(self, bot: commands.Bot):
     self.bot = bot
-
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -70,7 +71,7 @@ class general(commands.Cog):
         """
         Información útil (y no tan útil) del bot.
         """
-
+        #Implementación directa de main.py
         delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -102,6 +103,11 @@ class general(commands.Cog):
         embed.add_field(
             name="Encendida desde hace:",
             value=f"{uptime}",
+            inline=True
+        )
+        embed.add_field(
+            name="Uso de memoria:",
+            value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB",
             inline=True
         )
         embed.add_field(
