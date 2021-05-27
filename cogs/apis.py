@@ -29,6 +29,9 @@ class apis(commands.Cog):
 #Comando que envía quotes
   @commands.command(name="quo")
   async def quo(self, ctx: commands.Context):
+    """
+    Cuidado con las crisis existenciales.
+    """
     quote_em, author_em = get_quote()
     embed = discord.Embed(
       title=f"{quote_em}",
@@ -39,6 +42,9 @@ class apis(commands.Cog):
 #Comando que envía kaomojis
   @commands.command(name="kao")
   async def kao(self, ctx: commands.Context):
+    """
+     ( ˆᴗˆ  )
+    """
     kao = get_kao()
     await ctx.send(kao)
 
