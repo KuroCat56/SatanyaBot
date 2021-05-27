@@ -3,7 +3,7 @@ import discord, platform
 import config
 from discord.ext import commands
 from datetime import datetime
-from main import uptime
+from main.uptime
 
 class general(commands.Cog):
 
@@ -95,7 +95,7 @@ class general(commands.Cog):
         )
         embed.add_field(
             name="Encendida desde hace:",
-            value=uptime(),
+            value=uptime.uptime,
             inline=True
         )
         embed.add_field(
