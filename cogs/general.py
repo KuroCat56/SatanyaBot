@@ -95,7 +95,7 @@ class general(commands.Cog):
         )
         embed.add_field(
             name="Encendida desde hace:",
-            value=uptime.uptime,
+            value=main.uptime,
             inline=True
         )
         embed.add_field(
