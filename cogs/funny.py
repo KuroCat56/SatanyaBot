@@ -7,6 +7,9 @@ class funny(commands.Cog):
   
   @commands.command()
   async def owo(self, ctx):
+    """
+    Escribe lo que quieras al usar este comando para que lo owofique.
+    """
     owo = (text_to_owo(ctx.message.content))
     owo = owo.lstrip("nya>owo") #Se elimina 'nya>owo' del string para que no se imprima en el ctx.send
     await ctx.send(owo)
@@ -14,6 +17,9 @@ class funny(commands.Cog):
 
   @commands.command()
   async def say(self, ctx):
+    """
+    ¿Quieres que diga algo por ti?
+    """
     say = ctx.message.content
     say = say.lstrip("nya>say") #Se elimina 'nya>say' del string para que no se imprima en el ctx.send
     await ctx.send(say)
