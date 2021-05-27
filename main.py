@@ -35,18 +35,10 @@ async def uptime(ctx):
     uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
     await ctx.send(f"**{uptime}**")
 
-
-#on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
-@bot.event
-async def on_ready():
-    print('Nos hemos conectado como {0.user}'.format(bot))
-    await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION}'))
-
 #Busca todos los cogs y los carga al iniciar
 for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
     bot.load_extension(f"cogs.{filename[:-3]}")
-
 
 mention = ["satanya", "satanyabot"]
 @bot.event
@@ -57,6 +49,12 @@ async def on_message(msg):
    nya="<:SatanyaBot:832392370472484875>"
    await msg.add_reaction(nya)
   await bot.process_commands(msg)
+
+#on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
+@bot.event
+async def on_ready():
+    print('Nos hemos conectado como {0.user}'.format(bot))
+    await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION}'))
 
 #Sección de mantenimiento 24/7 encendido e iniciado del bot
 load_dotenv()
