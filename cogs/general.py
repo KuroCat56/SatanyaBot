@@ -2,14 +2,12 @@ import discord, platform
 import config
 from discord.ext import commands
 from datetime import datetime
-from main import uptime
-
-info_uptime = uptime.uptime
 
 class general(commands.Cog):
 
   def __init__(self, bot: commands.Bot):
     self.bot = bot
+
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -73,6 +71,12 @@ class general(commands.Cog):
         Información útil (y no tan útil) del bot.
         """
 
+        delta_uptime = datetime.utcnow() - self.bot.launch_time
+        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+
         embed = discord.Embed(
           title="¡Hola, soy SatanyaBot!",
             description="Gracias por dejarme estar en tu servidor. Recuerda que si quieres ver mis comandos usa **nya>help**",
@@ -97,7 +101,7 @@ class general(commands.Cog):
         )
         embed.add_field(
             name="Encendida desde hace:",
-            value=f"{info_uptime}",
+            value=f"{uptime}",
             inline=True
         )
         embed.add_field(
