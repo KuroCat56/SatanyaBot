@@ -86,7 +86,7 @@ class general(commands.Cog):
         )
         embed.set_author(
             name=f"SatanyaBot | v{config.VERSION}",
-            icon_url = "https://media.discordapp.net/attachments/819972811799265315/822706553815171142/Nya-Dark.png?width=472&height=472"
+            icon_url = "https://media.discordapp.net/attachments/829223734559637545/829344812913655878/SatanyaBot.png?width=431&height=473"
         )
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/819972811799265315/822718490300514314/SatanyaBotspam.png?width=431&height=473"
         )
