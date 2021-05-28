@@ -26,15 +26,6 @@ async def unload(cog, extension):
 async def reload(cog, extension):
   bot.reload_extension(f"cogs.{extension}")
 
-@bot.command()
-async def uptime(ctx):
-    delta_uptime = datetime.utcnow() - bot.launch_time
-    hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-    minutes, seconds = divmod(remainder, 60)
-    days, hours = divmod(hours, 24)
-    uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-    await ctx.send(f"Fuí encencida hace: **{uptime}**")
-
 #Busca todos los cogs y los carga al iniciar
 for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
