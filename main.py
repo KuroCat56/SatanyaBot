@@ -6,6 +6,8 @@ import random
 import asyncio
 import config
 from dotenv import load_dotenv
+from psutil import Process
+from os import getpid
 
 #Prefijo de comando de discord.ext
 bot = commands.Bot(command_prefix="nya>")
@@ -32,6 +34,7 @@ for filename in os.listdir("./cogs"):
     bot.load_extension(f"cogs.{filename[:-3]}")
 
 @bot.command()
+@commands.is_owner()
 async def uptime(ctx):
     delta_uptime = datetime.utcnow() - bot.launch_time
     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
@@ -39,6 +42,11 @@ async def uptime(ctx):
     days, hours = divmod(hours, 24)
     uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
     await ctx.send(f"Fuí encencida hace: **{uptime}**")
+
+@bot.command()
+@commands.is_owner()
+async def memory(ctx):
+  await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
 
 mention = ["satanya", "satanyabot"]
 @bot.event

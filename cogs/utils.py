@@ -1,8 +1,6 @@
 import discord
 from discord.ext import commands
 import asyncio
-from psutil import Process
-from os import getpid
 
 class utils(commands.Cog):
   def __init__(self, bot: commands.Bot):
@@ -50,10 +48,7 @@ class utils(commands.Cog):
     value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
     await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
   
-  @commands.is_owner()
-  @commands.command()
-  async def memory(self, ctx):
-    await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
+
 
   # @commands.command()
   # async def poll(self, ctx, *args):
