@@ -256,7 +256,7 @@ class VoiceState:
             self.voice = None
 
 
-class Music(commands.Cog):
+class music(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.voice_states = {}
@@ -349,7 +349,7 @@ class Music(commands.Cog):
     
         search_content = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
         em = discord.Embed(title = ":bulb: **Search Result**", description = "http://youtube.com/watch?v=" + search_content[0], color = ctx.author.color)
-        em.set_thumbnail(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3eec9ebd-3641-4be9-a528-1f313300ff3c/dcq4cdk-935e7508-ea87-4896-a084-6a5aaa680d51.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvM2VlYzllYmQtMzY0MS00YmU5LWE1MjgtMWYzMTMzMDBmZjNjXC9kY3E0Y2RrLTkzNWU3NTA4LWVhODctNDg5Ni1hMDg0LTZhNWFhYTY4MGQ1MS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.8JGq4xvhJZOncfRybw4z3Jhk0vE9B3oiD4aA3dOZqv0")
+        em.set_thumbnail(url=self.source.thumbnail)
         em.set_footer(text=f"Search requested by {ctx.author.name}", icon_url=f"{ctx.author.avatar_url}")
         await ctx.send(embed=em)
 
@@ -529,4 +529,4 @@ class Music(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Music(bot))
+    bot.add_cog(music(bot))
