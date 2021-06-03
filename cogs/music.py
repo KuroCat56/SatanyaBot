@@ -144,14 +144,14 @@ class Song:
 
     def create_embed(self):
         em = (discord.Embed(description='```css\n{0.source.title}\n```'.format(self), color=discord.Color.blurple())
-                 .add_field(name='<:time:804063156259258368> Duration', value=f"`{self.source.duration}`", inline = True)
-                 .add_field(name='<:user:804063696799662101> Requested by', value=self.requester.mention, inline = True)
-                 .add_field(name='<:artist:804063511470800916> Artist', value='[{0.source.uploader}]({0.source.uploader_url})'.format(self))
-                 .add_field(name="<a:9655_eyesshaking_new:809789083127382066> Total Views", value ="`{}`".format(humanize.intword(self.source.views)))
-                 .add_field(name="<a:4985_thumbs_up:809789082276331550> Total Likes", value ="`{}`".format(humanize.intword(self.source.likes)))
-                 .add_field(name="<a:3505_thumps_down:809789081977356329> Total Dislikes", value ="`{}`".format(humanize.intword(self.source.dislikes)))
+                 .add_field(name='⏱️ Duración', value=f"`{self.source.duration}`", inline = True)
+                 .add_field(name='👤 Solicitado por', value=self.requester.mention, inline = True)
+                 .add_field(name='🎵 Artista', value='[{0.source.uploader}]({0.source.uploader_url})'.format(self))
+                 .add_field(name="👀 Total Views", value ="`{}`".format(humanize.intword(self.source.views)))
+                 .add_field(name="👍 Total Likes", value ="`{}`".format(humanize.intword(self.source.likes)))
+                 .add_field(name="👎 Total Dislikes", value ="`{}`".format(humanize.intword(self.source.dislikes)))
                  .set_thumbnail(url=self.source.thumbnail)
-                 .set_footer(text=f"Requested by {self.requester.name} (In streaming)", icon_url=f"{self.requester.avatar_url}"))
+                 .set_footer(text=f"Solicitado por {self.requester.name} (In streaming)", icon_url=f"{self.requester.avatar_url}"))
 
         return em
 
@@ -291,7 +291,7 @@ class music(commands.Cog):
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
 
-    @commands.command(help="Make me join in a VC", aliases = ["join"], invoke_without_subcommand=True)
+    @commands.command(help="Hazme unir a un canal de voz.", aliases = ["join"], invoke_without_subcommand=True)
     async def _join(self, ctx: commands.Context):
 
         destination = ctx.author.voice.channel
@@ -300,44 +300,44 @@ class music(commands.Cog):
 
         ctx.voice_state.voice = await destination.connect()
 
-        em = discord.Embed(title=f":zzz: Joined in {destination}", color = ctx.author.color)
-        em.set_footer(text=f"Requested by {ctx.author.name}")  
+        em = discord.Embed(title=f"✅ Me he conectado en {destination}", color = ctx.author.color)
+        em.set_footer(text=f"Solicitado por {ctx.author.name}")  
         await ctx.send(embed=em)
 
-    @commands.command(help="Summon me in a VC", aliases = ["summon"])
+    @commands.command(help="Invócame en un canal de voz", aliases = ["summon"])
     async def _summon(self, ctx: commands.Context, *, channel: discord.VoiceChannel = None):
 
         if not channel and not ctx.author.voice:
-            raise VoiceError('You are neither connected to a voice channel / not specified a channel to join.')
+            raise VoiceError('No estás conectado a ningún canal de voz / no especificaste a que canal unirme.')
 
         destination = channel or ctx.author.voice.channel
         if ctx.voice_state.voice:
             await ctx.voice_state.voice.move_to(destination)
-            em = discord.Embed(title=f":zzz: Summoned in {destination}", color = ctx.author.color)
-            em.set_footer(text=f"Requested by {ctx.author.name}")
+            em = discord.Embed(title=f"✅ He sido invocada en {destination}", color = ctx.author.color)
+            em.set_footer(text=f"Solicitado por {ctx.author.name}")
             await ctx.send(embed=em)
 
         ctx.voice_state.voice = await destination.connect()
 
-    @commands.command(help="Make me leave a VC", aliases = ["leave"])
+    @commands.command(help="Hazme salir de un canal de voz.", aliases = ["leave"])
     async def _leave(self, ctx: commands.Context):
 
         if not ctx.voice_state.voice:
-            return await ctx.send('Not connected to any voice channel.')
+            return await ctx.send('No estoy conectada a ningún canal de voz.')
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás conectado a ningún canal.")
 
         dest = ctx.author.voice.channel
         await ctx.voice_state.stop()
         del self.voice_states[ctx.guild.id]
-        em = discord.Embed(title=f":zzz: Disconnected from {dest}", color = ctx.author.color)
-        em.set_footer(text=f"Requested by {ctx.author.name}")            
+        em = discord.Embed(title=f":zzz: Desconectada de {dest}", color = ctx.author.color)
+        em.set_footer(text=f"Solicitado por {ctx.author.name}")            
         await ctx.send(embed=em)
 
 
 # Search whatever u want on youtube!
-    @commands.command(help="Search something on YouTube")
+    @commands.command(help="Busca algo en Youtube")
     async def syt(self, ctx, *, search):
 
         query_string = urllib.parse.urlencode({
@@ -350,85 +350,85 @@ class music(commands.Cog):
         search_content = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
         em = discord.Embed(title = ":bulb: **Search Result**", description = "http://youtube.com/watch?v=" + search_content[0], color = ctx.author.color)
         em.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/829344812913655878/SatanyaBot.png?width=431&height=473")
-        em.set_footer(text=f"Search requested by {ctx.author.name}", icon_url=f"{ctx.author.avatar_url}")
+        em.set_footer(text=f"Solicitado por {ctx.author.name}", icon_url=f"{ctx.author.avatar_url}")
         await ctx.send(embed=em)
 
 
 
-    @commands.command(help="Set the player volume", aliases = ["vol"])
+    @commands.command(help="Ajusta el volumen de mi reproducción.", aliases = ["vol"])
     async def _volume(self, ctx: commands.Context, *, volume:int):
 
         if not ctx.author.voice or not ctx.author.voice.channel:
-            return await ctx.send('You are not connected to any voice channel.')
+            return await ctx.send('No estás conectado a ningún canal.')
 
         if not ctx.voice_state.is_playing:
-            return await ctx.send('Nothing being played at the moment.')
+            return await ctx.send('No estoy reproduciendo nada en estos momentos.')
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
         if volume > 150:
-            return await ctx.send(':x: Volume must be between **0 and 150**')
+            return await ctx.send(':x: El volumen debe de ser entre **0 y 150**')
 
         ctx.voice_client.source.volume = volume / 150
-        em = discord.Embed(title=f"Volume set at the **`{volume}%`**", color = ctx.author.color)
-        em.set_footer(text=f"Regulated by {ctx.author.name}")    
+        em = discord.Embed(title=f"Volumen ajutsado a **`{volume}%`**", color = ctx.author.color)
+        em.set_footer(text=f"Solicitado por {ctx.author.name}")    
         await ctx.send(embed=em)
 
-    @commands.command(help="See the actual song in playing", aliases=['now', 'current', 'playing'])
+    @commands.command(help="Mira que se está reproduciendo actualmente.", aliases=['now', 'current', 'playing'])
     async def _now(self, ctx: commands.Context):
 
         await ctx.send(embed=ctx.voice_state.current.create_embed())
 
-    @commands.command(name='pause', help='Pause the actual player')
+    @commands.command(name='pause', help='Pausa la reproducción.')
     async def _pause(self, ctx):
         server = ctx.message.guild
         voice_channel = server.voice_client
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
         voice_channel.pause()
         await ctx.message.add_reaction('⏯')
 
-    @commands.command(name='resume', help="Resume the paused player")
+    @commands.command(name='resume', help="Reanuda la reproducción pausada.")
     async def _resume(self, ctx):
         server = ctx.message.guild
         voice_channel = server.voice_client
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
 
         voice_channel.resume()
         await ctx.message.add_reaction('⏯')
 
-    @commands.command(name="stop", help="Stop the current song")
+    @commands.command(name="stop", help="Detén la lista de reproducción.")
     async def _stop(self, ctx):
 
         if not ctx.author.voice or not ctx.author.voice.channel:
-            return await ctx.send('You are not connected to any voice channel.')
+            return await ctx.send('No estás conectado a ningún canal de voz.')
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
-        em = discord.Embed(title=f":zzz: Alright, i'll stop the current song.", color = ctx.author.color)
-        em.set_footer(text=f"Stopped by {ctx.author.name}", icon_url=f"{ctx.author.avatar_url}")
+        em = discord.Embed(title=f"🛑 Vale, ya no reproduciré nada más.", color = ctx.author.color)
+        em.set_footer(text=f"Solicitado por {ctx.author.name}", icon_url=f"{ctx.author.avatar_url}")
         await ctx.send(embed=em)
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         voice.stop()
 
-    @commands.command(name='skip', help="Skip the current song")
+    @commands.command(name='skip', help="Salta la canción actual.")
     async def _skip(self, ctx: commands.Context):
 
         if not ctx.author.voice or not ctx.author.voice.channel:
-            return await ctx.send('You are not connected to any voice channel.')
+            return await ctx.send('No estás conectado a ningún canal de voz.')
 
         if not ctx.voice_state.is_playing:
-            return await ctx.send('Not playing any music right now...')
+            return await ctx.send('No estoy reproduciendo nada...')
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
         voter = ctx.message.author
         if voter == ctx.voice_state.current.requester:
@@ -453,11 +453,11 @@ class music(commands.Cog):
         else:
             await ctx.send('You have already voted to skip this song.')
 
-    @commands.command(name='queue', help="See the song queue")
+    @commands.command(name='queue', help="Mira la lista de reproducción actual.")
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
 
         if len(ctx.voice_state.songs) == 0:
-            return await ctx.send('The queue is empty.')
+            return await ctx.send('La lista está vacía.')
 
         items_per_page = 10
         pages = math.ceil(len(ctx.voice_state.songs) / items_per_page)
@@ -470,37 +470,37 @@ class music(commands.Cog):
             queue += '`{0}.` [**{1.source.title}**]({1.source.url})\n`{1.source.duration}`\n\n'.format(i + 1, song)
 
         embed = (discord.Embed(description='**{} Tracks:**\n\n{}'.format(len(ctx.voice_state.songs), queue))
-                 .set_footer(text='Viewing page {}/{}'.format(page, pages)))
+                 .set_footer(text='Viendo página {}/{}'.format(page, pages)))
         await ctx.send(embed=embed)
 
-    @commands.command(name='shuffle', help="Shuffle the queue")
+    @commands.command(name='shuffle', help="Aleatoriza la lista de reproducción.")
     async def _shuffle(self, ctx: commands.Context):
 
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
         if len(ctx.voice_state.songs) == 0:
-            return await ctx.send('Empty queue.')
+            return await ctx.send('Lista vacía.')
 
         ctx.voice_state.songs.shuffle()
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='remove', help="Remove a song from the queue")
+    @commands.command(name='remove', help="Remueve una canción de la lista")
     async def _remove(self, ctx: commands.Context, index: int):
 
 
         if ctx.author.voice.channel != ctx.guild.me.voice.channel:
-            return await ctx.send("You aren't in my voice channel.")
+            return await ctx.send("No estás en mi canal de voz.")
 
         if len(ctx.voice_state.songs) == 0:
-            return await ctx.send('Empty queue.')
+            return await ctx.send('Lista vacía.')
 
         ctx.voice_state.songs.remove(index - 1)
         await ctx.message.add_reaction('✅')
         
 
-    @commands.command(name='play', help="Play a song in a VC")
+    @commands.command(name='play', help="Reproduce una canción.")
     async def _play(self, ctx: commands.Context, *, search: str):
 
         if not ctx.voice_state.voice:
@@ -515,17 +515,17 @@ class music(commands.Cog):
                 song = Song(source)
 
                 await ctx.voice_state.songs.put(song)
-                await ctx.send(':headphones: Enqueued {}'.format(str(source)))
+                await ctx.send(':headphones: Agregado a la lista {}'.format(str(source)))
 
     @_join.before_invoke
     @_play.before_invoke
     async def ensure_voice_state(self, ctx: commands.Context):
         if not ctx.author.voice or not ctx.author.voice.channel:
-            raise commands.CommandError('You are not connected to any voice channel.')
+            raise commands.CommandError('No estás a ningún canal de voz.')
 
         if ctx.voice_client:
             if ctx.voice_client.channel != ctx.author.voice.channel:
-                raise commands.CommandError("I'm already in a voice channel.")
+                raise commands.CommandError("Ya estoy en un cnaal de voz.")
 
 
 def setup(bot):
