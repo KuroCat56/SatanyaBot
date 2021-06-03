@@ -12,7 +12,7 @@ reddit_api = praw.Reddit(client_id = private.reddit.client_id,
                     user_agent = private.reddit.user_agent,
                     check_for_async=False)
 
-class reddit(commands.Cog):
+class reddit(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """Comandos que requieren de alguna API"""
 
   def __init__(self, bot: commands.Bot):

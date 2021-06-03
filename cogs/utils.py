@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 
-class utils(commands.Cog):
+class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 

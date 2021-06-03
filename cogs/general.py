@@ -5,7 +5,7 @@ from datetime import datetime
 from psutil import Process
 from os import getpid
 
-class general(commands.Cog):
+class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
 
   def __init__(self, bot: commands.Bot):
     self.bot = bot
