@@ -25,13 +25,17 @@ async def unload(cog, extension):
 
 @bot.command(hidden=True)
 @commands.is_owner()
-async def reload(cog, extension):
+async def reload(ctx, cog, extension):
   bot.reload_extension(f"cogs.{extension}")
-
 #Busca todos los cogs y los carga al iniciar
-for filename in os.listdir("./cogs"):
-  if filename.endswith(".py"):
-    bot.load_extension(f"cogs.{filename[:-3]}")
+  try:
+    for filename in os.listdir("./cogs"):
+      if filename.endswith(".py"):
+        bot.load_extension(f"cogs.{filename[:-3]}")
+  except Exception as e:
+    await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+  else:
+    await ctx.send('Listo')
 
 @bot.command(hidden=True)
 @commands.is_owner()
