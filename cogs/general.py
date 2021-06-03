@@ -92,7 +92,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
             name="Creador y Colaboradores:",
-            value="KuroCat#4816",
+            value="[KuroCat#4816](https://linktr.ee/KuroCat56)",
             inline=False
         )
         embed.add_field(
@@ -126,9 +126,24 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
           inline=True
         )
         embed.add_field(
-            name="Mi código fuente:",
-            value="[Github](https://github.com/KuroCat56/SatanyaBot)",
-            inline=True
+          name= "Cumpleaños 🍰",
+          value="31/01/2021 | 09:50 AM",
+          inline=False
+        )
+        embed.add_field(
+          name= "Donaciones 🤍",
+          value="[Ko-fi](https://ko-fi.com/kurocat56)",
+          inline=True
+        ) 
+        embed.add_field(
+          name= "Top.gg",
+          value="[Próximamente](https://top.gg/)",
+          inline=True
+        )
+        embed.add_field(
+            name="Enlaces",
+            value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
+            inline=False
         )
         embed.set_footer(
             text=f"Solicitado por {context.message.author}"
