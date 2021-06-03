@@ -48,6 +48,13 @@ class utils(commands.Cog):
     value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
     await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
 
+  @commands.command()
+  async def getemoji(self, ctx, emoji: discord.PartialEmoji):
+    """
+    Deja te paso ese emoji para que lo veas mejor.
+    """
+    await ctx.send(emoji.url)
+
   # @commands.command()
   # async def poll(self, ctx, *args):
   #   """
@@ -64,14 +71,6 @@ class utils(commands.Cog):
   #   await embed_message.add_reaction("👍")
   #   await embed_message.add_reaction("👎")
   #   await embed_message.add_reaction("🤷")
-
-  @commands.command()
-  async def getemoji(self, ctx, emoji: discord.PartialEmoji):
-    """
-    Deja te paso ese emoji para que lo veas mejor.
-    """
-    emoji = emoji.url
-    await ctx.send(emoji)
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
