@@ -371,7 +371,7 @@ class music(commands.Cog):
             return await ctx.send(':x: El volumen debe de ser entre **0 y 150**')
 
         ctx.voice_client.source.volume = volume / 150
-        em = discord.Embed(title=f"Volumen ajutsado a **`{volume}%`**", color = ctx.author.color)
+        em = discord.Embed(title=f"Volumen ajustado a **`{volume}%`**", color = ctx.author.color)
         em.set_footer(text=f"Solicitado por {ctx.author.name}")    
         await ctx.send(embed=em)
 
