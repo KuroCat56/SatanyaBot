@@ -13,17 +13,17 @@ from os import getpid
 bot = commands.Bot(command_prefix="nya>")
 bot.launch_time = datetime.utcnow()
 
-@bot.command()
+@bot.command(hidden=True)
 @commands.is_owner()
 async def load(cog, extension):
   bot.load_extension(f"cogs.{extension}")
 
-@bot.command()
+@bot.command(hidden=True)
 @commands.is_owner()
 async def unload(cog, extension):
   bot.unload_extension(f"cogs.{extension}")
 
-@bot.command()
+@bot.command(hidden=True)
 @commands.is_owner()
 async def reload(cog, extension):
   bot.reload_extension(f"cogs.{extension}")
@@ -33,7 +33,7 @@ for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
     bot.load_extension(f"cogs.{filename[:-3]}")
 
-@bot.command()
+@bot.command(hidden=True)
 @commands.is_owner()
 async def uptime(ctx):
     delta_uptime = datetime.utcnow() - bot.launch_time
@@ -43,7 +43,7 @@ async def uptime(ctx):
     uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
     await ctx.send(f"Fuí encencida hace: **{uptime}**")
 
-@bot.command()
+@bot.command(hidden=True)
 @commands.is_owner()
 async def memory(ctx):
   await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
