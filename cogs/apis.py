@@ -20,7 +20,7 @@ def get_quote():
     author = json_data[0]['a']
     return quote, author
 
-class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
+class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """Comandos que requieren de alguna API"""
 
   def __init__(self, bot: commands.Bot):

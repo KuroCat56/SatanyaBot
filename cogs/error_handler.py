@@ -15,13 +15,13 @@ class ErrorHandler(commands.Cog):
         if isinstance(error, commands.CommandNotFound):
             return  # Return because we don't want to show an error for every command not found
         elif isinstance(error, commands.CommandOnCooldown):
-            message = f"This command is on cooldown. Please try again after {round(error.retry_after, 1)} seconds."
+            message = f"Has usado este comando demasiado rápido. Intenta de nuevo en **{round(error.retry_after, 1)} segundos.**"
         elif isinstance(error, commands.MissingPermissions):
-            message = "You are missing the required permissions to run this command!"
+            message = "¿Qué intentas hacer? Te faltan permisos para usar este comando."
         elif isinstance(error, commands.UserInputError):
-            message = "Something about your input was wrong, please check your input and try again!"
+            message = "Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
         else:
-            message = "Oh no! Something went wrong while running the command!"
+            message = "*Hmmm*, ni siquiera yo sé porqué no funcionó este comando."
 
         await ctx.send(message, delete_after=5)
         await ctx.message.delete(delay=5)
