@@ -40,8 +40,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     await asyncio.sleep(converted_time)
     await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
 
-  @commands.command()
-  async def commands(self, ctx):
+  @commands.command(name="commands")
+  async def _commands(self, ctx):
     """
     ¿Quieres saber cuántos comandos tengo en mi código?
     """
