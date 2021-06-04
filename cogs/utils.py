@@ -49,7 +49,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
 
   @commands.command()
-  async def jumbo(self, ctx, emoji: discord.PartialEmoji):
+  async def jumbo(self, ctx, emoji: discord.Emoji):
     """
     Deja te paso ese emoji para que lo veas mejor.
     """
