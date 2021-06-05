@@ -66,7 +66,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
         title=f"📊 {poll_title}",
         color=0xfbf9fa,
     )
-    embed.set_footer(text=f"Creado por: {ctx.message.author} - ¡Reacciona para votar!")
+    embed.set_footer(text=f"Encuesta por: {ctx.message.author} - ¡Reacciona para votar!")
     embed_message = await ctx.send(embed=embed)
     await ctx.message.delete()
     await embed_message.add_reaction("👍")
