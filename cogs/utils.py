@@ -56,22 +56,22 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     emoji = emoji.url
     await ctx.send(emoji)
 
-  # @commands.command()
-  # async def poll(self, ctx, *args):
-  #   """
-  #   Crea una mini encuesta para lo que gustes
-  #   """
-  #   poll_title = " ".join(args)
-  #   embed = discord.Embed(
-  #       title="📊 ENCUESTA 📊",
-  #       description=f"{poll_title}",
-  #       color=0xfbf9fa,
-  #   )
-  #   embed.set_footer(text=f"Creado por: {ctx.message.author} - ¡Reacciona para votar!")
-  #   embed_message = await ctx.send(embed=embed)
-  #   await embed_message.add_reaction("👍")
-  #   await embed_message.add_reaction("👎")
-  #   await embed_message.add_reaction("🤷")
+  @commands.command()
+  async def poll(self, ctx, *args):
+    """
+    Crea una mini encuesta para lo que gustes
+    """
+    poll_title = " ".join(args)
+    embed = discord.Embed(
+        title="📊 ENCUESTA 📊",
+        description=f"{poll_title}",
+        color=0xfbf9fa,
+    )
+    embed.set_footer(text=f"Creado por: {ctx.message.author} - ¡Reacciona para votar!")
+    embed_message = await ctx.send(embed=embed)
+    await embed_message.add_reaction("👍")
+    await embed_message.add_reaction("👎")
+    await embed_message.add_reaction("🤷")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
