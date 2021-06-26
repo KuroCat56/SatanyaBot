@@ -13,6 +13,7 @@ from os import getpid
 bot = commands.Bot(command_prefix="nya>")
 bot.launch_time = datetime.utcnow()
 
+#Comandos dev-only
 @bot.command(hidden=True)
 @commands.is_owner()
 async def load(cog, extension):
