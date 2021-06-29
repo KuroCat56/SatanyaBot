@@ -375,7 +375,7 @@ class music(commands.Cog):
         em.set_footer(text=f"Solicitado por {ctx.author.name}")    
         await ctx.send(embed=em)
 
-    @commands.command(help="Mira que se está reproduciendo actualmente.", name="now", aliases=['n', 'now', 'current', 'playing'])
+    @commands.command(help="Mira que se está reproduciendo actualmente.", name="now", aliases=['n', 'current', 'playing'])
     async def _now(self, ctx: commands.Context):
 
         await ctx.send(embed=ctx.voice_state.current.create_embed())
