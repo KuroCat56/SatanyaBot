@@ -291,7 +291,7 @@ class music(commands.Cog):
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
 
-    @commands.command(help="Hazme unir a un canal de voz.", name="join", aliases = ["join"], invoke_without_subcommand=True)
+    @commands.command(help="Hazme unir a un canal de voz.", name="join", aliases = ["j"], invoke_without_subcommand=True)
     async def _join(self, ctx: commands.Context):
 
         destination = ctx.author.voice.channel
