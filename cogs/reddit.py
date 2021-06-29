@@ -156,5 +156,22 @@ class reddit(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, co
         em_hispa.set_footer(text= "r/SpanishMeme")
     await ctx.send(embed = em_hispa)
 
+#Construcción para comando nya>wholesome
+  @commands.command(name="wholesome")
+  async def wholesome(self, ctx: commands.Context):
+    """
+    Un poquito del lado bueno de internet.
+    """
+    async with ctx.typing():
+      submissions = reddit_api.subreddit("wholesomememes").hot()
+      post = random.randint(1,10)
+      ran_submission = (x for x in submissions if not x.stickied)
+    for x in range (post): #Creación del embed
+        url_whole = next(ran_submission).url
+        em_whole = discord.Embed(color = 0xf9ba49)
+        em_whole.set_image(url = url_whole)
+        em_whole.set_footer(text= "r/wholesomememes")
+    await ctx.send(embed = em_whole)
+
 def setup(bot: commands.Bot):
     bot.add_cog(reddit(bot))
