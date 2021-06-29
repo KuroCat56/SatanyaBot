@@ -34,7 +34,6 @@ class ErrorHandler(commands.Cog):
 
             # now we can send it to the user
             # it would probably be best to wrap this in a codeblock via e.g. a Paginator
-            await ctx.send(message)
             await ctx.send(message, delete_after=7)
 
 def setup(bot: commands.Bot):
