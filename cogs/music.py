@@ -339,17 +339,17 @@ class music(commands.Cog):
 # Search whatever u want on youtube!
     @commands.command(help="Busca algo en Youtube", name="search", aliases= ["syt"])
     async def syt(self, ctx, *, search):
-
-        query_string = urllib.parse.urlencode({
-                "search_query": search
-        })
-        html_content = urllib.request.urlopen(
-            "http://youtube.com/results?" + query_string
-        )
-    
-        search_content = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
-        yt_search = "http://youtube.com/watch?v=" + search_content[0]
-      
+        async with ctx.typing():
+            query_string = urllib.parse.urlencode({
+                    "search_query": search
+            })
+            html_content = urllib.request.urlopen(
+                "http://youtube.com/results?" + query_string
+            )
+        
+            search_content = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
+            yt_search = "http://youtube.com/watch?v=" + search_content[0]
+        
         await ctx.send("🔎 Esto fue lo que encontré en Youtube. ¿Es lo que buscabas? <a:neko_pls:846610049203568680>\n" + yt_search)
 
 
