@@ -350,7 +350,7 @@ class music(commands.Cog):
             search_content = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
             yt_search = "http://youtube.com/watch?v=" + search_content[0]
         
-        await ctx.send("🔎 Esto fue lo que encontré en Youtube. ¿Es lo que buscabas? <a:neko_pls:846610049203568680>\n" + yt_search)
+        await ctx.send("🔎 **Esto fue lo que encontré en Youtube. ¿Es lo que buscabas?** <a:neko_pls:846610049203568680>\n" + yt_search)
 
 
 
