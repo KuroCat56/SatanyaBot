@@ -337,7 +337,7 @@ class music(commands.Cog):
 
 
 # Search whatever u want on youtube!
-    @commands.command(help="Busca algo en Youtube", name="search", aliases= ["syt"])
+    @commands.command(help="Busca algo en Youtube", name="search", aliases= ["yt"])
     async def syt(self, ctx, *, search):
 
         query_string = urllib.parse.urlencode({
