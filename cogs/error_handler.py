@@ -1,5 +1,6 @@
 #Extraído de https://vcokltfre.dev/tutorial/12-errors/
 from discord.ext import commands
+import traceback
 
 
 class ErrorHandler(commands.Cog):
@@ -21,9 +22,20 @@ class ErrorHandler(commands.Cog):
         elif isinstance(error, commands.UserInputError):
             message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
         else:
-            message = "¯\_(ツ)_/¯"
+            # get data from exception
+            etype = type(exc)
+            trace = exc.__traceback__
 
-        await ctx.send(message, delete_after=7)
+            # 'traceback' is the stdlib module, `import traceback`.
+            lines = traceback.format_exception(etype, exc, trace)
+
+            # format_exception returns a list with line breaks embedded in the lines, so let's just stitch the elements together
+            message = ''.join(lines)
+
+            # now we can send it to the user
+            # it would probably be best to wrap this in a codeblock via e.g. a Paginator
+            await ctx.send(message)
+            await ctx.send(message, delete_after=7)
 
 def setup(bot: commands.Bot):
     bot.add_cog(ErrorHandler(bot))
