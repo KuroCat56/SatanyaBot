@@ -23,8 +23,7 @@ class ErrorHandler(commands.Cog):
         else:
             message = "¯\_(ツ)_/¯"
 
-        await ctx.send(message, delete_after=5)
-        await ctx.message.delete(delay=5)
+        await ctx.send(message, delete_after=7)
 
 def setup(bot: commands.Bot):
     bot.add_cog(ErrorHandler(bot))
