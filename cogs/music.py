@@ -304,7 +304,7 @@ class music(commands.Cog):
         em.set_footer(text=f"Solicitado por {ctx.author.name}")  
         await ctx.send(embed=em)
 
-    @commands.command(help="Invócame en un canal de voz", aliases = ["summon"])
+    @commands.command(help="Invócame en un canal de voz", name="summon", aliases = ["s"])
     async def _summon(self, ctx: commands.Context, *, channel: discord.VoiceChannel = None):
 
         if not channel and not ctx.author.voice:
@@ -319,7 +319,7 @@ class music(commands.Cog):
 
         ctx.voice_state.voice = await destination.connect()
 
-    @commands.command(help="Hazme salir de un canal de voz.", aliases = ["leave"])
+    @commands.command(help="Hazme salir de un canal de voz.", name="leave", aliases = ["l"])
     async def _leave(self, ctx: commands.Context):
 
         if not ctx.voice_state.voice:
@@ -337,7 +337,7 @@ class music(commands.Cog):
 
 
 # Search whatever u want on youtube!
-    @commands.command(help="Busca algo en Youtube")
+    @commands.command(help="Busca algo en Youtube", name="search", aliases= ["syt"])
     async def syt(self, ctx, *, search):
 
         query_string = urllib.parse.urlencode({
@@ -355,7 +355,7 @@ class music(commands.Cog):
 
 
 
-    @commands.command(help="Ajusta el volumen de mi reproducción.", aliases = ["vol"])
+    @commands.command(help="Ajusta el volumen de mi reproducción.", name="volume", aliases = ["vol"])
     async def _volume(self, ctx: commands.Context, *, volume:int):
 
         if not ctx.author.voice or not ctx.author.voice.channel:
@@ -375,12 +375,12 @@ class music(commands.Cog):
         em.set_footer(text=f"Solicitado por {ctx.author.name}")    
         await ctx.send(embed=em)
 
-    @commands.command(help="Mira que se está reproduciendo actualmente.", aliases=['now', 'current', 'playing'])
+    @commands.command(help="Mira que se está reproduciendo actualmente.", aliases=['n', 'now', 'current', 'playing'])
     async def _now(self, ctx: commands.Context):
 
         await ctx.send(embed=ctx.voice_state.current.create_embed())
 
-    @commands.command(name='pause', help='Pausa la reproducción.')
+    @commands.command(name='pause', help='Pausa la reproducción.', aliases=["pa"])
     async def _pause(self, ctx):
         server = ctx.message.guild
         voice_channel = server.voice_client
@@ -391,7 +391,7 @@ class music(commands.Cog):
         voice_channel.pause()
         await ctx.message.add_reaction('⏯')
 
-    @commands.command(name='resume', help="Reanuda la reproducción pausada.")
+    @commands.command(name='resume', help="Reanuda la reproducción pausada.", aliases=["r"])
     async def _resume(self, ctx):
         server = ctx.message.guild
         voice_channel = server.voice_client
@@ -403,7 +403,7 @@ class music(commands.Cog):
         voice_channel.resume()
         await ctx.message.add_reaction('⏯')
 
-    @commands.command(name="stop", help="Detén la lista de reproducción.")
+    @commands.command(name="stop", help="Detén la lista de reproducción.", aliases=["st"])
     async def _stop(self, ctx):
 
         if not ctx.author.voice or not ctx.author.voice.channel:
@@ -418,7 +418,7 @@ class music(commands.Cog):
         voice = discord.utils.get(self.bot.voice_clients, guild=ctx.guild)
         voice.stop()
 
-    @commands.command(name='skip', help="Salta la canción actual.")
+    @commands.command(name='skip', help="Salta la canción actual.", aliases=["sk"])
     async def _skip(self, ctx: commands.Context):
 
         if not ctx.author.voice or not ctx.author.voice.channel:
@@ -453,7 +453,7 @@ class music(commands.Cog):
         else:
             await ctx.send('You have already voted to skip this song.')
 
-    @commands.command(name='queue', help="Mira la lista de reproducción actual.")
+    @commands.command(name='queue', help="Mira la lista de reproducción actual.", aliases=["q"])
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
 
         if len(ctx.voice_state.songs) == 0:
@@ -473,7 +473,7 @@ class music(commands.Cog):
                  .set_footer(text='Viendo página {}/{}'.format(page, pages)))
         await ctx.send(embed=embed)
 
-    @commands.command(name='shuffle', help="Aleatoriza la lista de reproducción.")
+    @commands.command(name='shuffle', help="Aleatoriza la lista de reproducción.", aliases=["sh"])
     async def _shuffle(self, ctx: commands.Context):
 
 
@@ -486,7 +486,7 @@ class music(commands.Cog):
         ctx.voice_state.songs.shuffle()
         await ctx.message.add_reaction('✅')
 
-    @commands.command(name='remove', help="Remueve una canción de la lista")
+    @commands.command(name='remove', help="Remueve una canción de la lista", aliases=["re"])
     async def _remove(self, ctx: commands.Context, index: int):
 
 
@@ -500,7 +500,7 @@ class music(commands.Cog):
         await ctx.message.add_reaction('✅')
         
 
-    @commands.command(name='play', help="Reproduce una canción.")
+    @commands.command(name='play', help="Reproduce una canción.", aliases=["p"])
     async def _play(self, ctx: commands.Context, *, search: str):
 
         if not ctx.voice_state.voice:
