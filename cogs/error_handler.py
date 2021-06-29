@@ -1,6 +1,7 @@
 #Extraído de https://vcokltfre.dev/tutorial/12-errors/
 from discord.ext import commands
 import traceback
+import sys
 
 
 class ErrorHandler(commands.Cog):
@@ -23,6 +24,7 @@ class ErrorHandler(commands.Cog):
             message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
         else:
             # get data from exception
+            exc = sys.exc_info()
             etype = type(exc)
             trace = exc.__traceback__
 
