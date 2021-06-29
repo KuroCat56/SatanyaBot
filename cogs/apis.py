@@ -32,11 +32,13 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     """
     Cuidado con las crisis existenciales.
     """
-    quote_em, author_em = get_quote()
-    embed = discord.Embed(
-      title=f"{quote_em}",
-      description=f"-{author_em}"
-    )
+    async with ctx.typing():
+      quote_em, author_em = get_quote()
+      embed = discord.Embed(
+        title=f"{quote_em}",
+        description=f"-{author_em}",
+        color=0xfbf9fa
+      )
     await ctx.send(embed=embed)
 
 #Comando que envía kaomojis
