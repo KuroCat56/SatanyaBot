@@ -348,10 +348,9 @@ class music(commands.Cog):
         )
     
         search_content = re.findall(r"watch\?v=(\S{11})", html_content.read().decode())
-        em = discord.Embed(title = ":bulb: **Search Result**", description = "http://youtube.com/watch?v=" + search_content[0], color = ctx.author.color)
-        em.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/829344812913655878/SatanyaBot.png?width=431&height=473")
-        em.set_footer(text=f"Solicitado por {ctx.author.name}", icon_url=f"{ctx.author.avatar_url}")
-        await ctx.send(embed=em)
+        yt_search = "http://youtube.com/watch?v=" + search_content[0]
+      
+        await ctx.send("Esto fue lo que encontré. ¿Es esto lo que buscabas?" + yt_search)
 
 
 
