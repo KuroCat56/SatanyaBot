@@ -55,7 +55,7 @@ async def on_message(msg):
   if msg.author.bot:
     return
   if any(word in msg.content.lower() for word in mention):
-   nya="<:SatanyaBot:832392370472484875>"
+   nya="<:SatanyaBot:858480664143331338>"
    await msg.add_reaction(nya)
   await bot.process_commands(msg)
 
