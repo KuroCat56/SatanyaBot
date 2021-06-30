@@ -23,9 +23,10 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     avatar= str(member.avatar_url_as(static_format="png", size=1024))
     embed = discord.Embed(
       title= f"Foto de perfil de {member}",
-      color=0xfbf9fa
+      color=ctx.author.color
     )
     embed.set_image(url=avatar)
+    embed.set_footer(text=f"Solicitado por {ctx.message.author}")
     await ctx.reply(embed=embed, mention_author=False)
 
   @commands.command()
