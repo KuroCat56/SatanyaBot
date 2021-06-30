@@ -31,6 +31,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     Hazle un patpat a un miembro.
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_ptpt = str(member.avatar_url_as(static_format="png", size=1024))
       img_ptpt = await dagpi.image_process(ImageFeatures.petpet(), url_ptpt)
@@ -42,6 +44,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     T R I G G E R E D
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
       img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
@@ -64,6 +68,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     Analiza los colores de la foto de perfil de alguien.
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_clrs = str(member.avatar_url_as(static_format="png", size=1024))
       img_clrs = await dagpi.image_process(ImageFeatures.colors(), url_clrs)
@@ -75,6 +81,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     #Pride
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_gy = str(member.avatar_url_as(static_format="png", size=1024))
       img_gy = await dagpi.image_process(ImageFeatures.gay(), url_gy)
@@ -86,6 +94,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     Ma'lady
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_fdr = str(member.avatar_url_as(static_format="png", size=1024))
       img_fdr = await dagpi.image_process(ImageFeatures.fedora(), url_fdr)
@@ -97,6 +107,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     Para mandar a cualquiera a la carcel
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_jl = str(member.avatar_url_as(static_format="png", size=1024))
       img_jl = await dagpi.image_process(ImageFeatures.jail(), url_jl)
@@ -108,6 +120,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     ¿Alguien anda horny?
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_bnk= str(member.avatar_url_as(static_format="png", size=1024))
       img_bnk = await dagpi.image_process(ImageFeatures.bonk(), url_bnk)
@@ -119,6 +133,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     Borra a alguien de la existencia
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_dlt= str(member.avatar_url_as(static_format="png", size=1024))
       img_dlt = await dagpi.image_process(ImageFeatures.delete(), url_dlt)
@@ -130,6 +146,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     KABOOM!
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_bmb= str(member.avatar_url_as(static_format="png", size=1024))
       img_bmb = await dagpi.image_process(ImageFeatures.bomb(), url_bmb)
@@ -141,6 +159,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     Porque todo es más bonito con el neón
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_nn= str(member.avatar_url_as(static_format="png", size=1024))
       img_nn = await dagpi.image_process(ImageFeatures.neon(), url_nn)
