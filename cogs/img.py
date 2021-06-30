@@ -20,9 +20,12 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     if member is None:
       member = ctx.author
-    async with ctx.typing():
-      avatar= str(member.avatar_url_as(static_format="png", size=1024))
-      await ctx.send(avatar)
+    avatar= str(member.avatar_url_as(static_format="png", size=1024))
+    embed = discord.Embed(
+      title= f"Foto de perfil de {member}",
+    )
+    embed.set_image(url=avatar)
+    await ctx.reply(embed=embed)
 
   @commands.command()
   async def pixel(self, ctx, member: discord.Member=None):
