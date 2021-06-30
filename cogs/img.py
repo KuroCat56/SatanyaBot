@@ -22,7 +22,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       member = ctx.author
     async with ctx.typing():
       avatar= str(member.avatar_url_as(static_format="png", size=1024))
-      await ctx.send(file=avatar)
+      await ctx.send(avatar)
 
   @commands.command()
   async def pixel(self, ctx, member: discord.Member=None):
