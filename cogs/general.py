@@ -202,5 +202,10 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         await context.send(embed=embed)
 
+  @commands.command(name="apis")
+  async def apis(self, ctx):
+
+    await ctx.send("Soy una bot de código abierto")
+
 def setup(bot: commands.Bot):
     bot.add_cog(general(bot))
