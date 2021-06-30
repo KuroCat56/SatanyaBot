@@ -57,7 +57,7 @@ class OwnerCog(commands.Cog):
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-        await ctx.send(f"Fuí encencida hace: **{uptime}**")
+        await ctx.send(f'Llevo encendida desde hace: **{uptime}**')
 
     @commands.command(hidden=True)
     @commands.is_owner()
