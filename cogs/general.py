@@ -42,26 +42,26 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
           color=0xfbf9fa,
       )
       embed.add_field(
-          name="<:NyaLogo:832392344279318569> Link de server",
+          name="<:join:847940361937879051> Link de server",
           value="[「SatanyaBot」](https://discord.gg/bqcdKxuW3X)",
           inline=True
       )
       embed.add_field(
-          name="<:SatanyaBot:832392370472484875> Link SatanyaBot",
+          name="<:join:847940361937879051> Link SatanyaBot",
           value="[Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
           inline=True
       )
       embed.add_field(
-          name="<:NyasataBot:832398858722082897> Donaciones",
-          value="Próximamente",
+          name="<a:cutestars:846625824538886214> Donaciones",
+          value="[Ko-fi](https://ko-fi.com/kurocat56)",
           inline=False
       )
       embed.add_field(
-          name="<:oke:835631732077101067> Califícame en top.gg",
+          name="<:wumpus_star:846611108784504872> Califícame en top.gg",
           value="[Próximamente](https://top.gg/)",
           inline=False
       )
-      embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/832458242806120499/bannerSatanyaBot_Logotipo3x.png?width=1024&height=291"
+      embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
       )
       await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:832392370472484875>")
       await ctx.author.send(embed=embed)
@@ -148,7 +148,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         embed.set_footer(
             text=f"Solicitado por {context.message.author}"
         )
-        embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/832458242806120499/bannerSatanyaBot_Logotipo3x.png?width=1024&height=291"
+        embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
         )
         await context.send(embed=embed)
 
