@@ -27,7 +27,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_pxl)
 
   @commands.command()
-  async def pet(self, ctx, member: discord.Member):
+  async def pet(self, ctx, member: discord.Member=None):
     """
     Hazle un patpat a un miembro.
     """
@@ -40,7 +40,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_ptpt)
   
   @commands.command()
-  async def triggered(self, ctx, member: discord.Member):
+  async def triggered(self, ctx, member: discord.Member=None):
     """
     T R I G G E R E D
     """
@@ -64,7 +64,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
   #     await ctx.send(file=file_ussr)
 
   @commands.command()
-  async def colors(self, ctx, member: discord.Member):
+  async def colors(self, ctx, member: discord.Member=None):
     """
     Analiza los colores de la foto de perfil de alguien.
     """
@@ -77,7 +77,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_clrs)
 
   @commands.command()
-  async def gay(self, ctx, member: discord.Member):
+  async def gay(self, ctx, member: discord.Member=None):
     """
     #Pride
     """
@@ -90,7 +90,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_gy)
 
   @commands.command()
-  async def fedora(self, ctx, member: discord.Member):
+  async def fedora(self, ctx, member: discord.Member=None):
     """
     Ma'lady
     """
@@ -103,7 +103,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_fdr)
 
   @commands.command()
-  async def jail(self, ctx, member: discord.Member):
+  async def jail(self, ctx, member: discord.Member=None):
     """
     Para mandar a cualquiera a la carcel
     """
@@ -116,7 +116,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_jl)
 
   @commands.command()
-  async def bonk(self, ctx, member: discord.Member):
+  async def bonk(self, ctx, member: discord.Member=None):
     """
     ¿Alguien anda horny?
     """
@@ -129,7 +129,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_bnk)
 
   @commands.command()
-  async def delete(self, ctx, member: discord.Member):
+  async def delete(self, ctx, member: discord.Member=None):
     """
     Borra a alguien de la existencia
     """
@@ -142,7 +142,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_dlt)
 
   @commands.command()
-  async def kaboom(self, ctx, member: discord.Member):
+  async def kaboom(self, ctx, member: discord.Member=None):
     """
     KABOOM!
     """
@@ -155,7 +155,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.send(file=file_bmb)
 
   @commands.command()
-  async def neon(self, ctx, member: discord.Member):
+  async def neon(self, ctx, member: discord.Member=None):
     """
     Porque todo es más bonito con el neón
     """
