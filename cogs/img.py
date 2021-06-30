@@ -1,3 +1,4 @@
+import datetime
 from discord.ext import commands
 import discord
 from asyncdagpi import Client, ImageFeatures
@@ -40,7 +41,9 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
       img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
       file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
-      await ctx.send(file=file_pxl)
+      embed = discord.Embed(color = ctx.author.color)
+      embed.set_image = file_pxl
+      await ctx.send(embed=embed)
 
   @commands.command()
   async def pet(self, ctx, member: discord.Member=None):
