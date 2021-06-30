@@ -25,7 +25,7 @@ class ErrorHandler(commands.Cog):
         embed = discord.Embed(
             title = "<a:alert:854096326181781534> ERROR",
             description = message,
-            color = 0xFF0000,
+            color = 0xFF0000
         )
         await ctx.send(embed, delete_after=7)
 
