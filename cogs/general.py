@@ -145,6 +145,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
             value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
             inline=False
         )
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/829223734559637545/856026504377794580/nya2.mp4")
         embed.set_footer(
             text=f"Solicitado por {context.message.author}"
         )
@@ -210,7 +211,9 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       )
     embed.set_author(
       name=f"SatanyaBot | v{config.VERSION}",
-      icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473"
+      icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473",
+      color=0xfbf9fa,
+      timestamp=datetime.utcnow()
       )
     await ctx.send(embed=embed)
 
