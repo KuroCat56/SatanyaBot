@@ -13,6 +13,17 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 
+  @commands.command(aliases=["av"])
+  async def avatar(self, ctx, member: discord.Member=None):
+    """
+    Checa el perfil de un usuario.
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      avatar= str(member.avatar_url_as(static_format="png", size=1024))
+      await ctx.send(file=avatar)
+
   @commands.command()
   async def pixel(self, ctx, member: discord.Member=None):
     """
@@ -39,7 +50,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
       await ctx.send(file=file_ptpt)
   
-  @commands.command()
+  @commands.command(aliases=["trigger"])
   async def triggered(self, ctx, member: discord.Member=None):
     """
     T R I G G E R E D
