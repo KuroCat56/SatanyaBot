@@ -63,7 +63,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
       )
-      await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:832392370472484875>")
+      await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:858480664143331338>")
       await ctx.author.send(embed=embed)
   
   @commands.command(name="info", aliases=["botinfo"])
