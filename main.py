@@ -2,19 +2,16 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 import os
-import random
-import asyncio
 import config
 from dotenv import load_dotenv
-from psutil import Process
-from os import getpid
 import sys, traceback
 
+#Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 def get_prefix(bot, message):
     """A callable Prefix for our bot. This could be edited to allow per server prefixes."""
 
     # Notice how you can use spaces in prefixes. Try to keep them simple though.
-    prefixes = ['nya>', 'nya ', '>']
+    prefixes = ['nya>', 'nya ', '>>']
 
     # Check to see if we are outside of a guild. e.g DM's etc.
     if not message.guild:

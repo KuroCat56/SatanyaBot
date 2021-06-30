@@ -1,5 +1,7 @@
 from discord.ext import commands
 import datetime
+from os import getpid
+from psutil import Process
 
 class OwnerCog(commands.Cog):
 
@@ -50,7 +52,7 @@ class OwnerCog(commands.Cog):
     @commands.command(hidden=True)
     @commands.is_owner()
     async def uptime(self, ctx):
-        delta_uptime = datetime.utcnow() - bot.launch_time
+        delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
