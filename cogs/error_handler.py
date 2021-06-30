@@ -27,7 +27,7 @@ class ErrorHandler(commands.Cog):
             description = message,
             color = 0xFF0000
         )
-        await ctx.send(embed, delete_after=7)
+        await ctx.send(embed=embed, delete_after=7)
 
 def setup(bot: commands.Bot):
     bot.add_cog(ErrorHandler(bot))
