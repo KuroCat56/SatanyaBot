@@ -23,7 +23,7 @@ class ErrorHandler(commands.Cog):
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
         embed = discord.Embed(
-            title = "ERROR",
+            title = "<a:alert:854096326181781534> ERROR <a:aaaaaaaa:846610208343326740>",
             description = message,
             color = 0xFF0000
         )
