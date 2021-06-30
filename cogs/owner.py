@@ -3,6 +3,7 @@ import datetime
 from os import getpid
 from psutil import Process
 
+#Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 class OwnerCog(commands.Cog):
 
     def __init__(self, bot):
@@ -18,9 +19,9 @@ class OwnerCog(commands.Cog):
         try:
             self.bot.load_extension(cog)
         except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+            await ctx.send(f'<a:alert:854096326181781534> **`ERROR:`** {type(e).__name__} - {e}')
         else:
-            await ctx.send('**`SUCCESS`**')
+            await ctx.send('<:meronpan:846618672272506910> **`SUCCESS`**')
 
     @commands.command(name='unload', hidden=True)
     @commands.is_owner()
