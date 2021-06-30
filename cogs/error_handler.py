@@ -1,6 +1,6 @@
 #Extraído de https://vcokltfre.dev/tutorial/12-errors/
-from requests.api import delete
 from discord.ext import commands
+import discord
 
 class ErrorHandler(commands.Cog):
     """A cog for global error handling."""
@@ -22,6 +22,11 @@ class ErrorHandler(commands.Cog):
                 message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
+        embed = discord.Embed(
+            title = "ERROR",
+            description = message,
+            color = 0xFF0000,
+        )
         await ctx.send(message, delete_after=7)
 
 def setup(bot: commands.Bot):
