@@ -8,46 +8,29 @@ import config
 from dotenv import load_dotenv
 from psutil import Process
 from os import getpid
+import sys, traceback
 
-#Prefijo de comando de discord.ext
-bot = commands.Bot(command_prefix="nya>")
+def get_prefix(bot, message):
+    """A callable Prefix for our bot. This could be edited to allow per server prefixes."""
+
+    # Notice how you can use spaces in prefixes. Try to keep them simple though.
+    prefixes = ['nya>', 'nya ', '>']
+
+    # Check to see if we are outside of a guild. e.g DM's etc.
+    if not message.guild:
+        # Only allow ? to be used in DMs
+        return '>>'
+
+    # If we are in a guild, we allow for the user to mention us or use any of the prefixes in our list.
+    return commands.when_mentioned_or(*prefixes)(bot, message)
+
+bot = commands.Bot(command_prefix=get_prefix)
 bot.launch_time = datetime.utcnow()
-
-#Comandos dev-only
-@bot.command(hidden=True)
-@commands.is_owner()
-async def load(cog, extension):
-  bot.load_extension(f"cogs.{extension}")
-
-@bot.command(hidden=True)
-@commands.is_owner()
-async def unload(cog, extension):
-  bot.unload_extension(f"cogs.{extension}")
-
-@bot.command(hidden=True)
-@commands.is_owner()
-async def reload(cog, extension):
-  bot.reload_extension(f"cogs.{extension}")
 
 #Busca todos los cogs y los carga al iniciar
 for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
     bot.load_extension(f"cogs.{filename[:-3]}")
-
-@bot.command(hidden=True)
-@commands.is_owner()
-async def uptime(ctx):
-    delta_uptime = datetime.utcnow() - bot.launch_time
-    hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-    minutes, seconds = divmod(remainder, 60)
-    days, hours = divmod(hours, 24)
-    uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-    await ctx.send(f"Fuí encencida hace: **{uptime}**")
-
-@bot.command(hidden=True)
-@commands.is_owner()
-async def memory(ctx):
-  await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
 
 mention = ["satanya", "satanyabot"]
 @bot.event
