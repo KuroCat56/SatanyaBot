@@ -14,15 +14,16 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     self.bot = bot
 
   @commands.command()
-  async def pixel(self, ctx, member: discord.Member):
+  async def pixel(self, ctx, member: discord.Member=None):
     """
     Censura el perfil de otro, porque sí.
     """
+    if member is None:
+      member ctx.author
     async with ctx.typing():
-      if member is None:
-        url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
-        img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
-        file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
+      url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
+      img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
+      file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
       await ctx.send(file=file_pxl)
 
   @commands.command()
