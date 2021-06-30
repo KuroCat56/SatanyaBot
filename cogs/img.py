@@ -54,7 +54,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_ptpt = str(member.avatar_url_as(static_format="png", size=1024))
       img_ptpt = await dagpi.image_process(ImageFeatures.petpet(), url_ptpt)
       file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
-      await ctx.send(file=file_ptpt)
+      await ctx.reply(file=file_ptpt, mention_author=False)
   
   @commands.command(aliases=["trigger"])
   async def triggered(self, ctx, member: discord.Member=None):
@@ -67,7 +67,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
       img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
       file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
-      await ctx.send(file=file_trgg)
+      await ctx.reply(file=file_trgg, mention_author=False)
 
   # @commands.command()
   # async def ussr(self, ctx, member: discord.Member):
@@ -91,7 +91,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_clrs = str(member.avatar_url_as(static_format="png", size=1024))
       img_clrs = await dagpi.image_process(ImageFeatures.colors(), url_clrs)
       file_clrs = discord.File(fp=img_clrs.image,filename=f"colors.{img_clrs.format}")
-      await ctx.send(file=file_clrs)
+      await ctx.reply(file=file_clrs, mention_author=False)
 
   @commands.command()
   async def gay(self, ctx, member: discord.Member=None):
@@ -104,7 +104,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_gy = str(member.avatar_url_as(static_format="png", size=1024))
       img_gy = await dagpi.image_process(ImageFeatures.gay(), url_gy)
       file_gy = discord.File(fp=img_gy.image,filename=f"gay.{img_gy.format}")
-      await ctx.send(file=file_gy)
+      await ctx.reply(file=file_gy, mention_author=False)
 
   @commands.command()
   async def fedora(self, ctx, member: discord.Member=None):
@@ -117,7 +117,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_fdr = str(member.avatar_url_as(static_format="png", size=1024))
       img_fdr = await dagpi.image_process(ImageFeatures.fedora(), url_fdr)
       file_fdr = discord.File(fp=img_fdr.image,filename=f"fedora.{img_fdr.format}")
-      await ctx.send(file=file_fdr)
+      await ctx.reply(file=file_fdr, mention_author=False)
 
   @commands.command()
   async def jail(self, ctx, member: discord.Member=None):
@@ -130,7 +130,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_jl = str(member.avatar_url_as(static_format="png", size=1024))
       img_jl = await dagpi.image_process(ImageFeatures.jail(), url_jl)
       file_jl = discord.File(fp=img_jl.image,filename=f"jail.{img_jl.format}")
-      await ctx.send(file=file_jl)
+      await ctx.reply(file=file_jl, mention_author=False)
 
   @commands.command()
   async def bonk(self, ctx, member: discord.Member=None):
@@ -143,7 +143,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_bnk= str(member.avatar_url_as(static_format="png", size=1024))
       img_bnk = await dagpi.image_process(ImageFeatures.bonk(), url_bnk)
       file_bnk = discord.File(fp=img_bnk.image,filename=f"bonk.{img_bnk.format}")
-      await ctx.send(file=file_bnk)
+      await ctx.reply(file=file_bnk, mention_author=False)
 
   @commands.command()
   async def delete(self, ctx, member: discord.Member=None):
@@ -156,7 +156,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_dlt= str(member.avatar_url_as(static_format="png", size=1024))
       img_dlt = await dagpi.image_process(ImageFeatures.delete(), url_dlt)
       file_dlt = discord.File(fp=img_dlt.image,filename=f"delete.{img_dlt.format}")
-      await ctx.send(file=file_dlt)
+      await ctx.reply(file=file_dlt, mention_author=False)
 
   @commands.command()
   async def kaboom(self, ctx, member: discord.Member=None):
@@ -169,7 +169,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_bmb= str(member.avatar_url_as(static_format="png", size=1024))
       img_bmb = await dagpi.image_process(ImageFeatures.bomb(), url_bmb)
       file_bmb = discord.File(fp=img_bmb.image,filename=f"bomb.{img_bmb.format}")
-      await ctx.send(file=file_bmb)
+      await ctx.reply(file=file_bmb, mention_author=False)
 
   @commands.command()
   async def neon(self, ctx, member: discord.Member=None):
@@ -182,7 +182,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_nn= str(member.avatar_url_as(static_format="png", size=1024))
       img_nn = await dagpi.image_process(ImageFeatures.neon(), url_nn)
       file_nn = discord.File(fp=img_nn.image,filename=f"neon.{img_nn.format}")
-      await ctx.send(file=file_nn)
+      await ctx.reply(file=file_nn, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
