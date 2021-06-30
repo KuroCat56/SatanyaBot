@@ -1,5 +1,5 @@
 from discord.ext import commands
-
+import datetime
 
 class OwnerCog(commands.Cog):
 
@@ -47,20 +47,20 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.send('**`SUCCESS`**')
 
-@bot.command(hidden=True)
-@commands.is_owner()
-async def uptime(ctx):
-    delta_uptime = datetime.utcnow() - bot.launch_time
-    hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-    minutes, seconds = divmod(remainder, 60)
-    days, hours = divmod(hours, 24)
-    uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-    await ctx.send(f"Fuí encencida hace: **{uptime}**")
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def uptime(self, ctx):
+        delta_uptime = datetime.utcnow() - bot.launch_time
+        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+        await ctx.send(f"Fuí encencida hace: **{uptime}**")
 
-@bot.command(hidden=True)
-@commands.is_owner()
-async def memory(ctx):
-  await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def memory(self, ctx):
+      await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
 
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
