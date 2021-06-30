@@ -19,9 +19,9 @@ class OwnerCog(commands.Cog):
         try:
             self.bot.load_extension(cog)
         except Exception as e:
-            await ctx.reply(f'<a:alert:854096326181781534> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
+            await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
         else:
-            await ctx.reply(f'<:meronpan:846618672272506910> **`LISTO`** {cog}', mention_author=False)
+            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He cargado *{cog}* correctamente.', mention_author=False)
 
     @commands.command(name='unload', hidden=True)
     @commands.is_owner()
@@ -32,9 +32,9 @@ class OwnerCog(commands.Cog):
         try:
             self.bot.unload_extension(cog)
         except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+            await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
         else:
-            await ctx.send('**`SUCCESS`**')
+            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He descargado *{cog}* correctamente.', mention_author=False)
 
     @commands.command(name='reload', hidden=True)
     @commands.is_owner()
@@ -46,9 +46,9 @@ class OwnerCog(commands.Cog):
             self.bot.unload_extension(cog)
             self.bot.load_extension(cog)
         except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+            await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
         else:
-            await ctx.send('**`SUCCESS`**')
+            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado *{cog}* correctamente.', mention_author=False)
 
     # @commands.command(hidden=True)
     # @commands.is_owner()
