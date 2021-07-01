@@ -202,8 +202,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         await context.send(embed=embed)
 
-  @commands.command(name="apis")
-  async def apis(self, ctx):
+  @commands.command(name="opensource", aliases=["open"])
+  async def opensource(self, ctx):
     embed = discord.Embed(
       title="APIS que utilizo",
       description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.",
@@ -214,6 +214,9 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       name=f"SatanyaBot | v{config.VERSION}",
       icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473",
       )
+    embed.set_footer(
+      text=f"Solicitado por {ctx.message.author}"
+        )
     await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
