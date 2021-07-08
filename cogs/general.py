@@ -78,6 +78,9 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         days, hours = divmod(hours, 24)
         uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
 
+
+
+
         embed = discord.Embed(
           title="¡Hola, soy SatanyaBot!",
             description="Gracias por dejarme estar en tu servidor. Recuerda que si quieres ver mis comandos usa **nya>help**",
@@ -140,6 +143,32 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
           value="[Próximamente](https://top.gg/)",
           inline=True
         )
+
+# statistics
+        total_members = 0
+        total_unique = len(self.bot.users)
+
+        text = 0
+        voice = 0
+        guilds = 0
+        for guild in self.bot.guilds:
+            guilds += 1
+            if guild.unavailable:
+                continue
+
+            total_members += guild.member_count
+            for channel in guild.channels:
+                if isinstance(channel, discord.TextChannel):
+                    text += 1
+                elif isinstance(channel, discord.VoiceChannel):
+                    voice += 1
+
+        embed.add_field(name='Members', value=f'{total_members} total\n{total_unique} unique')
+        embed.add_field(name='Channels', value=f'{text + voice} total\n{text} text\n{voice} voice')
+
+        memory_usage = self.process.memory_full_info().uss / 1024**2
+        cpu_usage = self.process.cpu_percent() / psutil.cpu_count()
+        embed.add_field(name='Process', value=f'{memory_usage:.2f} MiB\n{cpu_usage:.2f}% CPU')
         embed.add_field(
             name="Enlaces",
             value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
