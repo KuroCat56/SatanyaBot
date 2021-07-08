@@ -165,10 +165,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
 
         embed.add_field(name='Members', value=f'{total_members} total\n{total_unique} unique')
         embed.add_field(name='Channels', value=f'{text + voice} total\n{text} text\n{voice} voice')
-
-        memory_usage = self.process.memory_full_info().uss / 1024**2
-        cpu_usage = self.process.cpu_percent() / psutil.cpu_count()
-        embed.add_field(name='Process', value=f'{memory_usage:.2f} MiB\n{cpu_usage:.2f}% CPU')
         embed.add_field(
             name="Enlaces",
             value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
