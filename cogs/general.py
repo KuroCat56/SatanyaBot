@@ -147,26 +147,26 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
                 elif isinstance(channel, discord.VoiceChannel):
                     voice += 1
 
-        embed.add_field(name='# Miembros', value=f'{total_members} total', inline=False)
-        embed.add_field(name='# Canales', value=f'{text + voice} total\n{text} texto\n{voice} voz', inline=False)
+        embed.add_field(name='# Miembros', value=f'{total_members} totales', inline=False)
+        embed.add_field(name='# Canales', value=f'{text + voice} total, {text} texto, {voice} voz', inline=False)
         embed.add_field(
-          name= "🍰 Cumpleaños",
+          name= "Cumpleaños 🍰",
           value="31/01/2021 | 09:50 AM",
           inline=False
         )
         embed.add_field(
-          name= "<a:cutestars:846625824538886214> Donaciones",
+          name= "Donaciones <a:cutestars:846625824538886214>",
           value="[Ko-fi](https://ko-fi.com/kurocat56)",
           inline=True
         ) 
         embed.add_field(
-          name= "<:wumpus_star:846611108784504872> Top.gg",
+          name= "Top.gg <:wumpus_star:846611108784504872>",
           value="[Próximamente](https://top.gg/)",
           inline=True
         )
         embed.add_field(
             name="Enlaces",
-            value="<:meronpan:846618672272506910> [Github](https://github.com/KuroCat56/SatanyaBot) | <:dscrd_channel:851449868722896936> [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | <:join:847940361937879051> [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
+            value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
             inline=False
         )
         embed.set_footer(
