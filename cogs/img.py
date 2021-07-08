@@ -70,7 +70,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.reply(file=file_trgg, mention_author=False)
 
   @commands.command()
-  async def ussr(self, ctx, member: discord.Member):
+  async def ussr(self, ctx, member: discord.Member=None):
     """
     USSR
     """
