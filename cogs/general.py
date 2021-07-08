@@ -128,25 +128,9 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
           value=f"{len(self.bot.guilds)}",
           inline=True
         )
-        embed.add_field(
-          name= "Cumpleaños 🍰",
-          value="31/01/2021 | 09:50 AM",
-          inline=False
-        )
-        embed.add_field(
-          name= "Donaciones 🤍",
-          value="[Ko-fi](https://ko-fi.com/kurocat56)",
-          inline=True
-        ) 
-        embed.add_field(
-          name= "Top.gg",
-          value="[Próximamente](https://top.gg/)",
-          inline=True
-        )
-
-# statistics
+# statistics - Extraído de https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/stats.py#L216-L263
         total_members = 0
-        total_unique = len(self.bot.users)
+        #total_unique = len(self.bot.users)
 
         text = 0
         voice = 0
@@ -163,11 +147,26 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
                 elif isinstance(channel, discord.VoiceChannel):
                     voice += 1
 
-        embed.add_field(name='Members', value=f'{total_members} total\n{total_unique} unique')
-        embed.add_field(name='Channels', value=f'{text + voice} total\n{text} text\n{voice} voice')
+        embed.add_field(name='# Miembros', value=f'{total_members} total', inline=False)
+        embed.add_field(name='# Canales', value=f'{text + voice} total\n{text} texto\n{voice} voz', inline=False)
+        embed.add_field(
+          name= "🍰 Cumpleaños",
+          value="31/01/2021 | 09:50 AM",
+          inline=False
+        )
+        embed.add_field(
+          name= "<a:cutestars:846625824538886214> Donaciones",
+          value="[Ko-fi](https://ko-fi.com/kurocat56)",
+          inline=True
+        ) 
+        embed.add_field(
+          name= "<:wumpus_star:846611108784504872> Top.gg",
+          value="[Próximamente](https://top.gg/)",
+          inline=True
+        )
         embed.add_field(
             name="Enlaces",
-            value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
+            value="<:meronpan:846618672272506910> [Github](https://github.com/KuroCat56/SatanyaBot) | <:dscrd_channel:851449868722896936> [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | <:join:847940361937879051> [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
             inline=False
         )
         embed.set_footer(
