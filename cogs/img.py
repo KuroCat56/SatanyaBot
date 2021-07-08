@@ -74,11 +74,13 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     USSR
     """
+    if member is None:
+      member = ctx.author
     async with ctx.typing():
       url_ussr = str(member.avatar_url_as(static_format="png", size=1024))
       img_ussr = await dagpi.image_process(ImageFeatures.communism(), url_ussr)
       file_ussr = discord.File(fp=img_ussr.image,filename=f"ussr.{img_ussr.format}")
-      await ctx.send(file=file_ussr)
+      await ctx.reply(file=file_ussr, mention_author=False)
 
   @commands.command()
   async def colors(self, ctx, member: discord.Member=None):
