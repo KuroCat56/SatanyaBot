@@ -129,7 +129,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
           value=f"{len(self.bot.guilds)}",
           inline=True
         )
-# statistics - Extraído de https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/stats.py#L216-L263
+        # statistics - Extraído de https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/stats.py#L216-L263
         total_members = 0
         #total_unique = len(self.bot.users)
 
@@ -229,7 +229,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         await context.send(embed=embed)
 
-  @commands.command(name="opensource", aliases=["open", "source"])
+  @commands.command(name="opensource", aliases=["open"])
   async def opensource(self, ctx):
     embed = discord.Embed(
       title="APIS que utilizo",
