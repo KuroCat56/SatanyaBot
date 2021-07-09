@@ -4,7 +4,8 @@ from datetime import datetime
 import os
 import config
 from dotenv import load_dotenv
-import sys, traceback
+intents = discord.Intents.default()
+intents.members = True
 
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 def get_prefix(bot, message):
@@ -21,7 +22,7 @@ def get_prefix(bot, message):
     # If we are in a guild, we allow for the user to mention us or use any of the prefixes in our list.
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
-bot = commands.Bot(command_prefix=get_prefix)
+bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 bot.launch_time = datetime.utcnow()
 
 #Busca todos los cogs y los carga al iniciar
