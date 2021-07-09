@@ -81,7 +81,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     await embed_message.add_reaction("👎")
     await embed_message.add_reaction("🤷")
 
-  @commands.command()
+  @commands.command() #Extraído de https://github.com/cree-py/RemixBot/blob/master/cogs/utility.py
   async def source(self, ctx, command):
       '''Get the source code for any command.'''
       source = inspect.getsource(self.bot.get_command(command).callback)
@@ -90,7 +90,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
       try:
         await ctx.send(f'```py\n{source}\n```')
       except:
-        await ctx.send("El bloque de código es demasiado largo como para enviarlo. Será mejor que uses `nya>git` para buscar el apartado que buscas. <:doki_shrug:846548924890349627>")
+        await ctx.send("El bloque de código es demasiado largo como para enviarlo. Será mejor que uses `nya>git` para buscar el apartado por tu cuenta. <:doki_hmm:846549184807043133>")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
