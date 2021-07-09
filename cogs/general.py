@@ -232,15 +232,14 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   @commands.command(aliases=['si', 'server'])
   async def serverinfo(self, ctx):
         '''Get server info'''
-
         guild = ctx.guild
         guild_age = (ctx.message.created_at - guild.created_at).days
         created_at = f"Server created on {guild.created_at.strftime('%b %d %Y at %H:%M')}. That\'s over {guild_age} days ago!"
         color = discord.Color.green()
 
         em = discord.Embed(description=created_at, color=color)
-        em.add_field(name='Online Members', value=len({m.id for m in guild.member_count if m.status is not discord.Status.offline}))
-        em.add_field(name='Total Members', value=len(guild.member_count))
+        em.add_field(name='Online Members', value=len({m.id for m in guild.members if m.status is not discord.Status.offline}))
+        em.add_field(name='Total Members', value=len(guild.members))
         em.add_field(name='Text Channels', value=len(guild.text_channels))
         em.add_field(name='Voice Channels', value=len(guild.voice_channels))
         em.add_field(name='Roles', value=len(guild.roles))
