@@ -172,7 +172,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         version = pkg_resources.get_distribution('discord.py').version
         embed.set_footer(
-            text=f"Desarrollada en discord.py v{version}"
+            text=f"Desarrollada en discord.py v{version}",
+            icon_url='http://i.imgur.com/5BFecvA.png'
         )
         embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
         )
