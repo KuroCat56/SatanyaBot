@@ -229,21 +229,20 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
 #         )
 #         await context.send(embed=embed)
 
-  @commands.command(aliases=['si', 'server'])
+  @commands.command(aliases=['si', 'server']) #Extraído de https://github.com/cree-py/RemixBot/blob/master/cogs/info.py
   async def serverinfo(self, ctx):
         '''Get server info'''
         guild = ctx.guild
         guild_age = (ctx.message.created_at - guild.created_at).days
-        created_at = f"Server created on {guild.created_at.strftime('%b %d %Y at %H:%M')}. That\'s over {guild_age} days ago!"
-        color = discord.Color.green()
+        created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y at %H:%M')}. ¡Eso fue hace {guild_age} días!"
 
-        em = discord.Embed(description=created_at, color=color)
-        em.add_field(name='Online Members', value=len({m.id for m in guild.members if m.status is not discord.Status.offline}))
-        em.add_field(name='Total Members', value=len(guild.members))
-        em.add_field(name='Text Channels', value=len(guild.text_channels))
-        em.add_field(name='Voice Channels', value=len(guild.voice_channels))
+        em = discord.Embed(description=created_at, color=0xfbf9fa)
+        em.add_field(name='Owner', value=guild.owner, inline=True)
+        em.add_field(name='Miembros', value=len(guild.members))
+        em.add_field(name='Canales de texto', value="<:dscrd_channel:851449868722896936> " + len(guild.text_channels))
+        em.add_field(name='Canales de voz', value="<:dscrd_voice:862873567204212776> " + len(guild.voice_channels))
         em.add_field(name='Roles', value=len(guild.roles))
-        em.add_field(name='Owner', value=guild.owner)
+
 
         em.set_thumbnail(url=None or guild.icon_url)
         em.set_author(name=guild.name, icon_url=None or guild.icon_url)
