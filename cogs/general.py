@@ -179,55 +179,75 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         await context.send(embed=embed)
 
-  @commands.command(name="server")
-  async def server(self, context):
-        """
-        Información útil (y no tan útil) del servidor.
-        """
-        server = context.message.guild
-        roles = [x.name for x in server.roles]
-        role_length = len(roles)
-        if role_length > 50:
-            roles = roles[:50]
-            roles.append(f">>>> Desplegando[50/{len(roles)}] Roles")
-        roles = ", ".join(roles)
-        channels = len(server.channels)
-        time = str(server.created_at)
-        time = time.split(" ")
-        time = time[0]
+#   @commands.command(name="server")
+#   async def server(self, context):
+#         """
+#         Información útil (y no tan útil) del servidor.
+#         """
+#         server = context.message.guild
+#         roles = [x.name for x in server.roles]
+#         role_length = len(roles)
+#         if role_length > 50:
+#             roles = roles[:50]
+#             roles.append(f">>>> Desplegando[50/{len(roles)}] Roles")
+#         roles = ", ".join(roles)
+#         channels = len(server.channels)
+#         time = str(server.created_at)
+#         time = time.split(" ")
+#         time = time[0]
 
-        embed = discord.Embed(
-            title="**Servidor:**",
-            description=f"{server}",
-            color=0xfbf9fa
-        )
-        embed.set_thumbnail(
-            url=server.icon_url
-        )
-        embed.add_field(
-            name="Propietario",
-            value=f"{server.owner}"
-        )
-        embed.add_field(
-            name="Server ID",
-            value=server.id
-        )
-        embed.add_field(
-            name="Miembros",
-            value=server.member_count
-        )
-        embed.add_field(
-            name="Canales texto/voz",
-            value=f"{channels}"
-        )
-        embed.add_field(
-            name=f"Roles ({role_length})",
-            value=roles
-        )
-        embed.set_footer(
-            text=f"Creado el {time}"
-        )
-        await context.send(embed=embed)
+#         embed = discord.Embed(
+#             title="**Servidor:**",
+#             description=f"{server}",
+#             color=0xfbf9fa
+#         )
+#         embed.set_thumbnail(
+#             url=server.icon_url
+#         )
+#         embed.add_field(
+#             name="Propietario",
+#             value=f"{server.owner}"
+#         )
+#         embed.add_field(
+#             name="Server ID",
+#             value=server.id
+#         )
+#         embed.add_field(
+#             name="Miembros",
+#             value=server.member_count
+#         )
+#         embed.add_field(
+#             name="Canales texto/voz",
+#             value=f"{channels}"
+#         )
+#         embed.add_field(
+#             name=f"Roles ({role_length})",
+#             value=roles
+#         )
+#         embed.set_footer(
+#             text=f"Creado el {time}"
+#         )
+#         await context.send(embed=embed)
+
+  @commands.command(aliases=['si', 'server'])
+  async def serverinfo(self, ctx):
+        '''Get server info'''
+        guild = ctx.guild
+        guild_age = (ctx.message.created_at - guild.created_at).days
+        created_at = f"Server created on {guild.created_at.strftime('%b %d %Y at %H:%M')}. That\'s over {guild_age} days ago!"
+        color = discord.Color.green()
+
+        em = discord.Embed(description=created_at, color=color)
+        em.add_field(name='Online Members', value=len({m.id for m in guild.members if m.status is not discord.Status.offline}))
+        em.add_field(name='Total Members', value=len(guild.members))
+        em.add_field(name='Text Channels', value=len(guild.text_channels))
+        em.add_field(name='Voice Channels', value=len(guild.voice_channels))
+        em.add_field(name='Roles', value=len(guild.roles))
+        em.add_field(name='Owner', value=guild.owner)
+
+        em.set_thumbnail(url=None or guild.icon_url)
+        em.set_author(name=guild.name, icon_url=None or guild.icon_url)
+        await ctx.send(embed=em)
 
   @commands.command(name="opensource", aliases=["open"])
   async def opensource(self, ctx):
