@@ -4,6 +4,7 @@ from discord.ext import commands
 from datetime import datetime
 from psutil import Process
 from os import getpid
+import pkg_resources
 
 class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
 
@@ -169,8 +170,9 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
             value="[Github](https://github.com/KuroCat56/SatanyaBot) | [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) | [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
             inline=False
         )
+        version = pkg_resources.get_distribution('discord.py').version
         embed.set_footer(
-            text=f"Solicitado por {context.message.author}"
+            text=f"Desarrollada en discord.py v{version}"
         )
         embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
         )
