@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import asyncio
+import inspect
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   def __init__(self, bot: commands.Bot):
@@ -79,6 +80,15 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     await embed_message.add_reaction("👍")
     await embed_message.add_reaction("👎")
     await embed_message.add_reaction("🤷")
+
+  @commands.command()
+  async def source(self, ctx, command):
+      '''Get the source code for any command.'''
+      source = inspect.getsource(self.bot.get_command(command).callback)
+      if not source:
+        return await ctx.send(f'{command} is not a valid command.')
+      else:
+        await ctx.send(f'```py\n{source}\n```')
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
