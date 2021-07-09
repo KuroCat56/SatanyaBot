@@ -87,8 +87,15 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
       source = inspect.getsource(self.bot.get_command(command).callback)
       if not source:
         return await ctx.send(f'{command} is not a valid command.')
-      else:
+      try:
         await ctx.send(f'```py\n{source}\n```')
+      except:
+        paginated_text = utils.paginate(source)
+        for page in paginated_text:
+          if page == paginated_text[-1]:
+            await ctx.send(f'```py\n{page}\n```')
+            break
+          await ctx.send(f'```py\n{page}\n```')
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
