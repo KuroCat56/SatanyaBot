@@ -48,6 +48,13 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
     await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
 
+  @commands.command(name="prefix")
+  async def prefix(self, ctx):
+    """
+    Tengo varios prefijos, prueba a usar el que más te guste.
+    """
+    await ctx.send("Actualmente mis prefijos son `nya>`, `nya `, `>>` y `@SatanyaBot` ♪└( ＾ω＾ )」")
+
   @commands.command()
   async def jumbo(self, ctx, emoji: discord.PartialEmoji):
     """
