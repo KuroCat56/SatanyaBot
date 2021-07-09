@@ -237,11 +237,11 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y at %H:%M')}. ¡Eso fue hace {guild_age} días!"
 
         em = discord.Embed(description=created_at, color=0xfbf9fa)
-        em.add_field(name='Owner', value=guild.owner, inline=True)
+        em.add_field(name='Owner', value=guild.owner, inline=False)
         em.add_field(name='Miembros', value=len(guild.members))
+        em.add_field(name='Roles', value=len(guild.roles))
         em.add_field(name='<:dscrd_channel:851449868722896936> Canales de texto', value=len(guild.text_channels))
         em.add_field(name='<:dscrd_voice:862873567204212776> Canales de voz', value=len(guild.voice_channels))
-        em.add_field(name='Roles', value=len(guild.roles))
 
 
         em.set_thumbnail(url=None or guild.icon_url)
