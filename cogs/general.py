@@ -239,8 +239,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         em = discord.Embed(description=created_at, color=0xfbf9fa)
         em.add_field(name='Owner', value=guild.owner, inline=True)
         em.add_field(name='Miembros', value=len(guild.members))
-        em.add_field(name='Canales de texto', value="<:dscrd_channel:851449868722896936> " + len(guild.text_channels))
-        em.add_field(name='Canales de voz', value="<:dscrd_voice:862873567204212776> " + len(guild.voice_channels))
+        em.add_field(name='<:dscrd_channel:851449868722896936> Canales de texto', value=len(guild.text_channels))
+        em.add_field(name='<:dscrd_voice:862873567204212776> Canales de voz', value=len(guild.voice_channels))
         em.add_field(name='Roles', value=len(guild.roles))
 
 
