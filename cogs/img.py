@@ -42,7 +42,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
       file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
       embed = discord.Embed()
-      embed.set_image(url="img_pxl")
+      embed.set_image(url="attachment://img_pxl")
       await ctx.reply(file=file_pxl, embed=embed, mention_author=False)
 
   @commands.command()
