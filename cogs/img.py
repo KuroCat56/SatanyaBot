@@ -43,7 +43,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
       embed = discord.Embed()
       embed.set_image(url="attachment://file_pxl")
-      await ctx.reply(embed=embed, mention_author=False)
+      await ctx.reply(embed=embed, file=discord.File(file_pxl), mention_author=False)
 
   @commands.command()
   async def pet(self, ctx, member: discord.Member=None):
