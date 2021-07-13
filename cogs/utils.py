@@ -75,14 +75,6 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     await ctx.send("Actualmente mis prefijos son `nya>`, `nya `, `>>` y `@SatanyaBot` ♪└( ＾ω＾ )」")
 
   @commands.command()
-  async def jumbo(self, ctx, emoji: discord.PartialEmoji):
-    """
-    Deja te paso ese emoji para que lo veas mejor.
-    """
-    emoji = emoji.url
-    await ctx.send(emoji)
-
-  @commands.command()
   async def poll(self, ctx, *args):
     """
     Crea una mini encuesta para lo que gustes

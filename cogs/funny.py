@@ -1,5 +1,6 @@
 from TextToOwO.owo import text_to_owo
 from discord.ext import commands
+import discord
 
 class funny(commands.Cog):
   def __init__(self, bot: commands.Bot):
@@ -25,5 +26,12 @@ class funny(commands.Cog):
     await ctx.send(say)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
+  @commands.command()
+  async def jumbo(self, ctx, emoji: discord.PartialEmoji):
+    """
+    Deja te paso ese emoji para que lo veas mejor.
+    """
+    emoji = emoji.url
+    await ctx.send(emoji)
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
