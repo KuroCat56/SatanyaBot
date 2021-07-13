@@ -57,7 +57,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_ptpt.format}")
+      embed.set_image(url=f"attachment://pet.{img_ptpt.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_ptpt, embed=embed, mention_author=False)
 
@@ -75,7 +75,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
       
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_trgg.format}")
+      embed.set_image(url=f"attachment://triggered.{img_trgg.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_trgg, embed=embed, mention_author=False)
 
@@ -92,7 +92,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_urss = discord.File(fp=img_urss.image,filename=f"urss.{img_urss.format}")
       
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_urss.format}")
+      embed.set_image(url=f"attachment://urss.{img_urss.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_urss, embed=embed, mention_author=False)
 
@@ -109,7 +109,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_clrs = discord.File(fp=img_clrs.image,filename=f"colors.{img_clrs.format}")
       
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_clrs.format}")
+      embed.set_image(url=f"attachment://colors.{img_clrs.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_clrs, embed=embed, mention_author=False)
 
@@ -126,7 +126,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_gy = discord.File(fp=img_gy.image,filename=f"gay.{img_gy.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_gy.format}")
+      embed.set_image(url=f"attachment://gay.{img_gy.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_gy, embed=embed, mention_author=False)
 
@@ -143,7 +143,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_fdr = discord.File(fp=img_fdr.image,filename=f"fedora.{img_fdr.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_fdr.format}")
+      embed.set_image(url=f"attachment://fedora.{img_fdr.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_fdr, embed=embed, mention_author=False)
 
@@ -160,7 +160,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_jl = discord.File(fp=img_jl.image,filename=f"jail.{img_jl.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_jl.format}")
+      embed.set_image(url=f"attachment://jail.{img_jl.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_jl, embed=embed, mention_author=False)
 
@@ -177,7 +177,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_bnk = discord.File(fp=img_bnk.image,filename=f"bonk.{img_bnk.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_bnk.format}")
+      embed.set_image(url=f"attachment://bonk.{img_bnk.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_bnk, embed=embed, mention_author=False)
 
@@ -194,7 +194,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_dlt = discord.File(fp=img_dlt.image,filename=f"delete.{img_dlt.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_dlt.format}")
+      embed.set_image(url=f"attachment://delete.{img_dlt.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_dlt, embed=embed, mention_author=False)
 
@@ -211,7 +211,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_bmb = discord.File(fp=img_bmb.image,filename=f"bomb.{img_bmb.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_bmb.format}")
+      embed.set_image(url=f"attachment://bomb.{img_bmb.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_bmb, embed=embed, mention_author=False)
 
@@ -228,7 +228,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       file_nn = discord.File(fp=img_nn.image,filename=f"neon.{img_nn.format}")
 
       embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://pixel.{img_nn.format}")
+      embed.set_image(url=f"attachment://neon.{img_nn.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_nn, embed=embed, mention_author=False)
 
