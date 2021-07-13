@@ -100,7 +100,7 @@ class OwnerCog(commands.Cog):
     async def memory(self, ctx):
       await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
 
-    @commands.command()
+    @commands.command(hidden=True)
     @commands.is_owner()
     async def lines(self, ctx):
         await ctx.send(f"**{self.bot.user.name}** was made with **{lines.get('lines'):,}** lines of code!")
