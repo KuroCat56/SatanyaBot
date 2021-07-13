@@ -124,9 +124,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
         member = ctx.guild.me
         await self.say_permissions(ctx, member, channel)
 
-    @commands.command()
-    @commands.guild_only()
-    async def permissions(self, ctx, member: discord.Member = None, channel: discord.TextChannel = None):
+  @commands.command()
+  @commands.guild_only()
+  async def permissions(self, ctx, member: discord.Member = None, channel: discord.TextChannel = None):
         """Shows a member's permissions in a specific channel.
         If no channel is given then it uses the current one.
         You cannot use this in private messages. If no member is given then
