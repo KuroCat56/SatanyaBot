@@ -34,7 +34,7 @@ class OwnerCog(commands.Cog):
         except Exception as e:
             await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
         else:
-            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He descargado *{cog}* correctamente.', mention_author=False)
+            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He descargado __{cog}__ correctamente.', mention_author=False)
 
     @commands.command(name='reload', hidden=True)
     @commands.is_owner()
@@ -48,7 +48,7 @@ class OwnerCog(commands.Cog):
         except Exception as e:
             await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
         else:
-            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado *{cog}* correctamente.', mention_author=False)
+            await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado __{cog}__ correctamente.', mention_author=False)
 
     # @commands.command(hidden=True)
     # @commands.is_owner()
