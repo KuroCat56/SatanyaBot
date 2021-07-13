@@ -4,6 +4,45 @@ from os import getpid
 from psutil import Process
 from general import uptime
 
+def lines_of_code():
+    """
+    I did not write this code.
+    This code was taken off of a tag in discord.gg/dpy owned by Dutchy#6127
+    I don't know if this is licensed
+    but alas
+    :return:
+    """
+    import pathlib
+    p = pathlib.Path('./')
+    cm = cr = fn = cl = ls = fc = 0
+    for f in p.rglob('*.py'):
+        if str(f).startswith("venv"):
+            continue
+        fc += 1
+        with f.open() as of:
+            for l in of.readlines():
+                l = l.strip()
+                if l.startswith('class'):
+                    cl += 1
+                if l.startswith('def'):
+                    fn += 1
+                if l.startswith('async def'):
+                    cr += 1
+                if '#' in l:
+                    cm += 1
+                ls += 1
+    return {
+        "comments": cm,
+        "coroutine": cr,
+        "functions": fn,
+        "classes": cl,
+        "lines": ls,
+        "files": fc
+    }
+
+
+lines = lines_of_code()
+
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 class OwnerCog(commands.Cog):
 
@@ -57,6 +96,11 @@ class OwnerCog(commands.Cog):
     @commands.is_owner()
     async def memory(self, ctx):
       await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
+
+    @commands.command()
+    @commands.is_owner()
+    async def lines(self, ctx):
+        await ctx.send(f"**{self.bot.user.name}** was made with **{lines.get('lines'):,}** lines of code!")
 
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
