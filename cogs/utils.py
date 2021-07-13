@@ -6,7 +6,8 @@ import inspect
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
-
+  
+  #Estraído de https://github.com/Rapptz/RoboDanny/blob/0992171592f1b92ad74fe2eb5cf2efe1e9a51be8/cogs/meta.py#L557
   async def say_permissions(self, ctx, member, channel):
         permissions = channel.permissions_for(member)
         e = discord.Embed(colour=member.colour)
@@ -20,8 +21,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
             else:
                 denied.append(name)
 
-        e.add_field(name='Allowed', value='\n'.join(allowed))
-        e.add_field(name='Denied', value='\n'.join(denied))
+        e.add_field(name='Permitido', value='\n'.join(allowed))
+        e.add_field(name='Denegado', value='\n'.join(denied))
         await ctx.send(embed=e)
 
   @commands.command()
@@ -109,7 +110,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
       except:
         await ctx.send("El bloque de código es demasiado largo como para enviarlo. Será mejor que uses `nya>git` para buscar el apartado por tu cuenta. <:doki_hmm:846549184807043133>")
 
-  @commands.command()
+  @commands.command(aliases=['botperms'])
   @commands.guild_only()
   @commands.has_permissions(manage_messages=True)
   async def botpermissions(self, ctx, *, channel: discord.TextChannel = None):
@@ -124,7 +125,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
         member = ctx.guild.me
         await self.say_permissions(ctx, member, channel)
 
-  @commands.command()
+  @commands.command(aliases=['perms'])
   @commands.guild_only()
   async def permissions(self, ctx, member: discord.Member = None, channel: discord.TextChannel = None):
         """Shows a member's permissions in a specific channel.
