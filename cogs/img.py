@@ -55,7 +55,12 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_ptpt = str(member.avatar_url_as(static_format="png", size=1024))
       img_ptpt = await dagpi.image_process(ImageFeatures.petpet(), url_ptpt)
       file_ptpt = discord.File(fp=img_ptpt.image,filename=f"pet.{img_ptpt.format}")
-      await ctx.reply(file=file_ptpt, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_ptpt.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_ptpt, embed=embed, mention_author=False)
+
   
   @commands.command(aliases=["trigger"])
   async def triggered(self, ctx, member: discord.Member=None):
@@ -68,7 +73,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
       img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
       file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
-      await ctx.reply(file=file_trgg, mention_author=False)
+      
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_trgg.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_trgg, embed=embed, mention_author=False)
 
   @commands.command()
   async def urss(self, ctx, member: discord.Member=None):
@@ -81,7 +90,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_urss = str(member.avatar_url_as(static_format="png", size=1024))
       img_urss = await dagpi.image_process(ImageFeatures.communism(), url_urss)
       file_urss = discord.File(fp=img_urss.image,filename=f"urss.{img_urss.format}")
-      await ctx.reply(file=file_urss, mention_author=False)
+      
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_urss.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_urss, embed=embed, mention_author=False)
 
   @commands.command()
   async def colors(self, ctx, member: discord.Member=None):
@@ -94,7 +107,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_clrs = str(member.avatar_url_as(static_format="png", size=1024))
       img_clrs = await dagpi.image_process(ImageFeatures.colors(), url_clrs)
       file_clrs = discord.File(fp=img_clrs.image,filename=f"colors.{img_clrs.format}")
-      await ctx.reply(file=file_clrs, mention_author=False)
+      
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_clrs.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_clrs, embed=embed, mention_author=False)
 
   @commands.command()
   async def gay(self, ctx, member: discord.Member=None):
@@ -107,7 +124,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_gy = str(member.avatar_url_as(static_format="png", size=1024))
       img_gy = await dagpi.image_process(ImageFeatures.gay(), url_gy)
       file_gy = discord.File(fp=img_gy.image,filename=f"gay.{img_gy.format}")
-      await ctx.reply(file=file_gy, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_gy.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_gy, embed=embed, mention_author=False)
 
   @commands.command()
   async def fedora(self, ctx, member: discord.Member=None):
@@ -120,7 +141,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_fdr = str(member.avatar_url_as(static_format="png", size=1024))
       img_fdr = await dagpi.image_process(ImageFeatures.fedora(), url_fdr)
       file_fdr = discord.File(fp=img_fdr.image,filename=f"fedora.{img_fdr.format}")
-      await ctx.reply(file=file_fdr, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_fdr.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_fdr, embed=embed, mention_author=False)
 
   @commands.command()
   async def jail(self, ctx, member: discord.Member=None):
@@ -133,7 +158,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_jl = str(member.avatar_url_as(static_format="png", size=1024))
       img_jl = await dagpi.image_process(ImageFeatures.jail(), url_jl)
       file_jl = discord.File(fp=img_jl.image,filename=f"jail.{img_jl.format}")
-      await ctx.reply(file=file_jl, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_jl.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_jl, embed=embed, mention_author=False)
 
   @commands.command()
   async def bonk(self, ctx, member: discord.Member=None):
@@ -146,7 +175,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_bnk= str(member.avatar_url_as(static_format="png", size=1024))
       img_bnk = await dagpi.image_process(ImageFeatures.bonk(), url_bnk)
       file_bnk = discord.File(fp=img_bnk.image,filename=f"bonk.{img_bnk.format}")
-      await ctx.reply(file=file_bnk, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_bnk.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_bnk, embed=embed, mention_author=False)
 
   @commands.command()
   async def delete(self, ctx, member: discord.Member=None):
@@ -159,7 +192,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_dlt= str(member.avatar_url_as(static_format="png", size=1024))
       img_dlt = await dagpi.image_process(ImageFeatures.delete(), url_dlt)
       file_dlt = discord.File(fp=img_dlt.image,filename=f"delete.{img_dlt.format}")
-      await ctx.reply(file=file_dlt, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_dlt.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_dlt, embed=embed, mention_author=False)
 
   @commands.command()
   async def kaboom(self, ctx, member: discord.Member=None):
@@ -172,7 +209,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_bmb= str(member.avatar_url_as(static_format="png", size=1024))
       img_bmb = await dagpi.image_process(ImageFeatures.bomb(), url_bmb)
       file_bmb = discord.File(fp=img_bmb.image,filename=f"bomb.{img_bmb.format}")
-      await ctx.reply(file=file_bmb, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_bmb.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_bmb, embed=embed, mention_author=False)
 
   @commands.command()
   async def neon(self, ctx, member: discord.Member=None):
@@ -185,7 +226,11 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       url_nn= str(member.avatar_url_as(static_format="png", size=1024))
       img_nn = await dagpi.image_process(ImageFeatures.neon(), url_nn)
       file_nn = discord.File(fp=img_nn.image,filename=f"neon.{img_nn.format}")
-      await ctx.reply(file=file_nn, mention_author=False)
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_nn.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_nn, embed=embed, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
