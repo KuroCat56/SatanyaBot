@@ -7,6 +7,23 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
   def __init__(self, bot: commands.Bot):
     self.bot = bot
 
+  async def say_permissions(self, ctx, member, channel):
+        permissions = channel.permissions_for(member)
+        e = discord.Embed(colour=member.colour)
+        avatar = member.avatar_url_as(static_format='png')
+        e.set_author(name=str(member), url=avatar)
+        allowed, denied = [], []
+        for name, value in permissions:
+            name = name.replace('_', ' ').replace('guild', 'server').title()
+            if value:
+                allowed.append(name)
+            else:
+                denied.append(name)
+
+        e.add_field(name='Allowed', value='\n'.join(allowed))
+        e.add_field(name='Denied', value='\n'.join(denied))
+        await ctx.send(embed=e)
+
   @commands.command()
   async def remind(self, ctx, time, *, task):
     """
