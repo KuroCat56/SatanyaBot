@@ -85,15 +85,15 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado __{cog}__ correctamente.', mention_author=False)
 
-    # @commands.command(hidden=True)
-    # @commands.is_owner()
-    # async def alive(self, ctx):
-    #     delta_uptime = datetime.utcnow() - self.bot.launch_time
-    #     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-    #     minutes, seconds = divmod(remainder, 60)
-    #     days, hours = divmod(hours, 24)
-    #     alive = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-    #     await ctx.send(f'Llevo encendida desde hace: **{alive}**')
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def alive(self, ctx):
+        delta_uptime = datetime.utcnow() - self.bot.launch_time
+        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        alive = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+        await ctx.send(f'Llevo encendida desde hace: **{alive}**')
 
     @commands.command(hidden=True)
     @commands.is_owner()
