@@ -20,6 +20,8 @@ class ErrorHandler(commands.Cog):
                 message = "🚫 ¿Qué intentas hacer? Te faltan permisos para usar este comando."
             elif isinstance(error, commands.UserInputError):
                 message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
+            elif isinstance(error, commands.NotOwner):
+                message = "<:doki_shrug:846548924890349627> Lo siento, pero este comando solo lo puede usar mi creador."
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
         embed = discord.Embed(
