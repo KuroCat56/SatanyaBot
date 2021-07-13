@@ -106,7 +106,7 @@ class OwnerCog(commands.Cog):
     @commands.command(hidden=True)
     @commands.is_owner()
     async def lines(self, ctx):
-        await ctx.send(f"**{self.bot.user.name}** was made with **{lines.get('lines'):,}** lines of code!")
+        await ctx.send(f"Estoy hecha con {lines.get('lines'):,} líneas de código.")
 
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
