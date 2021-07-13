@@ -234,7 +234,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         '''Get server info'''
         guild = ctx.guild
         guild_age = (ctx.message.created_at - guild.created_at).days
-        created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y at %H:%M')}. ¡Eso fue hace {guild_age} días!"
+        created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y │ %H:%M')}. ¡Eso fue hace {guild_age} días!"
 
         em = discord.Embed(description=created_at, color=0xfbf9fa)
         em.add_field(name='Owner', value=guild.owner, inline=False)
