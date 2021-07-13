@@ -42,8 +42,8 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
       file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
       embed = discord.Embed()
-      embed.set_image(url="attachment://file_pxl")
-      await ctx.reply(embed=embed, file=file_pxl, mention_author=False)
+      embed.set_image(url=f"attachment://pixel.{img_pxl.format}")
+      await ctx.reply(file=file_pxl, embed=embed, mention_author=False)
 
   @commands.command()
   async def pet(self, ctx, member: discord.Member=None):
