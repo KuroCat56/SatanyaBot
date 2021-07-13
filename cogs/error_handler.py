@@ -1,6 +1,7 @@
 #Extraído de https://vcokltfre.dev/tutorial/12-errors/
 from discord.ext import commands
 import discord
+from difflib import get_close_matches
 
 class ErrorHandler(commands.Cog):
     """A cog for global error handling."""
@@ -13,15 +14,22 @@ class ErrorHandler(commands.Cog):
         """A global error handler cog."""
         try:
             if isinstance(error, commands.CommandNotFound):
-                return  # Return because we don't want to show an error for every command not found
+                cmd = ctx.invoked_with
+                #cmds = [cmd.name for cmd in bot.commands]
+                cmds = [cmd.name for cmd in self.commands if not cmd.hidden] # use this to stop showing hidden commands as suggestions
+                matches = get_close_matches(cmd, cmds)
+                if len(matches) > 0:
+                    await ctx.send(f'Command "{cmd}" not found, maybe you meant "{matches[0]}"?')
+                else:
+                    await ctx.send(f'Command "{cmd}" not found, use the help command to know what commands are available')
             elif isinstance(error, commands.CommandOnCooldown):
                 message = f"⏳ Has usado este comando demasiado rápido. Intenta de nuevo en **{round(error.retry_after, 1)} segundos.**"
             elif isinstance(error, commands.MissingPermissions):
                 message = "🚫 Parece que te hacen faltan permisos para usar este comando."
-            #elif isinstance(error, commands.UserInputError):
-            #    message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
+            elif isinstance(error, commands.UserInputError):
+                message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
             elif isinstance(error, commands.MissingRequiredArgument):
-                message = f"🛑 Espera, no has ejecutado bien el comando. Necesito que me pases estos argumentos también: **{error.param}**"
+                message = f"🛑 Espera, no has ejecutado bien el comando. Necesito estos argumentos: **{error.param}**"
             elif isinstance(error, commands.UserNotFound):
                 message = "⛔ No soy capaz de encontrar al usuario que has mencionado. ¿Está realmente en este server?"
             elif isinstance(error, commands.NotOwner):
