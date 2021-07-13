@@ -37,7 +37,11 @@ def uptime():
 #Busca todos los cogs y los carga al iniciar
 for filename in os.listdir("./cogs"):
   if filename.endswith(".py"):
-    bot.load_extension(f"cogs.{filename[:-3]}")
+    try:
+      bot.load_extension(f"cogs.{filename[:-3]}")
+    except Exception as error:
+      print(f"Could not load {filename}: {error}")
+print("COGS HAVE BEEN LOADED")
 
 mention = ["satanya", "satanyabot"]
 @bot.event
