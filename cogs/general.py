@@ -5,6 +5,7 @@ from datetime import datetime
 from psutil import Process
 from os import getpid
 import pkg_resources
+import main
 
 def lines_of_code():
     """
@@ -41,7 +42,6 @@ def lines_of_code():
         "lines": ls,
         "files": fc
     }
-
 
 lines = lines_of_code()
 
@@ -111,16 +111,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         """
         Información útil (y no tan útil) del bot.
         """
-        #Implementación directa de main.py
-        delta_uptime = datetime.utcnow() - self.bot.launch_time
-        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-        minutes, seconds = divmod(remainder, 60)
-        days, hours = divmod(hours, 24)
-        uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-
-
-
-
         embed = discord.Embed(
           title="¡Hola, soy SatanyaBot!",
             description="Gracias por dejarme estar en tu servidor. Recuerda que si quieres ver mis comandos usa **nya>help**",
@@ -145,7 +135,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
             name="Encendida desde hace:",
-            value=f"{uptime}",
+            value=f"{main.uptime}",
             inline=True
         )
         embed.add_field(
