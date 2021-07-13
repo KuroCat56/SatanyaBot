@@ -5,8 +5,44 @@ from datetime import datetime
 from psutil import Process
 from os import getpid
 import pkg_resources
-import owner
 
+def lines_of_code():
+    """
+    I did not write this code.
+    This code was taken off of a tag in discord.gg/dpy owned by Dutchy#6127
+    I don't know if this is licensed
+    but alas
+    :return:
+    """
+    import pathlib
+    p = pathlib.Path('./')
+    cm = cr = fn = cl = ls = fc = 0
+    for f in p.rglob('*.py'):
+        if str(f).startswith("venv"):
+            continue
+        fc += 1
+        with f.open() as of:
+            for l in of.readlines():
+                l = l.strip()
+                if l.startswith('class'):
+                    cl += 1
+                if l.startswith('def'):
+                    fn += 1
+                if l.startswith('async def'):
+                    cr += 1
+                if '#' in l:
+                    cm += 1
+                ls += 1
+    return {
+        "comments": cm,
+        "coroutine": cr,
+        "functions": fn,
+        "classes": cl,
+        "lines": ls,
+        "files": fc
+    }
+
+lines = lines_of_code()
 
 class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
 
@@ -123,7 +159,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
           name= "# Líneas:",
-          value=f"{owner.lines.get('lines'):,}",
+          value=f"{lines.get('lines'):,}",
           inline=True
         )
         embed.add_field(
