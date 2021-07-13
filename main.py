@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 import config
 from dotenv import load_dotenv
+from difflib import get_close_matches
 intents = discord.Intents.default()
 intents.members = True
 
@@ -45,6 +46,18 @@ async def on_message(msg):
 async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(bot))
     await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION} 🔲'))
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        cmd = ctx.invoked_with
+        #cmds = [cmd.name for cmd in bot.commands]
+        cmds = [cmd.name for cmd in bot.commands if not cmd.hidden] # use this to stop showing hidden commands as suggestions
+        matches = get_close_matches(cmd, cmds)
+        if len(matches) > 0:
+            await ctx.send(f'Command "{cmd}" not found, maybe you meant "{matches[0]}"?')
+        else:
+          await ctx.send(f'Command "{cmd}" not found, use the help command to know what commands are available')
 
 class MyNewHelp(commands.MinimalHelpCommand):
     async def send_pages(self):
