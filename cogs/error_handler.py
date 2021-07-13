@@ -18,8 +18,8 @@ class ErrorHandler(commands.Cog):
                 message = f"⏳ Has usado este comando demasiado rápido. Intenta de nuevo en **{round(error.retry_after, 1)} segundos.**"
             elif isinstance(error, commands.MissingPermissions):
                 message = "🚫 Parece que te hacen faltan permisos para usar este comando."
-            elif isinstance(error, commands.UserInputError):
-                message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
+            #elif isinstance(error, commands.UserInputError):
+            #    message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
             elif isinstance(error, commands.MissingRequiredArgument):
                 message = f"🛑 Espera, no has ejecutado bien el comando. Necesito que me pases estos argumentos también: **{error.param}**"
             elif isinstance(error, commands.UserNotFound):
