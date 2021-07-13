@@ -17,7 +17,7 @@ class ErrorHandler(commands.Cog):
             elif isinstance(error, commands.CommandOnCooldown):
                 message = f"⏳ Has usado este comando demasiado rápido. Intenta de nuevo en **{round(error.retry_after, 1)} segundos.**"
             elif isinstance(error, commands.MissingPermissions):
-                message = "🚫 ¿Qué intentas hacer? Te faltan permisos para usar este comando."
+                message = "🚫 Parece que te hacen faltan permisos para usar este comando."
             elif isinstance(error, commands.UserInputError):
                 message = "🤔 Mmmm, creo que no usaste bien el comando. Asegúrate de checar como usarlo checando `nya>help [comando]`"
             elif isinstance(error, commands.NotOwner):
@@ -25,8 +25,8 @@ class ErrorHandler(commands.Cog):
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
         embed = discord.Embed(
-            title = message,
-            #description = message,
+            title = "UN ERROR SALVAJE APARECIÓ",
+            description = message,
             color = 0xFF0000
         )
         await ctx.send(embed=embed, delete_after=10)
