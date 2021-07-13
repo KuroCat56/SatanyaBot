@@ -92,6 +92,20 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
       except:
         await ctx.send("El bloque de código es demasiado largo como para enviarlo. Será mejor que uses `nya>git` para buscar el apartado por tu cuenta. <:doki_hmm:846549184807043133>")
 
+  @commands.command()
+  @commands.guild_only()
+  @commands.has_permissions(manage_messages=True)
+  async def botpermissions(self, ctx, *, channel: discord.TextChannel = None):
+        """Shows the bot's permissions in a specific channel.
+        If no channel is given then it uses the current one.
+        This is a good way of checking if the bot has the permissions needed
+        to execute the commands it wants to execute.
+        To execute this command you must have Manage Roles permission.
+        You cannot use this in private messages.
+        """
+        channel = channel or ctx.channel
+        member = ctx.guild.me
+        await self.say_permissions(ctx, member, channel)
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
