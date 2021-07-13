@@ -2,7 +2,6 @@ from discord.ext import commands
 import datetime
 from os import getpid
 from psutil import Process
-import main
 
 def lines_of_code():
     """
@@ -89,7 +88,12 @@ class OwnerCog(commands.Cog):
     @commands.command(hidden=True)
     @commands.is_owner()
     async def alive(self, ctx):
-        await ctx.send(f'Llevo encendida desde hace: **{main.uptime}**')
+        delta_uptime = datetime.utcnow() - self.bot.launch_time
+        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        alive = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+        await ctx.send(f'Llevo encendida desde hace: **{alive}**')
 
     @commands.command(hidden=True)
     @commands.is_owner()
