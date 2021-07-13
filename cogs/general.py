@@ -187,7 +187,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
                     voice += 1
 
         embed.add_field(name='# Miembros', value=f'{total_members} totales', inline=True)
-        embed.add_field(name='# Canales', value=f'{text + voice} total\n {text} texto\n{voice} voz', inline=False)
+        embed.add_field(name='# Canales', value=f'{text + voice} totales', inline=False)
         embed.add_field(
           name= "Cumpleaños 🍰",
           value="31/01/2021 | 09:50 AM",
@@ -222,7 +222,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         '''Get server info'''
         guild = ctx.guild
         guild_age = (ctx.message.created_at - guild.created_at).days
-        created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y │ %H:%M')}. ¡Eso fue hace {guild_age} días!"
+        created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y │ %H:%M')}.\n¡Eso fue hace {guild_age} días!"
 
         em = discord.Embed(description=created_at, color=0xfbf9fa)
         em.add_field(name='Owner', value=guild.owner, inline=False)
