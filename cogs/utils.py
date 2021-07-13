@@ -3,6 +3,45 @@ from discord.ext import commands
 import asyncio
 import inspect
 
+def lines_of_code():
+    """
+    I did not write this code.
+    This code was taken off of a tag in discord.gg/dpy owned by Dutchy#6127
+    I don't know if this is licensed
+    but alas
+    :return:
+    """
+    import pathlib
+    p = pathlib.Path('./')
+    cm = cr = fn = cl = ls = fc = 0
+    for f in p.rglob('*.py'):
+        if str(f).startswith("venv"):
+            continue
+        fc += 1
+        with f.open() as of:
+            for l in of.readlines():
+                l = l.strip()
+                if l.startswith('class'):
+                    cl += 1
+                if l.startswith('def'):
+                    fn += 1
+                if l.startswith('async def'):
+                    cr += 1
+                if '#' in l:
+                    cm += 1
+                ls += 1
+    return {
+        "comments": cm,
+        "coroutine": cr,
+        "functions": fn,
+        "classes": cl,
+        "lines": ls,
+        "files": fc
+    }
+
+
+lines = lines_of_code()
+
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
@@ -91,6 +130,10 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
         await ctx.send(f'```py\n{source}\n```')
       except:
         await ctx.send("El bloque de código es demasiado largo como para enviarlo. Será mejor que uses `nya>git` para buscar el apartado por tu cuenta. <:doki_hmm:846549184807043133>")
+  
+  @commands.command()
+  async def lines(self, ctx):
+    await ctx.send(f"**{self.bot.user.name}** was made with **{lines.get('lines'):,}** lines of code!")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
