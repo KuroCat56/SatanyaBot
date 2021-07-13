@@ -5,6 +5,7 @@ from datetime import datetime
 from psutil import Process
 from os import getpid
 import pkg_resources
+from utils import lines
 
 class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
 
@@ -122,6 +123,11 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         embed.add_field(
           name= "# Comandos:",
           value=f"{len([x.name for x in self.bot.commands])}",
+          inline=True
+        )
+        embed.add_field(
+          name= "# Líneas:",
+          value=f"{lines}",
           inline=True
         )
         embed.add_field(
