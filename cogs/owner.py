@@ -2,6 +2,7 @@ from discord.ext import commands
 import datetime
 from os import getpid
 from psutil import Process
+from general import uptime
 
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 class OwnerCog(commands.Cog):
@@ -50,12 +51,7 @@ class OwnerCog(commands.Cog):
     @commands.command(hidden=True)
     @commands.is_owner()
     async def alive(self, ctx):
-        delta_uptime = datetime.utcnow() - self.bot.launch_time
-        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-        minutes, seconds = divmod(remainder, 60)
-        days, hours = divmod(hours, 24)
-        alive = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-        await ctx.send(f'Llevo encendida desde hace: **{alive,}**')
+        await ctx.send(f'Llevo encendida desde hace: **{uptime}**')
 
     @commands.command(hidden=True)
     @commands.is_owner()
