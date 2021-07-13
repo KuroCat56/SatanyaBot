@@ -37,16 +37,13 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     """
     if member is None:
       member = ctx.author
-    try:
-      async with ctx.typing():
-        url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
-        img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
-        file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
-        embed = discord.Embed(color=ctx.author.color)
-        embed.set_image(url=f"attachment://pixel.{img_pxl.format}")
-        await ctx.reply(file=file_pxl, embed=embed, mention_author=False)
-    except Exception as e:
-      await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
+    async with ctx.typing():
+      url_pxl = str(member.avatar_url_as(static_format="png", size=1024))
+      img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
+      file_pxl = discord.File(fp=img_pxl.image,filename=f"pixel.{img_pxl.format}")
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://pixel.{img_pxl.format}")
+      await ctx.reply(file=file_pxl, embed=embed, mention_author=False)
 
   @commands.command()
   async def pet(self, ctx, member: discord.Member=None):
