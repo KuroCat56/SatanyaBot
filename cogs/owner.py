@@ -3,6 +3,7 @@ import datetime
 from os import getpid
 from psutil import Process
 import general
+import main
 
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 class OwnerCog(commands.Cog):
@@ -51,7 +52,7 @@ class OwnerCog(commands.Cog):
     @commands.command(hidden=True)
     @commands.is_owner()
     async def alive(self, ctx):
-        await ctx.send(f'Llevo encendida desde hace: **{general.uptime}**')
+        await ctx.send(f'Llevo encendida desde hace: **{main.uptime}**')
 
     @commands.command(hidden=True)
     @commands.is_owner()
