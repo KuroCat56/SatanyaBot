@@ -25,8 +25,8 @@ class ErrorHandler(commands.Cog):
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
         embed = discord.Embed(
-            title = "UN ERROR SALVAJE APARECIÓ",
-            description = message,
+            title = message,
+            #description = message,
             color = 0xFF0000
         )
         await ctx.send(embed=embed, delete_after=10)
