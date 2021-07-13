@@ -107,14 +107,14 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   
   @commands.command(name="info", aliases=["botinfo", "about"])
   async def info(self, context):
+        """
+        Información útil (y no tan útil) del bot.
+        """
         delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-        """
-        Información útil (y no tan útil) del bot.
-        """
         embed = discord.Embed(
           title="¡Hola, soy SatanyaBot!",
             description="Gracias por dejarme estar en tu servidor. Recuerda que si quieres ver mis comandos usa **nya>help**",
@@ -219,7 +219,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
 
   @commands.command(aliases=['si', 'server']) #Extraído de https://github.com/cree-py/RemixBot/blob/master/cogs/info.py
   async def serverinfo(self, ctx):
-        '''Get server info'''
+        '''Información básica del servidor.'''
         guild = ctx.guild
         guild_age = (ctx.message.created_at - guild.created_at).days
         created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y │ %H:%M')}.\n¡Eso fue hace {guild_age} días!"
