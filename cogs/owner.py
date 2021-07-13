@@ -44,6 +44,9 @@ lines = lines_of_code()
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 class OwnerCog(commands.Cog):
 
+    def __init__(self, bot):
+        self.bot = bot
+    
     # Hidden means it won't show up on the default help.
     @commands.command(name='load', hidden=True)
     @commands.is_owner()
