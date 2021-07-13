@@ -3,6 +3,12 @@ import datetime
 from os import getpid
 from psutil import Process
 
+delta_uptime = datetime.utcnow() - self.bot.launch_time
+hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+minutes, seconds = divmod(remainder, 60)
+days, hours = divmod(hours, 24)
+uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
 class OwnerCog(commands.Cog):
 
@@ -50,15 +56,15 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado __{cog}__ correctamente.', mention_author=False)
 
-    # @commands.command(hidden=True)
-    # @commands.is_owner()
-    # async def uptime(self, ctx):
-    #     delta_uptime = datetime.utcnow() - bot.launch_time
-    #     hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
-    #     minutes, seconds = divmod(remainder, 60)
-    #     days, hours = divmod(hours, 24)
-    #     uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
-    #     await ctx.send(f'Llevo encendida desde hace: **{uptime}**')
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def uptime(self, ctx):
+        delta_uptime = datetime.utcnow() - self.launch_time
+        hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        days, hours = divmod(hours, 24)
+        uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+        await ctx.send(f'Llevo encendida desde hace: **{uptime}**')
 
     @commands.command(hidden=True)
     @commands.is_owner()
