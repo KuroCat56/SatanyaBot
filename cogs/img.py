@@ -16,11 +16,6 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
 
   @commands.command(help ="Checa el perfil de un usuario.", aliases=["av"])
   async def avatar(self, ctx, member: discord.Member=None):
-    """
-    Checa el perfil de un usuario y míralo en todo su esplendor.
-
-    `nya>avatar` [usuario]
-    """
     if member is None:
       member = ctx.author
     avatar= str(member.avatar_url_as(static_format="png", size=1024))
@@ -46,7 +41,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
 
       embed = discord.Embed(color=ctx.author.color)
       embed.set_image(url=f"attachment://pixel.{img_pxl.format}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author}", icon_url=member.avatar_url)
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_pxl, embed=embed, mention_author=False)
 
   @commands.command()
