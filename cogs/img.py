@@ -505,5 +505,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_spn, embed=embed, mention_author=False)
 
+  @commands.command(aliases="snap")
+  async def dissolve(self, ctx, member: discord.Member=None):
+    """
+    Thanos snap
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_dsslv = str(member.avatar_url_as(static_format="png", size=1024))
+      img_dsslv = await dagpi.image_process(ImageFeatures.dissolve(), url_dsslv)
+      file_dsslv = discord.File(fp=img_dsslv.image,filename=f"dissolve.{img_dsslv.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://dissolve.{img_dsslv.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_dsslv, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
