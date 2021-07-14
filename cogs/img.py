@@ -403,22 +403,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_sp, embed=embed, mention_author=False)
 
-  @commands.command()
-  async def glitch(self, ctx, member: discord.Member=None):
-    """
-    Cool glitch B)
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_gltch = str(member.avatar_url_as(static_format="png", size=1024))
-      img_gltch = await dagpi.image_process(ImageFeatures.glitch(), url_gltch)
-      file_gltch = discord.File(fp=img_gltch.image,filename=f"glitch.{img_gltch.format}")
+  # @commands.command()
+  # async def glitch(self, ctx, member: discord.Member=None):
+  #   """
+  #   Cool glitch B)
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_gltch = str(member.avatar_url_as(static_format="png", size=1024))
+  #     img_gltch = await dagpi.image_process(ImageFeatures.glitch(), url_gltch)
+  #     file_gltch = discord.File(fp=img_gltch.image,filename=f"glitch.{img_gltch.format}")
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://glitch.{img_gltch.format}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
-      await ctx.reply(file=file_gltch, embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"attachment://glitch.{img_gltch.format}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(file=file_gltch, embed=embed, mention_author=False)
 
   @commands.command()
   async def polaroid(self, ctx, member: discord.Member=None):
@@ -474,7 +474,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
   @commands.command()
   async def sketch(self, ctx, member: discord.Member=None):
     """
-    ¿Cómo te verías si te dibujase un artista?
+    ¿Cómo sería si te dibujase un artista?
     """
     if member is None:
       member = ctx.author
@@ -488,39 +488,39 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_sktch, embed=embed, mention_author=False)
 
-  @commands.command()
-  async def spin(self, ctx, member: discord.Member=None):
-    """
-    You spin me right round, baby
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_spn = str(member.avatar_url_as(static_format="png", size=1024))
-      img_spn = await dagpi.image_process(ImageFeatures.spin(), url_spn)
-      file_spn = discord.File(fp=img_spn.image,filename=f"spin.{img_spn.format}")
+  # @commands.command()
+  # async def spin(self, ctx, member: discord.Member=None):
+  #   """
+  #   You spin me right round, baby
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_spn = str(member.avatar_url_as(static_format="png", size=1024))
+  #     img_spn = await dagpi.image_process(ImageFeatures.spin(), url_spn)
+  #     file_spn = discord.File(fp=img_spn.image,filename=f"spin.{img_spn.format}")
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://spin.{img_spn.format}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
-      await ctx.reply(file=file_spn, embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"attachment://spin.{img_spn.format}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(file=file_spn, embed=embed, mention_author=False)
 
-  @commands.command(aliases=["snap"])
-  async def dissolve(self, ctx, member: discord.Member=None):
-    """
-    Thanos snap
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_dsslv = str(member.avatar_url_as(static_format="png", size=1024))
-      img_dsslv = await dagpi.image_process(ImageFeatures.dissolve(), url_dsslv)
-      file_dsslv = discord.File(fp=img_dsslv.image,filename=f"dissolve.{img_dsslv.format}")
+  # @commands.command(aliases=["snap"])
+  # async def dissolve(self, ctx, member: discord.Member=None):
+  #   """
+  #   Thanos snap
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_dsslv = str(member.avatar_url_as(static_format="png", size=1024))
+  #     img_dsslv = await dagpi.image_process(ImageFeatures.dissolve(), url_dsslv)
+  #     file_dsslv = discord.File(fp=img_dsslv.image,filename=f"dissolve.{img_dsslv.format}")
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"attachment://dissolve.{img_dsslv.format}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
-      await ctx.reply(file=file_dsslv, embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"attachment://dissolve.{img_dsslv.format}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(file=file_dsslv, embed=embed, mention_author=False)
 
   @commands.command()
   async def magik(self, ctx, member: discord.Member=None):
