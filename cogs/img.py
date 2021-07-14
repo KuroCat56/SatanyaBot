@@ -243,7 +243,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     async with ctx.typing():
       url_wntd = str(member.avatar_url_as(static_format="png", size=1024))
       img_wntd = await dagpi.image_process(ImageFeatures.wanted(), url_wntd)
-      file_wtnd = discord.File(fp=img_wntd.image,filename=f"neon.{img_wntd.format}")
+      file_wtnd = discord.File(fp=img_wntd.image,filename=f"wanted.{img_wntd.format}")
 
       embed = discord.Embed(color=ctx.author.color)
       embed.set_image(url=f"attachment://wanted.{img_wntd.format}")
