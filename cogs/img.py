@@ -403,5 +403,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_sp, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def glitch(self, ctx, member: discord.Member=None):
+    """
+    Cool glitch B)
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_gltch = str(member.avatar_url_as(static_format="png", size=1024))
+      img_gltch = await dagpi.image_process(ImageFeatures.glitch(), url_gltch)
+      file_gltch = discord.File(fp=img_gltch.image,filename=f"glitch.{img_gltch.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://glitch.{img_gltch.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_gltch, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
