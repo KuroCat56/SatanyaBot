@@ -250,5 +250,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_wtnd, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def wasted(self, ctx, member: discord.Member=None):
+    """
+    RIP
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_wstd = str(member.avatar_url_as(static_format="png", size=1024))
+      img_wstd = await dagpi.image_process(ImageFeatures.wasted(), url_wstd)
+      file_wstd = discord.File(fp=img_wstd.image,filename=f"wasted.{img_wstd.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://wasted.{img_wstd.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_wstd, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
