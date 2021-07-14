@@ -117,7 +117,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
         embed = discord.Embed(
           title="¡Hola, soy SatanyaBot!",
-            description="Gracias por dejarme estar en tu servidor. Recuerda que si quieres ver mis comandos usa **nya>help**",
+            description="Gracias por dejarme estar en tu servidor. Soy la primer bot de Discord *opensource* en español desarrollada en Python. Recuerda que si quieres ver mis comandos usa **nya>help**",
             color=0xfbf9fa,
             timestamp=datetime.utcnow()
         )
