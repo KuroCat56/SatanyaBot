@@ -239,7 +239,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
     El más buscado por la ley
     """
     if member is None:
-      member = ctx.authot
+      member = ctx.author
     async with ctx.typing():
       url_wntd = str(member.avatar_url_as(static_format="png", size=1024))
       img_wntd = await dagpi.image_process(ImageFeatures.wanted(), url_wntd)
