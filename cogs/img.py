@@ -335,5 +335,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_blr, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def rgb(self, ctx, member: discord.Member=None):
+    """
+    Extrae la información RGB de un perfil
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_rgb = str(member.avatar_url_as(static_format="png", size=1024))
+      img_rgb = await dagpi.image_process(ImageFeatures.rgb(), url_rgb)
+      file_rgb = discord.File(fp=img_rgb.image,filename=f"rgb.{img_rgb.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://rgb.{img_rgb.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_rgb, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
