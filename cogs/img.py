@@ -1,4 +1,5 @@
 import datetime
+from pathlib import WindowsPath
 from discord.ext import commands
 import discord
 from asyncdagpi import Client, ImageFeatures
@@ -231,6 +232,23 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_image(url=f"attachment://neon.{img_nn.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_nn, embed=embed, mention_author=False)
+
+  @commands.command()
+  async def wanted(self, ctx, member: discord.Member=None):
+    """
+    El más buscado por la ley
+    """
+    if member is None:
+      member = ctx.authot
+    async with ctx.typing():
+      url_wntd = str(member.avatar_url_as(static_format="png", size=1024))
+      img_wntd = await dagpi.image_process(ImageFeatures.wanted(), url_wntd)
+      file_wtnd = discord.File(fp=img_wntd.image,filename=f"neon.{img_wntd.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://wanted.{img_wntd.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_wtnd, embed=embed, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
