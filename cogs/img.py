@@ -352,5 +352,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_rgb, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def deepfry(self, ctx, member: discord.Member=None):
+    """
+    ¿Te gustan las papas fritas?
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_dpfr = str(member.avatar_url_as(static_format="png", size=1024))
+      img_dpfr = await dagpi.image_process(ImageFeatures.deepfry(), url_dpfr)
+      file_dpfr = discord.File(fp=img_dpfr.image,filename=f"deepfry.{img_dpfr.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://deepfry.{img_dpfr.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_dpfr, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
