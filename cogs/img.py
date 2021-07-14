@@ -369,5 +369,39 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_dpfr, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def ascii(self, ctx, member: discord.Member=None):
+    """
+    A S C I I
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_sc = str(member.avatar_url_as(static_format="png", size=1024))
+      img_sc = await dagpi.image_process(ImageFeatures.ascii(), url_sc)
+      file_sc = discord.File(fp=img_sc.image,filename=f"ascii.{img_sc.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://ascii.{img_sc.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_sc, embed=embed, mention_author=False)
+
+  @commands.command()
+  async def sepia(self, ctx, member: discord.Member=None):
+    """
+    El típico y ya conocido filtro sepia
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_sp = str(member.avatar_url_as(static_format="png", size=1024))
+      img_sp = await dagpi.image_process(ImageFeatures.sepia(), url_sp)
+      file_sp = discord.File(fp=img_sp.image,filename=f"sepia.{img_sp.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://sepia.{img_sp.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_sp, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
