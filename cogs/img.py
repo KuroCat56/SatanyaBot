@@ -267,5 +267,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_wstd, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def america(self, ctx, member: discord.Member=None):
+    """
+    Capitalismo FTW
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_mrc = str(member.avatar_url_as(static_format="png", size=1024))
+      img_mrc = await dagpi.image_process(ImageFeatures.america(), url_mrc)
+      file_mrc = discord.File(fp=img_mrc.image,filename=f"america.{img_mrc.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://america.{img_mrc.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_mrc, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
