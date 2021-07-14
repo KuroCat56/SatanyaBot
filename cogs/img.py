@@ -505,7 +505,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_spn, embed=embed, mention_author=False)
 
-  @commands.command(aliases="snap")
+  @commands.command(aliases=["snap"])
   async def dissolve(self, ctx, member: discord.Member=None):
     """
     Thanos snap
