@@ -522,5 +522,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_dsslv, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def magik(self, ctx, member: discord.Member=None):
+    """
+    Usa este con cuidado
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_mgk = str(member.avatar_url_as(static_format="png", size=1024))
+      img_mgk = await dagpi.image_process(ImageFeatures.magik(), url_mgk)
+      file_mgk = discord.File(fp=img_mgk.image,filename=f"magik.{img_mgk.format}")
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://magik.{img_mgk.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_mgk, embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
