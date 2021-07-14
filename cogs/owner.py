@@ -108,5 +108,25 @@ class OwnerCog(commands.Cog):
     async def lines(self, ctx):
         await ctx.send(f"Estoy hecha con {lines.get('lines'):,} líneas de código.")
 
+    @commands.command(hidden=True)
+    @commands.is_owner()
+    async def commandstats(self, ctx, limit=20):
+        """Shows command stats.
+        Use a negative number for bottom instead of top.
+        This is only for the current session.
+        """
+        counter = self.bot.command_stats
+        width = len(max(counter, key=len))
+        total = sum(counter.values())
+
+        if limit > 0:
+            common = counter.most_common(limit)
+        else:
+            common = counter.most_common()[limit:]
+
+        output = '\n'.join(f'{k:<{width}}: {c}' for k, c in common)
+
+        await ctx.send(f'```\n{output}\n```')
+
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
