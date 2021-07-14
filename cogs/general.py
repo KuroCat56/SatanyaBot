@@ -115,57 +115,58 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
+        
         embed = discord.Embed(
-          title="¡Hola, soy SatanyaBot!",
-            description="Gracias por dejarme estar en tu servidor. Soy la primer bot de Discord *opensource* en español desarrollada en Python. Recuerda que si quieres ver mis comandos usa **nya>help**",
-            color=0xfbf9fa,
-            timestamp=datetime.utcnow()
+        title="¡Hola, soy SatanyaBot!",
+        description="Gracias por dejarme estar en tu servidor. Soy la primer bot de Discord *opensource* en español desarrollada en Python. Recuerda que si quieres ver mis comandos usa **nya>help**",
+        color=0xfbf9fa,
+        timestamp=datetime.utcnow()
         )
         embed.set_author(
-            name=f"SatanyaBot | v{config.VERSION}",
-            icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473"
-        )
-        embed.set_thumbnail(url="https://media.discordapp.net/attachments/819972811799265315/822718490300514314/SatanyaBotspam.png?width=431&height=473"
+        name=f"SatanyaBot | v{config.VERSION}",
+        icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
+        
+        embed.set_thumbnail(url="https://media.discordapp.net/attachments/819972811799265315/822718490300514314/SatanyaBotspam.png?width=431&height=473")
+        
+        embed.add_field(
+        name="Creador y Colaboradores:",
+        value="[KuroCat#4816](https://linktr.ee/KuroCat56)",
+        inline=False
         )
         embed.add_field(
-            name="Creador y Colaboradores:",
-            value="[KuroCat#4816](https://linktr.ee/KuroCat56)",
-            inline=False
+        name="Mi versión de Python:",
+        value=f"{platform.python_version()}",
+        inline=True
         )
         embed.add_field(
-            name="Mi versión de Python:",
-            value=f"{platform.python_version()}",
-            inline=True
+        name="Encendida desde hace:",
+        value=f"{uptime}",
+        inline=True
         )
         embed.add_field(
-            name="Encendida desde hace:",
-            value=f"{uptime}",
-            inline=True
+        name="Uso de memoria actual:",
+        value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB",
+        inline=True
         )
         embed.add_field(
-            name="Uso de memoria actual:",
-            value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB",
-            inline=True
+        name="Prefijo:",
+        value=f"{config.PREFIX}",
+        inline=True
         )
         embed.add_field(
-            name="Prefijo:",
-            value=f"{config.PREFIX}",
-            inline=True
+        name= "# Comandos:",
+        value=f"{len([x.name for x in self.bot.commands])}",
+        inline=True
         )
         embed.add_field(
-          name= "# Comandos:",
-          value=f"{len([x.name for x in self.bot.commands])}",
-          inline=True
+        name= "# Líneas:",
+        value=f"{lines.get('lines'):,}",
+        inline=True
         )
         embed.add_field(
-          name= "# Líneas:",
-          value=f"{lines.get('lines'):,}",
-          inline=True
-        )
-        embed.add_field(
-          name= "# Servers:",
-          value=f"{len(self.bot.guilds)}",
-          inline=True
+        name= "# Servers:",
+        value=f"{len(self.bot.guilds)}",
+        inline=True
         )
         # statistics - Extraído de https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/stats.py#L216-L263
         total_members = 0
@@ -189,29 +190,29 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         embed.add_field(name='# Miembros', value=f'{total_members} totales', inline=True)
         embed.add_field(name='# Canales', value=f'{text + voice} totales', inline=True)
         embed.add_field(
-          name= "Cumpleaños 🍰",
-          value="31/01/2021 | 09:50 AM",
-          inline=False
+        name= "Cumpleaños 🍰",
+        value="31/01/2021 | 09:50 AM",
+        inline=False
         )
         embed.add_field(
-          name= "Donaciones <a:cutestars:846625824538886214>",
-          value="[Ko-fi](https://ko-fi.com/kurocat56)",
-          inline=True
+        name= "Donaciones <a:cutestars:846625824538886214>",
+        value="[Ko-fi](https://ko-fi.com/kurocat56)",
+        inline=True
         ) 
         embed.add_field(
-          name= "Top.gg <:wumpus_star:846611108784504872>",
-          value="[Próximamente](https://top.gg/)",
-          inline=True
+        name= "Top.gg <:wumpus_star:846611108784504872>",
+        value="[Próximamente](https://top.gg/)",
+        inline=True
         )
         embed.add_field(
-            name="Enlaces",
-            value="[Github](https://github.com/KuroCat56/SatanyaBot) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
-            inline=False
+        name="Enlaces",
+        value="[Github](https://github.com/KuroCat56/SatanyaBot) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
+        inline=False
         )
         version = pkg_resources.get_distribution('discord.py').version
         embed.set_footer(
-            text=f"Desarrollada en discord.py v{version}",
-            icon_url='http://i.imgur.com/5BFecvA.png'
+        text=f"Desarrollada en discord.py v{version}",
+        icon_url='http://i.imgur.com/5BFecvA.png'
         )
         embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
         )
@@ -239,17 +240,22 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   @commands.command(name="opensource", aliases=["open"])
   async def opensource(self, ctx):
     embed = discord.Embed(
-      title="APIS que utilizo",
-      description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.",
-      color=0xfbf9fa,
-      timestamp=datetime.utcnow()
+        title="SatanyaBot apoya el open source y tú también deberías",
+        description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.",
+        color=0xfbf9fa,
+        timestamp=datetime.utcnow()
       )
     embed.set_author(
-      name=f"SatanyaBot | v{config.VERSION}",
-      icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473",
+        name=f"SatanyaBot | v{config.VERSION}",
+        icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473",
       )
+    embed.add_field(
+        name="Enlaces",
+        value="[Github](https://github.com/KuroCat56/SatanyaBot) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
+        inline=False
+        )
     embed.set_footer(
-      text=f"Solicitado por {ctx.message.author}"
+        text=f"Solicitado por {ctx.message.author}"
         )
     await ctx.send(embed=embed)
 
