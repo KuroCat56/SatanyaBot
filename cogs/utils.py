@@ -133,7 +133,17 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
 
   @commands.command()
   async def trello(self, ctx):
-    await ctx.send("Test")
+    embed = discord.Embed(
+    title="¿Qué hay pendiente en la lista?",
+    description="🌸 SatanyaBot siempre está en desarrollo agregando nuevas características y arreglando otras. Si te da curiosidad saber en qué se está trabajando checa el link de abajo.",
+    color=0xfbf9fa
+    )
+    embed.add_field(
+    name="Tablero oficial de SatanyaBot",
+    value="[Trello](https://trello.com/b/Z432JC83)",
+    )
+    embed.set_thumbnail(url="https://images.unsplash.com/photo-1555231955-348aa2312e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")
+    await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
