@@ -126,8 +126,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         name=f"SatanyaBot | v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
         
-        embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
-        
         embed.add_field(
         name="Creador y Colaboradores:",
         value="[KuroCat#4816](https://linktr.ee/KuroCat56)",
