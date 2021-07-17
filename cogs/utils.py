@@ -131,5 +131,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
 
         await self.say_permissions(ctx, member, channel)
 
+  @commands.command()
+  async def trello(self, ctx):
+    await ctx.send("Test")
+
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
