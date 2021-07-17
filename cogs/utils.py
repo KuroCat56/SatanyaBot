@@ -135,7 +135,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
   async def trello(self, ctx):
     embed = discord.Embed(
     title="¿Qué hay pendiente en la lista?",
-    description="🌸 SatanyaBot siempre está en desarrollo agregando nuevas características y arreglando otras. Si te da curiosidad saber en qué se está trabajando checa el link de abajo.",
+    description="🌸 SatanyaBot siempre está en desarrollo agregando nuevas características y arreglando otras.\n🍒 Si te da curiosidad saber en qué se está trabajando checa el link de abajo.",
     color=0xfbf9fa
     )
     embed.add_field(
