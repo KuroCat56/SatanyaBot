@@ -142,7 +142,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     name="Tablero oficial de SatanyaBot",
     value="[Trello](https://trello.com/b/Z432JC83)",
     )
-    embed.set_thumbnail(url="https://images.unsplash.com/photo-1555231955-348aa2312e19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
+    embed.set_image(url="https://images.unsplash.com/photo-1555231955-348aa2312e19")
     await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
