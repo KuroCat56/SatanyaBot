@@ -65,5 +65,19 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     await ctx.send(emojify)
     await ctx.message.delete()
 
+  @commands.command(name="reverse")
+  async def reverse(self, ctx):
+    """
+    asrever ne otxeT
+    """
+    message = ctx.message.content
+    message = message.lstrip("emojify>>nya>@SatanyaBot")
+
+    response = requests.get(f"https://normal-api.ml/reverse?text={message}")
+    json_data = json.loads(response.text)
+    reversed = json_data['reversed']
+
+    await ctx.reply(reversed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
