@@ -55,13 +55,13 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     """
     🇪 🇲 🇴 🇯 🇮 🇸
     """
-    message = ctx.message.content
-    message = message.lstrip(">>nya>@SatanyaBot")
     def get_emojify():
       response = requests.get(f"https://normal-api.ml/emojify?text={message}")
       json_data = json.loads(response.text)
       emojied = json_data[0]['emojify']
       return (emojied)
+    message = ctx.message.content
+    message = message.lstrip(">>nya>@SatanyaBot")
     emojify = get_emojify
     await ctx.send(emojify)
     await ctx.message.delete()
