@@ -542,28 +542,17 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       await ctx.reply(file=file_mgk, embed=embed, mention_author=False)
 
   @commands.command()
-  async def trigger(ctx, member: discord.Member = None):
-        '''Un mejor trigger'''
-        member = member or ctx.author
-        await ctx.trigger_typing()
-        async with aiohttp.ClientSession() as session:
-         async with session.get(
-            f'https://some-random-api.ml/canvas/triggered?avatar={member.avatar_url_as(format="png")}'
-        ) as af:
-            if 300 > af.status >= 200:
-                fp = io.BytesIO(await af.read())
-                file = discord.File(fp, "trigger.png")
-                em = discord.Embed(
-                    title="trigger",
-                    color=0xf1f1f1,
-                )
-                em.set_image(url="attachment://trigger.png")
-                await ctx.send(embed=em, file=file)
-            else:
-                await ctx.send('No trigger')
-            await session.close()
-
-
+  async def triggered(ctx, member: discord.Member=None):
+    if not member: # if no member is mentioned
+        member = ctx.author # the user who ran the command will be the member
+        
+    async with aiohttp.ClientSession() as trigSession:
+        async with trigSession.get(f'https://some-random-api.ml/canvas/triggered?avatar={member.avatar_url_as(format="png", size=1024)}') as trigImg: # get users avatar as png with 1024 size
+            imageData = io.BytesIO(await trigImg.read()) # read the image/bytes
+            
+            await trigSession.close() # closing the session and;
+            
+            await ctx.reply(file=discord.File(imageData, 'triggered.gif')) # sending the file
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
