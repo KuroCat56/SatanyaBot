@@ -58,8 +58,8 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     def get_emojify():
       response = requests.get(f"https://normal-api.ml/emojify?text={message}")
       json_data = json.loads(response.text)
-      emojied = json_data[0]['emojify']
-      return (emojied)
+      emojify = json_data['emojify']
+      return (emojify)
     message = ctx.message.content
     message = message.lstrip("emojify>>nya>@SatanyaBot")
     emojify = get_emojify
