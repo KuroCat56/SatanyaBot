@@ -4,8 +4,6 @@ from discord.ext import commands
 import discord
 from asyncdagpi import Client, ImageFeatures
 import os
-import aiohttp
-import io
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -64,23 +62,22 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_ptpt, embed=embed, mention_author=False)
 
-  
-  # @commands.command(aliases=["trigger"])
-  # async def triggered(self, ctx, member: discord.Member=None):
-  #   """
-  #   T R I G G E R E D
-  #   """
-  #   if member is None:
-  #     member = ctx.author
-  #   async with ctx.typing():
-  #     url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
-  #     img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
-  #     file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
+  @commands.command(aliases=["trigger"])
+  async def triggered(self, ctx, member: discord.Member=None):
+    """
+    T R I G G E R E D
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
+      img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
+      file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
       
-  #     embed = discord.Embed(color=ctx.author.color)
-  #     embed.set_image(url=f"attachment://triggered.{img_trgg.format}")
-  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
-  #     await ctx.reply(file=file_trgg, embed=embed, mention_author=False)
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://triggered.{img_trgg.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_trgg, embed=embed, mention_author=False)
 
   @commands.command()
   async def urss(self, ctx, member: discord.Member=None):
@@ -540,19 +537,6 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_image(url=f"attachment://magik.{img_mgk.format}")
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_mgk, embed=embed, mention_author=False)
-
-  @commands.command()
-  async def triggered(ctx, member: discord.Member=None):
-    if not member: # if no member is mentioned
-        member = ctx.author # the user who ran the command will be the member
-        
-    async with aiohttp.ClientSession() as trigSession:
-        async with trigSession.get(f'https://some-random-api.ml/canvas/triggered?avatar={member.avatar_url_as(format="png", size=1024)}') as trigImg: # get users avatar as png with 1024 size
-            imageData = io.BytesIO(await trigImg.read()) # read the image/bytes
-            
-            await trigSession.close() # closing the session and;
-            
-            await ctx.reply(file=discord.File(imageData, 'triggered.gif')) # sending the file
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
