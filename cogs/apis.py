@@ -20,6 +20,8 @@ def get_quote():
     author = json_data[0]['a']
     return quote, author
 
+
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   """Comandos que requieren de alguna API"""
 
@@ -49,6 +51,22 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     """
     kao = get_kao()
     await ctx.send(kao)
+
+  @commands.command(name="emojify")
+  async def emojify(self, ctx):
+    """
+    🇪 🇲 🇴 🇯 🇮 🇸
+    """
+    message = ctx.message.content
+    message = message.lstrip(">>nya>@SatanyaBot")
+    def get_emojify():
+      response = requests.get(f"https://normal-api.ml/emojify?text={message}")
+      json_data = json.loads(response.text)
+      text = json_data[2]['emojied']
+      return text
+    emojify = get_emojify
+    await ctx.send(emojify)
+    await ctx.message.delete()
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
