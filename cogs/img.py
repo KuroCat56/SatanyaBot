@@ -554,7 +554,7 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
                 fp = io.BytesIO(await af.read())
                 file = discord.File(fp, "trigger.png")
                 em = discord.Embed(
-                    title="bonk",
+                    title="trigger",
                     color=0xf1f1f1,
                 )
                 em.set_image(url="attachment://trigger.png")
