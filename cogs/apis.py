@@ -20,8 +20,6 @@ def get_quote():
     author = json_data[0]['a']
     return quote, author
 
-
-
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   """Comandos que requieren de alguna API"""
 
@@ -63,7 +61,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
       response = requests.get(f"https://normal-api.ml/emojify?text={message}")
       json_data = json.loads(response.text)
       emojied = json_data[0]['emojify']
-      return emojied
+      return (emojied)
     emojify = get_emojify
     await ctx.send(emojify)
     await ctx.message.delete()
