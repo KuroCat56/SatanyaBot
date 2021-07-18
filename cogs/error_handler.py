@@ -28,7 +28,7 @@ class ErrorHandler(commands.Cog):
             elif isinstance(error, commands.NotOwner):
                 message = "<:doki_shrug:846548924890349627> Lo siento, pero este comando solo lo puede usar mi creador."
         except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
+            message = (f'**`ERROR:`** {type(e).__name__} - {e}')
         embed = discord.Embed(
             title = "UN ERROR SALVAJE APARECIÓ",
             description = message,
