@@ -62,8 +62,8 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     def get_emojify():
       response = requests.get(f"https://normal-api.ml/emojify?text={message}")
       json_data = json.loads(response.text)
-      text = json_data[2]['emojied']
-      return text
+      emojied = json_data['emojify']
+      return emojied
     emojify = get_emojify
     await ctx.send(emojify)
     await ctx.message.delete()
