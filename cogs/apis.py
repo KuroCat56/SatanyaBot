@@ -61,7 +61,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
       emojied = json_data[0]['emojify']
       return (emojied)
     message = ctx.message.content
-    message = message.lstrip(">>nya>@SatanyaBot")
+    message = message.lstrip("emojify>>nya>@SatanyaBot")
     emojify = get_emojify
     await ctx.send(emojify)
     await ctx.message.delete()

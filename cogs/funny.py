@@ -22,7 +22,7 @@ class funny(commands.Cog):
     ¿Quieres que diga algo por ti?
     """
     say = ctx.message.content
-    say = say.lstrip("nya>say") #Se elimina 'nya>say' del string para que no se imprima en el ctx.send
+    say = say.lstrip("nya>say>>@SatanyaBot") #Se elimina 'nya>say' del string para que no se imprima en el ctx.send
     await ctx.send(say)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
