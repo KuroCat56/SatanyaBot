@@ -20,6 +20,12 @@ def get_quote():
     author = json_data[0]['a']
     return quote, author
 
+def get_emojify():
+    response = requests.get(f"https://normal-api.ml/emojify?text={message}")
+    json_data = json.loads(response.text)
+    emojify = json_data['emojify']
+    return (emojify)
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
   """Comandos que requieren de alguna API"""
 
@@ -55,14 +61,9 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     """
     🇪 🇲 🇴 🇯 🇮 🇸
     """
-    def get_emojify():
-      response = requests.get(f"https://normal-api.ml/emojify?text={message}")
-      json_data = json.loads(response.text)
-      emojify = json_data['emojify']
-      return (emojify)
     message = ctx.message.content
     message = message.lstrip("emojify>>nya>@SatanyaBot")
-    emojify = get_emojify
+    emojify = get_emojify(message)
     await ctx.send(emojify)
     await ctx.message.delete()
 
