@@ -89,7 +89,7 @@ class OwnerCog(commands.Cog):
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado __{cog}__ correctamente.', mention_author=False)
 
     @commands.command(hidden=True)
-    @commands.is_owner()
+    @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
     async def clear(self, ctx, number: int):
         counter = 0
         async for message in ctx.channel.history(limit=100):
