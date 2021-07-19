@@ -26,9 +26,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
         await ctx.send(embed=e)
 
   def is_guild_owner():
-      def predicate(ctx):
-        return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
-      return commands.check(predicate)
+    def predicate(ctx):
+      return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
+    return commands.check(predicate)
 
   @commands.command()
   async def remind(self, ctx, time, *, task):
@@ -109,7 +109,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
 
   @commands.command(aliases=['botperms'])
   @commands.guild_only()
-  @commands.check_any(commands.is_owner, commands.is_guild_owner)
+  @commands.check_any(commands.is_owner(), is_guild_owner())
   async def botpermissions(self, ctx, *, channel: discord.TextChannel = None):
         """Shows the bot's permissions in a specific channel.
         If no channel is given then it uses the current one.
