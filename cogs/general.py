@@ -58,8 +58,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         embed = discord.Embed(
           title="🏓 Pong",
             description=(f'📨 Envío de mensajes: **{round(self.bot.latency * 1000)}ms**'),
-            color=0xfbf9fa,
-            timestamp=datetime.utcnow()
+            color=0xfbf9fa
+            #timestamp=datetime.utcnow()
         )
         embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
         await ctx.send(embed=embed)
