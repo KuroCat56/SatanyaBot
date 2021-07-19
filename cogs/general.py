@@ -61,6 +61,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
             color=0xfbf9fa,
             timestamp=datetime.utcnow()
         )
+        embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
         await ctx.send(embed=embed)
   
   @commands.command(name="git")
