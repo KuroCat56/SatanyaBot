@@ -47,7 +47,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
 
     def __init__(self, bot):
         self.bot = bot
-        self.last_msg = None
+        bot.snipes = {}
 
     # Hidden means it won't show up on the default help.
     @commands.command(name='load')
@@ -115,14 +115,14 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
     #https://vcokltfre.dev/tutorial/09-snipe/
     @commands.Cog.listener()
     async def on_message_delete(self, message: discord.Message):
-        self.last_msg[message.channel.id] = message
+        self.bot.snipes[message.channel.id] = message
 
     @commands.command(name="snipe")
     @commands.is_owner()
     async def snipe(self, ctx, *, channel: discord.TextChannel = None):
         channel = channel or ctx.channel
         try:
-            msg = self.last_msg[channel.id]
+            msg = self.bot.snipes[channel.id]
         except KeyError:
             return await ctx.send('Nothing to snipe!')
         # one liner, dont complain
