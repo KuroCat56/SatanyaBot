@@ -42,13 +42,13 @@ def lines_of_code():
 lines = lines_of_code()
 
 #Extraído de https://gist.github.com/EvieePy/d78c061a4798ae81be9825468fe146be
-class OwnerCog(commands.Cog):
+class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
 
     def __init__(self, bot):
         self.bot = bot
     
     # Hidden means it won't show up on the default help.
-    @commands.command(name='load', hidden=True)
+    @commands.command(name='load')
     @commands.is_owner()
     async def load(self, ctx, *, cog: str):
         """Command which Loads a Module.
@@ -61,7 +61,7 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He cargado *{cog}* correctamente.', mention_author=False)
 
-    @commands.command(name='unload', hidden=True)
+    @commands.command(name='unload')
     @commands.is_owner()
     async def unload(self, ctx, *, cog: str):
         """Command which Unloads a Module.
@@ -74,7 +74,7 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He descargado __{cog}__ correctamente.', mention_author=False)
 
-    @commands.command(name='reload', hidden=True)
+    @commands.command(name='reload')
     @commands.is_owner()
     async def reload(self, ctx, *, cog: str):
         """Command which Reloads a Module.
@@ -88,7 +88,7 @@ class OwnerCog(commands.Cog):
         else:
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado __{cog}__ correctamente.', mention_author=False)
 
-    @commands.command(hidden=True)
+    @commands.command()
     @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
     async def clear(self, ctx, number: int):
         counter = 0
@@ -100,12 +100,12 @@ class OwnerCog(commands.Cog):
                 break
         await ctx.send(f"🧹 He borrado `{number}` de mis mensajes en este canal\n||y este mensaje se auto destruirá en 10s <:yeehaw:824476003962191893>||", delete_after=10)
 
-    @commands.command(hidden=True)
+    @commands.command()
     @commands.is_owner()
     async def memory(self, ctx):
       await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')
 
-    @commands.command(hidden=True)
+    @commands.command()
     @commands.is_owner()
     async def lines(self, ctx):
         await ctx.send(f"Estoy hecha con {lines.get('lines'):,} líneas de código.")
