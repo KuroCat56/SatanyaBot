@@ -57,10 +57,17 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         ¡Pong!
         """
         start_time = time.time()
+        
         message = await ctx.send("Testing Ping...")
+        
+        typings = time.monotonic()
+        await ctx.trigger_typing()
+        typinge = time.monotonic()
+        typingms = round((typinge - typings) * 1000)
+        
         end_time = time.time()
-
-        await message.edit(content=f"Pong! {round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms")
+        
+        await message.edit(content=f"Pong! {round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms\n Typing: {typingms}")
         # embed = discord.Embed(
         #   title="🏓 Pong",
         #     description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{latencyms}ms**\n <a:clyde:846625894395412480> Discord: **{discordms}ms**\n Promedio: {average}'),
