@@ -58,12 +58,12 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         """
         start_time = time.time()
         
-        async with ctx.typing():
-            message = await ctx.send("Testing Ping...")
-        
-            typings = time.monotonic()
-            typinge = time.monotonic()
-            typingms = round((typinge - typings) * 1000)
+        typings = time.monotonic()
+        await ctx.typing()
+        typinge = time.monotonic()
+        typingms = round((typinge - typings) * 1000)
+
+        message = await ctx.send("Testing Ping...")
         
         end_time = time.time()
         
