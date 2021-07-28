@@ -115,23 +115,18 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
     #https://vcokltfre.dev/tutorial/09-snipe/
     @commands.Cog.listener()
     async def on_message_delete(self, message: discord.Message):
-        self.last_msg = message
+        self.last_msg[message.channel.id] = message
 
     @commands.command(name="snipe")
     @commands.is_owner()
-    async def snipe(self, ctx: commands.Context):
-        """A command to snipe delete messages."""
-        if not self.last_msg:  # on_message_delete hasn't been triggered since the bot started
-            await ctx.send("There is no message to snipe!")
-            return
-
-        author = self.last_msg.author
-        content = self.last_msg.content
-        pfp = self.last_msg.author.avatar_url
-        color = self.last_msg.author.color
-
-        embed = discord.Embed(title=f"Mensaje de {author}", color=color, description=content, icon_url=pfp)
-        await ctx.send(embed=embed)
+    async def snipe(self, ctx, *, channel: discord.TextChannel = None):
+        channel = channel or ctx.channel
+        try:
+            msg = self.last_msg[channel.id]
+        except KeyError:
+            return await ctx.send('Nothing to snipe!')
+        # one liner, dont complain
+        await ctx.send(embed=discord.Embed(description=msg.content, color=msg.author.color).set_author(name=str(msg.author), icon_url=str(msg.author.avatar_url)))
 
 
 def setup(bot):
