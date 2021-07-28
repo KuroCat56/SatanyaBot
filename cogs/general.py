@@ -65,20 +65,20 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         pings.append(typingms)
         latencyms = round(self.bot.latency * 1000)
         pings.append(latencyms)
-        # discords = time.monotonic()
-        # url = "https://discordapp.com/"
-        # async with self.bot.session.get(url) as resp:
-        #     if resp.status is 200:
-        #         discorde = time.monotonic()
-        #         discordms = round((discorde-discords)*1000)
-        #         pings.append(discordms)
-        #         discordms = f"{discordms}ms"
-        #     else:
-        #         discordms = "Failed"
+        discords = time.monotonic()
+        url = "https://discordapp.com/"
+        async with self.bot.session.get(url) as resp:
+            if resp.status is 200:
+                discorde = time.monotonic()
+                discordms = round((discorde-discords)*1000)
+                pings.append(discordms)
+                discordms = f"{discordms}ms"
+            else:
+                discordms = "Failed"
         # for ms in pings:
         #     number += ms
         # average = round(number / len(pings))
-        await ctx.send(f"__**Ping Times:**__\nTyping: `{typingms}ms`  |  Latency: `{latencyms}ms`")
+        await ctx.send(f"__**Ping Times:**__\nTyping: `{typingms}ms`  |  Latency: `{latencyms}ms` | Discord: `{discordms}`")
         # embed = discord.Embed(
         #   title="🏓 Pong",
         #     description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{latencyms}ms**\n <a:clyde:846625894395412480> Discord: **{discordms}ms**\n Promedio: {average}'),
