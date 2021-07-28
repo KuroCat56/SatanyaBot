@@ -1,7 +1,7 @@
 #Extraído de https://vcokltfre.dev/tutorial/12-errors/
 from discord.ext import commands
 import discord
-
+from difflib import get_close_matches
 
 class ErrorHandler(commands.Cog):
     """A cog for global error handling."""
@@ -14,7 +14,13 @@ class ErrorHandler(commands.Cog):
         """A global error handler cog."""
         try:
             if isinstance(error, commands.CommandNotFound):
-                return
+                cmd = ctx.invoked_with
+                cmds = [cmd.name for cmd in self.bot.commands if not cmd.hidden] # use this to stop showing hidden commands as suggestions
+                matches = get_close_matches(cmd, cmds)
+                if len(matches) > 0:
+                    await ctx.send(f'<:okaynt:846612437637660702> No encontré el comando **"{cmd}"**, ¿Quisiste decir **"{matches[0]}"**?', delete_after=10)
+                else:
+                    await ctx.send(f'<:nope:846611758445625364> No encontré el comando **"{cmd}"**. Usa el comando de ayuda para saber que comandos están disponibles.', delete_after=10)
             elif isinstance(error, commands.CommandOnCooldown):
                 message = f"⏳ Has usado este comando demasiado rápido. Intenta de nuevo en **{round(error.retry_after, 1)} segundos.**"
             elif isinstance(error, commands.MissingPermissions):
