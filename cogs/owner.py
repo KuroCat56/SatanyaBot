@@ -98,7 +98,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
                 counter += 1
             if counter >= number:
                 break
-        await ctx.send(f"🧹 He borrado `{number}` de mis mensajes en este canal\n||y este mensaje se auto destruirá en 10s <:yeehaw:824476003962191893>||", delete_after=10)
+        await ctx.send(f"🧹 He borrado `{number}` de mis mensajes en este canal\n||Este mensaje se auto destruirá en 10s||", delete_after=10)
 
     @commands.command()
     @commands.is_owner()
