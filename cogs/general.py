@@ -66,16 +66,16 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         typingms = round((typinge - typings) * 1000)
         
         end_time = time.time()
-        
-        await message.edit(content=f"Pong! {round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms\n Typing: {typingms}")
-        # embed = discord.Embed(
-        #   title="🏓 Pong",
-        #     description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{latencyms}ms**\n <a:clyde:846625894395412480> Discord: **{discordms}ms**\n Promedio: {average}'),
-        #     color=0xfbf9fa
-        #     #timestamp=datetime.utcnow()
-        # )
-        # embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
-        # await ctx.send(embed=embed)
+        #await message.edit(content=f"Pong! {round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms\n Typing: {typingms}")
+        await message.edit(content="Ping terminado.")
+        embed = discord.Embed(
+          title="🏓 Pong",
+            description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{round(self.bot.latency * 1000)}ms**\n <a:clyde:846625894395412480> API: **{round((end_time - start_time) * 1000)}ms**'),
+            color=0xfbf9fa
+            #timestamp=datetime.utcnow()
+        )
+        embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
+        await ctx.send(embed=embed)
   
   @commands.command(name="git")
   async def git(self, ctx: commands.Context):
