@@ -78,14 +78,15 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         for ms in pings:
             number += ms
         average = round(number / len(pings))
-        embed = discord.Embed(
-          title="🏓 Pong",
-            description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{latencyms}ms**\n <a:clyde:846625894395412480> Discord: **{discordms}ms**\n Promedio: {average}'),
-            color=0xfbf9fa
-            #timestamp=datetime.utcnow()
-        )
-        embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
-        await ctx.send(embed=embed)
+        await ctx.send(f"__**Ping Times:**__\nTyping: `{typingms}ms`  |  Latency: `{latencyms}ms`\nDiscord: `{discordms}`  |  Average: `{average}ms`")
+        # embed = discord.Embed(
+        #   title="🏓 Pong",
+        #     description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{latencyms}ms**\n <a:clyde:846625894395412480> Discord: **{discordms}ms**\n Promedio: {average}'),
+        #     color=0xfbf9fa
+        #     #timestamp=datetime.utcnow()
+        # )
+        # embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
+        # await ctx.send(embed=embed)
   
   @commands.command(name="git")
   async def git(self, ctx: commands.Context):
