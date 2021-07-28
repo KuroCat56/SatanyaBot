@@ -2,6 +2,7 @@ from discord.ext import commands
 import datetime
 from os import getpid
 from psutil import Process
+import discord
 
 def lines_of_code():
     """
@@ -46,7 +47,8 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
 
     def __init__(self, bot):
         self.bot = bot
-    
+        self.last_msg = None
+
     # Hidden means it won't show up on the default help.
     @commands.command(name='load')
     @commands.is_owner()
@@ -109,6 +111,28 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.is_owner()
     async def lines(self, ctx):
         await ctx.send(f"Estoy hecha con {lines.get('lines'):,} líneas de código.")
+
+    #https://vcokltfre.dev/tutorial/09-snipe/
+    @commands.Cog.listener()
+    async def on_message_delete(self, message: discord.Message):
+        self.last_msg = message
+
+    @commands.command(name="snipe")
+    @commands.is_owner()
+    async def snipe(self, ctx: commands.Context):
+        """A command to snipe delete messages."""
+        if not self.last_msg:  # on_message_delete hasn't been triggered since the bot started
+            await ctx.send("There is no message to snipe!")
+            return
+
+        author = self.last_msg.author
+        content = self.last_msg.content
+        pfp = self.last_msg.author.avatar_url
+        color = self.last_msg.author.color
+
+        embed = discord.Embed(title=f"Mensaje de {author}", color=color, description=content, icon_url=pfp)
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
