@@ -1,3 +1,4 @@
+from typing import final
 from TextToOwO.owo import text_to_owo
 from discord.ext import commands
 import discord
@@ -32,9 +33,12 @@ class funny(commands.Cog):
     """
     ¿Quieres que diga algo por ti?
     """
+    comand = ["nya>", "say", ">>", "nya", "@SatanyaBot"]
     say = ctx.message.content
-    say = say.lstrip("nya>say>>@SatanyaBot") #Se elimina 'nya>say' del string para que no se imprima en el ctx.send
-    await ctx.send(say)
+    new_say = say.split()
+    final_say = [word for word in new_say if word not in comand]
+    final_say = " ".join(final_say)
+    await ctx.send(final_say)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
   @commands.command()
