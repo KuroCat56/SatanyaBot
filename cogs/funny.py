@@ -33,7 +33,7 @@ class funny(commands.Cog):
     """
     ¿Quieres que diga algo por ti?
     """
-    comand = ["nya>say", ">>say", "nya say", "@SatanyaBot say"]
+    comand = ["nya>say", ">>say", "nya", "say", "@SatanyaBot"]
     say = ctx.message.content
     new_say = say.split()
     final_say = [word for word in new_say if word not in comand]
