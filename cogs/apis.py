@@ -71,7 +71,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, comm
     asrever ne otxeT
     """
     message = ctx.message.content
-    message = message.lstrip("reverse>>nya>@SatanyaBot")
+    message = message.lstrip("reverse >> nya> @SatanyaBot Satanya")
 
     response = requests.get(f"https://normal-api.ml/reverse?text={message}")
     json_data = json.loads(response.text)
