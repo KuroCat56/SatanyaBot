@@ -62,6 +62,21 @@ async def on_command_error(ctx, error):
         else:
           await ctx.send(f'<:nope:846611758445625364> No encontré el comando **"{cmd}"**. Usa el comando de ayuda para saber que comandos están disponibles.', delete_after=10)
 
+bot.snipes = {}
+
+@bot.event
+async def on_message_delete(message):
+  bot.snipes[message.channel.id] = message
+@bot.command()  
+async def snipe(ctx, *, channel: discord.TextChannel = None):
+  channel = channel or ctx.channel
+  try:
+    msg = bot.snipes[channel.id]
+  except KeyError:
+    return await ctx.send('Nothing to snipe!')
+  # one liner, dont complain
+  await ctx.send(embed=discord.Embed(description=msg.content, color=msg.author.color).set_author(name=str(msg.author), icon_url=str(msg.author.avatar_url)))
+
 class MyNewHelp(commands.MinimalHelpCommand):
     async def send_pages(self):
         destination = self.get_destination()
