@@ -23,9 +23,13 @@ class funny(commands.Cog):
     """
     Escribe lo que quieras al usar este comando para que lo owofique.
     """
-    owo = (text_to_owo(ctx.message.content))
-    owo = owo.lstrip("nya>owo") #Se elimina 'nya>owo' del string para que no se imprima en el ctx.send
-    await ctx.send(owo)
+    comand = ["nya>owo", ">>owo", "nya", "owo", "@SatanyaBot"]
+    owo = ctx.message.content
+    new_owo = owo.split()
+    final_owo = [word for word in new_owo if word not in comand]
+    final_owo = " ".join(final_owo)
+    final_owo = (text_to_owo(ctx.message.content))
+    await ctx.send(final_owo)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
   @commands.command()
