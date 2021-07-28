@@ -58,7 +58,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         """
         start_time = time.time()
         
-        message = await ctx.send("Testing Ping...")
+        message = await ctx.send("<a:dscrd_loading:866731675547336721> Probando ping...")
         
         typings = time.monotonic()
         await ctx.trigger_typing()
@@ -67,10 +67,10 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         end_time = time.time()
         #await message.edit(content=f"Pong! {round(self.bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms\n Typing: {typingms}")
-        await message.edit(content="Ping terminado.")
+        await message.edit(content="<a:gab_yawning:869405640215375972> Ping terminado.")
         embed = discord.Embed(
           title="🏓 Pong",
-            description=(f'<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**\n <a:dscrd_loading:866731675547336721> Ping: **{round(self.bot.latency * 1000)}ms**\n <a:clyde:846625894395412480> API: **{round((end_time - start_time) * 1000)}ms**'),
+            description=(f'<a:dscrd_loading:866731675547336721> Ping: **{round(self.bot.latency * 1000)}ms**\n<a:clyde:846625894395412480> API: **{round((end_time - start_time) * 1000)}ms**\n<a:dscrd_typing:862837114240237599> Escribiendo: **{typingms}ms**'),
             color=0xfbf9fa
             #timestamp=datetime.utcnow()
         )
