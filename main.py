@@ -34,16 +34,6 @@ for filename in os.listdir("./cogs"):
       print(f"Could not load {filename}: {error}")
 print("COGS HAVE BEEN LOADED")
 
-mention = ["satanya", "satanyabot"]
-@bot.event
-async def on_message(msg):
-  if msg.author.bot:
-    return
-  if any(word in msg.content.lower() for word in mention):
-   nya="<:SatanyaBot:858480664143331338>"
-   await msg.add_reaction(nya)
-  await bot.process_commands(msg)
-
 #on_ready: Cuando el bot esté activo y funcional mandará un mensaje confirmando que está corriendo.
 @bot.event
 async def on_ready():

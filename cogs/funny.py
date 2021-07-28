@@ -5,7 +5,18 @@ import discord
 class funny(commands.Cog):
   def __init__(self, bot: commands.Bot):
     self.bot = bot
-  
+    
+  @commands.Cog.listener()
+  async def on_message(self, msg):
+    self.bot.mention = ["satanya", "satanyabot"]
+    mention = self.bot.mention
+    if msg.author.bot:
+      return
+    if any(word in msg.content.lower() for word in mention):
+      nya="<:SatanyaBot:858480664143331338>"
+    await msg.add_reaction(nya)
+    await self.bot.process_commands(msg)
+
   @commands.command()
   async def owo(self, ctx):
     """
