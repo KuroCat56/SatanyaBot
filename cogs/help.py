@@ -11,13 +11,13 @@ class HelpCommand(commands.HelpCommand):
       return f"```{self.clean_prefix}{command.qualified_name} {command.signature}```"
     
     async def send_cog_help(self, cog):
-      embed = discord.Embed(title=f"**{cog.qualified_name}** Comandos", color = self.color)
+      embed = discord.Embed(title=f"__**Comandos {cog.qualified_name}**__", color = self.color)
       if cog.description:
         embed.description = cog.description
       
       filtered = await self.filter_commands(cog.get_commands(), sort=True)
       for command in filtered:
-        embed.add_field(name=command.qualified_name, value=command.short_doc or "No description")
+        embed.add_field(name=command.qualified_name, value=command.short_doc or "Sin descripción")
       
       embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
@@ -27,8 +27,8 @@ class HelpCommand(commands.HelpCommand):
       if command.help:
         embed.description = command.help
       
-      embed.add_field(name="Signature", value=self.get_command_signature(command))
-      embed.set_footer(text=self.footer())
+      embed.add_field(name="Ejemplo", value=self.get_command_signature(command))
+      #embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
     async def send_bot_help(self, mapping):
@@ -43,7 +43,7 @@ class HelpCommand(commands.HelpCommand):
         filtered = await self.filter_commands(commands, sort = True)
         if filtered:
           value = "\t".join(f"`{i.name}`" for i in commands)
-          embed.add_field(name = cog.qualified_name, value = value)
+          embed.add_field(name = cog.qualified_name, value = value, inline=True)
       embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
