@@ -4,6 +4,7 @@ import asyncio
 import inspect
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, commands.BucketType.user)}):
+  """Comando útiles (y no tan útiles)"""
   def __init__(self, bot: commands.Bot):
     self.bot = bot
   

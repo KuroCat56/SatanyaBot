@@ -4,6 +4,7 @@ from discord.ext import commands
 import discord
 
 class funny(commands.Cog):
+  """Comando divertidos muy variados"""
   def __init__(self, bot: commands.Bot):
     self.bot = bot
     
