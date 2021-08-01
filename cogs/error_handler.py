@@ -33,8 +33,10 @@ class ErrorHandler(commands.Cog):
                 message = "⛔ No soy capaz de encontrar al usuario que has mencionado. ¿Está realmente en este server?"
             elif isinstance(error, commands.NotOwner):
                 message = "<:doki_shrug:846548924890349627> Lo siento, pero este comando solo lo puede usar mi creador."
+            elif isinstance(error, commands.BotMissingPermissions):
+                message = f"<:okaynt:846612437637660702> No puedo ejecutar este comando, me faltan ciertos permisos: {error.missing_perms}"
         except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}', delete_after=10)
+            message = (f'**`ERROR:`** {type(e).__name__} - {e}')
         embed = discord.Embed(
             title = "UN ERROR SALVAJE APARECIÓ",
             description = message,
