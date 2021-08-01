@@ -10,7 +10,7 @@ class ErrorHandler(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
+    async def on_command_error(self, msg, ctx: commands.Context, error: commands.CommandError):
         """A global error handler cog."""
         try:
             if isinstance(error, commands.CommandNotFound):
@@ -35,6 +35,7 @@ class ErrorHandler(commands.Cog):
                 message = "<:doki_shrug:846548924890349627> Lo siento, pero este comando solo lo puede usar mi creador."
             elif isinstance(error, commands.BotMissingPermissions):
                 message = f"<:okaynt:846612437637660702> No puedo ejecutar este comando, me faltan ciertos permisos: {error.missing_perms}"
+            else: message = f"`{(error)}`"
         except Exception as e:
             message = (f'**`ERROR:`** {type(e).__name__} - {e}')
         embed = discord.Embed(
@@ -42,6 +43,7 @@ class ErrorHandler(commands.Cog):
             description = message,
             color = 0xFF0000
         )
+        await msg.add_reaction("🚫")
         await ctx.send(embed=embed, delete_after=10)
 
 def setup(bot: commands.Bot):
