@@ -42,7 +42,6 @@ class ErrorHandler(commands.Cog):
             description = message,
             color = 0xFF0000
         )
-        await ctx.add_reaction("🚫")
         await ctx.send(embed=embed, delete_after=10)
 
 def setup(bot: commands.Bot):
