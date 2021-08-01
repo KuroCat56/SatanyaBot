@@ -104,7 +104,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
                     self.bot.load_extension(f"cogs.{filename[:-3]}")
                 except Exception as error:
                     await ctx.reply(f"Nope: {filename}: {error}", mention_author=False)
-                cogs = " ".join(f"{filename[:-3]}")
+                cogs = [" "].join(f"{filename[:-3]}")
         await ctx.reply(f"Recargué los siguientes cogs: {cogs}", mention_author=False)
 
     @commands.command()
