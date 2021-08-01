@@ -96,15 +96,16 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
     async def rall(self, ctx):
         """Command which Reloads a Module.
         Remember to use dot path. e.g: cogs.owner"""
+        cogs = []
         for filename in os.listdir("./cogs"):
             if filename.endswith(".py"):
                 try:
                     self.bot.unload_extension(f"cogs.{filename[:-3]}")
                     self.bot.load_extension(f"cogs.{filename[:-3]}")
+                    cogs = " ".join(f"{filename}")
                 except Exception as error:
                     await ctx.reply(f"Nope: {filename}: {error}", mention_author=False)
-                else:
-                    await ctx.reply("Yep")
+        await ctx.reply(f"Recargué los siguientes cogs: {cogs}", mention_author=False)
 
     @commands.command()
     @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
