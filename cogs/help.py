@@ -17,7 +17,7 @@ class HelpCommand(commands.helpCommand):
       
       filtered = await self.filter_commands(cog.get_commands(), sort=True)
       for command in filtered:
-        embed.add_field(name=command.quialified_name, value=command.short_doc or "No description")
+        embed.add_field(name=command.qualified_name, value=command.short_doc or "No description")
       
       embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
