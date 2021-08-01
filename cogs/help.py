@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class HelpCommand(commands.helpCommand):
+class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
 
     def footer(self):
