@@ -13,7 +13,11 @@ reddit_api = praw.Reddit(client_id = private.reddit.client_id,
                     check_for_async=False)
 
 class reddit(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
-  """Comandos referentes a Reddit"""
+  """
+  Comandos referentes a Reddit
+  
+  Cooldown: 5s per command
+  """
 
   def __init__(self, bot: commands.Bot):
     self.bot = bot

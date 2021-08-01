@@ -10,7 +10,11 @@ load_dotenv()
 dagpi = Client(os.getenv('Dagpi'))
 
 class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
-  """Modificadores de imágenes"""
+  """
+  Modificadores divertidos de imágenes
+  
+  Cooldown: 10s per command
+  """
   
   def __init__(self, bot: commands.Bot):
     self.bot = bot
