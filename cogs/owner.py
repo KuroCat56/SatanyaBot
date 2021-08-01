@@ -94,8 +94,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command(name='rall')
     @commands.is_owner()
     async def rall(self, ctx):
-        """Command which Reloads a Module.
-        Remember to use dot path. e.g: cogs.owner"""
+        """Recarga todos los cogs"""
         cogs = []
         for filename in os.listdir("./cogs"):
             if filename.endswith(".py"):
@@ -105,8 +104,8 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
                     
                     cogs.append(f"{filename}")
                 except Exception as error:
-                    await ctx.reply(f"Nope: {filename}: {error}", mention_author=False)
-        await ctx.reply(f"Recargué los siguientes cogs: {cogs}", mention_author=False)
+                    await ctx.reply(f"<:nope:846611758445625364> Nope: {filename}: {error}", mention_author=False)
+        await ctx.reply(f"<:okay:846612389046386689> Recargué los siguientes cogs:\n {cogs}", mention_author=False)
 
     @commands.command()
     @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
