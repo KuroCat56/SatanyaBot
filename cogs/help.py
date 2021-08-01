@@ -43,7 +43,7 @@ class HelpCommand(commands.HelpCommand):
         filtered = await self.filter_commands(commands, sort = True)
         if filtered:
           value = "\t".join(f"`{i.name}`" for i in commands)
-          embed.add_field(name = cog.qualified_name, value = value, inline=True)
+          embed.add_field(name = cog.qualified_name, value = value, inline=False)
       embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
