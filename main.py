@@ -40,13 +40,13 @@ async def on_ready():
     print('Nos hemos conectado como {0.user}'.format(bot))
     await bot.change_presence(activity=discord.Game(name=f'nya>help | v{config.VERSION} 🔲'))
 
-class MyNewHelp(commands.MinimalHelpCommand):
-    async def send_pages(self):
-        destination = self.get_destination()
-        for page in self.paginator.pages:
-            emby = discord.Embed(description=page)
-            await destination.send(embed=emby)
+# class MyNewHelp(commands.MinimalHelpCommand):
+#     async def send_pages(self):
+#         destination = self.get_destination()
+#         for page in self.paginator.pages:
+#             emby = discord.Embed(description=page)
+#             await destination.send(embed=emby)
 
-bot.help_command = MyNewHelp()
+# bot.help_command = MyNewHelp()
 load_dotenv()
 bot.run(os.getenv('Token'))
