@@ -50,7 +50,16 @@ class funny(commands.Cog):
     """
     Deja te paso ese emoji para que lo veas mejor.
     """
-    emoji = emoji.url
-    await ctx.send(emoji)
+    if emoji == None: await ctx.send(embed = discord.Embed(description="No especificaste ningún emoji.", color=0xFF0000))
+    else:
+        if emoji.animated: emojiformat = f"*`<`*`a:{emoji.name}:{emoji.id}>`"
+        else: emojiformat = f"*`<`*`:{emoji.name}:{emoji.id}>`"
+        embed = discord.Embed(description=f"{emojiformat}",color=ctx.me.color)
+        embed.set_image(url = emoji.url)
+        await ctx.send(embed=embed)
+
+    # emoji = emoji.url
+    # await ctx.send(emoji)
+
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
