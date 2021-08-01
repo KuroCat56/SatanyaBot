@@ -3,6 +3,7 @@ import datetime
 from os import getpid
 from psutil import Process
 import discord
+import os
 
 def lines_of_code():
     """
@@ -89,6 +90,21 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.reply(f'<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}', mention_author=False)
         else:
             await ctx.reply(f'<:okay:846612389046386689> **`OKAY:`** He recargado __{cog}__ correctamente.', mention_author=False)
+
+    @commands.command(name='rall')
+    @commands.is_owner()
+    async def rall(self, ctx):
+        """Command which Reloads a Module.
+        Remember to use dot path. e.g: cogs.owner"""
+        for filename in os.listdir("./cogs"):
+            if filename.endswith(".py"):
+                try:
+                    self.bot.unload_extension(f"cogs.{filename[:-3]}")
+                    self.bot.load_extension(f"cogs.{filename[:-3]}")
+                except Exception as error:
+                    await ctx.reply(f"Nope: {filename}: {error}", mention_author=False)
+                else:
+                    await ctx.reply("Yep")
 
     @commands.command()
     @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
