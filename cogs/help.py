@@ -34,6 +34,7 @@ class HelpCommand(commands.HelpCommand):
     async def send_bot_help(self, mapping):
       embed = discord.Embed(title="Bot commands", color=self.color)
       description = self.context.bot.description
+      usable = 0 
       if description:
         embed.description = description
       
@@ -42,9 +43,12 @@ class HelpCommand(commands.HelpCommand):
           continue
         filtered = await self.filter_commands(commands, sort = True)
         if filtered:
+          amount_commands = len(filtered)
+          usable += amount_commands
           value = "\t".join(f"`{i.name}`" for i in commands)
           embed.add_field(name = cog.qualified_name, value = value, inline=False)
       embed.set_footer(text=self.footer())
+      embed.description = f"{len(self.bot.commands)} commands | {usable} usable" 
       await self.get_destination().send(embed=embed)
 
 def setup(bot):
