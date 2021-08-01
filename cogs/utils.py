@@ -66,12 +66,23 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 3, com
     await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
 
   @commands.command(name="commands")
-  async def _commands(self, ctx):
+  async def _commands(self, ctx, mapping):
     """
     ¿Quieres saber cuántos comandos tengo en mi código?
     """
-    value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
-    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
+    usable = 0 
+
+    for commands in mapping.items(): #iterating through our mapping of cog: commands
+        if filtered_commands := await self.filter_commands(commands): 
+        # if no commands are usable in this category, we don't want to display it
+          amount_commands = len(filtered_commands)
+          usable += amount_commands
+    embed = discord.Embed()
+    embed.description = f"{len(self.bot.commands)} commands | {usable} usable" 
+
+    await self.send(embed=embed)
+    # value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
+    # await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
 
   @commands.command(name="prefix")
   async def prefix(self, ctx):
