@@ -47,8 +47,8 @@ class HelpCommand(commands.HelpCommand):
           usable += amount_commands
           value = "\t".join(f"`{i.name}`" for i in commands)
           embed.add_field(name = cog.qualified_name, value = value, inline=False)
+      embed.add_field(text="test", value=f"{len(self.bot.commands)} commands | {usable} usable")
       embed.set_footer(text=self.footer())
-      embed.add_field(text=f"{len(self.bot.commands)} commands | {usable} usable")
       await self.get_destination().send(embed=embed)
 
 def setup(bot):
