@@ -1,4 +1,3 @@
-from typing import Text
 import discord
 from discord.ext import commands
 
@@ -35,22 +34,17 @@ class HelpCommand(commands.HelpCommand):
     async def send_bot_help(self, mapping):
       embed = discord.Embed(title="Bot commands", color=self.color)
       description = self.context.bot.description
-      usable = 0 
       if description:
         embed.description = description
       
       for cog, commands in mapping.items():
         if not cog:
           continue
-        #filtered = await self.filter_commands(commands, sort = True)
-        if filtered_commands  := await self.filter_commands(commands, sort = True):
-          amount_commands = len(filtered_commands)
-          usable += amount_commands
+        filtered = await self.filter_commands(commands, sort = True)
+        if filtered:
           value = "\t".join(f"`{i.name}`" for i in commands)
           embed.add_field(name = cog.qualified_name, value = value, inline=False)
-          
-      embed.set_footer(text=f"{len(self.bot.commands)} commands | {usable} usable")
-      #embed.set_footer(text=self.footer())
+      embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
 def setup(bot):
