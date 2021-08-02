@@ -157,9 +157,12 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     """
     ¿Quieres saber cuántos comandos tengo en mi código?
     """
-    value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
-    usable = len([await x.can_run(ctx) for x in self.bot.commands])
-    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
+    #value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
+    list_commands = list(self.context.bot.walk_commands())
+    total_cmds = len(list_commands)
+    usable_by_you = len(await self.filter_commands(list_commands), sort=True)
+    #usable = len([await x.can_run(ctx) for x in self.bot.commands])
+    await ctx.send(f"¿Mis comandos? Actualmente tengo **{total_cmds}** comandos en mi código fuente. Puedes utilizar **{usable_by_you}** (´ ω `♡)")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
