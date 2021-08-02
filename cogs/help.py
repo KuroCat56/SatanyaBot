@@ -1,3 +1,4 @@
+from typing import Text
 import discord
 from discord.ext import commands
 
@@ -48,8 +49,8 @@ class HelpCommand(commands.HelpCommand):
           value = "\t".join(f"`{i.name}`" for i in commands)
           embed.add_field(name = cog.qualified_name, value = value, inline=False)
           
-      embed.add_field(name="test", value=f"{len(self.bot.commands)} commands | {usable} usable")
-      embed.set_footer(text=self.footer())
+      embed.set_footer(text=f"{len(self.bot.commands)} commands | {usable} usable")
+      #embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
 def setup(bot):
