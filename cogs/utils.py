@@ -75,7 +75,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     ¿Quieres saber cuántos comandos tengo en mi código?
     """
     value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
-    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Utiliza `nya>help` para mandarte la lista de comandos que puedes utilizar. (´ ω `♡)")
+    usable=len(([x.name for x in self.bot.commands.can_run]))
+    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
 
   @commands.command(name="prefix")
   async def prefix(self, ctx):
