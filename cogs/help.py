@@ -42,9 +42,9 @@ class HelpCommand(commands.HelpCommand):
       for cog, commands in mapping.items():
         if not cog:
           continue
-        filtered = await self.filter_commands(commands, sort = True)
-        if filtered:
-          amount_commands = len(filtered)
+        #filtered = await self.filter_commands(commands, sort = True)
+        if filtered_commands  := await self.filter_commands(commands, sort = True):
+          amount_commands = len(filtered_commands)
           usable += amount_commands
           value = "\t".join(f"`{i.name}`" for i in commands)
           embed.add_field(name = cog.qualified_name, value = value, inline=False)
