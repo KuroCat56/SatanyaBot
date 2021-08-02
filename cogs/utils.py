@@ -69,15 +69,6 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     await asyncio.sleep(converted_time)
     await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
 
-  @commands.command(name="commands")
-  async def _commands(self, ctx):
-    """
-    ¿Quieres saber cuántos comandos tengo en mi código?
-    """
-    value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
-    usable = len([await x.can_run(ctx) for x in self.bot.commands])
-    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
-
   @commands.command(name="prefix")
   async def prefix(self, ctx):
     """
@@ -144,6 +135,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
 
   @commands.command()
   async def trello(self, ctx):
+    """
+    Tablero oficial de Trello para checar los avances.
+    """
     embed = discord.Embed(
     title="¿Qué hay pendiente en la lista?",
     description="🌸 SatanyaBot siempre está en desarrollo agregando nuevas características y arreglando otras.\n🍒 Si te da curiosidad saber en qué se está trabajando checa el link de abajo.",
@@ -156,6 +150,15 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
     embed.set_image(url="https://images.unsplash.com/photo-1555231955-348aa2312e19")
     await ctx.send(embed=embed)
+
+  @commands.command(name="commands")
+  async def _commands(self, ctx):
+    """
+    ¿Quieres saber cuántos comandos tengo en mi código?
+    """
+    value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
+    usable = len([await x.can_run(ctx) for x in self.bot.commands])
+    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
