@@ -152,6 +152,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     await ctx.send(embed=embed)
 
   @commands.command(name="commands")
+  @commands.guild_only()
   async def _commands(self, ctx):
     """
     ¿Quieres saber cuántos comandos tengo en mi código?
