@@ -4,7 +4,7 @@ import config
 
 class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
-    NEWS = f"{config.FIX_BLOCK}"
+    NEWS = "Comando nuevo"
 
     def footer(self):
       return f"{self.clean_prefix}{self.invoked_with} [comando] para más información."
