@@ -33,11 +33,12 @@ class HelpCommand(commands.HelpCommand):
       await self.get_destination().send(embed=embed)
 
     async def send_bot_help(self, mapping):
+      block = "`"*3
       embed = discord.Embed(color=self.color)
       embed.set_author(
         name=f"🌸 Menú de ayuda 🌸| v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
-      description = self.context.bot.description
+      description = f"{block}fix{config.FIX_BLOCK}{block}"
       if description:
         embed.description = description
       
