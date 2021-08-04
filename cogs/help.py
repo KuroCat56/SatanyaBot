@@ -33,9 +33,9 @@ class HelpCommand(commands.HelpCommand):
       await self.get_destination().send(embed=embed)
 
     async def send_bot_help(self, mapping):
-      embed = discord.Embed(title="Bot commands", color=self.color)
+      embed = discord.Embed(color=self.color)
       embed.set_author(
-        name=f"SatanyaBot | v{config.VERSION}",
+        name=f"🌸 Menú de ayuda 🌸| v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
       description = self.context.bot.description
       if description:
