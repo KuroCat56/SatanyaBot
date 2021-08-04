@@ -6,6 +6,7 @@ from psutil import Process
 from os import getpid
 import pkg_resources
 import time
+import main
 
 def lines_of_code():
     """
@@ -165,7 +166,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Prefijo:",
-        value=f"{config.PREFIX}",
+        value=f"{main.get_prefix}",
         inline=True
         )
         embed.add_field(
