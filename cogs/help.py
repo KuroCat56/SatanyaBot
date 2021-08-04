@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import config
 
 class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
@@ -31,8 +32,11 @@ class HelpCommand(commands.HelpCommand):
       #embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
-    async def send_bot_help(self, mapping):
+    async def send_bot_help(self, ctx, mapping):
       embed = discord.Embed(title="Bot commands", color=self.color)
+      embed.set_author(
+        name=f"SatanyaBot | v{config.VERSION}",
+        icon_url = ctx.message.author.avatar_url())
       description = self.context.bot.description
       if description:
         embed.description = description
