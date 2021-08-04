@@ -4,6 +4,7 @@ import config
 
 class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
+    NEWS = "Recuerda checar las noticias de los nuevos comandos usando nya>info"
 
     def footer(self):
       return f"{self.clean_prefix}{self.invoked_with} [comando] para más información."
@@ -38,7 +39,7 @@ class HelpCommand(commands.HelpCommand):
       embed.set_author(
         name=f"🌸 Menú de ayuda 🌸| v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
-      description = f"{block}fix\nRecuerda checar las noticias de los nuevos comandos usando nya>info\n{block}"
+      description = f"{block}fix\n{self.NEWS}\n{block}"
       if description:
         embed.description = description
       
