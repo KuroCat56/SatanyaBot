@@ -166,7 +166,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Prefijo:",
-        value=f"{main.get_prefix}",
+        value=f"{config.PREFIX}",
         inline=True
         )
         embed.add_field(
