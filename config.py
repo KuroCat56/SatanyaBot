@@ -1,5 +1,4 @@
 PREFIX = "nya>"
 ID_BOT = "805589802484760577"
-VERSION = "0.4.4"
+VERSION = "0.4.5"
 GIT = "https://github.com/KuroCat56/SatanyaBot"
-FIX_BLOCK = "Comando nuevo"
