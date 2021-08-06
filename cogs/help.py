@@ -4,7 +4,7 @@ import config
 
 class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
-    NEWS = "Comando nuevo"
+    NEWS = "Ahora tenemos una versión mejorada del comando help.\nSi tienes algún problema consulta en https://discord.gg/bqcdKxuW3X"
 
     def footer(self):
       return f"{self.clean_prefix}{self.invoked_with} [comando] para más información."
