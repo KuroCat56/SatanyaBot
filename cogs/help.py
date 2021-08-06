@@ -10,7 +10,7 @@ class HelpCommand(commands.HelpCommand):
       return f"{self.clean_prefix}{self.invoked_with} [comando] para más información."
 
     def get_command_signature(self, command):
-      return f"```{self.clean_prefix}{command.qualified_name} {command.signature}```"
+      return f"```fix\n{self.clean_prefix}{command.qualified_name} {command.signature}\n```"
     
     async def send_cog_help(self, cog):
       embed = discord.Embed(title=f"__**Comandos {cog.qualified_name}**__", color = self.color)
