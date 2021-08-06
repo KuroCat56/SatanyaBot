@@ -134,9 +134,11 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         days, hours = divmod(hours, 24)
         uptime = (f"{days}d, {hours}h, {minutes}m, {seconds}s")
         
+        block = "`"*3
+
         embed = discord.Embed(
         title="¡Hola, soy SatanyaBot!",
-        description="Gracias por dejarme estar en tu servidor. Soy la primer bot de Discord *opensource* en español desarrollada en Python. Recuerda que si quieres ver mis comandos usa **nya>help**",
+        description="Soy la primer bot de Discord en español y **opensource** desarrollada en Python. Recuerda que si quieres ver mis comandos usa **nya>help**",
         color=0xfbf9fa,
         timestamp=datetime.utcnow()
         )
@@ -144,6 +146,11 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         name=f"SatanyaBot | v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
         
+        embed.add_field(
+        name="Noticias:",
+        value=f"{block}fix\nAhora podrás leer las novedades y comandos nuevos en este apartado de aquí ｰ(:0 」∠)\n{block}",
+        inline=False
+        )
         embed.add_field(
         name="Creador y Colaboradores:",
         value="[KuroCat#4816](https://linktr.ee/KuroCat56)",
