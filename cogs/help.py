@@ -39,7 +39,7 @@ class HelpCommand(commands.HelpCommand):
       embed.set_author(
         name=f"🌸 Menú de ayuda 🌸| v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
-      description = f"{block}fix\n{self.NEWS}\n{block}\n> Recuerda checar las noticias de los nuevos comandos usando nya>info"
+      description = f"{block}fix\n{self.NEWS}\n{block}\n> *Recuerda checar las noticias de los nuevos comandos usando nya>info*\n"
       if description:
         embed.description = description
       
