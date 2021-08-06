@@ -40,6 +40,7 @@ class HelpCommand(commands.HelpCommand):
         name=f"🌸 Menú de ayuda 🌸| v{config.VERSION}",
         icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
       description = f"{block}fix\n{self.NEWS}\n{block}\n> *Si tienes algún problema consulta en https://discord.gg/bqcdKxuW3X*\n"
+      embed.set_image(url="https://cdn.discordapp.com/attachments/829223734559637545/866011691123736606/cherry.png")
       if description:
         embed.description = description
       
