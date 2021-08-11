@@ -210,7 +210,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
         description = f"✨ **{ctx.author.name}** se ha puesto muy feliz", color=discord.Colour.random())
         embed.set_image(url = f"{smile}")
         embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-        await ctx.send(embed = embed)
+      await ctx.send(embed = embed)
     else:
       await ctx.reply(f"{ERROR}")
 
