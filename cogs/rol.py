@@ -95,9 +95,9 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     if error is not "true":
       async with ctx.typing():
             if member is None:
-              desc = f"🎉 ¡{ctx.author.name} se ha puesto a bailar!"
+              desc = f"🎉 ¡**{ctx.author.name}** se ha puesto a bailar!"
             else:
-              desc = f"🎊 ¡{ctx.author.name} y {member.name} están bailando juntos!"
+              desc = f"🎊 ¡**{ctx.author.name}** y **{member.name}** están bailando juntos!"
             embed = discord.Embed(
             description=f"{desc}", color=discord.Colour.random())
             embed.set_image(url = f"{dance}")
