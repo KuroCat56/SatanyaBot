@@ -31,7 +31,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     self.bot = bot
 
   @commands.command(name="hug")
-  async def emojify(self, ctx, member: discord.Member=None):
+  async def hug(self, ctx, member: discord.Member=None):
     """
     ¡Abrazos virtuales!
     """
