@@ -15,6 +15,7 @@ CUDDLE = "https://purrbot.site/api/img/sfw/cuddle/gif"
 SLAP = "https://purrbot.site/api/img/sfw/slap/gif"
 SMILE = "https://purrbot.site/api/img/sfw/smile/gif"
 TICKLE = "https://purrbot.site/api/img/sfw/tickle/gif"
+POKE = "https://purrbot.site/api/img/sfw/poke/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -74,6 +75,13 @@ def get_tickle():
     tickle = json_data['link']
     error_tickle = json_data['error']
     return tickle, error_tickle
+
+def get_poke():
+    response = requests.get(f"{POKE}")
+    json_data = json.loads(response.text)
+    poke = json_data['link']
+    error_poke = json_data['error']
+    return poke, error_poke
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -237,6 +245,26 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           embed = discord.Embed(
           description = f"🤣 ¡**{ctx.author.name}** le hace cosquillas a **{member.name}!**", color=discord.Colour.random())
           embed.set_image(url = f"{tickle}")
+          embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+          await ctx.send(embed = embed)
+      else:
+        await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="poke")
+  async def poke(self, ctx, member: discord.Member=None):
+    """
+    ¿Quieres llamar la atención de alguien?
+    """
+    poke, error = get_poke()
+    if member is None:
+      message = "¡No puedes molestarte a tí mismo!"
+      await ctx.reply(message, mention_author=False)
+    else:
+      if error is not "true":
+        async with ctx.typing():
+          embed = discord.Embed(
+          description = f"👉 **{ctx.author.name}** está molestando a **{member.name}**", color=discord.Colour.random())
+          embed.set_image(url = f"{poke}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
           await ctx.send(embed = embed)
       else:
