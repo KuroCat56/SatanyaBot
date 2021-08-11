@@ -4,6 +4,8 @@ import requests
 import json
 
 #Lista de endpoints provistas por PurrBotAPI https://purrbot.site/api
+PURR = "https://docs.purrbot.site/assets/img/logo.png" #pfp purrbot
+
 HUG = "https://purrbot.site/api/img/sfw/hug/gif"
 
 def get_hug():
@@ -37,11 +39,12 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       if error is not "True":
         async with ctx.typing():
           embed = discord.Embed(
-          title=f"¡{ctx.author.name} ha abrazado a {member.name}!", color=discord.Colour.random())
+          description=f"¡🤗 **{ctx.author.name}** ha abrazado a **{member.name}**!", color=discord.Colour.random())
           embed.set_image(url = f"{hug}")
+          embed.set_footer(text=f"Powered by PurrBotAPI", icon_url=f"{PURR}")
           await ctx.send(embed = embed)
       else:
-        await ctx.reply("Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>server`")
+        await ctx.reply("Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`")
 
 
 def setup(bot: commands.Bot):
