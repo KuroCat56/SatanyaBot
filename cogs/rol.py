@@ -33,7 +33,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     """
     hug, error = get_hug()
     if member is None:
-      message = "¡No puede abrazarte a tí mismo! Aunque puedo darte un abrazo si quieres ヽ(・∀・)ﾉ"
+      message = "¡No puede abrazarte a tí mismo!\nAunque puedo darte un abrazo si quieres ヽ(・∀・)ﾉ"
       await ctx.reply(message, mention_author=False)
     else:
       if error is not "True":
