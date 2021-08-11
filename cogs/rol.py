@@ -235,7 +235,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       if error is not "true":
         async with ctx.typing():
           embed = discord.Embed(
-          description = f"🤣 ¡**{ctx.author.name}** le hace cosquillas a **{member.name}**", color=discord.Colour.random())
+          description = f"🤣 ¡**{ctx.author.name}** le hace cosquillas a **{member.name}!**", color=discord.Colour.random())
           embed.set_image(url = f"{tickle}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
           await ctx.send(embed = embed)
