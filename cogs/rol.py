@@ -5,6 +5,7 @@ import json
 
 #Lista de endpoints provistas por PurrBotAPI https://purrbot.site/api
 PURR = "https://docs.purrbot.site/assets/img/logo.png" #pfp purrbot
+PURR_FOOTER = "Powered by PurrBotAPI"
 
 HUG = "https://purrbot.site/api/img/sfw/hug/gif"
 BITE = "https://purrbot.site/api/img/sfw/bite/gif"
@@ -18,6 +19,13 @@ def get_hug():
     hug = json_data['link']
     error_hug = json_data['error']
     return hug, error_hug
+
+def get_bite():
+    response = requests.get(f"{BITE}")
+    json_data = json.loads(response.text)
+    bite = json_data['link']
+    error_bite = json_data['error']
+    return bite, error_bite
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -37,7 +45,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     """
     hug, error = get_hug()
     if member is None:
-      message = "¡No puede abrazarte a tí mismo!\nAunque puedo darte un abrazo si quieres ヽ(・∀・)ﾉ"
+      message = "¡No puedes abrazarte a tí mismo!\nAunque puedo darte un abrazo si quieres ヽ(・∀・)ﾉ"
       await ctx.reply(message, mention_author=False)
     else:
       if error is not "True":
@@ -45,11 +53,30 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           embed = discord.Embed(
           description=f"🤗 ¡**{ctx.author.name}** ha abrazado a **{member.name}**!", color=discord.Colour.random())
           embed.set_image(url = f"{hug}")
-          embed.set_footer(text=f"Powered by PurrBotAPI", icon_url=f"{PURR}")
+          embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
           await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
+  @commands.command(name="bite", aliases=["ñam"])
+  async def bite(self, ctx, member: discord.Member=None):
+    """
+    Ñam ñam ñam~
+    """
+    bite, error = get_bite()
+    if member is None:
+      message = "¡No puedes morderte a tí mismo!\nY yo no tengo ganasa de morder a nadie (´Д｀υ)"
+      await ctx.reply(message, mention_author=False)
+    else:
+      if error is not "True":
+        async with ctx.typing():
+          embed = discord.Embed(
+          description=f"😏 ¡**{ctx.author.name}** ha mordido a **{member.name}**!", color=discord.Colour.random())
+          embed.set_image(url = f"{bite}")
+          embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+          await ctx.send(embed = embed)
+      else:
+        await ctx.reply(f"{ERROR}")
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
