@@ -110,7 +110,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           description=f"🤗 ¡**{ctx.author.name}** ha abrazado a **{member.name}**!", color=discord.Colour.random())
           embed.set_image(url = f"{hug}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-          await ctx.send(embed = embed)
+        await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
@@ -130,7 +130,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           description=f"😏 ¡**{ctx.author.name}** ha mordido a **{member.name}**!", color=discord.Colour.random())
           embed.set_image(url = f"{bite}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-          await ctx.send(embed = embed)
+        await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
@@ -170,7 +170,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           description = f"❣️ **{ctx.author.name}** le ha dado unos pat-pats a **{member.name}**", color=discord.Colour.random())
           embed.set_image(url = f"{pat}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-          await ctx.send(embed = embed)
+        await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
@@ -210,7 +210,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           description = f"💢 **{ctx.author.name}** ha cacheteado a **{member.name}**", color=discord.Colour.random())
           embed.set_image(url = f"{slap}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-          await ctx.send(embed = embed)
+        await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
@@ -246,7 +246,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           description = f"🤣 ¡**{ctx.author.name}** le hace cosquillas a **{member.name}!**", color=discord.Colour.random())
           embed.set_image(url = f"{tickle}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-          await ctx.send(embed = embed)
+        await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
@@ -266,7 +266,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           description = f"👉 **{ctx.author.name}** está molestando a **{member.name}**", color=discord.Colour.random())
           embed.set_image(url = f"{poke}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
-          await ctx.send(embed = embed)
+        await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
 
