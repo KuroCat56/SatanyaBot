@@ -14,6 +14,7 @@ PAT = "https://purrbot.site/api/img/sfw/pat/gif"
 CUDDLE = "https://purrbot.site/api/img/sfw/cuddle/gif"
 SLAP = "https://purrbot.site/api/img/sfw/slap/gif"
 SMILE = "https://purrbot.site/api/img/sfw/smile/gif"
+TICKLE = "https://purrbot.site/api/img/sfw/tickle/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -66,6 +67,13 @@ def get_smile():
     smile = json_data['link']
     error_smile = json_data['error']
     return smile, error_smile
+
+def get_tickle():
+    response = requests.get(f"{TICKLE}")
+    json_data = json.loads(response.text)
+    tickle = json_data['link']
+    error_tickle = json_data['error']
+    return tickle, error_tickle
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -213,6 +221,26 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       await ctx.send(embed = embed)
     else:
       await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="tickle")
+  async def tickle(self, ctx, member: discord.Member=None):
+    """
+    Para molestar a los que tienen cosquillas
+    """
+    tickle, error = get_tickle()
+    if member is None:
+      message = "¡No puedes darte cosquillas a tí mismo!\nAunque puedo darte algunos si quieres (─‿‿─)"
+      await ctx.reply(message, mention_author=False)
+    else:
+      if error is not "true":
+        async with ctx.typing():
+          embed = discord.Embed(
+          description = f"🤣 ¡**{ctx.author.name}** le hace cosquillas a **{member.name}**", color=discord.Colour.random())
+          embed.set_image(url = f"{tickle}")
+          embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+          await ctx.send(embed = embed)
+      else:
+        await ctx.reply(f"{ERROR}")
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
