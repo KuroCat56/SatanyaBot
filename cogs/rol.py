@@ -29,16 +29,17 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     """
     ¡Abrazos virtuales!
     """
+    hug, error = get_hug()
     if member is None:
       message = "¡No puede abrazarte a tí mismo! Aunque puedo darte un abrazo si quieres ヽ(・∀・)ﾉ"
       await ctx.reply(message, mention_author=False)
-    async with ctx.typing():
-      hug, error = get_hug()
+    else:
       if error is not "True":
-        embed = discord.Embed(
-        title=f"¡{ctx.author} ha abrazado a {member}!", color=discord.Colour.random())
-        embed.set_image(url = f"{hug}")
-        await ctx.send(embed = embed)
+        async with ctx.typing():
+          embed = discord.Embed(
+          title=f"¡{ctx.author} ha abrazado a {member}!", color=discord.Colour.random())
+          embed.set_image(url = f"{hug}")
+          await ctx.send(embed = embed)
       else:
         await ctx.reply("Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>server`")
 
