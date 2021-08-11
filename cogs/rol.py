@@ -28,6 +28,13 @@ def get_bite():
     error_bite = json_data['error']
     return bite, error_bite
 
+def get_dance():
+    response = requests.get(f"{DANCE}")
+    json_data = json.loads(response.text)
+    dance = json_data['link']
+    error_dance = json_data['error']
+    return dance, error_dance
+
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
   """
@@ -78,6 +85,26 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
           await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="dance", aliases=["party"])
+  async def dance(self, ctx, member: discord.Member=None):
+    """
+    ¡Esto hay que celebrarlo!
+    """
+    dance, error = get_dance()
+    if error is not "true":
+      async with ctx.typing():
+            if member is None:
+              desc = f"🎉 ¡{ctx.author.name} se ha puesto a bailar!"
+            else:
+              desc = f"🎊 ¡{ctx.author.name} y {member.name} están bailando juntos!"
+            embed = discord.Embed(
+            description=f"{desc}", color=discord.Colour.random())
+            embed.set_image(url = f"{dance}")
+            embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+            await ctx.send(embed = embed)
+    else:
+      await ctx.reply(f"{ERROR}")
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
