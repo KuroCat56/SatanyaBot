@@ -49,7 +49,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       message = "¡No puedes abrazarte a tí mismo!\nAunque puedo darte un abrazo si quieres ヽ(・∀・)ﾉ"
       await ctx.reply(message, mention_author=False)
     else:
-      if error is not "True":
+      if error is not "true":
         async with ctx.typing():
           embed = discord.Embed(
           description=f"🤗 ¡**{ctx.author.name}** ha abrazado a **{member.name}**!", color=discord.Colour.random())
@@ -69,7 +69,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       message = "¡No puedes morderte a tí mismo!\nY yo no tengo ganasa de morder a nadie (´Д｀υ)"
       await ctx.reply(message, mention_author=False)
     else:
-      if error is not "True":
+      if error is not "true":
         async with ctx.typing():
           embed = discord.Embed(
           description=f"😏 ¡**{ctx.author.name}** ha mordido a **{member.name}**!", color=discord.Colour.random())
