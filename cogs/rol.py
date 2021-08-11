@@ -9,6 +9,7 @@ PURR_FOOTER = "Powered by PurrBotAPI"
 
 HUG = "https://purrbot.site/api/img/sfw/hug/gif"
 BITE = "https://purrbot.site/api/img/sfw/bite/gif"
+DANCE = "https://purrbot.site/api/img/sfw/dance/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
