@@ -13,6 +13,7 @@ DANCE = "https://purrbot.site/api/img/sfw/dance/gif"
 PAT = "https://purrbot.site/api/img/sfw/pat/gif"
 CUDDLE = "https://purrbot.site/api/img/sfw/cuddle/gif"
 SLAP = "https://purrbot.site/api/img/sfw/slap/gif"
+SMILE = "https://purrbot.site/api/img/sfw/smile/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -58,6 +59,13 @@ def get_slap():
     slap = json_data['link']
     error_slap = json_data['error']
     return slap, error_slap
+
+def get_smile():
+    response = requests.get(f"{SMILE}")
+    json_data = json.loads(response.text)
+    smile = json_data['link']
+    error_smile = json_data['error']
+    return smile, error_smile
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -183,12 +191,28 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       if error is not "true":
         async with ctx.typing():
           embed = discord.Embed(
-          description = f"💢 **{ctx.author.name}** ha cachetado a **{member.name}**", color=discord.Colour.random())
+          description = f"💢 **{ctx.author.name}** ha cacheteado a **{member.name}**", color=discord.Colour.random())
           embed.set_image(url = f"{slap}")
           embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
           await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="smile")
+  async def smile(self, ctx):
+    """
+    Una sonrisa vale más que mil palabras
+    """
+    smile, error = get_smile()
+    if error is not "true":
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"✨ **{ctx.author.name}** se ha puesto muy feliz", color=discord.Colour.random())
+        embed.set_image(url = f"{smile}")
+        embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+        await ctx.send(embed = embed)
+    else:
+      await ctx.reply(f"{ERROR}")
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
