@@ -33,6 +33,7 @@ HANDHOLD = "https://api.waifu.pics/sfw/handhold"
 HAPPY = "https://api.waifu.pics/sfw/happy"
 WINK = "https://api.waifu.pics/sfw/wink"
 CRINGE = "https://api.waifu.pics/sfw/cringe"
+BULLY = "https://api.waifu.pics/sfw/bully"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -176,6 +177,12 @@ def get_cringe():
     json_data = json.loads(response.text)
     cringe = json_data['url']
     return cringe
+
+def get_bully():
+    response = requests.get(f"{BULLY}")
+    json_data = json.loads(response.text)
+    bully = json_data['url']
+    return bully
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -550,6 +557,23 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       embed.set_image(url = f"{cringe}")
       embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
     await ctx.send(embed = embed)
+
+  @commands.command(name="bully")
+  async def bully(self, ctx, member: discord.Member=None):
+    """
+    ¿Quieres molestar a alguien?
+    """
+    bully = get_bully()
+    if member is None:
+      message = "¡No puedes hacerte bullying a ti mismo!"
+      await ctx.reply(message, mention_author=False)
+    else:
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"🤭 **{ctx.author.name}** le hace bullying a {member.name}", color=discord.Colour.random())
+        embed.set_image(url = f"{bully}")
+        embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+      await ctx.send(embed = embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
