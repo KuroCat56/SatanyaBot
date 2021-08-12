@@ -22,6 +22,12 @@ KISS = "https://purrbot.site/api/img/sfw/kiss/gif"
 TAIL = "https://purrbot.site/api/img/sfw/tail/gif"
 FEED = "https://purrbot.site/api/img/sfw/feed/gif"
 
+#Lista de endpoint provistas por WaifuPics
+WAIFU = "https://avatars.githubusercontent.com/u/71401053" #repo avatar
+WAIFU_FOOTER = "Powered by Waifu.pics API"
+
+SMUG = "https://api.waifu.pics/sfw/smug"
+
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
 
@@ -122,6 +128,12 @@ def get_feed():
     feed = json_data['link']
     error_feed = json_data['error']
     return feed, error_feed
+
+def get_smug():
+    response = requests.get(f"{SMUG}")
+    json_data = json.loads(response.text)
+    smug = json_data['url']
+    return smug
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -397,6 +409,20 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
             await ctx.send(embed = embed)
     else:
       await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="smug")
+  async def smug(self, ctx):
+    """
+    >;)
+    """
+    smug = get_smug()
+    async with ctx.typing():
+      embed = discord.Embed(
+      description = f"💯 **{ctx.author.name}** tiene mucha malicia", color=discord.Colour.random())
+      embed.set_image(url = f"{smug}")
+      embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+    await ctx.send(embed = embed)
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
