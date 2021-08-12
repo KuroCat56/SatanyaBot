@@ -28,6 +28,7 @@ WAIFU_FOOTER = "Powered by Waifu.pics API"
 
 SMUG = "https://api.waifu.pics/sfw/smug"
 WAVE = "https://api.waifu.pics/sfw/wave"
+YEET = "https://api.waifu.pics/sfw/yeet"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -141,6 +142,12 @@ def get_wave():
     json_data = json.loads(response.text)
     wave = json_data['url']
     return wave
+
+def get_yeet():
+    response = requests.get(f"{YEET}")
+    json_data = json.loads(response.text)
+    yeet = json_data['url']
+    return yeet
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -442,6 +449,23 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       embed.set_image(url = f"{hi}")
       embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
     await ctx.send(embed = embed)
+
+  @commands.command(name="yeet")
+  async def yeet(self, ctx, member: discord.Member=None):
+    """
+    YEET
+    """
+    yeet = get_yeet()
+    if member is None:
+      message = "¡No puedes hacerte yeet a tí mismo!"
+      await ctx.reply(message, mention_author=False)
+    else:
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"🚀 ¡**{ctx.author.name}** mandó a volar a {member.name}!", color=discord.Colour.random())
+        embed.set_image(url = f"{yeet}")
+        embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+      await ctx.send(embed = embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
