@@ -18,6 +18,7 @@ TICKLE = "https://purrbot.site/api/img/sfw/tickle/gif"
 POKE = "https://purrbot.site/api/img/sfw/poke/gif"
 BLUSH = "https://purrbot.site/api/img/sfw/blush/gif"
 CRY = "https://purrbot.site/api/img/sfw/cry/gif"
+KISS = "https://purrbot.site/api/img/sfw/kiss/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -98,6 +99,13 @@ def get_cry():
     cry = json_data['link']
     error_cry = json_data['error']
     return cry, error_cry
+
+def get_kiss():
+    response = requests.get(f"{KISS}")
+    json_data = json.loads(response.text)
+    kiss = json_data['link']
+    error_kiss = json_data['error']
+    return kiss, error_kiss
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -317,6 +325,26 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       await ctx.send(embed = embed)
     else:
       await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="kiss")
+  async def kiss(self, ctx, member: discord.Member=None):
+    """
+    ¿Son pareja? A ver, bésense
+    """
+    kiss, error = get_kiss()
+    if member is None:
+      message = "¡No puedes besarte a tí mismo!\nA no ser que uses algún espejo o algo parecido (￣▽￣*)ゞ"
+      await ctx.reply(message, mention_author=False)
+    else:
+      if error is not "true":
+        async with ctx.typing():
+          embed = discord.Embed(
+          description = f"💖 **{ctx.author.name}** he besado a **{member.name}**~", color=discord.Colour.random())
+          embed.set_image(url = f"{kiss}")
+          embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+        await ctx.send(embed = embed)
+      else:
+        await ctx.reply(f"{ERROR}")
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
