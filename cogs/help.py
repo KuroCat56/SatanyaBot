@@ -4,7 +4,7 @@ import config
 
 class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
-    NEWS = "Ahora tenemos una versión mejorada del comando help. ┏(・ω・ ┓)\n"
+    NEWS = "Prueba los nuevos comandos de rol (ᵔ◡ᵔ)\n"
 
     def footer(self):
       return f"{self.clean_prefix}{self.invoked_with} [comando] para más información."

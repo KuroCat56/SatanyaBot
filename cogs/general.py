@@ -148,7 +148,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         embed.add_field(
         name="Noticias:",
-        value=f"{block}fix\nAhora podrás leer las novedades y comandos nuevos en este apartado de aquí ｰ(:0 」∠)\n{block}",
+        value=f"{block}fix\nCategoría y comandos nuevos: nya>help rol ヽ(・∀・)ﾉ\n{block}",
         inline=False
         )
         embed.add_field(
