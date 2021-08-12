@@ -17,6 +17,7 @@ SMILE = "https://purrbot.site/api/img/sfw/smile/gif"
 TICKLE = "https://purrbot.site/api/img/sfw/tickle/gif"
 POKE = "https://purrbot.site/api/img/sfw/poke/gif"
 BLUSH = "https://purrbot.site/api/img/sfw/blush/gif"
+CRY = "https://purrbot.site/api/img/sfw/cry/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -90,6 +91,13 @@ def get_blush():
     blush = json_data['link']
     error_blush = json_data['error']
     return blush, error_blush
+
+def get_cry():
+    response = requests.get(f"{CRY}")
+    json_data = json.loads(response.text)
+    cry = json_data['link']
+    error_cry = json_data['error']
+    return cry, error_cry
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -289,6 +297,22 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
         embed = discord.Embed(
         description = f"😳 **{ctx.author.name}** se ha puesto rojo como tomate", color=discord.Colour.random())
         embed.set_image(url = f"{blush}")
+        embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+      await ctx.send(embed = embed)
+    else:
+      await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="cry", aliases=["sad"])
+  async def cry(self, ctx):
+    """
+    :(
+    """
+    cry, error = get_cry()
+    if error is not "true":
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"😭 **{ctx.author.name}** está llorando. Que alguien le consuele :(", color=discord.Colour.random())
+        embed.set_image(url = f"{cry}")
         embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
       await ctx.send(embed = embed)
     else:
