@@ -27,6 +27,7 @@ WAIFU = "https://avatars.githubusercontent.com/u/71401053" #repo avatar
 WAIFU_FOOTER = "Powered by Waifu.pics API"
 
 SMUG = "https://api.waifu.pics/sfw/smug"
+WAVE = "https://api.waifu.pics/sfw/wave"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -134,6 +135,12 @@ def get_smug():
     json_data = json.loads(response.text)
     smug = json_data['url']
     return smug
+
+def get_wave():
+    response = requests.get(f"{WAVE}")
+    json_data = json.loads(response.text)
+    wave = json_data['url']
+    return wave
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -423,6 +430,18 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
     await ctx.send(embed = embed)
 
+  @commands.command(name="hi", aliases=["hola", "hi"])
+  async def wave(self, ctx):
+    """
+    ¡Hola a todos!
+    """
+    hi = get_wave()
+    async with ctx.typing():
+      embed = discord.Embed(
+      description = f"👋 **{ctx.author.name}** está saludando", color=discord.Colour.random())
+      embed.set_image(url = f"{hi}")
+      embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+    await ctx.send(embed = embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
