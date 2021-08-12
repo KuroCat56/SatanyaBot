@@ -29,6 +29,7 @@ WAIFU_FOOTER = "Powered by Waifu.pics API"
 SMUG = "https://api.waifu.pics/sfw/smug"
 WAVE = "https://api.waifu.pics/sfw/wave"
 YEET = "https://api.waifu.pics/sfw/yeet"
+HANDHOLD = "https://api.waifu.pics/sfw/handhold"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -148,6 +149,12 @@ def get_yeet():
     json_data = json.loads(response.text)
     yeet = json_data['url']
     return yeet
+
+def get_handholding():
+    response = requests.get(f"{HANDHOLD}")
+    json_data = json.loads(response.text)
+    handholding = json_data['url']
+    return handholding
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -437,7 +444,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
     await ctx.send(embed = embed)
 
-  @commands.command(name="hi", aliases=["hola"])
+  @commands.command(name="hi", aliases=["hola", "hello"])
   async def wave(self, ctx):
     """
     ¡Hola a todos!
@@ -464,6 +471,23 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
         embed = discord.Embed(
         description = f"🚀 ¡**{ctx.author.name}** mandó a volar a {member.name}!", color=discord.Colour.random())
         embed.set_image(url = f"{yeet}")
+        embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+      await ctx.send(embed = embed)
+
+  @commands.command(name="handholding")
+  async def handholding(self, ctx, member: discord.Member=None):
+    """
+    [CENSORED]
+    """
+    hand = get_handholding()
+    if member is None:
+      message = "¡No puedes tomar tu propia mano!\nBueno, si puedes pero ya sabes a lo que me refiero"
+      await ctx.reply(message, mention_author=False)
+    else:
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"😳 ¡**{ctx.author.name}** y {member.name} se están tomando las manos!", color=discord.Colour.random())
+        embed.set_image(url = f"{hand}")
         embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
       await ctx.send(embed = embed)
 
