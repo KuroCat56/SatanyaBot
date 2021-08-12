@@ -437,7 +437,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
     await ctx.send(embed = embed)
 
-  @commands.command(name="hi", aliases=["hola", "wave"])
+  @commands.command(name="hi", aliases=["hola"])
   async def wave(self, ctx):
     """
     ¡Hola a todos!
