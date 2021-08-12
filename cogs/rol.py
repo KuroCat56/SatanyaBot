@@ -20,6 +20,7 @@ BLUSH = "https://purrbot.site/api/img/sfw/blush/gif"
 CRY = "https://purrbot.site/api/img/sfw/cry/gif"
 KISS = "https://purrbot.site/api/img/sfw/kiss/gif"
 TAIL = "https://purrbot.site/api/img/sfw/tail/gif"
+FEED = "https://purrbot.site/api/img/sfw/feed/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -114,6 +115,13 @@ def get_tail():
     tail = json_data['link']
     error_tail = json_data['error']
     return tail, error_tail
+
+def get_feed():
+    response = requests.get(f"{FEED}")
+    json_data = json.loads(response.text)
+    feed = json_data['link']
+    error_feed = json_data['error']
+    return feed, error_feed
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -367,6 +375,26 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
         embed.set_image(url = f"{tail}")
         embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
       await ctx.send(embed = embed)
+    else:
+      await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="feed")
+  async def feed(self, ctx, member: discord.Member=None):
+    """
+    ¡Esto hay que celebrarlo!
+    """
+    feed, error = get_feed()
+    if error is not "true":
+      async with ctx.typing():
+            if member is None:
+              desc = f"🍴 **{ctx.author.name}** está comiendo algo rico"
+            else:
+              desc = f"🥄 ¡**{ctx.author.name}** le está dando de comer a **{member.name}**!"
+            embed = discord.Embed(
+            description=f"{desc}", color=discord.Colour.random())
+            embed.set_image(url = f"{feed}")
+            embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+            await ctx.send(embed = embed)
     else:
       await ctx.reply(f"{ERROR}")
 
