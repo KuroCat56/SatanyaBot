@@ -20,6 +20,12 @@ def get_quote():
     author = json_data[0]['a']
     return quote, author
 
+def get_eevee():
+    response = requests.get("https://purrbot.site/api/img/sfw/eevee/gif")
+    json_data = json.loads(response.text)
+    eevee = json_data['link']
+    return (eevee)
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
   Comandos que requieren de alguna API
@@ -43,6 +49,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
         description=f"-{author_em}",
         color=0xfbf9fa
       )
+      embed.set_footer(text="Powered by zenquotes.io")
     await ctx.send(embed=embed)
 
 #Comando que envía kaomojis
@@ -83,6 +90,14 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     reversed = json_data['reversed']
 
     await ctx.reply(reversed, mention_author=False)
+
+  @commands.command(name="eevee")
+  async def eevee(self, ctx: commands.Context):
+    """
+    ¿Te gustan los Eevees?
+    """
+    eevee = get_eevee()
+    await ctx.reply(eevee, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
