@@ -30,6 +30,7 @@ SMUG = "https://api.waifu.pics/sfw/smug"
 WAVE = "https://api.waifu.pics/sfw/wave"
 YEET = "https://api.waifu.pics/sfw/yeet"
 HANDHOLD = "https://api.waifu.pics/sfw/handhold"
+HAPPY = "https://api.waifu.pics/sfw/happy"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -155,6 +156,12 @@ def get_handholding():
     json_data = json.loads(response.text)
     handholding = json_data['url']
     return handholding
+
+def get_happy():
+    response = requests.get(f"{HAPPY}")
+    json_data = json.loads(response.text)
+    happy = json_data['url']
+    return happy
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -490,6 +497,19 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
         embed.set_image(url = f"{hand}")
         embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
       await ctx.send(embed = embed)
+
+  @commands.command(name="happy")
+  async def happy(self, ctx):
+    """
+    ¡Mira qué feliz soy!
+    """
+    happy = get_happy()
+    async with ctx.typing():
+      embed = discord.Embed(
+      description = f"😊 **{ctx.author.name}** se siente muy feliz", color=discord.Colour.random())
+      embed.set_image(url = f"{happy}")
+      embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+    await ctx.send(embed = embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
