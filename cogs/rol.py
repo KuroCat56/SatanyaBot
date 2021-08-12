@@ -19,6 +19,7 @@ POKE = "https://purrbot.site/api/img/sfw/poke/gif"
 BLUSH = "https://purrbot.site/api/img/sfw/blush/gif"
 CRY = "https://purrbot.site/api/img/sfw/cry/gif"
 KISS = "https://purrbot.site/api/img/sfw/kiss/gif"
+TAIL = "https://purrbot.site/api/img/sfw/tail/gif"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -106,6 +107,13 @@ def get_kiss():
     kiss = json_data['link']
     error_kiss = json_data['error']
     return kiss, error_kiss
+
+def get_tail():
+    response = requests.get(f"{TAIL}")
+    json_data = json.loads(response.text)
+    tail = json_data['link']
+    error_tail = json_data['error']
+    return tail, error_tail
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -345,6 +353,22 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
         await ctx.send(embed = embed)
       else:
         await ctx.reply(f"{ERROR}")
+
+  @commands.command(name="tail", aliases=["wag"])
+  async def tail(self, ctx):
+    """
+    ¿La emoción te supera?
+    """
+    tail, error = get_tail()
+    if error is not "true":
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"🦊 **¡{ctx.author.name}** está moviendo su colita!", color=discord.Colour.random())
+        embed.set_image(url = f"{tail}")
+        embed.set_footer(text=f"{PURR_FOOTER}", icon_url=f"{PURR}")
+      await ctx.send(embed = embed)
+    else:
+      await ctx.reply(f"{ERROR}")
 
 def setup(bot: commands.Bot):
     bot.add_cog(rol(bot))
