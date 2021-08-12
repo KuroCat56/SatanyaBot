@@ -34,6 +34,7 @@ HAPPY = "https://api.waifu.pics/sfw/happy"
 WINK = "https://api.waifu.pics/sfw/wink"
 CRINGE = "https://api.waifu.pics/sfw/cringe"
 BULLY = "https://api.waifu.pics/sfw/bully"
+HIGHFIVE = "https://api.waifu.pics/sfw/highfive"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -183,6 +184,12 @@ def get_bully():
     json_data = json.loads(response.text)
     bully = json_data['url']
     return bully
+
+def get_highfive():
+    response = requests.get(f"{HIGHFIVE}")
+    json_data = json.loads(response.text)
+    highfive = json_data['url']
+    return highfive
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -497,7 +504,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     else:
       async with ctx.typing():
         embed = discord.Embed(
-        description = f"🚀 ¡**{ctx.author.name}** mandó a volar a {member.name}!", color=discord.Colour.random())
+        description = f"🚀 ¡**{ctx.author.name}** mandó a volar a **{member.name}**!", color=discord.Colour.random())
         embed.set_image(url = f"{yeet}")
         embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
       await ctx.send(embed = embed)
@@ -514,7 +521,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     else:
       async with ctx.typing():
         embed = discord.Embed(
-        description = f"😳 ¡**{ctx.author.name}** y {member.name} se están tomando las manos!", color=discord.Colour.random())
+        description = f"😳 ¡**{ctx.author.name}** y **{member.name}** se están tomando las manos!", color=discord.Colour.random())
         embed.set_image(url = f"{hand}")
         embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
       await ctx.send(embed = embed)
@@ -570,8 +577,25 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
     else:
       async with ctx.typing():
         embed = discord.Embed(
-        description = f"🤭 **{ctx.author.name}** le hace bullying a {member.name}", color=discord.Colour.random())
+        description = f"🤭 **{ctx.author.name}** le hace bullying a **{member.name}**", color=discord.Colour.random())
         embed.set_image(url = f"{bully}")
+        embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+      await ctx.send(embed = embed)
+
+  @commands.command(name="highfive", aliases=["five"])
+  async def highfive(self, ctx, member: discord.Member=None):
+    """
+    ¡Chócalas!
+    """
+    five = get_highfive()
+    if member is None:
+      message = "¡Necesitas chocar las manos con alguien más!"
+      await ctx.reply(message, mention_author=False)
+    else:
+      async with ctx.typing():
+        embed = discord.Embed(
+        description = f"🖐️ **{ctx.author.name}** han chocado sus manos **{member.name}**", color=discord.Colour.random())
+        embed.set_image(url = f"{five}")
         embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
       await ctx.send(embed = embed)
 
