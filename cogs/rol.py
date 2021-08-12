@@ -381,7 +381,7 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
   @commands.command(name="feed")
   async def feed(self, ctx, member: discord.Member=None):
     """
-    ¡Esto hay que celebrarlo!
+    ¿Quién tiene hambre?
     """
     feed, error = get_feed()
     if error is not "true":
