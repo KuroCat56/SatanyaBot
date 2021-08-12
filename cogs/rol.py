@@ -31,6 +31,7 @@ WAVE = "https://api.waifu.pics/sfw/wave"
 YEET = "https://api.waifu.pics/sfw/yeet"
 HANDHOLD = "https://api.waifu.pics/sfw/handhold"
 HAPPY = "https://api.waifu.pics/sfw/happy"
+WINK = "https://api.waifu.pics/sfw/wink"
 
 #Si existe algún problema con al api
 ERROR = "Parece que hay un problema con la API o con mi procesamiento. Usa `nya>help` para más información o acude a mi server de soporte usando `nya>invite`"
@@ -162,6 +163,12 @@ def get_happy():
     json_data = json.loads(response.text)
     happy = json_data['url']
     return happy
+
+def get_wink():
+    response = requests.get(f"{WINK}")
+    json_data = json.loads(response.text)
+    wink = json_data['url']
+    return wink
 
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
@@ -508,6 +515,19 @@ class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comma
       embed = discord.Embed(
       description = f"😊 **{ctx.author.name}** se siente muy feliz", color=discord.Colour.random())
       embed.set_image(url = f"{happy}")
+      embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
+    await ctx.send(embed = embed)
+
+  @commands.command(name="wink")
+  async def wink(self, ctx):
+    """
+    ;)
+    """
+    wink = get_wink()
+    async with ctx.typing():
+      embed = discord.Embed(
+      description = f"😉 **{ctx.author.name}** está intentando decir algo", color=discord.Colour.random())
+      embed.set_image(url = f"{wink}")
       embed.set_footer(text=f"{WAIFU_FOOTER}", icon_url=f"{WAIFU}")
     await ctx.send(embed = embed)
 
