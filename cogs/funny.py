@@ -29,8 +29,8 @@ class funny(commands.Cog):
     new_owo = owo.split()
     final_owo = [word for word in new_owo if word not in comand]
     final_owo = " ".join(final_owo)
-    final_owo = (text_to_owo(final_owo))
-    await ctx.send(final_owo)
+    send_final_owo = (text_to_owo(final_owo))
+    await ctx.send(send_final_owo)
     await ctx.message.delete() #El bot elimina el mensaje del comando enviado por el usuario
 
   @commands.command()
