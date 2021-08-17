@@ -88,7 +88,6 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     )
     embed.set_footer(text=f"Encuesta por: {ctx.message.author} - ¡Reacciona para votar!")
     embed_message = await ctx.send(embed=embed)
-    await ctx.message.delete()
     await embed_message.add_reaction("👍")
     await embed_message.add_reaction("👎")
     await embed_message.add_reaction("🤷")
