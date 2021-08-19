@@ -95,9 +95,9 @@ class funny(commands.Cog):
       elif 71 <= calc_love <= 80:
         love_messsage = f"{calc_love}% [████████████████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
       elif 81 <= calc_love <= 90:
-        love_messsage = f"{calc_love}% [████████████████ . . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
+        love_messsage = f"{calc_love}% [██████████████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
       elif 91 <= calc_love <= 99:
-        love_messsage = f"{calc_love}% [██████████████████ . ]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
+        love_messsage = f"{calc_love}% [█████████████████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
       elif calc_love == 100:
         love_messsage = f"{calc_love}% [█████████████████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta"
     embed = discord.Embed(description = f"{love_messsage}")
