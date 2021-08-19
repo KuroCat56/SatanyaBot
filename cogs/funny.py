@@ -83,7 +83,7 @@ class funny(commands.Cog):
       elif 11 <= calc_love <= 20:
         love_messsage = f"{calc_love}% [█ . . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
       elif 21 <= calc_love <= 30:
-        love_messsage = f"{calc_love}% [██ . . . . . . . ]\n🤟 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
+        love_messsage = f"{calc_love}% [██ . . . . . . . ]\n😶 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
       elif 31 <= calc_love <= 40:
         love_messsage = f"{calc_love}% [███ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
       elif 41 <= calc_love <= 50:
@@ -100,7 +100,7 @@ class funny(commands.Cog):
         love_messsage = f"{calc_love}% [█████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
       elif calc_love == 100:
         love_messsage = f"{calc_love}% [██████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta"
-    embed = discord.Embed(description = f"{love_messsage}")
+    embed = discord.Embed(description = f"{love_messsage}", color = 0xff9999)
     await ctx.reply(embed = embed, mention_author=False)
 
 def setup(bot: commands.Bot):
