@@ -10,8 +10,6 @@ SatanyaBot nació con la idea de crear una alternativa de código abierto a los 
 
 ![](https://img.shields.io/github/stars/KuroCat56/SatanyaBot?label=Stars) ![](https://img.shields.io/github/forks/KuroCat56/SatanyaBot?label=Forks) ![](https://img.shields.io/github/commit-activity/m/KuroCat56/SatanyaBot?label=Commits) ![](https://img.shields.io/badge/python-3.8.9-brightgreen)
 
-[TOC]
-
 
 ## 🎀 Características
 
