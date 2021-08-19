@@ -6,7 +6,7 @@ import random
 
 def random_love():
     love = random.randint(0, 100)
-    return love
+    return(love)
 
 class funny(commands.Cog):
   """Comando divertidos muy variados"""
@@ -68,7 +68,7 @@ class funny(commands.Cog):
     """
     Calcula tus posibilidades con otro usuario
     """
-    calc_love = random_love
+    calc_love = random_love()
     if member is None:
       message = "¡Primero necesitas etiquetar a alguien!"
       await ctx.reply(message, mention_author=False)
@@ -100,7 +100,7 @@ class funny(commands.Cog):
         love_messsage = f"{calc_love}% [██████████████████ . ]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
       elif calc_love == 100:
         love_messsage = f"{calc_love}% [█████████████████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta"
-    embed = discord.Embed(description = love_messsage)
+    embed = discord.Embed(description = f"{love_messsage}")
     await ctx.reply(embed, mention_author=False)
 
 def setup(bot: commands.Bot):
