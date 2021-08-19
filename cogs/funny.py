@@ -72,7 +72,7 @@ class funny(commands.Cog):
     if member is None:
       message = "¡Primero necesitas etiquetar a alguien!"
       await ctx.reply(message, mention_author=False)
-    elif member is ctx.author.name:
+    elif member is ctx.author:
       message = "∞ [█████████████████████]\n**Tienes el suficiente ego como para aceptarte y amarte como eres.**"
       await ctx.reply(message, mention_author=False)
     else:
