@@ -2,6 +2,11 @@ from typing import final
 from TextToOwO.owo import text_to_owo
 from discord.ext import commands
 import discord
+import random
+
+def random_love():
+    love = random.randint(0, 100)
+    return love
 
 class funny(commands.Cog):
   """Comando divertidos muy variados"""
@@ -58,5 +63,55 @@ class funny(commands.Cog):
     embed.set_image(url = emoji.url)
     await ctx.send(embed=embed)
 
+  @commands.command()
+  async def love(self, ctx, member: discord.Member=None):
+    """
+    Calcula tus posibilidades con otro usuario
+    """
+    calc_love = random_love
+    if member is None:
+      message = "¡Primero necesitas etiquetar a alguien!"
+      await ctx.reply(message, mention_author=False)
+    elif member is ctx.author.name:
+      message = "∞ [█████████████████████]\n**Tienes el suficiente ego como para aceptarte y amarte como eres.**"
+      await ctx.reply(message, mention_author=False)
+    else:
+      if calc_love == 0:
+        love_messsage = f"{calc_love}% [ . . . . . . . . . . ]\n🚫 No existe compatibilidad entre **{ctx.author.name}** y **{member.name}**"
+      elif 1 <= calc_love <= 10:
+        love_messsage = f"{calc_love}% [██ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
+      elif 11 <= calc_love <= 20:
+        love_messsage = f"{calc_love}% [████ . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
+      elif 21 <= calc_love <= 30:
+        love_messsage = f"{calc_love}% [██████ . . . . . . . ]\n🤟 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
+      elif 31 <= calc_love <= 40:
+        love_messsage = f"{calc_love}% [████████ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
+      elif 41 <= calc_love <= 50:
+        love_messsage = f"{calc_love}% [██████████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal"
+      elif 51 <= calc_love <= 60:
+        love_messsage = f"{calc_love}% [████████████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal"
+      elif 61 <= calc_love <= 70:
+        love_messsage = f"{calc_love}% [██████████████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
+      elif 71 <= calc_love <= 80:
+        love_messsage = f"{calc_love}% [████████████████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
+      elif 81 <= calc_love <= 90:
+        love_messsage = f"{calc_love}% [████████████████ . . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
+      elif 91 <= calc_love <= 99:
+        love_messsage = f"{calc_love}% [██████████████████ . ]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
+      elif calc_love == 100:
+        love_messsage = f"{calc_love}% [█████████████████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta"
+      embed = discord.Embed(description = love_messsage)
+      await ctx.reply(embed, mention_author=False)
+# [ . . . . . . . . . . ]
+# [██ . . . . . . . . . ]
+# [████ . . . . . . . . ]
+# [██████ . . . . . . . ]
+# [████████ . . . . . . ]
+# [██████████ . . . . . ]
+# [████████████ . . . . ]
+# [██████████████ . . . ]
+# [████████████████ . . ]
+# [██████████████████ . ]
+# [█████████████████████]
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
