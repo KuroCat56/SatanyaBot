@@ -101,7 +101,7 @@ class funny(commands.Cog):
       elif calc_love == 100:
         love_messsage = f"{calc_love}% [█████████████████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta"
     embed = discord.Embed(description = f"{love_messsage}")
-    await ctx.reply(embed, mention_author=False)
+    await ctx.reply(embed = embed, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
