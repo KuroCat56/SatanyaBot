@@ -79,23 +79,23 @@ class funny(commands.Cog):
       if calc_love == 0:
         love_messsage = f"{calc_love}% [ . . . . . . . . . . ]\n🚫 No existe compatibilidad entre **{ctx.author.name}** y **{member.name}**"
       elif 1 <= calc_love <= 10:
-        love_messsage = f"{calc_love}% [██ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
+        love_messsage = f"{calc_love}% [█ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
       elif 11 <= calc_love <= 20:
-        love_messsage = f"{calc_love}% [████ . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
+        love_messsage = f"{calc_love}% [█ . . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja"
       elif 21 <= calc_love <= 30:
-        love_messsage = f"{calc_love}% [██████ . . . . . . . ]\n🤟 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
+        love_messsage = f"{calc_love}% [██ . . . . . . . ]\n🤟 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
       elif 31 <= calc_love <= 40:
-        love_messsage = f"{calc_love}% [████████ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
+        love_messsage = f"{calc_love}% [███ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja"
       elif 41 <= calc_love <= 50:
-        love_messsage = f"{calc_love}% [██████████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal"
+        love_messsage = f"{calc_love}% [████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal"
       elif 51 <= calc_love <= 60:
-        love_messsage = f"{calc_love}% [████████████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal"
+        love_messsage = f"{calc_love}% [█████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal"
       elif 61 <= calc_love <= 70:
-        love_messsage = f"{calc_love}% [██████████████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
+        love_messsage = f"{calc_love}% [██████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
       elif 71 <= calc_love <= 80:
-        love_messsage = f"{calc_love}% [████████████████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
+        love_messsage = f"{calc_love}% [███████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte"
       elif 81 <= calc_love <= 90:
-        love_messsage = f"{calc_love}% [██████████████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
+        love_messsage = f"{calc_love}% [████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
       elif 91 <= calc_love <= 99:
         love_messsage = f"{calc_love}% [█████████████████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena"
       elif calc_love == 100:
