@@ -184,9 +184,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     
     questions = ["1. **¿En qué canal se hará el giveaway?**",
                 "2. **¿Cuál será la duración del giveaway?** (Ejemplo: 30s, 5h, 3d)",
-                "3. **¿Qué es el premio que se sorteará?**"
-                ]
-    
+                "3. **¿Qué es el premio que se sorteará?**"]
+
     answers = []
 
     def check(m):
@@ -226,11 +225,11 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     embed.add_field(name = 'Organizado por:', value = ctx.author.mention)
     embed.add_field(text = f'Termina en {answers[1]} a partir de ahora.')
 
-    await channel.send(embed = embed)
-    await embed.add_reaction('🎉')
+    my_msg = await channel.send(embed = embed)
+    await my_msg.add_reaction('🎉')
     await asyncio.sleep(time)
 
-    new_msg = await channel.fetch_message(embed.id)
+    new_msg = await channel.fetch_message(my_msg.id)
     users = await new_msg.reactions[0].users().flatten()
     users.pop(users.index(self.bot.user))
     winner = random.choice(users)
