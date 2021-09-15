@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import inspect
+import random
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
@@ -177,7 +178,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
   @commands.command()
   @commands.guild_only()
   @commands.check_any(commands.is_owner(), is_guild_owner())
-  async def giveaway(ctx):
+  async def giveaway(self, ctx):
     await ctx.send("¿Quieres hacer un giveaway?\nPor favor responde a estas preguntas para empezar el giveaway. **Sólo tienes 15 segundos para responder cada pregunta.**")
     
     questions = ["¿En qué canal se hará el giveaway?",
@@ -194,7 +195,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       await ctx.send(i)
 
       try:
-        msg = await bot.wait_for('message', timeout = 15.0, check = check)
+        msg = await self.bot.wait_for('message', timeout = 15.0, check = check)
       except asyncio.TimeoutError:
         await ctx.send('⌛ Tardaste más de 15 segundos en responder la pregunta. Vuelve a intentarlo pero sé más rápido.')
         return
@@ -207,9 +208,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       await ctx.send(f'<:nope:846611758445625364> Hubo un problema con el canal mencionado. Intenta de nuevo mencionando el canal así: {ctx.channel.mention}')
       return
     
-    channel = bot.get_channel(c_id)
+    channel = self.bot.get_channel(c_id)
 
-    time = convert(answers[1])
+    time = self.convert(answers[1])
     if time == -1:
       await ctx.send(f'<:nope:846611758445625364> Hubo un problema con el tiempo ingresado. Intenta de nuevo usando formato correcto. (*s, m, h* o *d*)')
       return
