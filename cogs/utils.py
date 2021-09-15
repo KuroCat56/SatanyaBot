@@ -226,11 +226,11 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     embed.add_field(name = 'Organizado por:', value = ctx.author.mention)
     embed.add_field(text = f'Termina en {answers[1]} a partir de ahora.')
 
-    my_msg = await ctx.send(embed = embed)
-    await my_msg.add_reaction('🎉')
+    await channel.send(embed = embed)
+    await embed.add_reaction('🎉')
     await asyncio.sleep(time)
 
-    new_msg = await channel.fetch_message(my_msg.id)
+    new_msg = await channel.fetch_message(embed.id)
     users = await new_msg.reactions[0].users().flatten()
     users.pop(users.index(self.bot.user))
     winner = random.choice(users)
