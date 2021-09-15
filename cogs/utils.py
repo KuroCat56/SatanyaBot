@@ -70,17 +70,17 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
   #     return val * time_dict[unit]
   #   converted_time = convert(time)
 
-    if converted_time == -1:
-      await ctx.send("Comando inválido")
-      return
-    if converted_time == -2:
-      await ctx.send("Debes de especificar usando enteros")
-      return
+    # if converted_time == -1:
+    #   await ctx.send("Comando inválido")
+    #   return
+    # if converted_time == -2:
+    #   await ctx.send("Debes de especificar usando enteros")
+    #   return
 
-    await ctx.send(f"⏱️ {ctx.author.mention}, tu recordatorio para **{task}** fue activado y serás recordado en **{time}**")
+    # await ctx.send(f"⏱️ {ctx.author.mention}, tu recordatorio para **{task}** fue activado y serás recordado en **{time}**")
 
-    await asyncio.sleep(converted_time)
-    await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
+    # await asyncio.sleep(converted_time)
+    # await ctx.send(f"⏰ {ctx.author.mention}, tu recordatorio por **{task}** ha terminado.")
 
   @commands.command(name="prefix")
   async def prefix(self, ctx):
