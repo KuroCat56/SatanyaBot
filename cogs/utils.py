@@ -223,6 +223,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
 
     embed = discord.Embed(title='**¡GIVEAWAY!**', description = (f'{prize}'), color = ctx.author.color)
     embed.add_field(name = 'Organizado por:', value = ctx.author.mention)
+    embed.set_thumbnail(url='https://emoji.gg/assets/emoji/7825_blurple_tada.png')
     embed.set_footer(text = f'Termina en {answers[1]} a partir de ahora.')
 
     my_msg = await channel.send(embed = embed)
@@ -234,7 +235,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     users.pop(users.index(self.bot.user))
     winner = random.choice(users)
 
-    await channel.send(f'🎉 ¡Felicidades! El usuario **{winner.mention}** ganó **{prize}** 🎉')
+    await channel.send(f'🎉 ¡Felicidades! El usuario {winner.mention} ganó **{prize}** 🎉')
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
