@@ -181,9 +181,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
   async def giveaway(self, ctx):
     await ctx.send("¿Quieres hacer un giveaway?\nPor favor responde a estas preguntas para empezar el giveaway. **Sólo tienes 15 segundos para responder cada pregunta.**")
     
-    questions = ["¿En qué canal se hará el giveaway?",
-                "¿Cuál será la duración del giveaway? (Ejemplo: 30s, 5h, 3d)"
-                "¿Qué es el premio que se sorteará?"
+    questions = ["1. **¿En qué canal se hará el giveaway?**",
+                "2. **¿Cuál será la duración del giveaway?** (Ejemplo: 30s, 5h, 3d)",
+                "3. **¿Qué es el premio que se sorteará?**"
                 ]
     
     answers = []
@@ -231,12 +231,10 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
 
     new_msg = await channel.fetch_message(my_msg.id)
     users = await new_msg.reactions[0].users().flatten()
-    users.pop(users.index(bot.user))
+    users.pop(users.index(self.bot.user))
     winner = random.choice(users)
 
     await channel.send(f'🎉 ¡Felicidades! El usuario **{winner.mention}** ganó **{prize}** 🎉')
-
-  
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
