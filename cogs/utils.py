@@ -166,7 +166,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
   @commands.guild_only()
   @commands.check_any(commands.is_owner(), is_guild_owner())
   async def giveaway(self, ctx):
-
+    """
+    ¿Quieres hacer un giveaway? Responde estas simples preguntas.
+    """
     def convert(time):
       pos = ['s', 'm', 'h', 'd']
       time_dict = {'s': 1, 'm':60, 'h':3600, 'd':3600*24}
@@ -180,7 +182,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
         return -2
       return val * time_dict[unit]
 
-    await ctx.send("¿Quieres hacer un giveaway?\nPor favor responde a estas preguntas para empezar el giveaway. **Sólo tienes 15 segundos para responder cada pregunta.**")
+    await ctx.send("Por favor responde a estas preguntas para empezar el giveaway.\n**Sólo tienes 15 segundos para responder cada pregunta.**")
     
     questions = ["1. **¿En qué canal se hará el giveaway?**",
                 "2. **¿Cuál será la duración del giveaway?** (Ejemplo: 30s, 5h, 3d)",
