@@ -48,27 +48,27 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       return -2
     return val * time_dict[unit
 
-  @commands.command()
-  async def remind(self, ctx, time, *, task):
-    """
-    (BETA)Intentaré recordarte cualquier cosa que necesites.
-    """
-    def convert(time):
-      pos = ['s', 'm', 'h', 'd']
+  # @commands.command()
+  # async def remind(self, ctx, time, *, task):
+  #   """
+  #   (BETA)Intentaré recordarte cualquier cosa que necesites.
+  #   """
+  #   def convert(time):
+  #     pos = ['s', 'm', 'h', 'd']
 
-      time_dict = {"s": 1, "m": 60, "h": 3600, "d": 3600*24}
+  #     time_dict = {"s": 1, "m": 60, "h": 3600, "d": 3600*24}
 
-      unit = time[-1]
+  #     unit = time[-1]
 
-      if unit not in pos:
-        return -1
-      try:
-        val = int(time[:-1])
-      except:
-        return -2
+  #     if unit not in pos:
+  #       return -1
+  #     try:
+  #       val = int(time[:-1])
+  #     except:
+  #       return -2
       
-      return val * time_dict[unit]
-    converted_time = convert(time)
+  #     return val * time_dict[unit]
+  #   converted_time = convert(time)
 
     if converted_time == -1:
       await ctx.send("Comando inválido")
@@ -234,6 +234,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     winner = random.choice(users)
 
     await channel.send(f'🎉 ¡Felicidades! El usuario **{winner.mention}** ganó **{prize}** 🎉')
+
+  
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
