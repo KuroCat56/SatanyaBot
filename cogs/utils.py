@@ -35,6 +35,19 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
     return commands.check(predicate)
 
+  def convert(time):
+    pos = ['s', 'm', 'h', 'd']
+    time_dict = {'s': 1, 'm':60, 'h':3600, 'd':3600*24}
+    unit = time[-1]
+    
+    if unit not in pos:
+      return -1
+    try:
+      val = int(time[:-1])
+    except:
+      return -2
+    return val * time_dict[unit
+
   @commands.command()
   async def remind(self, ctx, time, *, task):
     """
@@ -151,15 +164,76 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     embed.set_image(url="https://images.unsplash.com/photo-1555231955-348aa2312e19")
     await ctx.send(embed=embed)
 
-  @commands.command(name="commands")
-  @commands.guild_only()
-  async def _commands(self, ctx):
+  # @commands.command(name="commands")
+  # @commands.guild_only()
+  # async def _commands(self, ctx):
     """
     ¿Quieres saber cuántos comandos tengo en mi código?
     """
     value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
     usable = len([await x.can_run(ctx) for x in self.bot.commands])
     await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
+
+  @commands.command()
+  @commands.guild_only()
+  @commands.check_any(commands.is_owner(), is_guild_owner())
+  async def giveaway(ctx):
+    await ctx.send("¿Quieres hacer un giveaway?\nPor favor responde a estas preguntas para empezar el giveaway. **Sólo tienes 15 segundos para responder cada pregunta.**")
+    
+    questions = ["¿En qué canal se hará el giveaway?",
+                "¿Cuál será la duración del giveaway? (Ejemplo: 30s, 5h, 3d)"
+                "¿Qué es el premio que se sorteará?"
+                ]
+    
+    answers = []
+
+    def check(m):
+      return m.author == ctx.author and m.channel == ctx.channel
+    
+    for i in questions:
+      await ctx.send(i)
+
+      try:
+        msg = await bot.wait_for('message', timeout = 15.0, check = check)
+      except asyncio.TimeoutError:
+        await ctx.send('⌛ Tardaste más de 15 segundos en responder la pregunta. Vuelve a intentarlo pero sé más rápido.')
+        return
+      else:
+        answers.append(msg.content)
+      
+    try:
+      c_id = int(answers[0][2:-1])
+    except:
+      await ctx.send(f'<:nope:846611758445625364> Hubo un problema con el canal mencionado. Intenta de nuevo mencionando el canal así: {ctx.channel.mention}')
+      return
+    
+    channel = bot.get_channel(c_id)
+
+    time = convert(answers[1])
+    if time == -1:
+      await ctx.send(f'<:nope:846611758445625364> Hubo un problema con el tiempo ingresado. Intenta de nuevo usando formato correcto. (*s, m, h* o *d*)')
+      return
+    elif time == -2:
+      await ctx.send('<:nope:846611758445625364> El tiempo ingresado no es un entero. Intenta de nuevo usando un número entero.')
+      return
+
+    prize = answers[2]
+    await ctx.send(f'El giveaway se realizará en {channel.mention} y durará {answers[1]}')
+
+    embed = discord.Embed(title='**¡GIVEAWAY!**', description = (f'{prize}'), color = ctx.author.color)
+    embed.add_field(name = 'Organizado por:', value = ctx.author.mention)
+    embed.add_field(text = f'Termina en {answers[1]} a partir de ahora.')
+
+    my_msg = await ctx.channel.send(embed = embed)
+    await my_msg.add_reaction('🎉')
+    await asyncio.sleep(time)
+
+    new_msg = await channel.fetch_message(my_msg.id)
+    users = await new_msg.reactions[0].users().flatten()
+    users.pop(users.index(bot.user))
+    winner = random.choice(users)
+
+    await channel.send(f'🎉 ¡Felicidades! El usuario **{winner.mention}** ganó **{prize}** 🎉')
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
