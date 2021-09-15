@@ -223,7 +223,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
 
     embed = discord.Embed(title='**¡GIVEAWAY!**', description = (f'{prize}'), color = ctx.author.color)
     embed.add_field(name = 'Organizado por:', value = ctx.author.mention)
-    embed.add_field(text = f'Termina en {answers[1]} a partir de ahora.')
+    embed.set_footer(text = f'Termina en {answers[1]} a partir de ahora.')
 
     my_msg = await channel.send(embed = embed)
     await my_msg.add_reaction('🎉')
