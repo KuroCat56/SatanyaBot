@@ -169,7 +169,7 @@ class funny(commands.Cog):
 
         await ctx.send(embed=embed)
 
-  @commands.command(aliases=['8ball','ball8'])
+  @commands.command(name ='8ball', aliases=['8ball','ball8'])
   async def _8ball(self, ctx, *, question):
     """
     Hazme una pregunta y yo te daré una respuesta.
@@ -190,7 +190,8 @@ class funny(commands.Cog):
   async def choose(self, ctx, *, msg: str):
     """
     Dame opciones y elegiré una por ti.
-    >nya choose Opción1 Opción2 Opción3 etc
+    
+    nya>choose Opción1 Opción2 Opción3 etc
     """
     await ctx.reply(f'➡️ Yo elijo... **{(random.choice(msg.split()))}**', mention_author=False)
 
