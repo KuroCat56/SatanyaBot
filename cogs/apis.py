@@ -26,6 +26,12 @@ def get_eevee():
     eevee = json_data['link']
     return (eevee)
 
+def get_fox():
+  response = requests.get("https://randomfox.ca/floof/")
+  json_data = json.loads(response.text)
+  fox = json_data['image']
+  return (fox)
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
   Comandos que requieren de alguna API
@@ -98,6 +104,14 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     """
     eevee = get_eevee()
     await ctx.reply(eevee, mention_author=False)
+
+  @commands.command(name="fox", aliases="floof")
+  async def randomfox(self, ctx: commands.Context):
+    """
+    Imágenes aleatorias de zorros. 🦊
+    """
+    fox = get_fox()
+    await ctx.reply(fox, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
