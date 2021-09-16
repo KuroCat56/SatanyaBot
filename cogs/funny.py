@@ -187,12 +187,12 @@ class funny(commands.Cog):
     await ctx.reply('🎱 Sacudiendo...', embed=eightball, mention_author=False)
 
   @commands.command(aliases=['choice'])
-  async def choose(ctx, *, msg: str):
+  async def choose(self, ctx, *, msg: str):
     """
     Dame opciones y elegiré una por ti.
     """
-    new_msg = msg.split()
-    await ctx.send(random.choice(new_msg))
+    #new_msg = msg.split()
+    await ctx.send(random.choice(msg))
 
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
