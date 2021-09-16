@@ -103,5 +103,50 @@ class funny(commands.Cog):
     embed = discord.Embed(description = f"{love_messsage}", color = 0xff9999)
     await ctx.reply(embed = embed, mention_author=False)
 
+  #Extraído de https://github.com/iiSakuu/Marshmallow
+  @commands.command(aliases=['shipname'])
+  async def ship(self, ctx, member : discord.Member, member2 : discord.Member = None):
+        """
+        Descubre el cómo sería el shipname entre dos usuarios 💘
+        """
+
+        if member2 is None:
+            member2 = ctx.author
+
+        if len(member.display_name) < 4:
+            N = len(member.display_name) / 2
+
+            firstmember = member.display_name
+            firstship = firstmember[0:int(N)]
+
+            secondmember = member2.display_name
+            secondship = secondmember[0:4]
+
+        elif len(member2.display_name) < 4 :
+            N = len(member2.display_name) / 2
+
+            firstmember = member.display_name
+            firstship = firstmember[0:4]
+
+            secondmember = member2.display_name
+            secondship = secondmember[0:int(N)]
+
+        else:
+
+            firstmember = member.display_name
+            firstship = firstmember[0:4]
+
+            secondmember = member2.display_name
+            secondship = secondmember[0:4]
+
+        shipname = firstship + secondship
+
+        embed = discord.Embed(
+            description=f'{member.display_name} + {member2.display_name} = **{shipname}** 💘',
+            colour=0xffb5f7
+            )
+
+        await ctx.send(embed=embed)
+
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
