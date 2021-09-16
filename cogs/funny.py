@@ -190,8 +190,9 @@ class funny(commands.Cog):
   async def choose(self, ctx, *, msg: str):
     """
     Dame opciones y elegiré una por ti.
+    >nya choose Opción1 Opción2 Opción3 etc
     """
-    await ctx.send(random.choice(msg.split()))
+    await ctx.reply(f'➡️ Yo elijo... {(random.choice(msg.split()))}', mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
