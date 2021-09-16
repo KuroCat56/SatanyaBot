@@ -8,6 +8,27 @@ def random_love():
     love = random.randint(0, 100)
     return(love)
 
+eightballresponses = [
+    "Ciertamente.",
+    "Es decididamente así.",
+    "Sin duda.",
+    "Sí - definitivamente.",
+    "Puedes confiar en ello.",
+    "Como yo lo veo, sí.",
+    "Es lo más probable.",
+    "Si.",
+    "Las señales dicen que si.",
+    "Respuesta confusa, intenta otra vez.",
+    "Pregunta de nuevo más tarde.",
+    "Mejor no decirte ahora.",
+    "No se puede predecir ahora.",
+    "Concéntrate y pregunta otra vez.",
+    "No cuentes con eso",
+    "Mi respuesta es no.",
+    "Mis fuentes dicen que no.",
+    "Muy dudoso."
+]
+
 class funny(commands.Cog):
   """Comando divertidos muy variados"""
   def __init__(self, bot: commands.Bot):
@@ -147,6 +168,23 @@ class funny(commands.Cog):
             )
 
         await ctx.send(embed=embed)
+
+  @commands.command(aliases=['8ball','ball8'])
+  async def _8ball(self, ctx, *, question):
+    """
+    Hazme una pregunta y yo te daré una respuesta.
+    """
+    eightball = discord.Embed(
+        title='Tu pregunta:',
+        description=f'{question}',
+        color=discord.Colour.random()
+        )
+    eightball.add_field(
+        name='La respuesta:',
+        value=f'||{(random.choice(eightballresponses))}||'
+      )
+
+    await ctx.reply('🎱 Sacudiendo...', embed=eightball, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
