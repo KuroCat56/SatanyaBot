@@ -191,8 +191,7 @@ class funny(commands.Cog):
     """
     Dame opciones y elegiré una por ti.
     """
-    #new_msg = msg.split()
-    await ctx.send(random.choice(msg))
+    await ctx.send(random.choice(msg.split()))
 
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
