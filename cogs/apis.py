@@ -32,6 +32,24 @@ def get_fox():
   fox = json_data['image']
   return (fox)
 
+def get_dog():
+  response = requests.get("https://random.dog/woof.json")
+  json_data = json.loads(response.text)
+  dog = json_data['url']
+  return (dog)
+
+def get_cat():
+  response = requests.get("https://aws.random.cat/meow")
+  json_data = json.loads(response.text)
+  cat = json_data['file']
+  return (cat)
+
+def get_shiba():
+  response = requests.get("https://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true")
+  json_data = json.loads(response.text)
+  shiba = json_data[0]
+  return (shiba)
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
   Comandos que requieren de alguna API
@@ -112,6 +130,30 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     """
     fox = get_fox()
     await ctx.reply(fox, mention_author=False)
+
+  @commands.command(name="dog", aliases=["woof"])
+  async def randomdog(self, ctx: commands.Context):
+    """
+    Imágenes aleatorias de perros. 🐶
+    """
+    dog = get_dog()
+    await ctx.reply(dog, mention_author=False)
+
+  @commands.command(name="cat", aliases=["meow"])
+  async def randomcat(self, ctx: commands.Context):
+    """
+    Imágenes aleatorias de gatos. 🐱
+    """
+    cat = get_cat()
+    await ctx.reply(cat, mention_author=False)
+
+  @commands.command(name="shiba", aliases=["inu"])
+  async def randomshiba(self, ctx: commands.Context):
+    """
+    Imágenes aleatorias de shibas inu. 🐕
+    """
+    shiba = get_shiba()
+    await ctx.reply(shiba, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
