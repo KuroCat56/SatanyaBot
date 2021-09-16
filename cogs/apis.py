@@ -105,7 +105,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     eevee = get_eevee()
     await ctx.reply(eevee, mention_author=False)
 
-  @commands.command(name="fox", aliases="floof")
+  @commands.command(name="fox", aliases=["floof"])
   async def randomfox(self, ctx: commands.Context):
     """
     Imágenes aleatorias de zorros. 🦊
