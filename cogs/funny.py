@@ -187,7 +187,7 @@ class funny(commands.Cog):
     await ctx.reply('🎱 Sacudiendo...', embed=eightball, mention_author=False)
 
   @commands.command(aliases=['choice'])
-  async def choose(ctx, *choices: str):
+  async def choose(ctx, *, choices: str):
     """
     Dame opciones y elegiré una por ti.
     """
