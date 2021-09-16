@@ -145,6 +145,16 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         # one liner, dont complain
         await ctx.send(embed=discord.Embed(description=msg.content, color=msg.author.color).set_author(name=str(msg.author), icon_url=str(msg.author.avatar_url)))
 
+    @commands.command()
+    @commands.is_owner()
+    async def serverlist(self, ctx):
+        guilds = [guild.name for guild in self.bot.guilds]
+        servers = discord.Embed(
+            title=f'Servers ({len(guilds)})',
+            description="\n".join(guilds),
+            colour=0xfbf9fa,
+        )
+        await ctx.send(embed=servers)
 
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
