@@ -169,7 +169,7 @@ class funny(commands.Cog):
 
         await ctx.send(embed=embed)
 
-  @commands.command(name ='8ball', aliases=['8ball','ball8'])
+  @commands.command(name ='8ball', aliases=['ball8'])
   async def _8ball(self, ctx, *, question):
     """
     Hazme una pregunta y yo te daré una respuesta.
