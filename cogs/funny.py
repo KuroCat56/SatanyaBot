@@ -220,15 +220,15 @@ class funny(commands.Cog):
         return
 
     if str(reaction.emoji) == "1️⃣":
-        embed = discord.Embed(title="Tiraste 🎲 dado:", description=f"🎲 : {dado_1}")
+        embed = discord.Embed(title=f"Tiraste 1 dado:\n🎲 : {dado_1}")
         await ctx.send(embed=embed)
         return
     elif str(reaction.emoji) == "2️⃣":
-        embed = discord.Embed(title="Tiraste 🎲🎲 dados:", description=f"🎲 : {dado_1},\n🎲 : {dado_2}")
+        embed = discord.Embed(title=f"Tiraste 2 dados:\n🎲 : {dado_1}, 🎲 : {dado_2}")
         await ctx.send(embed=embed)
         return
     elif str(reaction.emoji) == "3️⃣":
-        embed = discord.Embed(title="Tiraste 🎲🎲🎲 dados:", description=f"🎲 : {dado_1},\n🎲 : {dado_2},\n🎲 :{dado_3}")
+        embed = discord.Embed(title=f"Tiraste 3 dados:\n🎲 : {dado_1}, 🎲 : {dado_2}, 🎲 : {dado_3}")
         await ctx.send(embed=embed)
         return
 
