@@ -1,8 +1,10 @@
+import asyncio
 from typing import final
 from TextToOwO.owo import text_to_owo
 from discord.ext import commands
 import discord
 import random
+import asyncio
 
 def random_love():
     love = random.randint(0, 100)
@@ -194,6 +196,41 @@ class funny(commands.Cog):
     nya>choose Opción1 Opción2 Opción3 etc
     """
     await ctx.reply(f'➡️ Yo elijo... **{(random.choice(msg.split()))}**', mention_author=False)
+
+  @commands.command(aliases=['dado'])
+  async def dice(self, ctx):
+    """
+    Tira algunos dados.
+    """
+    message = await ctx.send("¿Cuántos dados quieres tirar?")
+    await message.add_reaction("1️⃣")
+    await message.add_reaction("2️⃣")
+    await message.add_reaction("3️⃣")
+
+    check = lambda r, u: u == ctx.author and str(r.emoji) in "1️⃣2️⃣3️⃣"  # r=reaction, u=user
+
+    dado_1 = random.randint(1,6)
+    dado_2 = random.randint(1,6)
+    dado_3 = random.randint(1,6)
+
+    try:
+        reaction, user = await self.bot.wait_for("reaction_add", check=check, timeout=10)
+    except asyncio.TimeoutError:
+        await message.edit(content="⌛ Tardaste mucho en decidir, vuelve a intentarlo.")
+        return
+
+    if str(reaction.emoji) == "1️⃣":
+        embed = discord.Embed(title="Tiraste un dado:", description=f"Tiraste un dado: {dado_1}")
+        await ctx.send(embed=embed)
+        return
+    elif str(reaction.emoji) == "2️⃣":
+        embed = discord.Embed(title="Tiraste dos dados:", description=f"Tiraste dos dados: {dado_1}, {dado_2}")
+        await ctx.send(embed=embed)
+        return
+    elif str(reaction.emoji) == "3️⃣":
+        embed = discord.Embed(title="Tiraste tres dados:", description=f"Tiraste tres dados: {dado_1}, {dado_2}, {dado_3}")
+        await ctx.send(embed=embed)
+        return
 
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
