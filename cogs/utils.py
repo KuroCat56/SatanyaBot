@@ -3,6 +3,7 @@ from discord.ext import commands
 import asyncio
 import inspect
 import random
+import calendar
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
@@ -238,6 +239,19 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     winner = random.choice(users)
 
     await channel.send(f'🎉 ¡Felicidades! El usuario {winner.mention} ganó **{prize}** 🎉')
+
+  @commands.command()
+  async def calendar(self, ctx, year : int, month : int):
+    """
+    Vistazo rápido a un mes del año.
+    """
+    embed = discord.Embed(
+      title = f"Mes: {month} - Año: {year}",
+      description = f"{calendar.month(year, month)}",
+      color=0xfbf9fa
+    )
+    await ctx.send(embed=embed)
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
