@@ -245,9 +245,10 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     """
     Vistazo rápido a un mes del año.
     """
+    block = "`"*3
     embed = discord.Embed(
       title = f"Mes: {month} - Año: {year}",
-      description = f"{calendar.month(year, month)}",
+      description = f"{block}\n{calendar.month(year, month)}\n{block}",
       color=0xfbf9fa
     )
     await ctx.send(embed=embed)
