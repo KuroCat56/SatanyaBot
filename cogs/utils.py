@@ -266,9 +266,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
         description = f"{results[0]}\n=============={results[1]}\n=============={results[2]}",
         color = ctx.author.color
       )
-      ctx.send(embed=embed)
+      await ctx.send(embed=embed)
     except:
-      ctx.send("Parece que hubo un error.")
+      await ctx.send("Parece que hubo un error.")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
