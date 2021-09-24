@@ -43,8 +43,8 @@ class funny(commands.Cog):
     if msg.author.bot:
       return
     if any(word in msg.content.lower() for word in mention):
-      nya="<:SatanyaBot:858480664143331338>"
-    await msg.add_reaction(nya)
+      emoji_nya="<:SatanyaBot:858480664143331338>"
+    await msg.add_reaction(emoji_nya)
     await self.bot.process_commands(msg)
 
   @commands.command()
