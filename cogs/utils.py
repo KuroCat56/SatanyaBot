@@ -4,6 +4,7 @@ import asyncio
 import inspect
 import random
 import calendar
+from googlesearch import search
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
@@ -253,6 +254,21 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     )
     await ctx.send(embed=embed)
 
+  @commands.command(aliases = ["ggl"])
+  async def google(self, ctx, *, google):
+    """
+    Búsqueda rápida en Google.
+    """
+    try:
+      results = search(f"{google}", num_results=3, lang="es")
+      embed = discord.Embed(
+        title = f"Estas son los primeros resultados que he encontrado en Google:",
+        description = f"{results[0]}\n=============={results[1]}\n=============={results[2]}",
+        color = ctx.author.color
+      )
+      ctx.send(embed=embed)
+    except:
+      ctx.send("Parece que hubo un error.")
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
