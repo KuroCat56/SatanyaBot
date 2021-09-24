@@ -278,7 +278,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
 
     Traducción al español por defecto.
     """
-    if lang == "":
+    if not lang:
       lang = "es"
     translator = Translator()
     try:
