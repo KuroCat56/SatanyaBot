@@ -5,6 +5,7 @@ import inspect
 import random
 import calendar
 from googlesearch import search
+from googletrans import Translator
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
@@ -157,12 +158,12 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
   # @commands.command(name="commands")
   # @commands.guild_only()
   # async def _commands(self, ctx):
-    """
-    ¿Quieres saber cuántos comandos tengo en mi código?
-    """
-    value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
-    usable = len([await x.can_run(ctx) for x in self.bot.commands])
-    await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
+    # """
+    # ¿Quieres saber cuántos comandos tengo en mi código?
+    # """
+    # value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
+    # usable = len([await x.can_run(ctx) for x in self.bot.commands])
+    # await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
 
   @commands.command()
   @commands.guild_only()
@@ -269,6 +270,41 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       await ctx.send(embed=embed)
     except:
       await ctx.send("Parece que hubo un error.")
+
+  @commands.command(aliases = ["traducir", "traductor"])
+  async def translate(self, ctx, *, lang = None, texto):
+    """
+    Traducción rápida en Google.
+
+    Traducción al español por defecto.
+    """
+    if lang is None:
+      lang = "es"
+    translator = Translator()
+    try:
+      translated = translator.translate(f"{texto}", dest=f"{lang}")
+      detection = translator.detect(f"{texto}")
+      embed = discord.Embed(
+        description = f"Traducción de *{detection}* a *{lang}*:",
+        color = ctx.author.color
+      )
+      embed.add_field(
+        name= "Texto a traducir:",
+        value=f"{texto}",
+        inline=False
+      )
+      embed.add_field(
+        name= "Texto traducido:",
+        value=f"{translated}",
+        inline=False
+      )
+      embed.set_footer(
+        text=f"Estoy {detection.confidence*100}% segura de que el texto ingresado es: {detection.lang}"
+        )
+      await ctx.reply(embed=embed, mention_author=False)
+    except:
+      await ctx.send("Parece que hubo un error.")
+
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
