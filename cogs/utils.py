@@ -262,7 +262,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     try:
       results = search(f"{google}", num_results=3, lang="es")
       embed = discord.Embed(
-        title = f"➡️ Esto es lo que he encontrado en Google:",
+        title = f"Esto es lo que he encontrado en Google sobre:\n__{google}__",
         description = f"1️⃣ {results[0]}\n\n2️⃣ {results[1]}\n\n3️⃣ {results[2]}",
         color = ctx.author.color
       )
