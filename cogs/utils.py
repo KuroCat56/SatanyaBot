@@ -259,11 +259,12 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     """
     Búsqueda rápida en Google.
     """
+    block = "`"*3
     try:
       results = search(f"{google}", num_results=3, lang="es")
       embed = discord.Embed(
-        title = f"Estas son los primeros resultados que he encontrado en Google:",
-        description = f"{results[0]}\n=============={results[1]}\n=============={results[2]}",
+        title = f"Estos es lo que he encontrado en Google:",
+        description = f"1️⃣ {results[0]}\n{block}=============={block}\n2️⃣ {results[1]}\n{block}=============={block}\n3️⃣ {results[2]}",
         color = ctx.author.color
       )
       await ctx.send(embed=embed)
