@@ -300,7 +300,11 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         )
       await ctx.reply(embed=embed, mention_author=False)
     except:
-      await ctx.send("Parece que hubo un error.")
+      embed = discord.Embed(
+        description = f"**Parece que hubo un error:**\n1️⃣ Es probable que debas de checar si el lenguaje que escibiste ({lang}) esté bien escrito.\nPuedes comprobarlo aquí: http://www.lingoes.net/en/translator/langcode.htm \n2️⃣ Es probable que el lenguaje que escribiste ({lang} no esté disponible.)",
+        color = ctx.author.color
+      )
+      await ctx.send(embed=embed)
 
 
 def setup(bot: commands.Bot):
