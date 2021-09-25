@@ -45,7 +45,7 @@ class funny(commands.Cog):
     if any(word in msg.content.lower() for word in mention):
       emoji_nya="<:SatanyaBot:858480664143331338>"
       await msg.add_reaction(emoji_nya)
-    await self.bot.process_commands(msg)
+      await self.bot.process_commands(msg)
 
   @commands.command()
   async def owo(self, ctx):
