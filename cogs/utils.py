@@ -272,12 +272,13 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       await ctx.send("Parece que hubo un error.")
 
   @commands.command(aliases = ["traducir", "traductor"])
-  async def translate(self, ctx, lang : str, *texto):
+  async def translate(self, ctx, lang : str, texto : string):
     """
     Traducción rápida en Google.
 
     Traducción al español por defecto.
     """
+    block = "`"*3
     if not lang:
       lang = "es"
     translator = Translator()
@@ -290,12 +291,12 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       )
       embed.add_field(
         name= "Texto a traducir:",
-        value=f"{texto}",
+        value=f"{block}\n{texto}\n{block}",
         inline=False
       )
       embed.add_field(
         name= "Texto traducido:",
-        value=f"{translated.text}",
+        value=f"{block}\n{translated.text}\n{block}",
         inline=False
       )
       embed.set_footer(
