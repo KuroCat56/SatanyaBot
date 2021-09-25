@@ -7,11 +7,11 @@ import calendar
 from googlesearch import search
 from googletrans import Translator
 
-class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
+class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, commands.BucketType.user)}):
   """
   Comando útiles (y no tan útiles)
   
-  Cooldown: 5s per command
+  Cooldown: 15s per command
   """
   def __init__(self, bot: commands.Bot):
     self.bot = bot
