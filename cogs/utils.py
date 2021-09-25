@@ -281,6 +281,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     block = "`"*3
     if not lang:
       lang = "es"
+    else:
+      lang = lang
     translator = Translator()
     try:
       translated = translator.translate(f"{texto}", dest=f"{lang}")
