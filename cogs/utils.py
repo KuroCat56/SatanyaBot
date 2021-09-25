@@ -272,7 +272,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       await ctx.send("Parece que hubo un error.")
 
   @commands.command(aliases = ["traducir", "traductor"])
-  async def translate(self, ctx, lang : str, texto : string):
+  async def translate(self, ctx, lang : str, texto : str):
     """
     Traducción rápida en Google.
 
