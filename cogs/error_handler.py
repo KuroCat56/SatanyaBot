@@ -36,6 +36,8 @@ class ErrorHandler(commands.Cog):
                 message = "<:doki_shrug:846548924890349627> Lo siento, pero este comando solo lo puede usar mi creador."
             elif isinstance(error, commands.BotMissingPermissions):
                 message = f"<:okaynt:846612437637660702> No puedo ejecutar este comando, me faltan ciertos permisos: {error.missing_perms}"
+            else:
+                message = f"No tengo idea de lo que pasa.\n{error}"
         except Exception as e:
             message = (f'**`ERROR:`** {type(e).__name__} - {e}')
         embed = discord.Embed(
