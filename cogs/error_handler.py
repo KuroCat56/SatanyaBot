@@ -13,6 +13,7 @@ class ErrorHandler(commands.Cog):
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
         """A global error handler cog."""
         global message
+        block = "`"*3
         try:
             if isinstance(error, commands.CommandNotFound):
                 cmd = ctx.invoked_with
@@ -37,7 +38,7 @@ class ErrorHandler(commands.Cog):
             elif isinstance(error, commands.BotMissingPermissions):
                 message = f"<:okaynt:846612437637660702> No puedo ejecutar este comando, me faltan ciertos permisos: {error.missing_perms}"
             else:
-                message = f"No tengo idea de lo que pasa.\n{error}"
+                message = f"No tengo idea de lo que pasa.\n{block}\n{error}\n{block}"
         except Exception as e:
             message = (f'**`ERROR:`** {type(e).__name__} - {e}')
         embed = discord.Embed(
