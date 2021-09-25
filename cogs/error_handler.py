@@ -12,6 +12,7 @@ class ErrorHandler(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
         """A global error handler cog."""
+        global message
         try:
             if isinstance(error, commands.CommandNotFound):
                 cmd = ctx.invoked_with
@@ -40,8 +41,7 @@ class ErrorHandler(commands.Cog):
         embed = discord.Embed(
             title = "UN ERROR SALVAJE APARECIÓ",
             description = message,
-            color = 0xFF0000
-        )
+            color = 0xFF0000)
         await ctx.send(embed=embed, delete_after=15)
 
 def setup(bot: commands.Bot):
