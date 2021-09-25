@@ -275,14 +275,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
   async def translate(self, ctx, lang : str, *, texto):
     """
     Traducción rápida en Google.
-
-    Traducción al español por defecto.
     """
     block = "`"*3
-    if not lang:
-      lang = "es"
-    else:
-      lang = lang
     translator = Translator()
     try:
       translated = translator.translate(f"{texto}", dest=f"{lang}")
