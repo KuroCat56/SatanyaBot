@@ -128,6 +128,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         """
         Información útil (y no tan útil) del bot.
         """
+        #Permite determinar el tiempo que lleva desde su primer proceso activo
         delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -168,7 +169,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Uso de memoria actual:",
-        value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB",
+        value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB", #RAM
         inline=True
         )
         embed.add_field(
@@ -183,7 +184,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name= "# Líneas:",
-        value=f"{lines.get('lines'):,}",
+        value=f"{lines.get('lines'):,}", #Líneas escritas de todo el proyecto
         inline=True
         )
         embed.add_field(
