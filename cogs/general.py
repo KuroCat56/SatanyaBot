@@ -288,7 +288,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
       )
-      await ctx.send("<:okay:846612389046386689> Te he enviado mis enlaces de invitación", delete_after = 10)
+      await ctx.send("<:okay:846612389046386689> Te he enviado mis enlaces de donación", delete_after = 10)
       await ctx.author.send(embed=embed)
 
 def setup(bot: commands.Bot):
