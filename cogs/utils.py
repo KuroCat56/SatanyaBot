@@ -44,9 +44,6 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     """
     (BETA)Intentaré recordarte cualquier cosa que necesites.
 
-    Ej.:
-    nya>remind 10m Hacer la tarea
-
     Segundos (s), Minutos (m), Horas (h), Días (d)
     """
     def convert(time):
@@ -117,12 +114,9 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
   @commands.guild_only()
   @commands.check_any(commands.is_owner(), is_guild_owner())
   async def botpermissions(self, ctx, *, channel: discord.TextChannel = None):
-        """Shows the bot's permissions in a specific channel.
-        If no channel is given then it uses the current one.
-        This is a good way of checking if the bot has the permissions needed
-        to execute the commands it wants to execute.
-        To execute this command you must have Manage Roles permission.
-        You cannot use this in private messages.
+        """
+        Muestra los permisos del bot en un canal específico o en el actual.
+        Esta es una buena manera para checar si el bot tiene los permisos necesarios para ejecutar ciertos comandos.
         """
         channel = channel or ctx.channel
         member = ctx.guild.me
@@ -131,10 +125,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
   @commands.command(aliases=['perms'])
   @commands.guild_only()
   async def permissions(self, ctx, member: discord.Member = None, channel: discord.TextChannel = None):
-        """Shows a member's permissions in a specific channel.
-        If no channel is given then it uses the current one.
-        You cannot use this in private messages. If no member is given then
-        the info returned will be yours.
+        """
+        Muestra los permisos de un usuario en un canal específico o en el actual.
         """
         channel = channel or ctx.channel
         if member is None:
@@ -176,6 +168,8 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
   async def giveaway(self, ctx):
     """
     ¿Quieres hacer un giveaway? Responde estas simples preguntas.
+
+    Solo el propietario del servidor puede realizar los giveaway.
     """
     def convert(time):
       pos = ['s', 'm', 'h', 'd']
@@ -263,7 +257,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
   @commands.command(aliases = ["ggl"])
   async def google(self, ctx, *, google):
     """
-    Búsqueda rápida en Google.
+    Muestra los primeros tres resultados de una búsqueda en Google.
     """
     try:
       results = search(f"{google}", num_results=3, lang="es")
@@ -279,7 +273,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
   @commands.command(aliases = ["traducir", "traductor"])
   async def translate(self, ctx, lang : str, *, texto):
     """
-    Traducción rápida en Google.
+    Traducción rápida usando el traductor de Google.
     """
     block = "`"*3
     translator = Translator()
@@ -291,7 +285,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         color = ctx.author.color
       )
       embed.add_field(
-        name= "Texto a traducir:",
+        name= "Texto ingresado:",
         value=f"{block}\n{texto}\n{block}",
         inline=False
       )
