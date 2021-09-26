@@ -95,7 +95,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       """
       embed = discord.Embed(
           title="¿Quieres agregarme a tu servidor o unirte al mío?",
-          description="Enlaces útiles de invitación",
+          description="Aquí tienes los enlaces para unirte a mi servidor o invitarme al tuyo.",
           color=0xfbf9fa,
       )
       embed.add_field(
@@ -107,16 +107,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
           name="<:join:847940361937879051> Link SatanyaBot",
           value="[Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
           inline=True
-      )
-      embed.add_field(
-          name="<a:cutestars:846625824538886214> Donaciones",
-          value="[Ko-fi](https://ko-fi.com/kurocat56)",
-          inline=False
-      )
-      embed.add_field(
-          name="<:wumpus_star:846611108784504872> Califícame en top.gg",
-          value="[Próximamente](https://top.gg/)",
-          inline=False
       )
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
       )
