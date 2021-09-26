@@ -113,7 +113,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       await ctx.send("<:okay:846612389046386689> Te he enviado mis enlaces de invitación", delete_after = 10)
       await ctx.author.send(embed=embed)
   
-  @commands.command(name="info", aliases=["botinfo", "info"])
+  @commands.command(name="about", aliases=["botinfo", "info"])
   async def about(self, context):
         """
         Información útil (y no tan útil) del bot.
