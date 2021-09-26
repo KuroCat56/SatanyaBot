@@ -139,7 +139,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
 
         embed = discord.Embed(
         title="¡Hola, soy SatanyaBot!",
-        description="Soy la primer bot de Discord en español y **opensource** desarrollada en Python. Recuerda que si quieres ver mis comandos usa **nya>help**",
+        description="🌸 SatanyaBot - la primer bot de Discord **open source y en español** desarrollada en Python.\n\nSatanyaBot nació con la idea de crear una alternativa de código abierto a los bots en español de Discord como Chocolat, Nekotina, Ruka y otros.\n\nRecuerda que si quieres ver mis comandos usa **nya>help**",
         color=0xfbf9fa,
         timestamp=datetime.utcnow()
         )
