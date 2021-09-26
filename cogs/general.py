@@ -123,8 +123,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       await ctx.send("Te he enviado mis enlaces de invitación <:SatanyaBot:858480664143331338>")
       await ctx.author.send(embed=embed)
   
-  @commands.command(name="info", aliases=["botinfo", "about"])
-  async def info(self, context):
+  @commands.command(name="info", aliases=["botinfo", "info"])
+  async def about(self, context):
         """
         Información útil (y no tan útil) del bot.
         """
@@ -264,7 +264,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   async def opensource(self, ctx):
     embed = discord.Embed(
         title="SatanyaBot apoya el open source y tú también deberías",
-        description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.\n<:satan_yeih:846553057999454219> Si deseas aportar ayuda y apoyo al proyecto revisa los siguientes enlaces: ",
+        description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.\n\n<:satan_yeih:846553057999454219> Si deseas aportar ayuda y apoyo al proyecto revisa los siguientes enlaces: ",
         color=0xfbf9fa
       )
     embed.add_field(
