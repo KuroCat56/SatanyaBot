@@ -264,22 +264,20 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   async def opensource(self, ctx):
     embed = discord.Embed(
         title="SatanyaBot apoya el open source y tú también deberías",
-        description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.",
-        color=0xfbf9fa,
-        timestamp=datetime.utcnow()
-      )
-    embed.set_author(
-        name=f"SatanyaBot | v{config.VERSION}",
-        icon_url = "https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473",
+        description="Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.\n<:satan_yeih:846553057999454219> Si deseas aportar ayuda y apoyo al proyecto revisa los siguientes enlaces: ",
+        color=0xfbf9fa
       )
     embed.add_field(
-        name="Enlaces",
-        value="[Github](https://github.com/KuroCat56/SatanyaBot) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=641723511)",
+        name="Desarrollo",
+        value="[Github](https://github.com/KuroCat56/SatanyaBot) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Trello](https://trello.com/b/Z432JC83)",
         inline=False
         )
-    embed.set_footer(
-        text=f"Solicitado por {ctx.message.author}"
+    embed.add_field(
+        name="Donaciones <a:cutestars:846625824538886214>",
+        value="[Ko-fi](https://ko-fi.com/kurocat56)",
+        inline=False
         )
+    embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
     await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
