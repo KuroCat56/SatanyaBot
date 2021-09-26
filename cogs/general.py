@@ -271,5 +271,25 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
     embed.set_thumbnail(url="https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473")
     await ctx.send(embed=embed)
 
+  @commands.command(aliases=["dn", "donation"])
+  async def donate(self, ctx: commands.Context):
+      """
+      Links de invitación de SatanyaBot y al server
+      """
+      embed = discord.Embed(
+          title="¿Te gustaría apoyar el desarrollo del proyecto?",
+          description="Todo el dinero que se invierte va directamente para mantener el VPS donde SatanyaBot se mantiene activa. Aportando tan poco como $1 ayudas a mantener a flote el proyecto.",
+          color=0xfbf9fa,
+      )
+      embed.add_field(
+          name="<:join:847940361937879051> Enlaces de donaciones",
+          value="[Ko-fi](https://ko-fi.com/kurocat56)",
+          inline=True
+      )
+      embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
+      )
+      await ctx.send("<:okay:846612389046386689> Te he enviado mis enlaces de invitación", delete_after = 10)
+      await ctx.author.send(embed=embed)
+
 def setup(bot: commands.Bot):
     bot.add_cog(general(bot))
