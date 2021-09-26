@@ -23,6 +23,7 @@ class ErrorHandler(commands.Cog):
                     await ctx.send(f'<:okaynt:846612437637660702> No encontré el comando **"{cmd}"**, ¿Quisiste decir **"{matches[0]}"**?', delete_after=10)
                 else:
                     await ctx.send(f'<:nope:846611758445625364> No encontré el comando **"{cmd}"**. Usa el comando de ayuda para saber que comandos están disponibles.', delete_after=10)
+                    return
             elif isinstance(error, commands.CommandOnCooldown):
                 message = f"⏳ Has usado este comando demasiado rápido. Intenta de nuevo en **{round(error.retry_after, 1)} segundos.**"
             elif isinstance(error, commands.MissingPermissions):
