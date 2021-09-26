@@ -43,6 +43,11 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
   async def remind(self, ctx, time, *, task):
     """
     (BETA)Intentaré recordarte cualquier cosa que necesites.
+
+    Ej.:
+    nya>remind 10m Hacer la tarea
+
+    Segundos (s), Minutos (m), Horas (h), Días (d)
     """
     def convert(time):
       pos = ['s', 'm', 'h', 'd']
