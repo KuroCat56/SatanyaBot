@@ -55,12 +55,12 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
     self.bot = bot
     bot.usage = 0
 
-    @commands.Cog.listener()
-    async def on_command(ctx):
-        try:
-            bot.usage[ctx.command.qualified_name] += 1
-        except KeyError:
-            bot.usage[ctx.command.qualified_name] = 1
+  @commands.Cog.listener()
+  async def on_command(self, ctx):
+    try:
+     self.bot.usage[ctx.command.qualified_name] += 1
+    except KeyError:
+     return
 
   #Comando de test/ping
   @commands.command(name="ping")
