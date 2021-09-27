@@ -154,7 +154,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         output = "\n".join(f"{k} ({v})" for k, v in serverlist.items())
         servers = discord.Embed(
             title=f'Servers ({len(guilds)})',
-            description=f"\n".join(output),
+            description=output,
             colour=0xfbf9fa,
         )
         await ctx.send(embed=servers)
