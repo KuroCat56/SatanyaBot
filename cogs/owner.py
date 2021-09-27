@@ -151,7 +151,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         guilds = [guild.name for guild in self.bot.guilds]
         servers = discord.Embed(
             title=f'Servers ({len(guilds)})',
-            description="\n".join(guilds),
+            description=f"({guilds.member_count})\n".join(guilds),
             colour=0xfbf9fa,
         )
         await ctx.send(embed=servers)
