@@ -153,8 +153,8 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         serverlist = dict(zip(guilds, member_count))
         output = "\n".join(f"{k} ({v})" for k, v in serverlist.items())
         servers = discord.Embed(
-            title=f'Servers ({len(output)})',
-            description=f"\n".join(guilds),
+            title=f'Servers ({len(guilds)})',
+            description=f"\n".join(output),
             colour=0xfbf9fa,
         )
         await ctx.send(embed=servers)
