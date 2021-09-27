@@ -53,7 +53,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   """
   def __init__(self, bot: commands.Bot):
     self.bot = bot
-    bot.usage = {}
+    bot.usage = 0
 
     @commands.Cog.listener()
     async def on_command(ctx):
