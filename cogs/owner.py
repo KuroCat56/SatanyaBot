@@ -108,18 +108,6 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         await ctx.reply(f"<:okay:846612389046386689> Recargué los siguientes cogs:\n {cogs}", mention_author=False)
 
     @commands.command()
-    @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
-    async def clear(self, ctx, number: int):
-        counter = 0
-        async for message in ctx.channel.history(limit=100):
-            if message.author.id == ctx.bot.user.id:
-                await message.delete()
-                counter += 1
-            if counter >= number:
-                break
-        await ctx.send(f"🧹 He borrado `{number}` de mis mensajes en este canal\n||Este mensaje se auto destruirá en 10s||", delete_after=10)
-
-    @commands.command()
     @commands.is_owner()
     async def memory(self, ctx):
       await ctx.send(f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.')

@@ -152,16 +152,6 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     embed.set_image(url="https://images.unsplash.com/photo-1555231955-348aa2312e19")
     await ctx.send(embed=embed)
 
-  # @commands.command(name="commands")
-  # @commands.guild_only()
-  # async def _commands(self, ctx):
-    # """
-    # ¿Quieres saber cuántos comandos tengo en mi código?
-    # """
-    # value=len([x.name for x in self.bot.commands]) #Variable extraída de AlexFlipnote/discord_bot.py/blob/master/cogs/info.py
-    # usable = len([await x.can_run(ctx) for x in self.bot.commands])
-    # await ctx.send(f"¿Mis comandos? Actualmente tengo **{value}** comandos en mi código fuente. Puedes utilizar **{usable}** (´ ω `♡)")
-
   @commands.command()
   @commands.guild_only()
   @commands.check_any(commands.is_owner(), is_guild_owner())
@@ -305,6 +295,21 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
       )
       await ctx.send(embed=embed)
 
+
+  @commands.command()
+  @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
+  async def clear(self, ctx, number: int):
+    """
+    Borra todos mis mensajes en el canal actual.
+    """
+    counter = 0
+    async for message in ctx.channel.history(limit=100):
+        if message.author.id == ctx.bot.user.id:
+            await message.delete()
+            counter += 1
+        if counter >= number:
+            break
+    await ctx.send(f"🧹 He borrado `{number}` de mis mensajes en este canal\n||Este mensaje se auto destruirá en 10s||", delete_after=10)
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
