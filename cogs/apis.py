@@ -3,6 +3,9 @@ from discord.ext import commands
 import requests
 import json
 import discord
+from pycoingecko import CoinGeckoAPI
+cg = CoinGeckoAPI()
+
 
 #API de Kaomojis
 def get_kao():
@@ -186,6 +189,18 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_coffee.set_image(url = coffee)
     em_coffee.set_footer(text= "☕ Powered by coffee.alexflipnote.dev")
     await ctx.reply(embed = em_coffee, mention_author=False)
+
+  @commands.command(name="cripto", aliases=["btc"])
+  async def cripto(self, ctx: commands.Context):
+    """
+    Cripto 
+    """
+    block = "`"*3
+    result = cg.get_price(ids='bitcoin,litecoin,ethereum', vs_currencies='usd,eur')
+    output = "\n".join(f"{k} : ${v.values()}" for k, v in result.items())
+    em_cripto = discord.Embed(color = 0x722927, description=f"{block}\n{output}\n{block}")
+    em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
+    await ctx.reply(embed = em_cripto, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
