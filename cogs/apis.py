@@ -61,11 +61,6 @@ def get_coffee():
   coffee = json_data['file']
   return (coffee)
 
-async def print_joke():
-  j = await Jokes() 
-  joke = await j.get_joke(joke_type="Any", response_format="txt", lang="es")
-  return (joke)
-
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
   Comandos que dependen de alguna API. Prueba todos para saber lo que hacen.
@@ -210,17 +205,6 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_cripto = discord.Embed(title = f"Precio actual de BTC: ${price.get('usd')}", color = 0xFFD356, description=f"{block}\n{output}\n{block}", timestamp=datetime.utcnow())
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
     await ctx.reply(embed = em_cripto, mention_author=False)
-
-  @commands.command(aliases=["chiste"])
-  async def jokes(self, ctx: commands.Context):
-    """
-    Chites buenos y malos
-    """
-
-    joke = print_joke()
-    em_joke = discord.Embed(title = f"{joke}", color = discord.Colour.random(), timestamp=datetime.utcnow())
-    em_joke.set_footer(text= "Powered by jokeapi")
-    await ctx.reply(embed = em_joke, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
