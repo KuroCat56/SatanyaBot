@@ -11,8 +11,11 @@ dagpi = Client(os.getenv('Dagpi'))
 
 class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
   """
-  Modificadores divertidos de imágenes
+  Filtros y modificadores divertidos de imágenes. ¡Descubre cada uno de ellos!
+  Etiqueta a otro usuario para aplicarle el filtro a su perfil.
   
+  Si algún comando no funciona con tu perfil es posible que la imagen sea demasiado grande como para enviarse.
+
   Cooldown: 10s per command
   """
   

@@ -14,7 +14,11 @@ reddit_api = praw.Reddit(client_id = private.reddit.client_id,
 
 class reddit(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
-  Comandos referentes a Reddit
+  Comandos referentes a subreddits.
+  Obtén los posts más interesantes de alguna subreddit.
+  Si alguna imagen no carga es porque es demasiado grande y Discord no es capaz de mostrarla.
+
+  Si te gustaría que se agregase una subreddit adicional contacta a mi creador o únete a mi servidor (nya>invite).
   
   Cooldown: 5s per command
   """

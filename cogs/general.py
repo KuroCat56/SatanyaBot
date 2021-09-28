@@ -49,6 +49,8 @@ lines = lines_of_code()
 class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
   """
   Comandos generales y comunes que todo bot tiene comúnmente.
+  Nada fuera de lo común.
+  
   Cooldown: 10s per command
   """
   def __init__(self, bot: commands.Bot):

@@ -194,7 +194,8 @@ def get_highfive():
 class rol(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   
   """
-  Reacciones de anime para rol y cosas divertidas
+  Reacciones de anime para rol y cosas divertidas.
+  Ten en cuenta que para algunos comandos tendrás que etiquetar a otros ||o puedes probar y no hacerlo para ver que pasa||.
   
   Cooldown: 5s per command
   """
