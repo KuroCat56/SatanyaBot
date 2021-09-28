@@ -31,8 +31,12 @@ eightballresponses = [
     "Muy dudoso."
 ]
 
-class funny(commands.Cog):
-  """Comando divertidos muy variados"""
+class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
+  """
+  Comandos divertidos muy variados. ¡Pruébalos todos!
+  
+  Cooldown: 5s per command
+  """
   def __init__(self, bot: commands.Bot):
     self.bot = bot
     
