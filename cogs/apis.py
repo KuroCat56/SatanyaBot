@@ -197,7 +197,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     Cripto 
     """
     block = "`"*3
-    result = cg.get_price(ids='ethereum,tether,cardano,dogecoin,monero', vs_currencies='usd')
+    result = cg.get_price(ids='ethereum,tether,cardano,dogecoin,monero,basic attention token', vs_currencies='usd')
     output = "\n".join(f"{k} : ${v.get('usd')}" for k, v in result.items())
     btc = cg.get_price('bitcoin', vs_currencies='usd')
     price = btc.get('bitcoin')
