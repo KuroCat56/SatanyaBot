@@ -6,6 +6,7 @@ import discord
 from datetime import datetime
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
+from jokeapi import Jokes
 
 
 #API de Kaomojis
@@ -203,6 +204,21 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     price = btc.get('bitcoin')
     em_cripto = discord.Embed(title = f"Precio actual de BTC: ${price.get('usd')}", color = 0xFFD356, description=f"{block}\n{output}\n{block}", timestamp=datetime.utcnow())
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
+    await ctx.reply(embed = em_cripto, mention_author=False)
+
+  @commands.command(name="joke", aliases=["chiste"])
+  async def joke(self, ctx: commands.Context):
+    """
+    Chites buenos y malos
+    """
+    def print_joke():
+      j = Jokes() 
+      joke = j.get_joke(joke_type="Any", response_format="txt", lang="es")
+      return (joke)
+
+    joke = print_joke()
+    em_cripto = discord.Embed(title = f"{joke}", color = discord.Colour.random(), timestamp=datetime.utcnow())
+    em_cripto.set_footer(text= "Powered by jokeapi")
     await ctx.reply(embed = em_cripto, mention_author=False)
 
 def setup(bot: commands.Bot):
