@@ -50,6 +50,12 @@ def get_shiba():
   shiba = json_data[0]
   return (shiba)
 
+def get_coffee():
+  response = requests.get("https://coffee.alexflipnote.dev/random.json")
+  json_data = json.loads(response.text)
+  coffee = json_data[0]
+  return (coffee)
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
   Comandos que dependen de alguna API. Prueba todos para saber lo que hacen.
@@ -169,6 +175,17 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_shiba.set_image(url = shiba)
     em_shiba.set_footer(text= "🐕 Powered by shibe.online")
     await ctx.reply(embed = em_shiba, mention_author=False)
+
+  @commands.command(name="coffee", aliases=["café"])
+  async def randomcoffee(self, ctx: commands.Context):
+    """
+    Imágenes aleatorias de tazas de café. ☕
+    """
+    coffee = get_coffee()
+    em_coffee = discord.Embed(color = 0x722927)
+    em_coffee.set_image(url = coffee)
+    em_coffee.set_footer(text= "☕ Powered by coffee.alexflipnote.dev")
+    await ctx.reply(embed = em_coffee, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
