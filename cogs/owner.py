@@ -159,5 +159,11 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         )
         await ctx.send(embed=servers)
 
+    @commands.command(aliases=["disconnect", "close", "stopbot"])
+    @commands.is_owner()
+    async def logout(self, ctx):
+        await ctx.send("Okay, hora de ir a mimir 💤💤💤")
+        await self.bot.logout()
+
 def setup(bot):
     bot.add_cog(OwnerCog(bot))
