@@ -196,8 +196,8 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     Cripto 
     """
     block = "`"*3
-    result = cg.get_price(ids='bitcoin,litecoin,ethereum', vs_currencies='usd,eur')
-    output = "\n".join(f"{k} : ${v.values()}" for k, v in result.items())
+    result = cg.get_price(ids='bitcoin,ethereum,tether,cardano,dogecoin,monero', vs_currencies='usd')
+    output = "\n".join(f"{k} : ${v.get('usd')}" for k, v in result.items())
     em_cripto = discord.Embed(color = 0x722927, description=f"{block}\n{output}\n{block}")
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
     await ctx.reply(embed = em_cripto, mention_author=False)
