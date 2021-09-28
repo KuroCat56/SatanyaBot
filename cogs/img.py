@@ -69,6 +69,23 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_ptpt, embed=embed, mention_author=False)
 
+  @commands.command(aliases=["trigger"])
+  async def triggered(self, ctx, member: discord.Member=None):
+    """
+    T R I G G E R E D
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
+      img_trgg = await dagpi.image_process(ImageFeatures.triggered(), url_trgg)
+      file_trgg = discord.File(fp=img_trgg.image,filename=f"triggered.{img_trgg.format}")
+      
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"attachment://triggered.{img_trgg.format}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+      await ctx.reply(file=file_trgg, embed=embed, mention_author=False)
+
   @commands.command()
   async def urss(self, ctx, member: discord.Member=None):
     """
@@ -663,20 +680,6 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar_url)
       await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command(aliases=["trigger"])
-  async def triggered(self, ctx, member: discord.Member=None):
-    """
-    T R I G G E R E D
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_trgg = str(member.avatar_url_as(static_format="png", size=1024))
-      
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://some-random-api.ml/canvas/triggered?avatar={ctx.author.avatar_url}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
