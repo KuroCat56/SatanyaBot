@@ -3,6 +3,7 @@ from discord.ext import commands
 import requests
 import json
 import discord
+from datetime import datetime
 from pycoingecko import CoinGeckoAPI
 cg = CoinGeckoAPI()
 
@@ -200,7 +201,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     output = "\n".join(f"{k} : ${v.get('usd')}" for k, v in result.items())
     btc = cg.get_price('bitcoin', vs_currencies='usd')
     price = btc.get('bitcoin')
-    em_cripto = discord.Embed(title = f"BTC: ${price.get('usd')}", color = 0xFFD356, description=f"{block}\n{output}\n{block}")
+    em_cripto = discord.Embed(title = f"Precio actual de BTC: ${price.get('usd')}", color = 0xFFD356, description=f"{block}\n{output}\n{block}", timestamp=datetime.utcnow())
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
     await ctx.reply(embed = em_cripto, mention_author=False)
 
