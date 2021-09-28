@@ -207,7 +207,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     await ctx.reply(embed = em_cripto, mention_author=False)
 
   @commands.command(aliases=["chiste"])
-  async def joke(self, ctx: commands.Context):
+  async def jokes(self, ctx: commands.Context):
     """
     Chites buenos y malos
     """
