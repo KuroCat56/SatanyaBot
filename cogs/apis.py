@@ -53,7 +53,7 @@ def get_shiba():
 def get_coffee():
   response = requests.get("https://coffee.alexflipnote.dev/random.json")
   json_data = json.loads(response.text)
-  coffee = json_data[0]
+  coffee = json_data['file']
   return (coffee)
 
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
