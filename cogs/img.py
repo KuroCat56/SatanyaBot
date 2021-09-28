@@ -545,5 +545,20 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_mgk, embed=embed, mention_author=False)
 
+  @commands.command()
+  async def hearts(self, ctx, member: discord.Member=None):
+    """
+    <3
+    """
+    if member is None:
+      member = ctx.author
+    async with ctx.typing():
+      url_hrts = str(member.avatar_url_as(static_format="png", size=1024))
+
+      embed = discord.Embed(color=ctx.author.color)
+      embed.set_image(url=f"https://api.devs-hub.xyz/hearts?image={url_hrts}")
+      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+      await ctx.reply(embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(img(bot))
