@@ -52,7 +52,7 @@ def get_shiba():
 
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
-  Comandos que requieren de alguna API
+  Comandos que dependen de alguna API. Prueba todos para saber lo que hacen.
   
   Cooldown: 5s per command
   """
@@ -121,7 +121,10 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     ¿Te gustan los Eevees?
     """
     eevee = get_eevee()
-    await ctx.reply(eevee, mention_author=False)
+    em_eevee = discord.Embed(color = 0xAF6357)
+    em_eevee.set_image(url = eevee)
+    em_eevee.set_footer(text= "Powered by PurrBotAPI", icon_url="https://docs.purrbot.site/assets/img/logo.png")
+    await ctx.reply(embed = em_eevee, mention_author=False)
 
   @commands.command(name="fox", aliases=["floof"])
   async def randomfox(self, ctx: commands.Context):
@@ -129,7 +132,10 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     Imágenes aleatorias de zorros. 🦊
     """
     fox = get_fox()
-    await ctx.reply(fox, mention_author=False)
+    em_fox = discord.Embed(color = 0xF98626)
+    em_fox.set_image(url = fox)
+    em_fox.set_footer(text= "🦊 Powered by randomfox.ca")
+    await ctx.reply(embed = em_fox, mention_author=False)
 
   @commands.command(name="dog", aliases=["woof"])
   async def randomdog(self, ctx: commands.Context):
@@ -137,6 +143,9 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     Imágenes aleatorias de perros. 🐶
     """
     dog = get_dog()
+    em_dog = discord.Embed(color = 0xC77768)
+    em_dog.set_image(url = dog)
+    em_dog.set_footer(text= "🐶 Powered by random.dog")
     await ctx.reply(dog, mention_author=False)
 
   @commands.command(name="cat", aliases=["meow"])
@@ -145,7 +154,10 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     Imágenes aleatorias de gatos. 🐱
     """
     cat = get_cat()
-    await ctx.reply(cat, mention_author=False)
+    em_cat = discord.Embed(color = 0xFFD356)
+    em_cat.set_image(url = cat)
+    em_cat.set_footer(text= "🐱 Powered by aws.random.cat")
+    await ctx.reply(embed = em_cat, mention_author=False)
 
   @commands.command(name="shiba", aliases=["inu"])
   async def randomshiba(self, ctx: commands.Context):
@@ -153,7 +165,10 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     Imágenes aleatorias de shibas inu. 🐕
     """
     shiba = get_shiba()
-    await ctx.reply(shiba, mention_author=False)
+    em_shiba = discord.Embed(color = 0xF6C436)
+    em_shiba.set_image(url = shiba)
+    em_shiba.set_footer(text= "🐕 Powered by shibe.online")
+    await ctx.reply(embed = em_shiba, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
