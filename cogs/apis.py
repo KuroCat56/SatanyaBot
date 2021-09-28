@@ -206,7 +206,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
     await ctx.reply(embed = em_cripto, mention_author=False)
 
-  @commands.command(name="joke", aliases=["chiste"])
+  @commands.command(aliases=["chiste"])
   async def joke(self, ctx: commands.Context):
     """
     Chites buenos y malos
