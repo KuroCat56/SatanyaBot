@@ -53,14 +53,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   """
   def __init__(self, bot: commands.Bot):
     self.bot = bot
-    bot.usage = 0
-
-  @commands.Cog.listener()
-  async def on_command(self, ctx):
-    try:
-     self.bot.usage[ctx.command.qualified_name] += 1
-    except KeyError:
-     return
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -211,7 +203,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
 
         embed.add_field(name='# Miembros', value=f'{total_members} totales', inline=True)
         embed.add_field(name='# Canales', value=f'{text + voice} totales', inline=True)
-        embed.add_field(name='Comandos usados desde el último reinicio:', value=self.bot.usage, inline=False)
         embed.add_field(
         name= "Cumpleaños 🍰",
         value="31/01/2021 | 09:50 AM",
