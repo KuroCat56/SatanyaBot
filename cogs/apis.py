@@ -146,7 +146,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_dog = discord.Embed(color = 0xC77768)
     em_dog.set_image(url = dog)
     em_dog.set_footer(text= "🐶 Powered by random.dog")
-    await ctx.reply(dog, mention_author=False)
+    await ctx.reply(embed = em_dog, mention_author=False)
 
   @commands.command(name="cat", aliases=["meow"])
   async def randomcat(self, ctx: commands.Context):
