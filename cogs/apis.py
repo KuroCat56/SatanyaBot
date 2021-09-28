@@ -61,6 +61,11 @@ def get_coffee():
   coffee = json_data['file']
   return (coffee)
 
+def print_joke():
+  j = Jokes() 
+  joke = j.get_joke(joke_type="Any", response_format="txt", lang="es")
+  return (joke)
+
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
   Comandos que dependen de alguna API. Prueba todos para saber lo que hacen.
@@ -211,10 +216,6 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     """
     Chites buenos y malos
     """
-    def print_joke():
-      j = Jokes() 
-      joke = j.get_joke(joke_type="Any", response_format="txt", lang="es")
-      return (joke)
 
     joke = print_joke()
     em_cripto = discord.Embed(title = f"{joke}", color = discord.Colour.random(), timestamp=datetime.utcnow())
