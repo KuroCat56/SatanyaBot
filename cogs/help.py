@@ -29,7 +29,7 @@ class HelpCommand(commands.HelpCommand):
       if command.help:
         embed.description = command.help
       
-      embed.add_field(name="Ejemplo", value=self.get_command_signature(command))
+      embed.add_field(name="Uso", value=self.get_command_signature(command))
       #embed.set_footer(text=self.footer())
       await self.get_destination().send(embed=embed)
 
