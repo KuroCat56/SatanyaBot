@@ -150,7 +150,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
     @commands.command(aliases=["disconnect", "close", "stopbot"])
     @commands.is_owner()
     async def logout(self, ctx):
-        await ctx.send("Okay, hora de ir a mimir 💤💤💤")
+        await ctx.send("Okay, hora de reiniciar 💤💤💤")
         await self.bot.logout()
 
 def setup(bot):
