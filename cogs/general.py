@@ -130,7 +130,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         block = "`"*3
 
         cpuUsage = psutil.cpu_percent(1)
-        ramUsage = int(psutil.virtual_memory().total - psutil.virtual_memory().available)
+        ramUsage = psutil.virtual_memory()[2]
 
         embed = discord.Embed(
         title="¡Hola, soy SatanyaBot!",
@@ -164,7 +164,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Uso de recursos:",
-        value=f"{ramUsage/1024/1024, 2} MB\n{cpuUsage}% CPU", #RAM
+        value=f"{ramUsage} % RAM\n{cpuUsage}% CPU", #RAM
         inline=True
         )
         embed.add_field(
