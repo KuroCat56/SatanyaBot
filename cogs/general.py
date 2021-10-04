@@ -164,7 +164,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Uso de recursos:",
-        value=f"{ramUsage} % RAM\n{cpuUsage}% CPU", #RAM
+        value=f"{ramUsage}% RAM\n{cpuUsage}% CPU", #RAM
         inline=True
         )
         embed.add_field(
