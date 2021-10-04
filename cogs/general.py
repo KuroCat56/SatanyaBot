@@ -3,7 +3,6 @@ import config
 from discord.ext import commands
 from datetime import datetime
 import psutil
-import humanize
 from os import getpid
 import pkg_resources
 import time
@@ -56,7 +55,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   """
   def __init__(self, bot: commands.Bot):
     self.bot = bot
-    self.process = psutil.Process()
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -131,9 +129,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         block = "`"*3
 
-        memoryUsage= self.process.memory_full_info().uss / 1024**2
-        humanize.naturalsize(memoryUsage)
-        cpuUsage= self.process.cpu_percent() / psutil.cpu_count()
+        cpuUsage = psutil.cpu_percent(interval=0.5)
+        ramUsage = int(psutil.virtual_memory().total - psutil.virtual_memory().available)
 
         embed = discord.Embed(
         title="¡Hola, soy SatanyaBot!",
@@ -167,7 +164,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Uso de memoria actual:",
-        value=f"{memoryUsage} RAM\n{cpuUsage}% CPU", #RAM
+        value=f"{ramUsage/1024/1024} MB\n{cpuUsage}%", #RAM
         inline=True
         )
         embed.add_field(
