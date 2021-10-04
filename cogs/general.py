@@ -2,7 +2,8 @@ import discord, platform
 import config
 from discord.ext import commands
 from datetime import datetime
-from psutil import Process
+import psutil
+import humanize
 from os import getpid
 import pkg_resources
 import time
@@ -55,6 +56,10 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   """
   def __init__(self, bot: commands.Bot):
     self.bot = bot
+    self.process = psutil.Process()
+    memoryUsage= self.process.memory_full_info().uss / 1024**2
+    humanize.naturalsize(memoryUsage)
+    cpuUsage= self.process.cpu_percent() / psutil.cpu_count()
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -161,7 +166,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Uso de memoria actual:",
-        value=f"{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB", #RAM
+        value=f"{self.memoryUsage} RAM\n{self.cpuUsage}% CPU", #RAM
         inline=True
         )
         embed.add_field(
