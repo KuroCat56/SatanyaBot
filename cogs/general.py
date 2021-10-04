@@ -57,9 +57,6 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
   def __init__(self, bot: commands.Bot):
     self.bot = bot
     self.process = psutil.Process()
-    memoryUsage= self.process.memory_full_info().uss / 1024**2
-    humanize.naturalsize(memoryUsage)
-    cpuUsage= self.process.cpu_percent() / psutil.cpu_count()
 
   #Comando de test/ping
   @commands.command(name="ping")
@@ -134,6 +131,10 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         block = "`"*3
 
+        memoryUsage= self.process.memory_full_info().uss / 1024**2
+        humanize.naturalsize(memoryUsage)
+        cpuUsage= self.process.cpu_percent() / psutil.cpu_count()
+
         embed = discord.Embed(
         title="¡Hola, soy SatanyaBot!",
         description="🌸 SatanyaBot - la primer bot de Discord **open source y en español** desarrollada en Python.\n\nSatanyaBot nació con la idea de crear una alternativa de código abierto a los bots en español de Discord como Chocolat, Nekotina, Ruka y otros.\n\nRecuerda que si quieres ver mis comandos usa **nya>help**",
@@ -166,7 +167,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         )
         embed.add_field(
         name="Uso de memoria actual:",
-        value=f"{self.memoryUsage} RAM\n{self.cpuUsage}% CPU", #RAM
+        value=f"{memoryUsage} RAM\n{cpuUsage}% CPU", #RAM
         inline=True
         )
         embed.add_field(
