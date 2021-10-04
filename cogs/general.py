@@ -129,7 +129,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         block = "`"*3
 
-        cpuUsage = psutil.cpu_percent(interval=0.5)
+        cpuUsage = psutil.cpu_percent(1)
         ramUsage = int(psutil.virtual_memory().total - psutil.virtual_memory().available)
 
         embed = discord.Embed(
@@ -163,8 +163,8 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         inline=True
         )
         embed.add_field(
-        name="Uso de memoria actual:",
-        value=f"{ramUsage/1024/1024} MB\n{cpuUsage}%", #RAM
+        name="Uso de recursos:",
+        value=f"{ramUsage/1024/1024, 2} MB\n{cpuUsage}% CPU", #RAM
         inline=True
         )
         embed.add_field(
