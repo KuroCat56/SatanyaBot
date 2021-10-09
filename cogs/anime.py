@@ -64,6 +64,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
 
       embed = discord.Embed(title = "Noticias más recientes de anime", color=discord.Color.random(), timestamp = datetime.utcnow())
       embed.set_thumbnail(url=news.images[0])
+      embed.set_footer(text = "Powered by Animec", icon_url = "https://animec.readthedocs.io/en/latest/_static/animec.png")
 
       for i in range(amount):
         embed.add_field(name = f"{i+1}) {titles[i]}", value = f"{descriptions[i][:200]}...\n[Link]({links[i]})", inline=False)
