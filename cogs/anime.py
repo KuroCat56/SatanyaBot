@@ -13,6 +13,10 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
 
     @commands.command(aliases=['anisearch', 'animesearch'])
     async def anime(self, ctx, *, name):
+      """
+      Búsqueda rápida de un anime.
+      Asegúrate de escribir bien el nombre de lo que buscas.
+      """
       async with ctx.typing():
         try:
           anime = animec.Anime(name)
@@ -28,6 +32,23 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         embed.add_field(name="📺 Tipo:", value=str(anime.type))
 
         embed.set_thumbnail(url=anime.poster)
+        await ctx.send(embed=embed)
+
+    @commands.command(aliases=['anichar', 'animecharacter'])
+    async def character(self, ctx, *, name):
+      """
+      Búsqueda rápida de un personaje de anime.
+      Asegúrate de escribir bien el nombre de lo que buscas.
+      """
+      async with ctx.typing():
+        try:
+          char = animec.Charsearch(name)
+        except:
+          await ctx.send(embed=discord.Embed(description = "<:notlikethis:868575058283597904> No encontré al personaje que estás buscando.", color=discord.Color.red()))
+          return
+        embed = discord.Embed(title=char.title, url=char.url, color=discord.Color.random())
+        embed.set_image(url=char.image_url)
+        embed.set_footer(text = ", ".join(char.references.keys())[:2])
         await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
