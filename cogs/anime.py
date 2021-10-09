@@ -62,7 +62,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       titles = news.titles
       descriptions = news.description
 
-      embed = discord.Embed(title = "Noticias más recientes de anime", color=discord.Color.random(), timestamp = datetime.datetime.utcnow())
+      embed = discord.Embed(title = "Noticias más recientes de anime", color=discord.Color.random(), timestamp = datetime.utcnow())
       embed.set_thumbnail(url=news.images[0])
 
       for i in range(amount):
