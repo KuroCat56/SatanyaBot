@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import animec
+from datetime import datetime
 
 class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
     """
@@ -50,6 +51,21 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         embed.set_image(url=char.image_url)
         embed.set_footer(text = ", ".join(list(char.references.keys())[:2]))
         await ctx.send(embed=embed)
+
+      @commands.command()
+      async def aninews(self, ctx, amount:int=3):
+        news = animec.Aninews(amount)
+        links = news.links
+        titles = news.titles
+        descriptions = news.description
+
+        embed = discord.Embed(title = "Noticias más recientes de anime", color=discord.Color.random(), timestamp = datetime.datetime.utcnow())
+        embed.set_thumbnail(url=news.images[0])
+
+        for i in range(amount):
+          embed.add_field(name = f"{i+1}) {titles[i]}", value = f"{descriptions[i][:200]}...\n[Link]({links[i]})", inline=False)
+
+        await ctx.send(embed = embed)
 
 def setup(bot: commands.Bot):
     bot.add_cog(anime(bot))
