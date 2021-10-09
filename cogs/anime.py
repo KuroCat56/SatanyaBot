@@ -13,6 +13,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       self.bot = bot
 
     @commands.command(aliases=['anisearch', 'animesearch'])
+    @commands.is_nsfw()
     async def anime(self, ctx, *, name):
       """
       Búsqueda rápida de un anime.
@@ -36,6 +37,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['anichar', 'animecharacter'])
+    @commands.is_nsfw()
     async def character(self, ctx, *, name):
       """
       Búsqueda rápida de un personaje de anime.
