@@ -38,6 +38,8 @@ class ErrorHandler(commands.Cog):
                 message = "<:doki_shrug:846548924890349627> Lo siento, pero este comando solo lo puede usar mi creador."
             elif isinstance(error, commands.BotMissingPermissions):
                 message = f"<:okaynt:846612437637660702> No puedo ejecutar este comando, me faltan ciertos permisos: {error.missing_perms}"
+            elif isinstance(error, commands.NSFWChannelRequired):
+                message = f"🔞 Este comando debe ser ejecutado en un canal NSFW."                
             else:
                 message = f"No tengo idea de lo que pasa.\n{block}\n{error}\n{block}"
         except Exception as e:
