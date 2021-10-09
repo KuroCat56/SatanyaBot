@@ -48,7 +48,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
           return
         embed = discord.Embed(title=char.title, url=char.url, color=discord.Color.random())
         embed.set_image(url=char.image_url)
-        embed.set_footer(text = ", ".join(char.references.keys())[:2])
+        embed.set_footer(text = ", ".join(list(char.references.keys())[:2]))
         await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
