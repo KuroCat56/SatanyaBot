@@ -19,15 +19,15 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       Búsqueda rápida de un anime.
       Asegúrate de escribir bien el nombre de lo que buscas.
       """
-      try:
-        anime = animec.Anime(name)
-      except:
-        await ctx.send(embed=discord.Embed(description = "<:notlikethis:868575058283597904> No encontré el anime que estás buscando.", color=discord.Color.red()))
-        return
+      async with ctx.typing():
+        try:
+          anime = animec.Anime(name)
+        except:
+          await ctx.send(embed=discord.Embed(description = "<:notlikethis:868575058283597904> No encontré el anime que estás buscando.", color=discord.Color.red()))
+          return
       if anime.is_nsfw():
         await ctx.send(embed=discord.Embed(description = "🔞 No puedes buscar animes nsfw con este comando.", color=discord.Color.red()))
       else:
-        async with ctx.typing():
           embed = discord.Embed(title=f"{anime.title_jp}\n{anime.title_english}", url=anime.url, description=f"{anime.description[:300]}...", color=discord.Color.random())
           #embed.add_field(name="#️⃣ Episodios:", value=(anime.episodes))
           embed.add_field(name="👉 Clasificación:", value=str(anime.rating))
