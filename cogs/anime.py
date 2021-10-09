@@ -18,11 +18,11 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       except:
         await ctx.send(embed=discord.Embed(description = "<:notlikethis:868575058283597904> No encontré el anime que estás buscando.", color=discord.Color.red()))
         return
-      embed = discord.Embed(title=f"{anime.title_english}", url=anime.url, description=f"{anime.description[:200]}...", color=discord.Color.random())
-      embed.add_field(name="#️⃣ Episodios:", value=str(anime.episodes()))
-      embed.add_field(name="📊 Calificación:", value=str(anime.rating()))
-      embed.add_field(name="🔎 Estado:", value=str(anime.status()))
-      embed.add_field(name="🏷️ Género:", value=str(anime.type()))
+      embed = discord.Embed(title=f"{anime.title_jp}\n{anime.title_english}", url=anime.url, description=f"{anime.description[:200]}...", color=discord.Color.random())
+      embed.add_field(name="#️⃣ Episodios:", value=str(anime.episodes))
+      embed.add_field(name="📊 Calificación:", value=str(anime.rating))
+      embed.add_field(name="🔎 Estado:", value=str(anime.status))
+      embed.add_field(name="🏷️ Género:", value=str(anime.type))
       embed.set_thumbnail(url=anime.poster)
       await ctx.send(embed=embed)
 
