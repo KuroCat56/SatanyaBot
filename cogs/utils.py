@@ -326,7 +326,6 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
         color=ctx.author.color,
         timestamp=ctx.message.created_at
     )
-    embed.set_footer(text=ctx.author, icon_url=ctx.author.display_avatar.url)
     if amount > 50:
         embed.title = "No puedo borrar +50 de mensajes."
         return await ctx.send(embed=embed, delete_after=5)
