@@ -323,7 +323,7 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     Borra x cantidad de mensajes en el canal actual.
     """
     embed = discord.Embed(
-        color=self.bot.color,
+        color=self.author.color,
         timestamp=ctx.message.created_at
     )
     embed.set_footer(text=ctx.author, icon_url=ctx.author.display_avatar.url)
