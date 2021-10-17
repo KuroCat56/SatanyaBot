@@ -309,7 +309,12 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
             counter += 1
         if counter >= number:
             break
-    await ctx.send(f"🧹 He borrado `{number}` de mis mensajes en este canal\n||Este mensaje se auto destruirá en 10s||", delete_after=10)
+    embed = discord.Embed(
+      title = f"🧹 He borrado `{number}` de mis mensajes en este canal",
+      description = f"",
+      color = ctx.author.color
+      )
+    await ctx.send(embed=embed, delete_after=10)
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
