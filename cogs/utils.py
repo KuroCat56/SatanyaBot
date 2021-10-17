@@ -318,12 +318,12 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
 
   @commands.command(name="purge", aliases=["pu"])
   @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
-  async def purge(self, ctx:commands.Context, *, amount:int):
+  async def purge(self, ctx, *, amount:int):
     """
     Borra x cantidad de mensajes en el canal actual.
     """
     embed = discord.Embed(
-        color=self.author.color,
+        color=ctx.author.color,
         timestamp=ctx.message.created_at
     )
     embed.set_footer(text=ctx.author, icon_url=ctx.author.display_avatar.url)
