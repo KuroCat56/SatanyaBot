@@ -102,7 +102,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       await ctx.reply(embed = embed, mention_author=False)
 
     @commands.command(name="waifu")
-    async def waifu(self, ctx: commands.Context):
+    async def maid(self, ctx: commands.Context):
       """
       Imágenes aleatorias de maids. 🎀
       """
