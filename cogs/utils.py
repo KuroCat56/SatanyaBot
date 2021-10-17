@@ -316,5 +316,23 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
       )
     await ctx.send(embed=embed, delete_after=10)
 
+  @commands.command(name="purge", aliases=["pu"])
+  @commands.check_any(commands.is_owner(), commands.has_permissions(manage_messages=True))
+  async def purge(self, ctx:commands.Context, *, amount:int):
+    """
+    Borra x cantidad de mensajes en el canal actual.
+    """
+    embed = discord.Embed(
+        color=self.bot.color,
+        timestamp=ctx.message.created_at
+    )
+    embed.set_footer(text=ctx.author, icon_url=ctx.author.display_avatar.url)
+    if amount > 50:
+        embed.title = "No puedo borrar +50 de mensajes."
+        return await ctx.send(embed=embed, delete_after=5)
+    embed.title = f"Borrados {amount} mensajes en este canal."
+    await ctx.channel.purge(limit=amount+1)
+    await ctx.send(embed=embed, delete_after=5)
+
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
