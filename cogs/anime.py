@@ -101,7 +101,7 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       embed.set_footer(text= "✨ Powered by waifu.im")
       await ctx.reply(embed = embed, mention_author=False)
 
-    @commands.command(name="waifu")
+    @commands.command(name="maid")
     async def maid(self, ctx: commands.Context):
       """
       Imágenes aleatorias de maids. 🎀
