@@ -1,7 +1,15 @@
 import discord
 from discord.ext import commands
 import animec
+import requests
+import json
 from datetime import datetime
+
+def get_waifu():
+    response = requests.get("https://api.waifu.im/sfw/waifu/")
+    json_data = json.loads(response.text)
+    waifu_url = json_data['tags'][0]['images'][0]['url']
+    return waifu_url
 
 class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
     """
@@ -75,6 +83,17 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
         embed.add_field(name = f"{i+1}) {titles[i]}", value = f"{descriptions[i][:200]}...\n[Link]({links[i]})", inline=False)
 
       await ctx.send(embed = embed)
+
+    @commands.command(name="waifu")
+    async def waifu(self, ctx: commands.Context):
+      """
+      Imágenes aleatorias de waifus. ✨
+      """
+      waifu = get_waifu()
+      embed = discord.Embed(color = discord.Color.random())
+      embed.set_image(url = waifu)
+      embed.set_footer(text= "✨ Powered by waifu.im")
+      await ctx.reply(embed = embed, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(anime(bot))
