@@ -11,6 +11,12 @@ def get_waifu():
     waifu_url = json_data['tags'][0]['images'][0]['url']
     return waifu_url
 
+def get_maid():
+    response = requests.get("https://api.waifu.im/sfw/maid/")
+    json_data = json.loads(response.text)
+    waifu_maid = json_data['tags'][0]['images'][0]['url']
+    return waifu_maid
+
 class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, commands.BucketType.user)}):
     """
     Comandos relacionados a cosas de anime.
@@ -93,6 +99,17 @@ class anime(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, co
       embed = discord.Embed(color = discord.Color.random())
       embed.set_image(url = waifu)
       embed.set_footer(text= "✨ Powered by waifu.im")
+      await ctx.reply(embed = embed, mention_author=False)
+
+    @commands.command(name="waifu")
+    async def waifu(self, ctx: commands.Context):
+      """
+      Imágenes aleatorias de maids. 🎀
+      """
+      maid = get_maid()
+      embed = discord.Embed(color = discord.Color.random())
+      embed.set_image(url = maid)
+      embed.set_footer(text= "🎀 Powered by waifu.im")
       await ctx.reply(embed = embed, mention_author=False)
 
 def setup(bot: commands.Bot):
