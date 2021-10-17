@@ -220,7 +220,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         ) 
         embed.add_field(
         name= "Top.gg <:wumpus_star:846611108784504872>",
-        value="[Próximamente](https://top.gg/)",
+        value="[Vota por mi](https://top.gg/bot/805589802484760577)",
         inline=True
         )
         embed.add_field(
@@ -294,6 +294,26 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
       embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
       )
       await ctx.send("<:okay:846612389046386689> Te he enviado mis enlaces de donación", delete_after = 10)
+      await ctx.author.send(embed=embed)
+
+  @commands.command(aliases=["topgg"])
+  async def vote(self, ctx: commands.Context):
+      """
+      Perfil de SatanyaBot en top.gg
+      """
+      embed = discord.Embed(
+          title="¡Ayúdame a crecer en top.gg",
+          description="Si te gustaría ayudar al proyecto más allá de aportar donaciones puedes ayudar a calificar a SatanyaBot en la plataforma de top.gg para que sea mucho más conocida.",
+          color=0xfbf9fa,
+      )
+      embed.add_field(
+          name="<:wumpus_star:846611108784504872> SatanyaBot en top.gg",
+          value="[Top.gg](https://top.gg/bot/805589802484760577)",
+          inline=True
+      )
+      embed.set_image(url="https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290"
+      )
+      await ctx.send("<:okay:846612389046386689> Te he enviado mi perfil de top.gg", delete_after = 10)
       await ctx.author.send(embed=embed)
 
 def setup(bot: commands.Bot):
