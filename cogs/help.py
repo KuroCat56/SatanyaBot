@@ -4,7 +4,7 @@ import config
 
 class HelpCommand(commands.HelpCommand):
     color = 0xfbf9fa
-    NEWS = "Prueba los nuevos comandos de anime (✧ω✧)\n"
+    NEWS = "Ya me puedes encontrar en top.gg (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\n"
 
     def footer(self):
       return f"{self.clean_prefix}{self.invoked_with} [comando] para más información."

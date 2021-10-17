@@ -144,7 +144,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         embed.add_field(
         name="Noticias:",
-        value=f"{block}fix\nAhora tengo comandos para buscar anime ヽ(*・ω・)ﾉ\n{block}",
+        value=f"{block}fix\n¡Ahora me puede encontrar en top.gg! nya>vote(〃＾▽＾〃)\n{block}",
         inline=False
         )
         embed.add_field(
