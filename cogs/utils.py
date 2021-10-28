@@ -6,6 +6,7 @@ import random
 import calendar
 from googlesearch import search
 from googletrans import Translator
+import math
 
 class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, commands.BucketType.user)}):
   """
@@ -332,6 +333,15 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     embed.title = f"Borrados {amount} mensajes en este canal."
     await ctx.channel.purge(limit=amount+1)
     await ctx.send(embed=embed, delete_after=5)
+
+  @commands.command(name="suma", aliases=["add"])
+  async def suma(self, ctx, left:float, right:float):
+    """
+    Suma dos números entre si.
+    """
+    result = left + right
+    embed = discord.Embed(description=result, color=discord.Colour.random())
+    await ctx.reply(embed=embed, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
