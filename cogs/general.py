@@ -144,7 +144,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         
         embed.add_field(
         name="Noticias:",
-        value=f"{block}fix\n¡Ahora puedes encontrarme en top.gg! nya>vote(〃＾▽＾〃)\n{block}",
+        value=f"{block}fix\n📰 ¡Ahora puedes encontrarme en top.gg! nya>vote(〃＾▽＾〃)\n{block}",
         inline=False
         )
         embed.add_field(
@@ -210,7 +210,7 @@ class general(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, 
         embed.add_field(name='# Canales', value=f'{text + voice} totales', inline=True)
         embed.add_field(
         name= "Cumpleaños 🍰",
-        value="31/01/2021 | 09:50 AM",
+        value="31/01/2021 | 18:06",
         inline=False
         )
         embed.add_field(
