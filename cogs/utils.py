@@ -343,5 +343,50 @@ class utils(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 15, co
     embed = discord.Embed(description=result, color=discord.Colour.random())
     await ctx.reply(embed=embed, mention_author=False)
 
+  @commands.command(name="resta", aliases=["substract"])
+  async def resta(self, ctx, left:float, right:float):
+    """
+    Resta de dos números entre si.
+    """
+    result = left - right
+    embed = discord.Embed(description=result, color=discord.Colour.random())
+    await ctx.reply(embed=embed, mention_author=False)
+
+  @commands.command(name="multiplicar", aliases=["mult", "multiply"])
+  async def multiplicar(self, ctx, left:float, right:float):
+    """
+    Multipla dos números entre si.
+    """
+    result = left * right
+    embed = discord.Embed(description=result, color=discord.Colour.random())
+    await ctx.reply(embed=embed, mention_author=False)
+
+  @commands.command(name="dividir", aliases=["divide"])
+  async def dividir(self, ctx, left:float, right:float):
+    """
+    Divide entre dos números entre si.
+    """
+    result = left / right
+    embed = discord.Embed(description=result, color=discord.Colour.random())
+    await ctx.reply(embed=embed, mention_author=False)
+
+  @commands.command(name="square", aliases=["cuadrado"])
+  async def square(self, ctx, number):
+    """
+    Cuadrado de un número.
+    """
+    result = float(number) * float(number)
+    embed = discord.Embed(description=result, color=discord.Colour.random())
+    await ctx.reply(embed=embed, mention_author=False)
+
+  @commands.command(name="squareroot", aliases=["raíz"])
+  async def squareroot(self, ctx, number:float):
+    """
+    Raíz cuadrada de un número.
+    """
+    result = math.sqrt(number)
+    embed = discord.Embed(description=result, color=discord.Colour.random())
+    await ctx.reply(embed=embed, mention_author=False)
+
 def setup(bot: commands.Bot):
     bot.add_cog(utils(bot))
