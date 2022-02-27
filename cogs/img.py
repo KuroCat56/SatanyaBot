@@ -545,140 +545,140 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
       embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
       await ctx.reply(file=file_mgk, embed=embed, mention_author=False)
 
-  @commands.command()
-  async def hearts(self, ctx, member: discord.Member=None):
-    """
-    <3
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_hrts = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def hearts(self, ctx, member: discord.Member=None):
+  #   """
+  #   <3
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_hrts = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/hearts?image={url_hrts}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/hearts?image={url_hrts}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def simp(self, ctx, member: discord.Member=None):
-    """
-    Certified simp moment
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_smp = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def simp(self, ctx, member: discord.Member=None):
+  #   """
+  #   Certified simp moment
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_smp = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/simp?image={url_smp}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/simp?image={url_smp}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def like(self, ctx, member: discord.Member=None):
-    """
-    [Everyone liked that]
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_lk = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def like(self, ctx, member: discord.Member=None):
+  #   """
+  #   [Everyone liked that]
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_lk = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/like?image={url_lk}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/like?image={url_lk}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def joke(self, ctx, member: discord.Member=None):
-    """
-    Joke over your head
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_jk = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def joke(self, ctx, member: discord.Member=None):
+  #   """
+  #   Joke over your head
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_jk = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/joke-over-head?image={url_jk}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/joke-over-head?image={url_jk}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def beautiful(self, ctx, member: discord.Member=None):
-    """
-    Oh this, this is beautiful
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_btfl = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def beautiful(self, ctx, member: discord.Member=None):
+  #   """
+  #   Oh this, this is beautiful
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_btfl = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/beautiful?image={url_btfl}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/beautiful?image={url_btfl}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def gun(self, ctx, member: discord.Member=None):
-    """
-    Plomo o plata
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_gn = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def gun(self, ctx, member: discord.Member=None):
+  #   """
+  #   Plomo o plata
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_gn = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/gun?image={url_gn}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/gun?image={url_gn}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def grab(self, ctx, member: discord.Member=None):
-    """
-    ¡Ven aquí!
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_grb = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def grab(self, ctx, member: discord.Member=None):
+  #   """
+  #   ¡Ven aquí!
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_grb = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/grab?image={url_grb}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/grab?image={url_grb}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def rip(self, ctx, member: discord.Member=None):
-    """
-    Rest in Peace
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_rp = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def rip(self, ctx, member: discord.Member=None):
+  #   """
+  #   Rest in Peace
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_rp = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.devs-hub.xyz/rip?image={url_rp}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.devs-hub.xyz/rip?image={url_rp}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def horny(self, ctx, member: discord.Member=None):
-    """
-    Licencia para estar horny
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_hrn = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def horny(self, ctx, member: discord.Member=None):
+  #   """
+  #   Licencia para estar horny
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_hrn = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://some-random-api.ml/canvas/horny?avatar={url_hrn}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://some-random-api.ml/canvas/horny?avatar={url_hrn}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
 
 def setup(bot: commands.Bot):
