@@ -236,7 +236,7 @@ class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
         await ctx.send(embed=embed)
         return
 
-  @commands.command(aliases=['oogway'])
+  @commands.command(aliases=['oog'])
   async def oogway(self, ctx, *, msg: str):
     """
     Como dice el maestro Oogway
