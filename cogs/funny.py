@@ -236,5 +236,17 @@ class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
         await ctx.send(embed=embed)
         return
 
+  @commands.command(aliases=['oogway'])
+  async def oogway(self, ctx, *, msg: str):
+    """
+    Como dice el maestro Oogway
+    """
+    msg.replace(" ", "+")
+    async with ctx.typing():
+      em_oo = discord.Embed(color = ctx.author.color)
+      em_oo.set_image(url=f"https://api.popcat.xyz/oogway?text={msg}")
+      em_oo.set_footer(text="🐱 Powered by Pop Cat API")
+    await ctx.send(embed = em_oo)
+
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
