@@ -248,5 +248,17 @@ class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       em_oo.set_footer(text="🐱 Powered by Pop Cat API")
     await ctx.send(embed = em_oo)
 
+  @commands.command(aliases=['sad'])
+  async def sadcat(self, ctx, *, msg: str):
+    """
+    Demuestra que andas triste con un meme
+    """
+    msg = msg.replace(" ", "+")
+    async with ctx.typing():
+      em_sadcat = discord.Embed(color = ctx.author.color)
+      em_sadcat.set_image(url=f"https://api.popcat.xyz/sadcat?text={msg}")
+      em_sadcat.set_footer(text="🐱 Powered by Pop Cat API")
+    await ctx.send(embed = em_sadcat)
+
 def setup(bot: commands.Bot):
     bot.add_cog(funny(bot))
