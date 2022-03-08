@@ -248,7 +248,7 @@ class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
       em_oo.set_footer(text="🐱 Powered by Pop Cat API")
     await ctx.send(embed = em_oo)
 
-  @commands.command(aliases=['sad'])
+  @commands.command(aliases=['gatosad'])
   async def sadcat(self, ctx, *, msg: str):
     """
     Demuestra que andas triste con un meme
