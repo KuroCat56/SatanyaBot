@@ -243,6 +243,7 @@ class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     """
     message = ctx.message.content
     message = message.lstrip(">>nya>@SatanyaBotSatanya")
+    message.replace(" ", "+")
 
     async with ctx.typing():
       em_oo = discord.Embed(color = ctx.author.color)
