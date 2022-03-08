@@ -221,7 +221,7 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     ¿Buscas colores? Toma uno
     """
     hex, name, img = get_color()
-    em_color = discord.Embed(title = f"🎨 Color aleatorio elegido: {name}", color = hex)
+    em_color = discord.Embed(title = f"🎨 Color aleatorio elegido: {name}", color = "0x"+hex)
     em_color.set_image(url = img)
     em_color.set_footer(text="🐱 Powered by Pop Cat API")
     await ctx.reply(embed = em_color, mention_author=False)
