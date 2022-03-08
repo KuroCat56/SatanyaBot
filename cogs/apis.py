@@ -1,4 +1,5 @@
 import os
+from cogs.img import img
 from discord.ext import commands
 import requests
 import json
@@ -60,6 +61,14 @@ def get_coffee():
   json_data = json.loads(response.text)
   coffee = json_data['file']
   return (coffee)
+
+def get_color():
+  response = requests.get("https://api.popcat.xyz/randomcolor")
+  json_data = json.loads(response.text)
+  hex = json_data['hex']
+  name = json_data['name']
+  image = json_data["image"]
+  return hex, name, image
 
 class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, commands.BucketType.user)}):
   """
@@ -205,6 +214,17 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_cripto = discord.Embed(title = f"Precio actual de BTC: ${price.get('usd')}", color = 0xFFD356, description=f"{block}\n{output}\n{block}", timestamp=datetime.utcnow())
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
     await ctx.reply(embed = em_cripto, mention_author=False)
+
+  @commands.command(name="randomcolor", aliases=["racolor"])
+  async def randomcolor(self, ctx: commands.Context):
+    """
+    ¿Buscas colores? Toma uno
+    """
+    hex, name, img = get_color()
+    em_color = discord.Embed(title = f"🎨 Color aleatorio elegido: {name}", color = hex)
+    em_color.set_image(url = img)
+    em_color.set_footer(text="🐱 Powered by Pop Cat API")
+    await ctx.reply(embed = em_color, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
