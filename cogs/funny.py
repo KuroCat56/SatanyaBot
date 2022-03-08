@@ -241,7 +241,7 @@ class funny(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, com
     """
     Como dice el maestro Oogway
     """
-    msg.replace(" ", "+")
+    msg = msg.replace(" ", "+")
     async with ctx.typing():
       em_oo = discord.Embed(color = ctx.author.color)
       em_oo.set_image(url=f"https://api.popcat.xyz/oogway?text={msg}")
