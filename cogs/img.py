@@ -620,20 +620,20 @@ class img(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 10, comm
   #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
   #     await ctx.reply(embed=embed, mention_author=False)
 
-  @commands.command()
-  async def gun(self, ctx, member: discord.Member=None):
-    """
-    Plomo o plata
-    """
-    if member is None:
-      member = ctx.author
-    async with ctx.typing():
-      url_gn = str(member.avatar_url_as(static_format="png", size=1024))
+  # @commands.command()
+  # async def gun(self, ctx, member: discord.Member=None):
+  #   """
+  #   Plomo o plata
+  #   """
+  #   if member is None:
+  #     member = ctx.author
+  #   async with ctx.typing():
+  #     url_gn = str(member.avatar_url_as(static_format="png", size=1024))
 
-      embed = discord.Embed(color=ctx.author.color)
-      embed.set_image(url=f"https://api.popcat.xyz/gun?image={url_gn}")
-      embed.set_footer(text=f"Solicitado por {ctx.message.author} │ Pop Cat API", icon_url=member.avatar_url)
-      await ctx.reply(embed=embed, mention_author=False)
+  #     embed = discord.Embed(color=ctx.author.color)
+  #     embed.set_image(url=f"https://api.popcat.xyz/gun?image={url_gn}")
+  #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ Pop Cat API", icon_url=member.avatar_url)
+  #     await ctx.reply(embed=embed, mention_author=False)
 
   # @commands.command()
   # async def grab(self, ctx, member: discord.Member=None):

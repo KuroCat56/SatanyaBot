@@ -215,16 +215,16 @@ class apis(commands.Cog, command_attrs={'cooldown': commands.Cooldown(1, 5, comm
     em_cripto.set_footer(text= "🦎 Powered by coingecko.com")
     await ctx.reply(embed = em_cripto, mention_author=False)
 
-  @commands.command(name="randomcolor", aliases=["racolor"])
-  async def randomcolor(self, ctx: commands.Context):
-    """
-    ¿Buscas colores? Toma uno
-    """
-    hex, name, img = get_color()
-    em_color = discord.Embed(title = f"🎨 Color aleatorio elegido: {name} #{hex}", color = ctx.author.color)
-    em_color.set_image(url = img)
-    em_color.set_footer(text="🐱 Powered by Pop Cat API")
-    await ctx.reply(embed = em_color, mention_author=False)
+  # @commands.command(name="randomcolor", aliases=["racolor"])
+  # async def randomcolor(self, ctx: commands.Context):
+  #   """
+  #   ¿Buscas colores? Toma uno
+  #   """
+  #   hex, name, img = get_color()
+  #   em_color = discord.Embed(title = f"🎨 Color aleatorio elegido: {name} #{hex}", color = ctx.author.color)
+  #   em_color.set_image(url = img)
+  #   em_color.set_footer(text="🐱 Powered by Pop Cat API")
+  #   await ctx.reply(embed = em_color, mention_author=False)
 
 def setup(bot: commands.Bot):
     bot.add_cog(apis(bot))
