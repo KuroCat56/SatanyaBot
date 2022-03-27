@@ -22,7 +22,7 @@ def get_prefix(bot, message):
     # If we are in a guild, we allow for the user to mention us or use any of the prefixes in our list.
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
-bot = commands.Bot(command_prefix=get_prefix, intents=intents)
+bot = commands.Bot(command_prefix=get_prefix, intents=intents, allowed_mentions=discord.AllowedMentions=(roles=False, users=True, everyone=False, replied_user=True))
 bot.launch_time = datetime.utcnow()
 
 #Busca todos los cogs y los carga al iniciar
