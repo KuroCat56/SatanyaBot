@@ -1,5 +1,4 @@
 from discord.ext import commands
-import datetime
 from os import getpid
 from psutil import Process
 import discord
