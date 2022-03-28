@@ -1,4 +1,5 @@
 from discord.ext import commands
+import datetime
 from os import getpid
 from psutil import Process
 import discord
@@ -19,7 +20,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         Remember to use dot path. e.g: cogs.owner"""
 
         try:
-            self.bot.load_extension(cog)
+            await self.bot.load_extension(cog)
         except Exception as e:
             await ctx.reply(
                 f"<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}",
@@ -38,7 +39,7 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         Remember to use dot path. e.g: cogs.owner"""
 
         try:
-            self.bot.unload_extension(cog)
+            await self.bot.unload_extension(cog)
         except Exception as e:
             await ctx.reply(
                 f"<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}",
@@ -57,8 +58,8 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         Remember to use dot path. e.g: cogs.owner"""
 
         try:
-            self.bot.unload_extension(cog)
-            self.bot.load_extension(cog)
+            await self.bot.unload_extension(cog)
+            await self.bot.load_extension(cog)
         except Exception as e:
             await ctx.reply(
                 f"<:nope:846611758445625364> **`ERROR:`** {type(e).__name__} - {e}",
@@ -78,8 +79,8 @@ class OwnerCog(commands.Cog, command_attrs=dict(hidden=True)):
         for filename in os.listdir("./cogs"):
             if filename.endswith(".py"):
                 try:
-                    self.bot.unload_extension(f"cogs.{filename[:-3]}")
-                    self.bot.load_extension(f"cogs.{filename[:-3]}")
+                    await self.bot.unload_extension(f"cogs.{filename[:-3]}")
+                    await self.bot.load_extension(f"cogs.{filename[:-3]}")
 
                     cogs.append(f"{filename}")
                 except Exception as error:
