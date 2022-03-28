@@ -36,7 +36,11 @@ eightballresponses = [
 
 class funny(
     commands.Cog,
-    command_attrs={"cooldown": commands.CooldownMapping.from_cooldown(1, 5, commands.BucketType.user)},
+    command_attrs={
+        "cooldown": commands.CooldownMapping.from_cooldown(
+            1, 5, commands.BucketType.user
+        )
+    },
 ):
     """
     Comandos divertidos muy variados. ¡Pruébalos todos!
@@ -230,9 +234,7 @@ class funny(
         dado_3 = random.randint(1, 6)
 
         try:
-            reaction, user = await self.bot.wait_for(
-                "reaction_add", check=check, timeout=10
-            )
+            reaction = await self.bot.wait_for("reaction_add", check=check, timeout=10)
         except asyncio.TimeoutError:
             await message.edit(
                 content="⌛ Tardaste mucho en decidir, vuelve a intentarlo."

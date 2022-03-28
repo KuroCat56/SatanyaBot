@@ -4,6 +4,7 @@ import discord
 import secrets
 import alexflipnote
 
+
 class apis(
     commands.Cog,
     command_attrs={
@@ -12,8 +13,6 @@ class apis(
         )
     },
 ):
-
-
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.alex = alexflipnote.Client()

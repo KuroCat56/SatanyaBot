@@ -8,6 +8,7 @@ import pkg_resources
 import psutil
 from discord.ext import commands
 
+
 class general(
     commands.Cog,
     command_attrs={

@@ -10,7 +10,7 @@ reddit_api = praw.Reddit(
     client_secret=private.reddit.secret,
     username=private.reddit.username,
     password=private.reddit.password,
-    user_agent=private.reddit.user_agent
+    user_agent=private.reddit.user_agent,
 )
 
 
