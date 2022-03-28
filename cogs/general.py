@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import platform
 import time
 from datetime import datetime
