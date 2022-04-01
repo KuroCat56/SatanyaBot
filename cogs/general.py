@@ -141,7 +141,7 @@ class general(
         )
         embed.add_field(
             name="Creador y Colaboradores:",
-            value="[KuroCat#4816](https://linktr.ee/KuroCat56) | [igna#1839](https://igna.ooo)",
+            value="[KuroCat#4816](https://linktr.ee/KuroCat56) | [igna](https://igna.ooo)",
             inline=False,
         )
         embed.add_field(
