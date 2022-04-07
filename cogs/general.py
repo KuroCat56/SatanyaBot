@@ -94,7 +94,7 @@ class general(
         )
         embed.add_field(
             name="<:join:847940361937879051> Link SatanyaBot",
-            value="[Invítame]https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=137442610369)",
+            value="[Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=137442610369)",
             inline=True,
         )
         embed.set_image(
