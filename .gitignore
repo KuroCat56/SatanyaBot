@@ -6,3 +6,4 @@ private
 .env
 venv/
 .venv/
+.vscode/settings.json
