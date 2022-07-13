@@ -1,14 +1,15 @@
-import discord
-from discord.ext import commands
-import animec
-import waifuim
 from datetime import datetime
+
+import animec
+import discord
+import waifuim
+from discord.ext import commands
 
 
 class anime(
     commands.Cog,
     command_attrs={
-        "cooldown": commands.CooldownMapping.from_cooldown(
+        'cooldown': commands.CooldownMapping.from_cooldown(
             1, 10, commands.BucketType.user
         )
     },
@@ -23,7 +24,7 @@ class anime(
         self.bot = bot
         self.waifu = waifuim.WaifuAioClient()
 
-    @commands.command(aliases=["anisearch", "animesearch"])
+    @commands.command(aliases=['anisearch', 'animesearch'])
     # @commands.is_nsfw()
     async def anime(self, ctx, *, name):
         """
@@ -36,7 +37,7 @@ class anime(
             except:
                 await ctx.send(
                     embed=discord.Embed(
-                        description="<:notlikethis:868575058283597904> No encontré el anime que estás buscando.",
+                        description='<:notlikethis:868575058283597904> No encontré el anime que estás buscando.',
                         color=discord.Color.red(),
                     )
                 )
@@ -44,29 +45,31 @@ class anime(
         if anime.is_nsfw():
             await ctx.send(
                 embed=discord.Embed(
-                    description="🔞 No puedes buscar animes nsfw con este comando.",
+                    description='🔞 No puedes buscar animes nsfw con este comando.',
                     color=discord.Color.red(),
                 )
             )
         else:
             embed = discord.Embed(
-                title=f"{anime.title_jp}\n{anime.title_english}",
+                title=f'{anime.title_jp} / {anime.title_english}',
                 url=anime.url,
-                description=f"{anime.description[:300]}...",
+                description=f'{anime.description[:300]}...',
                 color=discord.Color.random(),
             )
             # embed.add_field(name="#️⃣ Episodios:", value=(anime.episodes))
-            embed.add_field(name="👉 Clasificación:", value=str(anime.rating))
+            embed.add_field(name='👉 Clasificación:', value=str(anime.rating))
             # embed.add_field(name="📊 Posición:", value=str(anime.ranked))
-            embed.add_field(name="🔎 Estado:", value=str(anime.status))
-            embed.add_field(name="🏷️ Géneros:", value=", ".join((anime.genres)))
-            embed.add_field(name="📺 Tipo:", value=str(anime.type))
+            embed.add_field(name='🔎 Estado:', value=str(anime.status))
+            embed.add_field(
+                name='🏷️ Géneros:',
+                value=', '.join((anime.genres)) or 'No tiene géneros.',
+            )
+            embed.add_field(name='📺 Tipo:', value=str(anime.type))
 
             embed.set_thumbnail(url=anime.poster)
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=["anichar", "animecharacter"])
-    @commands.is_nsfw()
+    @commands.command(aliases=['anichar', 'animecharacter'])
     async def character(self, ctx, *, name):
         """
         Búsqueda rápida de un personaje de anime.
@@ -78,7 +81,7 @@ class anime(
             except:
                 await ctx.send(
                     embed=discord.Embed(
-                        description="<:notlikethis:868575058283597904> No encontré al personaje que estás buscando.",
+                        description='<:notlikethis:868575058283597904> No encontré al personaje que estás buscando.',
                         color=discord.Color.red(),
                     )
                 )
@@ -87,10 +90,10 @@ class anime(
                 title=char.title, url=char.url, color=discord.Color.random()
             )
             embed.set_image(url=char.image_url)
-            embed.set_footer(text=", ".join(list(char.references.keys())[:2]))
+            embed.set_footer(text=', '.join(list(char.references.keys())[:2]))
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=["animenews"])
+    @commands.command(aliases=['animenews'])
     async def aninews(self, ctx, amount: int = 3):
         """
         Las noticias más nuevas del mundo del anime.
@@ -101,50 +104,50 @@ class anime(
         descriptions = news.description
 
         embed = discord.Embed(
-            title="Noticias más recientes de anime",
+            title='Noticias más recientes de anime',
             color=discord.Color.random(),
             timestamp=datetime.utcnow(),
         )
         embed.set_thumbnail(url=news.images[0])
         embed.set_footer(
-            text="Powered by Animec",
-            icon_url="https://animec.readthedocs.io/en/latest/_static/animec.png",
+            text='Powered by Animec',
+            icon_url='https://animec.readthedocs.io/en/latest/_static/animec.png',
         )
 
         for i in range(amount):
             embed.add_field(
-                name=f"{i+1}) {titles[i]}",
-                value=f"{descriptions[i][:200]}...\n[Link]({links[i]})",
+                name=f'{i+1}) {titles[i]}',
+                value=f'{descriptions[i][:200]}...\n[Link]({links[i]})',
                 inline=False,
             )
 
         await ctx.send(embed=embed)
 
-    @commands.command(name="waifu")
+    @commands.command(name='waifu')
     async def waifu(self, ctx: commands.Context):
         """
         Imágenes aleatorias de waifus. ✨
         """
         waifu = await self.waifu.random(
-            selected_tags=["waifu"], is_nsfw=["False"], many=False
+            selected_tags=['waifu'], is_nsfw=['False'], many=False
         )
         embed = discord.Embed(color=discord.Color.random())
         embed.set_image(url=waifu)
-        embed.set_footer(text="✨ Powered by waifu.im")
-        await ctx.reply(embed=embed, mention_author=False)
+        embed.set_footer(text='✨ Powered by waifu.im')
+        await ctx.reply(embed=embed)
 
-    @commands.command(name="maid")
+    @commands.command(name='maid')
     async def maid(self, ctx: commands.Context):
         """
         Imágenes aleatorias de maids. 🎀
         """
         maid = await self.waifu.random(
-            selected_tags=["maid"], is_nsfw=["False"], many=False
+            selected_tags=['maid'], is_nsfw=['False'], many=False
         )
         embed = discord.Embed(color=discord.Color.random())
         embed.set_image(url=maid)
-        embed.set_footer(text="🎀 Powered by waifu.im")
-        await ctx.reply(embed=embed, mention_author=False)
+        embed.set_footer(text='🎀 Powered by waifu.im')
+        await ctx.reply(embed=embed)
 
 
 async def setup(bot):

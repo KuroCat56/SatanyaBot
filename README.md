@@ -2,7 +2,7 @@
 
 > **SatanyaBot es la primer bot de Discord en español y opensource desarrollada en Python.**
 
-![](https://media.discordapp.net/attachments/829223734559637545/850836754771476531/miniSatanyaBot_Logotipo4x.png?width=1024&height=290)
+[![](https://media.discordapp.net/attachments/829223734559637545/850836754771476531/miniSatanyaBot_Logotipo4x.png?width=1024&height=290)](https://discord.gg/bqcdKxuW3X)
 
 SatanyaBot nació con la idea de crear una alternativa de código abierto a los bots en español de Discord como [Chocolat](https://top.gg/bot/379757424447455232), [Nekotina](https://top.gg/bot/429457053791158281), [Ruka](https://top.gg/bot/749462161713266738) y otros.
 
