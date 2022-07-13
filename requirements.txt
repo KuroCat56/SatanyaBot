@@ -3,13 +3,12 @@ nekos.life-async
 python-dotenv
 waifuim.py
 alexflipnote.py
-TextToOwO
 animec
 jishaku
-black
-flake8
 psutil
 asyncdagpi
 humanize
 youtube_dl
 asyncpraw
+googlesearch-python
+pynacl
