@@ -5,3 +5,5 @@ private
 .toml
 .env
 venv/
+.venv/
+.vscode/settings.json
