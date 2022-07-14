@@ -7,7 +7,5 @@ animec
 psutil
 asyncdagpi
 humanize
-youtube_dl
 asyncpraw
 googlesearch-python
-pynacl
