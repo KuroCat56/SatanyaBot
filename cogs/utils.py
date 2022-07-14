@@ -202,7 +202,7 @@ class utils(
             value='[Trello](https://trello.com/b/Z432JC83)',
         )
         embed.set_thumbnail(
-            url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473'
+            url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png'
         )
         embed.set_image(
             url='https://images.unsplash.com/photo-1555231955-348aa2312e19'

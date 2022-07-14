@@ -3,11 +3,12 @@ import os
 from datetime import datetime
 
 import discord
-from discord.ext import commands
 from dotenv import load_dotenv
 
 from utils import bot
 from utils.bot import Bot, HelpCommand
+
+load_dotenv()
 
 bot = Bot(
     case_insensitive=True,

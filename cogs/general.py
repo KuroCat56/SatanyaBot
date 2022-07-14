@@ -96,7 +96,7 @@ class general(
             inline=True,
         )
         embed.set_image(
-            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290'
+            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png'
         )
         await ctx.send(
             '<:okay:846612389046386689> Te he enviado mis enlaces de invitación',
@@ -133,7 +133,7 @@ class general(
         )
         embed.set_author(
             name=f'SatanyaBot | v{os.environ["VERSION"]}',
-            icon_url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473',
+            icon_url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png',
         )
 
         embed.add_field(
@@ -219,7 +219,7 @@ class general(
             icon_url='http://i.imgur.com/5BFecvA.png',
         )
         embed.set_image(
-            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290'
+            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png'
         )
         await context.send(embed=embed)
 
@@ -290,7 +290,7 @@ class general(
             inline=True,
         )
         embed.set_image(
-            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png?width=1024&height=290'
+            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png'
         )
         await ctx.send(
             '<:okay:846612389046386689> Te he enviado mis enlaces de donación',

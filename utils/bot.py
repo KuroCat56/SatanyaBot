@@ -1,8 +1,11 @@
 import os
 
 import discord
-from discord.ext.commands import (AutoShardedBot, MinimalHelpCommand,
-                                  when_mentioned_or)
+from discord.ext.commands import (
+    AutoShardedBot,
+    MinimalHelpCommand,
+    when_mentioned_or,
+)
 
 
 def get_prefix(bot, message):
@@ -71,7 +74,7 @@ class HelpCommand(MinimalHelpCommand):
         embed = discord.Embed(color=self.color)
         embed.set_author(
             name=f'🌸 Menú de ayuda 🌸| v{os.environ["VERSION"]}',
-            icon_url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png?width=465&height=473',
+            icon_url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png',
         )
         description = f'{block}fix\n{self.NEWS}\n{block}\n> *Si tienes algún problema consulta en https://discord.gg/bqcdKxuW3X*\n'
         embed.set_image(
