@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-dagpi = Client(os.getenv('Dagpi'))
+dagpi = Client(os.environ['DAGPI'])
 
 
 class img(
@@ -56,19 +56,17 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_pxl = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_pxl = await dagpi.image_process(
+                ImageFeatures.pixel(), member.avatar.url
             )
-            img_pxl = await dagpi.image_process(ImageFeatures.pixel(), url_pxl)
             file_pxl = discord.File(
                 fp=img_pxl.image, filename=f'pixel.{img_pxl.format}'
             )
-
             embed = discord.Embed(color=ctx.author.color)
             embed.set_image(url=f'attachment://pixel.{img_pxl.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_pxl, embed=embed)
 
@@ -80,11 +78,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_ptpt = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_ptpt = await dagpi.image_process(
-                ImageFeatures.petpet(), url_ptpt
+                ImageFeatures.petpet(), member.avatar.url
             )
             file_ptpt = discord.File(
                 fp=img_ptpt.image, filename=f'pet.{img_ptpt.format}'
@@ -94,7 +89,7 @@ class img(
             embed.set_image(url=f'attachment://pet.{img_ptpt.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_ptpt, embed=embed)
 
@@ -106,11 +101,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_trgg = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_trgg = await dagpi.image_process(
-                ImageFeatures.triggered(), url_trgg
+                ImageFeatures.triggered(), member.avatar.url
             )
             file_trgg = discord.File(
                 fp=img_trgg.image, filename=f'triggered.{img_trgg.format}'
@@ -120,7 +112,7 @@ class img(
             embed.set_image(url=f'attachment://triggered.{img_trgg.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_trgg, embed=embed)
 
@@ -132,11 +124,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_urss = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_urss = await dagpi.image_process(
-                ImageFeatures.communism(), url_urss
+                ImageFeatures.communism(), member.avatar.url
             )
             file_urss = discord.File(
                 fp=img_urss.image, filename=f'urss.{img_urss.format}'
@@ -146,7 +135,7 @@ class img(
             embed.set_image(url=f'attachment://urss.{img_urss.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_urss, embed=embed)
 
@@ -158,11 +147,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_clrs = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_clrs = await dagpi.image_process(
-                ImageFeatures.colors(), url_clrs
+                ImageFeatures.colors(), member.avatar.url
             )
             file_clrs = discord.File(
                 fp=img_clrs.image, filename=f'colors.{img_clrs.format}'
@@ -172,7 +158,7 @@ class img(
             embed.set_image(url=f'attachment://colors.{img_clrs.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_clrs, embed=embed)
 
@@ -184,8 +170,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_gy = str(member.avatar.replace(static_format='png', size=1024))
-            img_gy = await dagpi.image_process(ImageFeatures.gay(), url_gy)
+            img_gy = await dagpi.image_process(
+                ImageFeatures.gay(), member.avatar.url
+            )
             file_gy = discord.File(
                 fp=img_gy.image, filename=f'gay.{img_gy.format}'
             )
@@ -194,7 +181,7 @@ class img(
             embed.set_image(url=f'attachment://gay.{img_gy.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_gy, embed=embed)
 
@@ -206,11 +193,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_fdr = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_fdr = await dagpi.image_process(
-                ImageFeatures.fedora(), url_fdr
+                ImageFeatures.fedora(), member.avatar.url
             )
             file_fdr = discord.File(
                 fp=img_fdr.image, filename=f'fedora.{img_fdr.format}'
@@ -220,7 +204,7 @@ class img(
             embed.set_image(url=f'attachment://fedora.{img_fdr.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_fdr, embed=embed)
 
@@ -232,8 +216,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_jl = str(member.avatar.replace(static_format='png', size=1024))
-            img_jl = await dagpi.image_process(ImageFeatures.jail(), url_jl)
+            img_jl = await dagpi.image_process(
+                ImageFeatures.jail(), member.avatar.url
+            )
             file_jl = discord.File(
                 fp=img_jl.image, filename=f'jail.{img_jl.format}'
             )
@@ -242,7 +227,7 @@ class img(
             embed.set_image(url=f'attachment://jail.{img_jl.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_jl, embed=embed)
 
@@ -254,10 +239,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_bnk = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_bnk = await dagpi.image_process(
+                ImageFeatures.bonk(), member.avatar.url
             )
-            img_bnk = await dagpi.image_process(ImageFeatures.bonk(), url_bnk)
             file_bnk = discord.File(
                 fp=img_bnk.image, filename=f'bonk.{img_bnk.format}'
             )
@@ -266,7 +250,7 @@ class img(
             embed.set_image(url=f'attachment://bonk.{img_bnk.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_bnk, embed=embed)
 
@@ -278,11 +262,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_dlt = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_dlt = await dagpi.image_process(
-                ImageFeatures.delete(), url_dlt
+                ImageFeatures.delete(), member.avatar.url
             )
             file_dlt = discord.File(
                 fp=img_dlt.image, filename=f'delete.{img_dlt.format}'
@@ -292,7 +273,7 @@ class img(
             embed.set_image(url=f'attachment://delete.{img_dlt.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_dlt, embed=embed)
 
@@ -304,10 +285,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_bmb = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_bmb = await dagpi.image_process(
+                ImageFeatures.bomb(), member.avatar.url
             )
-            img_bmb = await dagpi.image_process(ImageFeatures.bomb(), url_bmb)
             file_bmb = discord.File(
                 fp=img_bmb.image, filename=f'bomb.{img_bmb.format}'
             )
@@ -316,7 +296,7 @@ class img(
             embed.set_image(url=f'attachment://bomb.{img_bmb.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_bmb, embed=embed)
 
@@ -328,8 +308,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_nn = str(member.avatar.replace(static_format='png', size=1024))
-            img_nn = await dagpi.image_process(ImageFeatures.neon(), url_nn)
+            img_nn = await dagpi.image_process(
+                ImageFeatures.neon(), member.avatar.url
+            )
             file_nn = discord.File(
                 fp=img_nn.image, filename=f'neon.{img_nn.format}'
             )
@@ -338,7 +319,7 @@ class img(
             embed.set_image(url=f'attachment://neon.{img_nn.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_nn, embed=embed)
 
@@ -350,11 +331,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_wntd = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_wntd = await dagpi.image_process(
-                ImageFeatures.wanted(), url_wntd
+                ImageFeatures.wanted(), member.avatar.url
             )
             file_wtnd = discord.File(
                 fp=img_wntd.image, filename=f'wanted.{img_wntd.format}'
@@ -364,7 +342,7 @@ class img(
             embed.set_image(url=f'attachment://wanted.{img_wntd.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_wtnd, embed=embed)
 
@@ -376,11 +354,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_wstd = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_wstd = await dagpi.image_process(
-                ImageFeatures.wasted(), url_wstd
+                ImageFeatures.wasted(), member.avatar.url
             )
             file_wstd = discord.File(
                 fp=img_wstd.image, filename=f'wasted.{img_wstd.format}'
@@ -390,7 +365,7 @@ class img(
             embed.set_image(url=f'attachment://wasted.{img_wstd.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_wstd, embed=embed)
 
@@ -402,11 +377,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_mrc = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_mrc = await dagpi.image_process(
-                ImageFeatures.america(), url_mrc
+                ImageFeatures.america(), member.avatar.url
             )
             file_mrc = discord.File(
                 fp=img_mrc.image, filename=f'america.{img_mrc.format}'
@@ -416,7 +388,7 @@ class img(
             embed.set_image(url=f'attachment://america.{img_mrc.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_mrc, embed=embed)
 
@@ -428,11 +400,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_nvrt = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_nvrt = await dagpi.image_process(
-                ImageFeatures.invert(), url_nvrt
+                ImageFeatures.invert(), member.avatar.url
             )
             file_nvrt = discord.File(
                 fp=img_nvrt.image, filename=f'invert.{img_nvrt.format}'
@@ -442,7 +411,7 @@ class img(
             embed.set_image(url=f'attachment://invert.{img_nvrt.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_nvrt, embed=embed)
 
@@ -454,10 +423,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_sbl = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_sbl = await dagpi.image_process(
+                ImageFeatures.sobel(), member.avatar.url
             )
-            img_sbl = await dagpi.image_process(ImageFeatures.sobel(), url_sbl)
             file_sbl = discord.File(
                 fp=img_sbl.image, filename=f'sobel.{img_sbl.format}'
             )
@@ -466,7 +434,7 @@ class img(
             embed.set_image(url=f'attachment://sobel.{img_sbl.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_sbl, embed=embed)
 
@@ -478,10 +446,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_blr = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_blr = await dagpi.image_process(
+                ImageFeatures.blur(), member.avatar.url
             )
-            img_blr = await dagpi.image_process(ImageFeatures.blur(), url_blr)
             file_blr = discord.File(
                 fp=img_blr.image, filename=f'blur.{img_blr.format}'
             )
@@ -490,7 +457,7 @@ class img(
             embed.set_image(url=f'attachment://blur.{img_blr.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_blr, embed=embed)
 
@@ -502,10 +469,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_rgb = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_rgb = await dagpi.image_process(
+                ImageFeatures.rgb(), member.avatar.url
             )
-            img_rgb = await dagpi.image_process(ImageFeatures.rgb(), url_rgb)
             file_rgb = discord.File(
                 fp=img_rgb.image, filename=f'rgb.{img_rgb.format}'
             )
@@ -514,7 +480,7 @@ class img(
             embed.set_image(url=f'attachment://rgb.{img_rgb.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_rgb, embed=embed)
 
@@ -526,11 +492,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_dpfr = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_dpfr = await dagpi.image_process(
-                ImageFeatures.deepfry(), url_dpfr
+                ImageFeatures.deepfry(), member.avatar.url
             )
             file_dpfr = discord.File(
                 fp=img_dpfr.image, filename=f'deepfry.{img_dpfr.format}'
@@ -540,7 +503,7 @@ class img(
             embed.set_image(url=f'attachment://deepfry.{img_dpfr.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_dpfr, embed=embed)
 
@@ -552,8 +515,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_sc = str(member.avatar.replace(static_format='png', size=1024))
-            img_sc = await dagpi.image_process(ImageFeatures.ascii(), url_sc)
+            img_sc = await dagpi.image_process(
+                ImageFeatures.ascii(), member.avatar.url
+            )
             file_sc = discord.File(
                 fp=img_sc.image, filename=f'ascii.{img_sc.format}'
             )
@@ -562,7 +526,7 @@ class img(
             embed.set_image(url=f'attachment://ascii.{img_sc.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_sc, embed=embed)
 
@@ -574,8 +538,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_sp = str(member.avatar.replace(static_format='png', size=1024))
-            img_sp = await dagpi.image_process(ImageFeatures.sepia(), url_sp)
+            img_sp = await dagpi.image_process(
+                ImageFeatures.sepia(), member.avatar.url
+            )
             file_sp = discord.File(
                 fp=img_sp.image, filename=f'sepia.{img_sp.format}'
             )
@@ -584,7 +549,7 @@ class img(
             embed.set_image(url=f'attachment://sepia.{img_sp.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_sp, embed=embed)
 
@@ -602,7 +567,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"attachment://glitch.{img_gltch.format}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(file=file_gltch, embed=embed)
 
     @commands.command()
@@ -613,11 +578,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_plrd = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_plrd = await dagpi.image_process(
-                ImageFeatures.polaroid(), url_plrd
+                ImageFeatures.polaroid(), member.avatar.url
             )
             file_plrd = discord.File(
                 fp=img_plrd.image, filename=f'polaroid.{img_plrd.format}'
@@ -627,7 +589,7 @@ class img(
             embed.set_image(url=f'attachment://polaroid.{img_plrd.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_plrd, embed=embed)
 
@@ -639,11 +601,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_swrl = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_swrl = await dagpi.image_process(
-                ImageFeatures.swirl(), url_swrl
+                ImageFeatures.swirl(), member.avatar.url
             )
             file_swrl = discord.File(
                 fp=img_swrl.image, filename=f'swirl.{img_swrl.format}'
@@ -653,7 +612,7 @@ class img(
             embed.set_image(url=f'attachment://swirl.{img_swrl.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_swrl, embed=embed)
 
@@ -665,10 +624,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_pnt = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_pnt = await dagpi.image_process(
+                ImageFeatures.paint(), member.avatar.url
             )
-            img_pnt = await dagpi.image_process(ImageFeatures.paint(), url_pnt)
             file_pnt = discord.File(
                 fp=img_pnt.image, filename=f'paint.{img_pnt.format}'
             )
@@ -677,7 +635,7 @@ class img(
             embed.set_image(url=f'attachment://paint.{img_pnt.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_pnt, embed=embed)
 
@@ -689,11 +647,8 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_sktch = str(
-                member.avatar.replace(static_format='png', size=1024)
-            )
             img_sktch = await dagpi.image_process(
-                ImageFeatures.sketch(), url_sktch
+                ImageFeatures.sketch(), member.avatar.url
             )
             file_sktch = discord.File(
                 fp=img_sktch.image, filename=f'sketch.{img_sktch.format}'
@@ -703,7 +658,7 @@ class img(
             embed.set_image(url=f'attachment://sketch.{img_sktch.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_sktch, embed=embed)
 
@@ -715,10 +670,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_spn = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_spn = await dagpi.image_process(
+                ImageFeatures.spin(), member.avatar.url
             )
-            img_spn = await dagpi.image_process(ImageFeatures.spin(), url_spn)
             file_spn = discord.File(
                 fp=img_spn.image, filename=f'spin.{img_spn.format}'
             )
@@ -727,7 +681,7 @@ class img(
             embed.set_image(url=f'attachment://spin.{img_spn.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_spn, embed=embed)
 
@@ -745,7 +699,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"attachment://dissolve.{img_dsslv.format}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(file=file_dsslv, embed=embed)
 
     @commands.command()
@@ -756,10 +710,9 @@ class img(
         if member is None:
             member = ctx.author
         async with ctx.typing():
-            url_mgk = str(
-                member.avatar.replace(static_format='png', size=1024)
+            img_mgk = await dagpi.image_process(
+                ImageFeatures.magik(), member.avatar.url
             )
-            img_mgk = await dagpi.image_process(ImageFeatures.magik(), url_mgk)
             file_mgk = discord.File(
                 fp=img_mgk.image, filename=f'magik.{img_mgk.format}'
             )
@@ -768,7 +721,7 @@ class img(
             embed.set_image(url=f'attachment://magik.{img_mgk.format}')
             embed.set_footer(
                 text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar_url,
+                icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_mgk, embed=embed)
 
@@ -784,7 +737,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/hearts?image={url_hrts}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -799,7 +752,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/simp?image={url_smp}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -814,7 +767,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/like?image={url_lk}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -829,7 +782,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/joke-over-head?image={url_jk}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -844,7 +797,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/beautiful?image={url_btfl}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -859,7 +812,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.popcat.xyz/gun?image={url_gn}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ Pop Cat API", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ Pop Cat API", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -874,7 +827,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/grab?image={url_grb}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -889,7 +842,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://api.devs-hub.xyz/rip?image={url_rp}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ api.devs-hub.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
     # @commands.command()
@@ -904,7 +857,7 @@ class img(
 
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://some-random-api.ml/canvas/horny?avatar={url_hrn}")
-    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar_url)
+    #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar.url)
     #     await ctx.reply(embed=embed)
 
 
