@@ -1,9 +1,7 @@
-from tkinter import N
-
 import aiohttp
 import discord
 from discord.ext import commands
-from nekos import NekosLifeClient, SFWImageTags
+from anekos import NekosLifeClient, SFWImageTags
 
 
 class rol(
@@ -25,7 +23,7 @@ class rol(
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.session = aiohttp.ClientSession()
-        self.nekos = NekosLifeClient()
+        self.anekos = NekosLifeClient()
 
     @commands.command(name='hug')
     async def hug(self, ctx, member: discord.Member = None):
@@ -39,13 +37,13 @@ class rol(
             await ctx.reply('¡Primero necesitas etiquetar a alguien!')
         else:
             async with ctx.typing():
-                hug = await self.nekos.image(SFWImageTags.HUG)
+                hug = await self.anekos.image(SFWImageTags.HUG)
                 embed = discord.Embed(
                     description=f'🤗 ¡**{ctx.author.name}** ha abrazado a **{member.name}**!',
                     color=discord.Colour.random(),
                 )
                 embed.set_image(url=hug.url)
-                embed.set_footer(text='Powered by nekos.life')
+                embed.set_footer(text='Powered by anekos.life')
                 await ctx.send(embed=embed)
 
     @commands.command(name='bite', aliases=['ñam'])
@@ -105,13 +103,13 @@ class rol(
             await ctx.reply('¡Primero necesitas etiquetar a alguien!')
         else:
             async with ctx.typing():
-                pat = await self.nekos.image(SFWImageTags.PAT)
+                pat = await self.anekos.image(SFWImageTags.PAT)
                 embed = discord.Embed(
                     description=f'❣️ **{ctx.author.name}** le ha dado unos pat-pats a **{member.name}**',
                     color=discord.Colour.random(),
                 )
                 embed.set_image(url=pat.url)
-                embed.set_footer(text='Powered by nekos.life')
+                embed.set_footer(text='Powered by anekos.life')
             await ctx.send(embed=embed)
 
     @commands.command(name='cuddle')
@@ -126,13 +124,13 @@ class rol(
             await ctx.reply('¡Primero necesitas etiquetar a alguien!')
         else:
             async with ctx.typing():
-                cuddle = await self.nekos.image(SFWImageTags.CUDDLE)
+                cuddle = await self.anekos.image(SFWImageTags.CUDDLE)
                 embed = discord.Embed(
                     description=f'💞 **{ctx.author.name}** abraza con mucho cariño a **{member.name}**',
                     color=discord.Colour.random(),
                 )
                 embed.set_image(url=cuddle.url)
-                embed.set_footer(text='Powered by nekos.life')
+                embed.set_footer(text='Powered by anekos.life')
                 await ctx.send(embed=embed)
 
     @commands.command(name='slap')
@@ -149,13 +147,13 @@ class rol(
             await ctx.reply('¡Primero necesitas etiquetar a alguien!')
         else:
             async with ctx.typing():
-                slap = await self.nekos.image(SFWImageTags.SLAP)
+                slap = await self.anekos.image(SFWImageTags.SLAP)
                 embed = discord.Embed(
                     description=f'💢 **{ctx.author.name}** ha cacheteado a **{member.name}**',
                     color=discord.Colour.random(),
                 )
                 embed.set_image(url=slap.url)
-                embed.set_footer(text='Powered by nekos.life')
+                embed.set_footer(text='Powered by anekos.life')
             await ctx.send(embed=embed)
 
     @commands.command(name='tickle')
@@ -170,13 +168,13 @@ class rol(
             await ctx.reply('¡Primero necesitas etiquetar a alguien!')
         else:
             async with ctx.typing():
-                tickle = await self.nekos.image(SFWImageTags.TICKLE)
+                tickle = await self.anekos.image(SFWImageTags.TICKLE)
                 embed = discord.Embed(
                     description=f'🤣 ¡**{ctx.author.name}** le hace cosquillas a **{member.name}!**',
                     color=discord.Colour.random(),
                 )
                 embed.set_image(url=tickle.url)
-                embed.set_footer(text='Powered by nekos.life')
+                embed.set_footer(text='Powered by anekos.life')
             await ctx.send(embed=embed)
 
     @commands.command(name='poke')
@@ -251,14 +249,14 @@ class rol(
         elif member is None:
             await ctx.reply('¡Primero necesitas etiquetar a alguien!')
         else:
-            kiss = await self.nekos.image(SFWImageTags.KISS)
+            kiss = await self.anekos.image(SFWImageTags.KISS)
             async with ctx.typing():
                 embed = discord.Embed(
                     description=f'💖 **{ctx.author.name}** he besado a **{member.name}**~',
                     color=discord.Colour.random(),
                 )
                 embed.set_image(url=kiss.url)
-                embed.set_footer(text='Powered by nekos.life')
+                embed.set_footer(text='Powered by anekos.life')
             await ctx.send(embed=embed)
 
     @commands.command(name='feed')
@@ -267,7 +265,7 @@ class rol(
         ¿Quién tiene hambre?
         """
         async with ctx.typing():
-            feed = await self.nekos.image(SFWImageTags.FEED)
+            feed = await self.anekos.image(SFWImageTags.FEED)
             if member:
                 desc = f'🥄 ¡**{ctx.author.name}** le está dando de comer a **{member.name}**!'
             else:
@@ -276,7 +274,7 @@ class rol(
                 description=f'{desc}', color=discord.Colour.random()
             )
             embed.set_image(url=feed.url)
-            embed.set_footer(text='Powered by nekos.life')
+            embed.set_footer(text='Powered by anekos.life')
             await ctx.send(embed=embed)
 
     @commands.command(name='smug')
@@ -285,13 +283,13 @@ class rol(
         >;)
         """
         async with ctx.typing():
-            smug = await self.nekos.image(SFWImageTags.SMUG)
+            smug = await self.anekos.image(SFWImageTags.SMUG)
             embed = discord.Embed(
                 description=f'💯 **{ctx.author.name}** tiene mucha malicia',
                 color=discord.Colour.random(),
             )
             embed.set_image(url=smug.url)
-            embed.set_footer(text='Powered by nekos.life')
+            embed.set_footer(text='Powered by anekos.life')
         await ctx.send(embed=embed)
 
     @commands.command(name='hi', aliases=['hola', 'hello', 'wave'])
