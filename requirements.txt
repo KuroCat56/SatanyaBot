@@ -1,5 +1,5 @@
-git+https://github.com/Rapptz/discord.py
-nekos.life-async
+discord.py
+anekos
 python-dotenv
 waifuim.py
 alexflipnote.py
