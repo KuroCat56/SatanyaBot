@@ -1,7 +1,7 @@
 import aiohttp
 import discord
 from discord.ext import commands
-from nekos import NekosLifeClient, SFWImageTags
+from anekos import NekosLifeClient, SFWImageTags
 
 
 class rol(
