@@ -121,9 +121,7 @@ class general(
         cpuUsage = psutil.cpu_percent(1)
         ramUsage = psutil.virtual_memory()[2]
 
-        # se que esto puede q sea malo pero meh, es por si se llega a cambiar uno de los tags y no se actualiza manualmente
         kuro = await self.bot.fetch_user(457574130401804288)
-        igna = await self.bot.fetch_user(996175229393059930)
 
         embed = discord.Embed(
             title='¡Hola, soy SatanyaBot!',
@@ -143,7 +141,7 @@ class general(
         )
         embed.add_field(
             name='Creador y Colaboradores:',
-            value=f'[**{kuro}**](https://linktr.ee/KuroCat56) | [**{igna}**](https://www.igna.lol)',
+            value=f'[**{kuro}**](https://linktr.ee/KuroCat56) | [**igna**](https://www.igna.wtf)',
             inline=False,
         )
         embed.add_field(
