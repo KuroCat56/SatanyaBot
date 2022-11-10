@@ -48,9 +48,7 @@ class ErrorHandler(commands.Cog):
             elif isinstance(error, commands.BotMissingPermissions):
                 message = f'<:okaynt:846612437637660702> No puedo ejecutar este comando, me faltan ciertos permisos: {error.missing_perms}'
             elif isinstance(error, commands.NSFWChannelRequired):
-                message = (
-                    f'🔞 Este comando debe ser ejecutado en un canal NSFW.'
-                )
+                message = '🔞 Este comando debe ser ejecutado en un canal NSFW.'
             else:
                 message = (
                     f'No tengo idea de lo que pasa.\n{block}\n{error}\n{block}'
