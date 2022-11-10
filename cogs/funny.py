@@ -6,8 +6,7 @@ from discord.ext import commands
 
 
 def random_love():
-    love = random.randint(0, 100)
-    return love
+    return random.randint(0, 100)
 
 
 def text_to_owo(text):
@@ -96,31 +95,30 @@ class funny(
         elif member is ctx.author:
             message = '∞ [█████████████████████]\n**Tienes el suficiente ego como para aceptarte y amarte como eres.**'
             await ctx.reply(message)
-        else:
-            if calc_love == 0:
-                love_messsage = f'{calc_love}% [ . . . . . . . . . . ]\n🚫 No existe compatibilidad entre **{ctx.author.name}** y **{member.name}**'
-            elif 1 <= calc_love <= 10:
-                love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
-            elif 11 <= calc_love <= 20:
-                love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
-            elif 21 <= calc_love <= 30:
-                love_messsage = f'{calc_love}% [██ . . . . . . . ]\n😶 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
-            elif 31 <= calc_love <= 40:
-                love_messsage = f'{calc_love}% [███ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
-            elif 41 <= calc_love <= 50:
-                love_messsage = f'{calc_love}% [████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
-            elif 51 <= calc_love <= 60:
-                love_messsage = f'{calc_love}% [█████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
-            elif 61 <= calc_love <= 70:
-                love_messsage = f'{calc_love}% [██████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
-            elif 71 <= calc_love <= 80:
-                love_messsage = f'{calc_love}% [███████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
-            elif 81 <= calc_love <= 90:
-                love_messsage = f'{calc_love}% [████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
-            elif 91 <= calc_love <= 99:
-                love_messsage = f'{calc_love}% [█████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
-            elif calc_love == 100:
-                love_messsage = f'{calc_love}% [██████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta'
+        elif calc_love == 0:
+            love_messsage = f'{calc_love}% [ . . . . . . . . . . ]\n🚫 No existe compatibilidad entre **{ctx.author.name}** y **{member.name}**'
+        elif 1 <= calc_love <= 10:
+            love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
+        elif 11 <= calc_love <= 20:
+            love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
+        elif 21 <= calc_love <= 30:
+            love_messsage = f'{calc_love}% [██ . . . . . . . ]\n😶 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
+        elif 31 <= calc_love <= 40:
+            love_messsage = f'{calc_love}% [███ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
+        elif 41 <= calc_love <= 50:
+            love_messsage = f'{calc_love}% [████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
+        elif 51 <= calc_love <= 60:
+            love_messsage = f'{calc_love}% [█████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
+        elif 61 <= calc_love <= 70:
+            love_messsage = f'{calc_love}% [██████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
+        elif 71 <= calc_love <= 80:
+            love_messsage = f'{calc_love}% [███████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
+        elif 81 <= calc_love <= 90:
+            love_messsage = f'{calc_love}% [████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
+        elif 91 <= calc_love <= 99:
+            love_messsage = f'{calc_love}% [█████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
+        elif calc_love == 100:
+            love_messsage = f'{calc_love}% [██████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta'
         embed = discord.Embed(description=f'{love_messsage}', color=0xFF9999)
         await ctx.reply(embed=embed)
 
@@ -139,27 +137,27 @@ class funny(
             N = len(member.display_name) / 2
 
             firstmember = member.display_name
-            firstship = firstmember[0 : int(N)]
+            firstship = firstmember[:int(N)]
 
             secondmember = member2.display_name
-            secondship = secondmember[0:4]
+            secondship = secondmember[:4]
 
         elif len(member2.display_name) < 4:
             N = len(member2.display_name) / 2
 
             firstmember = member.display_name
-            firstship = firstmember[0:4]
+            firstship = firstmember[:4]
 
             secondmember = member2.display_name
-            secondship = secondmember[0 : int(N)]
+            secondship = secondmember[:int(N)]
 
         else:
 
             firstmember = member.display_name
-            firstship = firstmember[0:4]
+            firstship = firstmember[:4]
 
             secondmember = member2.display_name
-            secondship = secondmember[0:4]
+            secondship = secondmember[:4]
 
         shipname = firstship + secondship
 

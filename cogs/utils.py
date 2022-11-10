@@ -465,7 +465,7 @@ class utils(
         """
         Cuadrado de un número.
         """
-        result = float(number) * float(number)
+        result = float(number)**2
         embed = discord.Embed(
             description=result, color=discord.Colour.random()
         )
