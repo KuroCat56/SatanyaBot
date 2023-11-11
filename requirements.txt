@@ -1,11 +1,11 @@
 git+https://github.com/Rapptz/discord.py
-nekos.life-async
-python-dotenv
+python-dotenv~=1.0.0
 waifuim.py
 alexflipnote.py
-animec
-psutil
-asyncdagpi
+animec~=0.4.2
+psutil~=5.9.6
+asyncdagpi~=4.1.5
 humanize
-asyncpraw
+asyncpraw~=7.7.1
 googlesearch-python
+aiohttp~=3.8.6

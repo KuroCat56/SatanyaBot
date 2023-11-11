@@ -11,7 +11,7 @@ import psutil
 from discord.ext import commands
 
 
-class general(
+class General(
     commands.Cog,
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
@@ -31,11 +31,8 @@ class general(
         self.alex = alexflipnote.Client()
 
     # Comando de test/ping
-    @commands.command(name='ping')
-    async def ping(self, ctx):
-        """
-        ¡Pong!
-        """
+    @commands.hybrid_command(name='ping', description="¡Pong!")
+    async def ping(self, ctx: commands.Context):
         start_time = time.time()
 
         message = await ctx.send(
@@ -58,28 +55,19 @@ class general(
         )
         await ctx.send(embed=embed)
 
-    @commands.command(name='git')
-    async def git(self, ctx):
-        """
-        Código fuente de SatanyaBot
-        """
+    @commands.hybrid_command(name='git', description="Código fuente de SatanyaBot")
+    async def git(self, ctx: commands.Context):
         await ctx.send(
             f'Puedes revisar mi código fuente en {os.environ["GIT"]}'
         )
 
-    @commands.command(name='reverse')
-    async def reverse(self, ctx, *, text: str):
-        """
-        asrever ne otxeT
-        """
+    @commands.hybrid_command(name='reverse', description="asrever ne otxeT")
+    async def reverse(self, ctx: commands.Context, *, text: str):
         reverse = text[::-1]
         await ctx.reply(f'{reverse}')
 
-    @commands.command(name='invite')
+    @commands.hybrid_command(name='invite', description="Links de invitación de SatanyaBot y al server")
     async def invite(self, ctx: commands.Context):
-        """
-        Links de invitación de SatanyaBot y al server
-        """
         embed = discord.Embed(
             title='¿Quieres agregarme a tu servidor o unirte al mío?',
             description='Aquí tienes los enlaces para unirte a mi servidor o invitarme al tuyo.',
@@ -104,11 +92,8 @@ class general(
         )
         await ctx.author.send(embed=embed)
 
-    @commands.command(name='about')
-    async def about(self, context):
-        """
-        Información útil (y no tan útil) del bot.
-        """
+    @commands.hybrid_command(name='about', description="Información útil (y no tan útil) del bot.")
+    async def about(self, ctx: commands.Context):
         # Permite determinar el tiempo que lleva desde su primer proceso activo
         delta_uptime = datetime.utcnow() - self.bot.launch_time
         hours, remainder = divmod(int(delta_uptime.total_seconds()), 3600)
@@ -221,13 +206,11 @@ class general(
         embed.set_image(
             url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png'
         )
-        await context.send(embed=embed)
+        await ctx.send(embed=embed)
 
-    @commands.command(
-        aliases=['si', 'server']
-    )  # Extraído de https://github.com/cree-py/RemixBot/blob/master/cogs/info.py
-    async def serverinfo(self, ctx):
-        """Información básica del servidor."""
+    @commands.hybrid_command(aliases=['si', 'server'], description="Información básica del servidor.")
+    async def serverinfo(self, ctx: commands.Context):
+        # Extraído de https://github.com/cree-py/RemixBot/blob/master/cogs/info.py
         guild = ctx.guild
         guild_age = (ctx.message.created_at - guild.created_at).days
         created_at = f"Servidor creado {guild.created_at.strftime('%b %d %Y │ %H:%M')}.\n¡Eso fue hace {guild_age} días!"
@@ -252,8 +235,8 @@ class general(
 
         await ctx.send(embed=em)
 
-    @commands.command(name='opensource', aliases=['open'])
-    async def opensource(self, ctx):
+    @commands.hybrid_command(name='opensource', aliases=['open'])
+    async def opensource(self, ctx: commands.Context):
         embed = discord.Embed(
             title='SatanyaBot apoya el open source y tú también deberías',
             description='Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.\n\n<:satan_yeih:846553057999454219> Si deseas aportar ayuda y apoyo al proyecto revisa los siguientes enlaces: ',
@@ -274,11 +257,8 @@ class general(
         )
         await ctx.send(embed=embed)
 
-    @commands.command(aliases=['dn', 'donation'])
+    @commands.hybrid_command(aliases=['dn', 'donation'], description="Links de invitación de SatanyaBot y al server")
     async def donate(self, ctx: commands.Context):
-        """
-        Links de invitación de SatanyaBot y al server
-        """
         embed = discord.Embed(
             title='¿Te gustaría apoyar el desarrollo del proyecto?',
             description='Todo el dinero que se invierte va directamente para mantener el VPS donde SatanyaBot se mantiene activa. Aportando tan poco como $1 ayudas a mantener a flote el proyecto.',
@@ -298,11 +278,8 @@ class general(
         )
         await ctx.author.send(embed=embed)
 
-    @commands.command(aliases=['topgg'])
+    @commands.hybrid_command(aliases=['topgg'], description="Perfil de SatanyaBot en top.gg")
     async def vote(self, ctx: commands.Context):
-        """
-        Perfil de SatanyaBot en top.gg
-        """
         embed = discord.Embed(
             title='¡Ayúdame a crecer en top.gg',
             description='Si te gustaría ayudar al proyecto más allá de aportar donaciones puedes ayudar a calificar a SatanyaBot en la plataforma de top.gg para que sea mucho más conocida.',
@@ -322,11 +299,8 @@ class general(
         )
         await ctx.author.send(embed=embed)
 
-    @commands.command(name='randomcolor', aliases=['racolor'])
+    @commands.hybrid_command(name='randomcolor', aliases=['racolor'], description="¿Buscas colores? Toma uno")
     async def randomcolor(self, ctx: commands.Context):
-        """
-        ¿Buscas colores? Toma uno
-        """
         async with ctx.typing():
             hex = secrets.token_hex(3)
             color = await self.alex.colour(colour=hex)
@@ -340,4 +314,4 @@ class general(
 
 
 async def setup(bot):
-    await bot.add_cog(general(bot))
+    await bot.add_cog(General(bot))

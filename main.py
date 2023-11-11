@@ -35,5 +35,5 @@ async def on_ready():
     print(f'Nos hemos conectado como {bot.user}')
 
 
-load_dotenv()
-bot.run(os.getenv('TOKEN'))
+if __name__ == '__main__':
+    bot.run(os.getenv('TOKEN'))

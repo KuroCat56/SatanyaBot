@@ -6,14 +6,14 @@ from discord.ext import commands
 from psutil import Process
 
 
-class owner(commands.Cog):
+class Owner(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         bot.snipes = {}
 
     @commands.command()
     @commands.is_owner()
-    async def load(self, ctx, name: str):
+    async def load(self, ctx: commands.Context, name: str):
         """Carga un cog"""
         try:
             await self.bot.load_extension(f'cogs.{name}')
@@ -28,7 +28,7 @@ class owner(commands.Cog):
 
     @commands.command(name='unload')
     @commands.is_owner()
-    async def unload(self, ctx, name: str):
+    async def unload(self, ctx: commands.Context, name: str):
         """Descarga un cog"""
         try:
             await self.bot.unload_extension(f'cogs.{name}')
@@ -43,7 +43,7 @@ class owner(commands.Cog):
 
     @commands.command(name='reload')
     @commands.is_owner()
-    async def reload(self, ctx, name: str):
+    async def reload(self, ctx: commands.Context, name: str):
         """Recarga un cog"""
         try:
             await self.bot.unload_extension(f'cogs.{name}')
@@ -59,7 +59,7 @@ class owner(commands.Cog):
 
     @commands.command(name='rall')
     @commands.is_owner()
-    async def rall(self, ctx):
+    async def rall(self, ctx: commands.Context):
         """Recarga todos los cogs"""
         cogs = []
         for filename in os.listdir('./cogs'):
@@ -80,7 +80,7 @@ class owner(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def memory(self, ctx):
+    async def memory(self, ctx: commands.Context):
         await ctx.send(
             f'Estoy usando **{round(Process(getpid()).memory_info().rss/1024/1024, 2)} MB** en mi servidor.'
         )
@@ -92,7 +92,7 @@ class owner(commands.Cog):
 
     @commands.command(name='snipe')
     @commands.is_owner()
-    async def snipe(self, ctx, *, channel: discord.TextChannel = None):
+    async def snipe(self, ctx: commands.Context, *, channel: discord.TextChannel = None):
         channel = channel or ctx.channel
         try:
             msg = self.bot.snipes[channel.id]
@@ -109,7 +109,7 @@ class owner(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def serverlist(self, ctx):
+    async def serverlist(self, ctx: commands.Context):
         guilds = [guild.name for guild in self.bot.guilds]
         member_count = [guild.member_count for guild in self.bot.guilds]
         serverlist = dict(zip(guilds, member_count))
@@ -121,12 +121,22 @@ class owner(commands.Cog):
         )
         await ctx.send(embed=servers)
 
-    @commands.command(aliases=['disconnect', 'close', 'stopbot'])
+    @commands.command(name="logout", aliases=['close', 'stopbot'])
     @commands.is_owner()
     async def logout(self, ctx):
         await ctx.send('Okay, hora de reiniciar 💤💤💤')
         await self.bot.close()
 
+    @commands.command(name="sync")
+    @commands.is_owner()
+    async def _sync(self, ctx: commands.Context):
+        await self.bot.tree.sync()
+        embed = discord.Embed(
+            title="Sincronizado!",
+            description="El arbol de commandos se ha sincronizado exitosamente",
+            colour=0xFBF9FA,
+        )
+        await ctx.send(embed=embed)
 
 async def setup(bot):
-    await bot.add_cog(owner(bot))
+    await bot.add_cog(Owner(bot))

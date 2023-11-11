@@ -16,7 +16,7 @@ def text_to_owo(text):
         .replace('r', 'w')
         .replace('L', 'W')
         .replace('R', 'W')
-    )   # esto lo hice en unos 5 minutos XD
+    )  # esto lo hice en unos 5 minutos XD
 
 
 eightballresponses = [
@@ -41,8 +41,9 @@ eightballresponses = [
 ]
 
 
-class funny(
-    commands.Cog,
+class Fun(
+    commands.GroupCog,
+    group_name="fun",
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
             1, 5, commands.BucketType.user
@@ -69,77 +70,67 @@ class funny(
             await msg.add_reaction(emoji_nya)
             await self.bot.process_commands(msg)
 
-    @commands.command()
-    async def owo(self, ctx, *, text):
-        """
-        Escribe lo que quieras al usar este comando para que lo owofique.
-        """
+    @commands.command(name="owo",
+                      description="Escribe lo que quieras al usar este comando para que lo owofique.")
+    async def owo(self, ctx: commands.Context, *, text):
         await ctx.message.delete()
         await ctx.send(text_to_owo(text))
 
-    @commands.command()
-    async def say(self, ctx, *, text):
-        """
-        ¿Quieres que diga algo por ti?
-        """
+    @commands.hybrid_command(name="say", descriptioN="¿Quieres que diga algo por ti?")
+    async def say(self, ctx: commands.Context, *, text):
         await ctx.message.delete()
         await ctx.send(text)
 
-    @commands.command()
-    async def love(self, ctx, member: discord.Member = None):
-        """
-        Calcula tus posibilidades con otro usuario
-        """
+    @commands.command(name="love", description="Calcula tus posibilidades con otro usuario")
+    async def love(self, ctx: commands.Context, member: discord.Member = None):
         calc_love = random_love()
-        if member is None:
-            await ctx.reply('¡Primero necesitas etiquetar a alguien!')
-        elif member is ctx.author:
+        if not member:
+            return await ctx.reply('¡Primero necesitas etiquetar a alguien!')
+
+        elif member == ctx.author:
             message = '∞ [█████████████████████]\n**Tienes el suficiente ego como para aceptarte y amarte como eres.**'
-            await ctx.reply(message)
-        else:
-            if calc_love == 0:
-                love_messsage = f'{calc_love}% [ . . . . . . . . . . ]\n🚫 No existe compatibilidad entre **{ctx.author.name}** y **{member.name}**'
-            elif 1 <= calc_love <= 10:
-                love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
-            elif 11 <= calc_love <= 20:
-                love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
-            elif 21 <= calc_love <= 30:
-                love_messsage = f'{calc_love}% [██ . . . . . . . ]\n😶 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
-            elif 31 <= calc_love <= 40:
-                love_messsage = f'{calc_love}% [███ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
-            elif 41 <= calc_love <= 50:
-                love_messsage = f'{calc_love}% [████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
-            elif 51 <= calc_love <= 60:
-                love_messsage = f'{calc_love}% [█████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
-            elif 61 <= calc_love <= 70:
-                love_messsage = f'{calc_love}% [██████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
-            elif 71 <= calc_love <= 80:
-                love_messsage = f'{calc_love}% [███████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
-            elif 81 <= calc_love <= 90:
-                love_messsage = f'{calc_love}% [████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
-            elif 91 <= calc_love <= 99:
-                love_messsage = f'{calc_love}% [█████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
-            elif calc_love == 100:
-                love_messsage = f'{calc_love}% [██████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta'
+            return await ctx.reply(message)
+
+        if calc_love == 0:
+            love_messsage = f'{calc_love}% [ . . . . . . . . . . ]\n🚫 No existe compatibilidad entre **{ctx.author.name}** y **{member.name}**'
+        elif 1 <= calc_love <= 10:
+            love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🙅‍♀️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
+        elif 11 <= calc_love <= 20:
+            love_messsage = f'{calc_love}% [█ . . . . . . . . . ]\n🤔 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es demasiado baja'
+        elif 21 <= calc_love <= 30:
+            love_messsage = f'{calc_love}% [██ . . . . . . . ]\n😶 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
+        elif 31 <= calc_love <= 40:
+            love_messsage = f'{calc_love}% [███ . . . . . . ]\n💌 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es baja'
+        elif 41 <= calc_love <= 50:
+            love_messsage = f'{calc_love}% [████ . . . . . ]\n💑 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
+        elif 51 <= calc_love <= 60:
+            love_messsage = f'{calc_love}% [█████ . . . . ]\n❤️ La compatibilidad entre **{ctx.author.name}** y **{member.name}** es normal'
+        elif 61 <= calc_love <= 70:
+            love_messsage = f'{calc_love}% [██████ . . . ]\n💕 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
+        elif 71 <= calc_love <= 80:
+            love_messsage = f'{calc_love}% [███████ . . ]\n💝 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es decemte'
+        elif 81 <= calc_love <= 90:
+            love_messsage = f'{calc_love}% [████████ . ]\n💘 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
+        elif 91 <= calc_love <= 99:
+            love_messsage = f'{calc_love}% [█████████]\n💞 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es muy buena'
+        elif calc_love == 100:
+            love_messsage = f'{calc_love}% [██████████]\n💖 La compatibilidad entre **{ctx.author.name}** y **{member.name}** es perfecta'
         embed = discord.Embed(description=f'{love_messsage}', color=0xFF9999)
         await ctx.reply(embed=embed)
 
-    @commands.command(aliases=['shipname'])
+    @commands.hybrid_command(aliases=['shipname'],
+                             description="Descubre el cómo sería el shipname entre dos usuarios 💘")
     async def ship(
-        self, ctx, member: discord.Member, member2: discord.Member = None
+            self, ctx, member: discord.Member, member2: discord.Member = None
     ):
-        """
-        Descubre el cómo sería el shipname entre dos usuarios 💘
-        """
-
-        if member2 is None:
+        if not member2:
             member2 = ctx.author
 
         if len(member.display_name) < 4:
             N = len(member.display_name) / 2
 
             firstmember = member.display_name
-            firstship = firstmember[0 : int(N)]
+            firstship = firstmember[0: int(N)]
 
             secondmember = member2.display_name
             secondship = secondmember[0:4]
@@ -151,7 +142,7 @@ class funny(
             firstship = firstmember[0:4]
 
             secondmember = member2.display_name
-            secondship = secondmember[0 : int(N)]
+            secondship = secondmember[0: int(N)]
 
         else:
 
@@ -170,11 +161,9 @@ class funny(
 
         await ctx.send(embed=embed)
 
-    @commands.command(name='8ball', aliases=['ball8'])
+    @commands.hybrid_command(name='8ball', aliases=['ball8'],
+                             description="Hazme una pregunta y yo te daré una respuesta.")
     async def _8ball(self, ctx, *, question):
-        """
-        Hazme una pregunta y yo te daré una respuesta.
-        """
         eightball = discord.Embed(
             title='Tu pregunta:',
             description=f'{question}',
@@ -213,4 +202,4 @@ class funny(
 
 
 async def setup(bot):
-    await bot.add_cog(funny(bot))
+    await bot.add_cog(Fun(bot))
