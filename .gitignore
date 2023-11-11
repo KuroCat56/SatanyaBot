@@ -7,3 +7,4 @@ private
 venv/
 .venv/
 .vscode/settings.json
+.idea/
