@@ -25,7 +25,10 @@ class Bot(AutoShardedBot):
     async def setup_hook(self):
         for file in os.listdir('cogs'):
             if file.endswith('.py'):
-                await self.load_extension(f'cogs.{file[:-3]}')
+                try:
+                    await self.load_extension(f'cogs.{file[:-3]}')
+                except Exception as e:
+                    print(f"Cannot load {file}: {e}")
 
     async def on_message(self, msg):
         if not self.is_ready() or msg.author.bot or not msg.guild:

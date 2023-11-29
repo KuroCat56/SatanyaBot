@@ -1,17 +1,15 @@
 import asyncio
 import inspect
 import math
-import random
-from ast import Pass
 from typing import Union
-
+import re
 import discord
 from aiohttp import ClientSession
 from discord.ext import commands
 from googlesearch import search
 
 
-class utils(
+class Utils(
     commands.Cog,
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
@@ -29,7 +27,7 @@ class utils(
         self.bot = bot
         self.session = ClientSession()
 
-    async def translate(self, ctx, source, target, text):
+    async def translate(self, source, target, text):
         """
         Traduce un texto a un idioma especifico
         """
@@ -40,10 +38,10 @@ class utils(
 
     # Estraído de https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/meta.py#L557
     async def say_permissions(
-        self,
-        ctx,
-        member: discord.Member,
-        channel: Union[discord.abc.GuildChannel, discord.Thread],
+            self,
+            ctx,
+            member: discord.Member,
+            channel: Union[discord.abc.GuildChannel, discord.Thread],
     ):
         permissions = channel.permissions_for(member)
         e = discord.Embed(colour=member.colour)
@@ -64,34 +62,24 @@ class utils(
     def is_guild_owner():
         def predicate(ctx):
             return (
-                ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
+                    ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
             )
 
         return commands.check(predicate)
 
-    @commands.command()
+    @commands.hybrid_command(name="remind", description="(BETA)Intentaré recordarte cualquier cosa que necesites.")
     async def remind(self, ctx, time, *, task):
-        """
-        (BETA)Intentaré recordarte cualquier cosa que necesites.
-
-        Segundos (s), Minutos (m), Horas (h), Días (d)
-        """
-
-        def convert(time):
-            pos = ['s', 'm', 'h', 'd']
-
-            time_dict = {'s': 1, 'm': 60, 'h': 3600, 'd': 3600 * 24}
-
-            unit = time[-1]
-
-            if unit not in pos:
-                return -1
-            try:
-                val = int(time[:-1])
-            except:
-                return -2
-
-            return val * time_dict[unit]
+        def convert(_time: str):
+            pattern = r'((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?'
+            matches = re.match(pattern, _time)
+            if matches:
+                days = int(matches.group(2) or 0)
+                hours = int(matches.group(4) or 0)
+                minutes = int(matches.group(6) or 0)
+                seconds = int(matches.group(8) or 0)
+                total = seconds + (minutes * 60) + (hours * 3600) + (days * 86400)
+                return total
+            return None
 
         converted_time = convert(time)
 
@@ -157,10 +145,10 @@ class utils(
     @commands.guild_only()
     @commands.check_any(commands.is_owner(), is_guild_owner())
     async def botpermissions(
-        self,
-        ctx,
-        *,
-        channel: Union[discord.abc.GuildChannel, discord.Thread] = None,
+            self,
+            ctx,
+            *,
+            channel: Union[discord.abc.GuildChannel, discord.Thread] = None,
     ):
         """
         Muestra los permisos del bot en un canal específico o en el actual.
@@ -173,10 +161,10 @@ class utils(
     @commands.command(aliases=['perms'])
     @commands.guild_only()
     async def permissions(
-        self,
-        ctx,
-        member: discord.Member = None,
-        channel: Union[discord.abc.GuildChannel, discord.Thread] = None,
+            self,
+            ctx,
+            member: discord.Member = None,
+            channel: Union[discord.abc.GuildChannel, discord.Thread] = None,
     ):
         """
         Muestra los permisos de un usuario en un canal específico o en el actual.
@@ -348,7 +336,7 @@ class utils(
         block = '`' * 3
         try:
             async with self.session.get(
-                f'https://translate.igna.ooo/api/v1/{source}/{target}/{text}'
+                    f'https://translate.igna.ooo/api/v1/{source}/{target}/{text}'
             ) as r:
                 data = await r.json()
                 text2 = data['translation']
@@ -484,4 +472,4 @@ class utils(
 
 
 async def setup(bot):
-    await bot.add_cog(utils(bot))
+    await bot.add_cog(Utils(bot))

@@ -15,7 +15,7 @@ reddit_api = praw.Reddit(
 )
 
 
-class reddit(
+class Reddit(
     commands.Cog,
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
@@ -39,11 +39,8 @@ class reddit(
     # Comandos que envían memes
 
     # Construcción para comando nya>meme
-    @commands.command(name='meme')
-    async def meme(self, ctx):
-        """
-        Obtén un meme de r/memes
-        """
+    @commands.hybrid_command(name='meme', description="Obtén un meme de r/memes")
+    async def meme(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('memes')
             async for submission in subreddit.hot(limit=3):
@@ -55,11 +52,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>animeme
-    @commands.command(name='animeme')
-    async def animeme(self, ctx):
-        """
-        Enviaré un meme otaku de r/animemes
-        """
+    @commands.hybrid_command(name='animeme', description="Enviaré un meme otaku de r/animemes")
+    async def animeme(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('animemes')
             async for submission in subreddit.hot(limit=3):
@@ -71,11 +65,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>antimeme
-    @commands.command(name='antimeme')
-    async def antimeme(self, ctx):
-        """
-        Kappa
-        """
+    @commands.hybrid_command(name='antimeme', description="Kappa")
+    async def antimeme(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('antimeme')
             async for submission in subreddit.hot(limit=3):
@@ -87,11 +78,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>hmmm
-    @commands.command(name='hmmm')
-    async def hmmm(self, ctx):
-        """
-        Hmmm...
-        """
+    @commands.hybrid_command(name='hmmm', description="Hmmm...")
+    async def hmmm(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('hmmm')
             async for submission in subreddit.hot(limit=3):
@@ -103,11 +91,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>dank
-    @commands.command(name='dank')
-    async def dank(self, ctx):
-        """
-        Memes densos de r/dankmemes
-        """
+    @commands.command(name='dank', description="Memes densos de r/dankmemes")
+    async def dank(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('dankmemes')
             async for submission in subreddit.hot(limit=3):
@@ -119,11 +104,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>chantext
-    @commands.command(name='chantext')
-    async def chantext(self, ctx):
-        """
-        Extractos de 4chan en r/greentext
-        """
+    @commands.hybrid_command(name='chantext', description="Extractos de 4chan en r/greentext")
+    async def chantext(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('greentext')
             async for submission in subreddit.hot(limit=3):
@@ -135,11 +117,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>shower
-    @commands.command(name='shower')
-    async def shower(self, ctx):
-        """
-        Frases célebres de r/ShowerThoughts
-        """
+    @commands.hybrid_command(name='shower', description="Frases célebres de r/ShowerThoughts")
+    async def shower(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('ShowerThoughts')
             async for submission in subreddit.hot(limit=3):
@@ -152,11 +131,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>hispameme
-    @commands.command(name='hispameme')
-    async def hispameme(self, ctx):
-        """
-        Memes hispanos
-        """
+    @commands.command(name='hispameme', description="Memes hispanos")
+    async def hispameme(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('SpanishMeme')
             async for submission in subreddit.hot(limit=3):
@@ -168,11 +144,8 @@ class reddit(
                 await ctx.send(embed=embed)
 
     # Construcción para comando nya>wholesome
-    @commands.command(name='wholesome')
-    async def wholesome(self, ctx):
-        """
-        Un poquito del lado bueno de internet.
-        """
+    @commands.command(name='wholesome', description="Un poquito del lado bueno de internet.")
+    async def wholesome(self, ctx: commands.Context):
         async with ctx.typing():
             subreddit = await reddit_api.subreddit('wholesomememes')
             async for submission in subreddit.hot(limit=3):
@@ -185,4 +158,4 @@ class reddit(
 
 
 async def setup(bot):
-    await bot.add_cog(reddit(bot))
+    await bot.add_cog(Reddit(bot))

@@ -1,12 +1,11 @@
 from datetime import datetime
-
 import animec
 import discord
 import waifuim
 from discord.ext import commands
 
 
-class anime(
+class Anime(
     commands.Cog,
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
@@ -24,13 +23,11 @@ class anime(
         self.bot = bot
         self.waifu = waifuim.WaifuAioClient()
 
-    @commands.command(aliases=['anisearch', 'animesearch'])
+    @commands.hybrid_command(aliases=['anisearch', 'animesearch'],
+                             description="Búsqueda rápida de un anime. "
+                                         "Asegúrate de escribir bien el nombre de lo que buscas.")
     # @commands.is_nsfw()
-    async def anime(self, ctx, *, name):
-        """
-        Búsqueda rápida de un anime.
-        Asegúrate de escribir bien el nombre de lo que buscas.
-        """
+    async def search(self, ctx: commands.Context, *, name):
         async with ctx.typing():
             try:
                 anime = animec.Anime(name)
@@ -69,12 +66,10 @@ class anime(
             embed.set_thumbnail(url=anime.poster)
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['anichar', 'animecharacter'])
-    async def character(self, ctx, *, name):
-        """
-        Búsqueda rápida de un personaje de anime.
-        Asegúrate de escribir bien el nombre de lo que buscas.
-        """
+    @commands.hybrid_command(aliases=['anichar', 'animecharacter'],
+                             description="Búsqueda rápida de un personaje de anime."
+                                         "Asegúrate de escribir bien el nombre de lo que buscas.")
+    async def character(self, ctx: commands.Context, *, name):
         async with ctx.typing():
             try:
                 char = animec.Charsearch(name)
@@ -93,11 +88,8 @@ class anime(
             embed.set_footer(text=', '.join(list(char.references.keys())[:2]))
             await ctx.send(embed=embed)
 
-    @commands.command(aliases=['animenews'])
-    async def aninews(self, ctx, amount: int = 3):
-        """
-        Las noticias más nuevas del mundo del anime.
-        """
+    @commands.hybrid_command(aliases=['animenews'], description="Las noticias más nuevas del mundo del anime.")
+    async def aninews(self, ctx: commands.Context, amount: int = 3):
         news = animec.Aninews(amount)
         links = news.links
         titles = news.titles
@@ -116,18 +108,15 @@ class anime(
 
         for i in range(amount):
             embed.add_field(
-                name=f'{i+1}) {titles[i]}',
+                name=f'{i + 1}) {titles[i]}',
                 value=f'{descriptions[i][:200]}...\n[Link]({links[i]})',
                 inline=False,
             )
 
         await ctx.send(embed=embed)
 
-    @commands.command(name='waifu')
+    @commands.hybrid_command(name='waifu', description="Imágenes aleatorias de waifus. ✨")
     async def waifu(self, ctx: commands.Context):
-        """
-        Imágenes aleatorias de waifus. ✨
-        """
         waifu = await self.waifu.random(
             selected_tags=['waifu'], is_nsfw=['False'], many=False
         )
@@ -136,11 +125,8 @@ class anime(
         embed.set_footer(text='✨ Powered by waifu.im')
         await ctx.reply(embed=embed)
 
-    @commands.command(name='maid')
+    @commands.hybrid_command(name='maid', description="Imágenes aleatorias de maids. 🎀")
     async def maid(self, ctx: commands.Context):
-        """
-        Imágenes aleatorias de maids. 🎀
-        """
         maid = await self.waifu.random(
             selected_tags=['maid'], is_nsfw=['False'], many=False
         )
@@ -151,4 +137,4 @@ class anime(
 
 
 async def setup(bot):
-    await bot.add_cog(anime(bot))
+    await bot.add_cog(Anime(bot))
