@@ -11,7 +11,7 @@ dagpi = Client(os.environ['DAGPI'])
 
 
 class Image(
-    commands.Cog,
+    commands.GroupCog,
     group_name="img",
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
@@ -21,11 +21,6 @@ class Image(
 ):
     """
     Filtros y modificadores divertidos de imágenes. ¡Descubre cada uno de ellos!
-    Etiqueta a otro usuario para aplicarle el filtro a su perfil.
-
-    Si algún comando no funciona con tu perfil es posible que la imagen sea demasiado grande como para enviarse.
-
-    Cooldown: 10s per command
     """
 
     def __init__(self, bot: commands.Bot):
@@ -85,26 +80,6 @@ class Image(
             )
             await ctx.reply(file=file_ptpt, embed=embed)
 
-    @commands.command(aliases=['trigger'], description="T R I G G E R E D")
-    async def triggered(self, ctx: commands.Context, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        async with ctx.typing():
-            img_trgg = await dagpi.image_process(
-                ImageFeatures.triggered(), member.avatar.url
-            )
-            file_trgg = discord.File(
-                fp=img_trgg.image, filename=f'triggered.{img_trgg.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://triggered.{img_trgg.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_trgg, embed=embed)
-
     @commands.hybrid_command(description="URSS")
     async def urss(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
@@ -125,7 +100,7 @@ class Image(
             )
             await ctx.reply(file=file_urss, embed=embed)
 
-    @commands.command(description="Analiza los colores de la foto de perfil de alguien.")
+    @commands.hybrid_command(description="Analiza los colores de la foto de perfil de alguien.")
     async def colors(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -164,26 +139,6 @@ class Image(
                 icon_url=member.avatar.url,
             )
             await ctx.reply(file=file_gy, embed=embed)
-
-    @commands.hybrid_command(description="Ma'lady")
-    async def fedora(self, ctx, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        async with ctx.typing():
-            img_fdr = await dagpi.image_process(
-                ImageFeatures.fedora(), member.avatar.url
-            )
-            file_fdr = discord.File(
-                fp=img_fdr.image, filename=f'fedora.{img_fdr.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://fedora.{img_fdr.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_fdr, embed=embed)
 
     @commands.hybrid_command(description="Para mandar a cualquiera a la carcel")
     async def jail(self, ctx, member: discord.Member = None):
@@ -265,7 +220,7 @@ class Image(
             )
             await ctx.reply(file=file_bmb, embed=embed)
 
-    @commands.command(description="Porque todo es más bonito con el neón")
+    @commands.hybrid_command(description="Porque todo es más bonito con el neón")
     async def neon(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -365,66 +320,6 @@ class Image(
             )
             await ctx.reply(file=file_nvrt, embed=embed)
 
-    @commands.command(description="Detectando bordes desde 1969")
-    async def sobel(self, ctx: commands.Context, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        async with ctx.typing():
-            img_sbl = await dagpi.image_process(
-                ImageFeatures.sobel(), member.avatar.url
-            )
-            file_sbl = discord.File(
-                fp=img_sbl.image, filename=f'sobel.{img_sbl.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://sobel.{img_sbl.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_sbl, embed=embed)
-
-    @commands.hybrid_command(description="A veces hay que censurar, por si acaso")
-    async def blur(self, ctx: commands.Context, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        async with ctx.typing():
-            img_blr = await dagpi.image_process(
-                ImageFeatures.blur(), member.avatar.url
-            )
-            file_blr = discord.File(
-                fp=img_blr.image, filename=f'blur.{img_blr.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://blur.{img_blr.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_blr, embed=embed)
-
-    @commands.command(description="Extrae la información RGB de un perfil")
-    async def rgb(self, ctx: commands.Context, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        async with ctx.typing():
-            img_rgb = await dagpi.image_process(
-                ImageFeatures.rgb(), member.avatar.url
-            )
-            file_rgb = discord.File(
-                fp=img_rgb.image, filename=f'rgb.{img_rgb.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://rgb.{img_rgb.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_rgb, embed=embed)
-
     @commands.hybrid_command(description="¿Te gustan las papas fritas?")
     async def deepfry(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
@@ -522,47 +417,7 @@ class Image(
             )
             await ctx.reply(file=file_plrd, embed=embed)
 
-    @commands.command(description="Vamos a deformar un poco")
-    async def swirl(self, ctx, member: discord.Member = None):
-        if not member:
-            member = ctx.author
-        async with ctx.typing():
-            img_swrl = await dagpi.image_process(
-                ImageFeatures.swirl(), member.avatar.url
-            )
-            file_swrl = discord.File(
-                fp=img_swrl.image, filename=f'swirl.{img_swrl.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://swirl.{img_swrl.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_swrl, embed=embed)
-
-    @commands.hybrid_command(description="El arte es subjetivo")
-    async def paint(self, ctx: commands.Context, member: discord.Member = None):
-        if member is None:
-            member = ctx.author
-        async with ctx.typing():
-            img_pnt = await dagpi.image_process(
-                ImageFeatures.paint(), member.avatar.url
-            )
-            file_pnt = discord.File(
-                fp=img_pnt.image, filename=f'paint.{img_pnt.format}'
-            )
-
-            embed = discord.Embed(color=ctx.author.color)
-            embed.set_image(url=f'attachment://paint.{img_pnt.format}')
-            embed.set_footer(
-                text=f'Solicitado por {ctx.message.author} │ dagpi.xyz',
-                icon_url=member.avatar.url,
-            )
-            await ctx.reply(file=file_pnt, embed=embed)
-
-    @commands.command(description="¿Cómo sería si te dibujase un artista?")
+    @commands.hybrid_command(description="¿Cómo sería si te dibujase un artista?")
     async def sketch(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
