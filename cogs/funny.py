@@ -1,6 +1,7 @@
 import asyncio
 import random
-
+import aiohttp
+from bs4 import BeautifulSoup
 import discord
 from discord.ext import commands
 
@@ -17,6 +18,24 @@ def text_to_owo(text):
         .replace('L', 'W')
         .replace('R', 'W')
     )  # esto lo hice en unos 5 minutos XD
+
+
+async def get_memes() -> list:
+    headers = {
+        'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+    images = []
+    async with aiohttp.ClientSession(headers=headers) as session:
+        async with session.get('https://es.memedroid.com/memes/latest') as response:
+            response.raise_for_status()
+            data = await response.read()
+            soup = BeautifulSoup(data, 'html.parser')
+            for item in soup.find_all(class_="item-aux-container"):
+                img_tag = item.find('img')
+                if img_tag and 'video-play-button' not in img_tag.get('class', []):
+                    images.append(img_tag['src'])
+    return images
 
 
 eightballresponses = [
@@ -42,7 +61,7 @@ eightballresponses = [
 
 
 class Fun(
-    commands.GroupCog,
+    commands.Cog,
     group_name="fun",
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
@@ -69,6 +88,16 @@ class Fun(
             emoji_nya = '<:SatanyaBot:858480664143331338>'
             await msg.add_reaction(emoji_nya)
             await self.bot.process_commands(msg)
+
+    @commands.hybrid_command(name='meme', description="Obtén un meme de r/memes")
+    async def meme(self, ctx: commands.Context):
+        async with ctx.typing():
+            meme = await get_memes()
+            url = random.choice(meme)
+            embed = discord.Embed(color=0xa8f1b8)
+            embed.set_image(url=url)
+            embed.set_footer(text="Extraído de memedroid")
+            await ctx.send(embed=embed)
 
     @commands.command(name="owo",
                       description="Escribe lo que quieras al usar este comando para que lo owofique.")

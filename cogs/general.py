@@ -55,12 +55,6 @@ class General(
         )
         await ctx.send(embed=embed)
 
-    @commands.hybrid_command(name='git', description="Código fuente de SatanyaBot")
-    async def git(self, ctx: commands.Context):
-        await ctx.send(
-            f'Puedes revisar mi código fuente en {os.environ["GIT"]}'
-        )
-
     @commands.hybrid_command(name='reverse', description="asrever ne otxeT")
     async def reverse(self, ctx: commands.Context, *, text: str):
         reverse = text[::-1]
@@ -193,11 +187,6 @@ class General(
             value='[Vota por mi](https://top.gg/bot/805589802484760577)',
             inline=True,
         )
-        embed.add_field(
-            name='Enlaces',
-            value='[Github](https://github.com/KuroCat56/SatanyaBot) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Invítame](https://discord.com/oauth2/authorize?client_id=805589802484760577&scope=bot&permissions=137442610369)',
-            inline=False,
-        )
         version = pkg_resources.get_distribution('discord.py').version
         embed.set_footer(
             text=f'Desarrollada en discord.py v{version}',
@@ -206,7 +195,17 @@ class General(
         embed.set_image(
             url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png'
         )
-        await ctx.send(embed=embed)
+
+        view = discord.ui.View()
+
+        add_me = discord.ui.Button(style=discord.ButtonStyle.url, label="Añademe a tu servidor!", url=os.environ["GIT"])
+        support = discord.ui.Button(style=discord.ButtonStyle.url, label="Server de soporte",
+                                    url='https://discord.gg/bqcdKxuW3X')
+        git = discord.ui.Button(style=discord.ButtonStyle.url, label="Código fuente", url=os.environ["GIT"])
+        view.add_item(add_me)
+        view.add_item(support)
+        view.add_item(git)
+        await ctx.send(embed=embed, view=view)
 
     @commands.hybrid_command(aliases=['si', 'server'], description="Información básica del servidor.")
     async def serverinfo(self, ctx: commands.Context):
@@ -235,48 +234,28 @@ class General(
 
         await ctx.send(embed=em)
 
-    @commands.hybrid_command(name='opensource', aliases=['open'])
+    @commands.hybrid_command(name='opensource', aliases=['open', 'dn', 'donation'])
     async def opensource(self, ctx: commands.Context):
         embed = discord.Embed(
             title='SatanyaBot apoya el open source y tú también deberías',
             description='Soy una bot open source así que todo mi desarrollo está sostenido gracias al apoyo de otros desarrolladores y demás proyectos open source.\n\n<:satan_yeih:846553057999454219> Si deseas aportar ayuda y apoyo al proyecto revisa los siguientes enlaces: ',
             color=0xFBF9FA,
         )
-        embed.add_field(
-            name='Desarrollo',
-            value=f'[Github]({os.environ["GIT"]}) **|** [Servidor de Soporte](https://discord.gg/bqcdKxuW3X) **|** [Trello](https://trello.com/b/Z432JC83)',
-            inline=False,
-        )
-        embed.add_field(
-            name='Donaciones <a:cutestars:846625824538886214>',
-            value='[Ko-fi](https://ko-fi.com/kurocat56)',
-            inline=False,
-        )
         embed.set_thumbnail(
             url='https://media.discordapp.net/attachments/829223734559637545/859941157944557588/headAsset_214x-8.png'
         )
-        await ctx.send(embed=embed)
+        view = discord.ui.View()
 
-    @commands.hybrid_command(aliases=['dn', 'donation'], description="Links de invitación de SatanyaBot y al server")
-    async def donate(self, ctx: commands.Context):
-        embed = discord.Embed(
-            title='¿Te gustaría apoyar el desarrollo del proyecto?',
-            description='Todo el dinero que se invierte va directamente para mantener el VPS donde SatanyaBot se mantiene activa. Aportando tan poco como $1 ayudas a mantener a flote el proyecto.',
-            color=0xFBF9FA,
-        )
-        embed.add_field(
-            name='<:join:847940361937879051> Enlaces de donaciones',
-            value='[Ko-fi](https://ko-fi.com/kurocat56)',
-            inline=True,
-        )
-        embed.set_image(
-            url='https://media.discordapp.net/attachments/829223734559637545/859608410537459752/bannerSatanyaBot_Logotipo4x.png'
-        )
-        await ctx.send(
-            '<:okay:846612389046386689> Te he enviado mis enlaces de donación',
-            delete_after=10,
-        )
-        await ctx.author.send(embed=embed)
+        donate = discord.ui.Button(style=discord.ButtonStyle.url, label="Donaciones", url='https://ko-fi.com/kurocat56')
+        support = discord.ui.Button(style=discord.ButtonStyle.url, label="Server de soporte",
+                                    url='https://discord.gg/bqcdKxuW3X')
+        git = discord.ui.Button(style=discord.ButtonStyle.url, label="Código fuente", url=os.environ["GIT"])
+        trello = discord.ui.Button(style=discord.ButtonStyle.url, label="Trello", url='https://trello.com/b/Z432JC83')
+        view.add_item(donate)
+        view.add_item(support)
+        view.add_item(git)
+        view.add_item(trello)
+        await ctx.send(embed=embed, view=view)
 
     @commands.hybrid_command(aliases=['topgg'], description="Perfil de SatanyaBot en top.gg")
     async def vote(self, ctx: commands.Context):

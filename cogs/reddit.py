@@ -1,22 +1,40 @@
 import random
-from os import environ
-
-import asyncpraw as praw
+import aiohttp
 import discord
 from discord.ext import commands
+import typing as t
 
-# API de Reddit
-reddit_api = praw.Reddit(
-    client_id=environ['REDDIT_CLIENT_ID'],
-    client_secret=environ['REDDIT_CLIENT_SECRET'],
-    username=environ['REDDIT_USERNAME'],
-    password=environ['REDDIT_PASSWORD'],
-    user_agent=environ['REDDIT_USER_AGENT'],
-)
+
+async def get_sub_images(subreddit) -> t.Tuple[discord.Embed, discord.ui.View]:
+    posts = []
+    async with aiohttp.ClientSession(headers={
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0',
+        'Accept': 'application/json'
+    }).get(f'https://www.reddit.com/r/{subreddit}/.json') as response:
+        data = await response.json()
+        for i in data['data']['children']:
+            if i['data'].get('url'):
+                print("aaa")
+                posts.append(i['data'])
+
+    subreddit = random.choice(posts)
+
+    embed = discord.Embed(color=0xED2DC0)
+    embed.title = f"{subreddit['title']}"
+    embed.set_image(url=subreddit['url'])
+    embed.set_footer(
+        text=f"r/memes | {subreddit['score']} votos | {subreddit['num_comments']} comentarios",
+    )
+    view = discord.ui.View()
+    btn = discord.ui.Button(style=discord.ButtonStyle.url, url=('https://reddit.com' + subreddit['permalink']),
+                            label="Ver post original")
+    view.add_item(btn)
+    return embed, view
 
 
 class Reddit(
-    commands.Cog,
+    commands.GroupCog,
+    group_name="reddit",
     command_attrs={
         'cooldown': commands.CooldownMapping.from_cooldown(
             1, 5, commands.BucketType.user
@@ -25,12 +43,6 @@ class Reddit(
 ):
     """
     Comandos referentes a subreddits.
-    Obtén los posts más interesantes de alguna subreddit.
-    Si alguna imagen no carga es porque es demasiado grande y Discord no es capaz de mostrarla.
-
-    Si te gustaría que se agregase una subreddit adicional contacta a mi creador o únete a mi servidor (nya>invite).
-
-    Cooldown: 5s per command
     """
 
     def __init__(self, bot: commands.Bot):
@@ -39,122 +51,48 @@ class Reddit(
     # Comandos que envían memes
 
     # Construcción para comando nya>meme
-    @commands.hybrid_command(name='meme', description="Obtén un meme de r/memes")
-    async def meme(self, ctx: commands.Context):
-        async with ctx.typing():
-            subreddit = await reddit_api.subreddit('memes')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/memes | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
 
     # Construcción para comando nya>animeme
     @commands.hybrid_command(name='animeme', description="Enviaré un meme otaku de r/animemes")
     async def animeme(self, ctx: commands.Context):
         async with ctx.typing():
-            subreddit = await reddit_api.subreddit('animemes')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/animemes | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
+            embed, view = await get_sub_images('animemes')
+            await ctx.send(embed=embed, view=view)
 
     # Construcción para comando nya>antimeme
     @commands.hybrid_command(name='antimeme', description="Kappa")
     async def antimeme(self, ctx: commands.Context):
         async with ctx.typing():
-            subreddit = await reddit_api.subreddit('antimeme')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/antimeme | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
+            embed, view = await get_sub_images('antimeme')
+            await ctx.send(embed=embed, view=view)
 
     # Construcción para comando nya>hmmm
     @commands.hybrid_command(name='hmmm', description="Hmmm...")
     async def hmmm(self, ctx: commands.Context):
         async with ctx.typing():
-            subreddit = await reddit_api.subreddit('hmmm')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/hmmm | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
-
-    # Construcción para comando nya>dank
-    @commands.command(name='dank', description="Memes densos de r/dankmemes")
-    async def dank(self, ctx: commands.Context):
-        async with ctx.typing():
-            subreddit = await reddit_api.subreddit('dankmemes')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/dankmemes | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
+            embed, view = await get_sub_images('hmmm')
+            await ctx.send(embed=embed, view=view)
 
     # Construcción para comando nya>chantext
     @commands.hybrid_command(name='chantext', description="Extractos de 4chan en r/greentext")
     async def chantext(self, ctx: commands.Context):
         async with ctx.typing():
-            subreddit = await reddit_api.subreddit('greentext')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/greentext | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
-
-    # Construcción para comando nya>shower
-    @commands.hybrid_command(name='shower', description="Frases célebres de r/ShowerThoughts")
-    async def shower(self, ctx: commands.Context):
-        async with ctx.typing():
-            subreddit = await reddit_api.subreddit('ShowerThoughts')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_author(name=submission.title)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/ShowerThoughts | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
+            embed, view = await get_sub_images('greentext')
+            await ctx.send(embed=embed, view=view)
 
     # Construcción para comando nya>hispameme
     @commands.command(name='hispameme', description="Memes hispanos")
     async def hispameme(self, ctx: commands.Context):
         async with ctx.typing():
-            subreddit = await reddit_api.subreddit('SpanishMeme')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/SpanishMeme | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
+            embed, view = await get_sub_images('SpanishMeme')
+            await ctx.send(embed=embed, view=view)
 
     # Construcción para comando nya>wholesome
     @commands.command(name='wholesome', description="Un poquito del lado bueno de internet.")
     async def wholesome(self, ctx: commands.Context):
         async with ctx.typing():
-            subreddit = await reddit_api.subreddit('wholesomememes')
-            async for submission in subreddit.hot(limit=3):
-                embed = discord.Embed(color=0xED2DC0)
-                embed.set_image(url=submission.url)
-                embed.set_footer(
-                    text=f'r/wholesomememes | {submission.score} votos | {submission.num_comments} comentarios',
-                )
-                await ctx.send(embed=embed)
+            embed, view = await get_sub_images('wholesomememes')
+            await ctx.send(embed=embed, view=view)
 
 
 async def setup(bot):
