@@ -1,11 +1,7 @@
 import os
-
+import typing as t
 import discord
-from discord.ext.commands import (
-    AutoShardedBot,
-    MinimalHelpCommand,
-    when_mentioned_or,
-)
+from discord.ext.commands import AutoShardedBot, MinimalHelpCommand, when_mentioned_or
 
 
 def get_prefix(bot, message):
@@ -21,6 +17,8 @@ def get_prefix(bot, message):
 class Bot(AutoShardedBot):
     def __init__(self, *args, **kwargs):
         super().__init__(command_prefix=get_prefix, *args, **kwargs)
+
+    launch_time: t.Any = None
 
     async def setup_hook(self):
         for file in os.listdir('cogs'):

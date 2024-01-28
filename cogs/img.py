@@ -4,10 +4,56 @@ import discord
 from asyncdagpi import Client, ImageFeatures
 from discord.ext import commands
 from dotenv import load_dotenv
+from discord import app_commands
 
 load_dotenv()
 
 dagpi = Client(os.environ['DAGPI'])
+
+image_features_list = [
+    {'name': 'pixel', 'feature': ImageFeatures.pixel},
+    {'name': 'pet', 'feature': ImageFeatures.petpet},
+    {'name': 'urss', 'feature': ImageFeatures.communism},
+    {'name': 'colors', 'feature': ImageFeatures.colors},
+    {'name': 'gay', 'feature': ImageFeatures.gay},
+    {'name': 'jail', 'feature': ImageFeatures.jail},
+    {'name': 'bonk', 'feature': ImageFeatures.bonk},
+    {'name': 'delete', 'feature': ImageFeatures.delete},
+    {'name': 'kaboom', 'feature': ImageFeatures.bomb},
+    {'name': 'neon', 'feature': ImageFeatures.neon},
+    {'name': 'wanted', 'feature': ImageFeatures.wanted},
+    {'name': 'wasted', 'feature': ImageFeatures.wasted},
+    {'name': 'america', 'feature': ImageFeatures.america},
+    {'name': 'invert', 'feature': ImageFeatures.invert},
+    {'name': 'deepfry', 'feature': ImageFeatures.deepfry},
+    {'name': 'ascii', 'feature': ImageFeatures.ascii},
+    {'name': 'sepia', 'feature': ImageFeatures.sepia},
+    {'name': 'polaroid', 'feature': ImageFeatures.polaroid},
+    {'name': 'sketch', 'feature': ImageFeatures.sketch},
+    {'name': 'spin', 'feature': ImageFeatures.spin},
+    {'name': 'magik', 'feature': ImageFeatures.magik}
+]
+
+
+async def apply_filter(interaction: discord.Interaction, filter_name: str, member: discord.Member):
+    await interaction.response.defer(thinking=True)
+    selected_feature = next((item['feature'] for item in image_features_list if item['name'] == filter_name), None)
+    if not selected_feature:
+        return await interaction.followup.send("Ese filtro no existe!", ephemeral=True)
+
+    img_pxl = await dagpi.image_process(
+        selected_feature(), member.avatar.url
+    )
+    file_pxl = discord.File(
+        fp=img_pxl.image, filename=f'pixel.{img_pxl.format}'
+    )
+    embed = discord.Embed(color=interaction.user.color)
+    embed.set_image(url=f'attachment://pixel.{img_pxl.format}')
+    embed.set_footer(
+        text=f'Solicitado por {interaction.user} │ dagpi.xyz',
+        icon_url=interaction.user.avatar.url,
+    )
+    return await interaction.followup.send(file=file_pxl, embed=embed)
 
 
 class Image(
@@ -41,7 +87,7 @@ class Image(
         embed.set_footer(text=f'Solicitado por {ctx.message.author}')
         await ctx.reply(embed=embed)
 
-    @commands.hybrid_command(description="Censura el perfil de otro, porque sí.")
+    @commands.command(description="Censura el perfil de otro, porque sí.")
     async def pixel(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -60,7 +106,7 @@ class Image(
             )
             await ctx.reply(file=file_pxl, embed=embed)
 
-    @commands.hybrid_command(description="Hazle un patpat a un miembro.")
+    @commands.command(description="Hazle un patpat a un miembro.")
     async def pet(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -80,7 +126,7 @@ class Image(
             )
             await ctx.reply(file=file_ptpt, embed=embed)
 
-    @commands.hybrid_command(description="URSS")
+    @commands.command(description="URSS")
     async def urss(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -100,7 +146,7 @@ class Image(
             )
             await ctx.reply(file=file_urss, embed=embed)
 
-    @commands.hybrid_command(description="Analiza los colores de la foto de perfil de alguien.")
+    @commands.command(description="Analiza los colores de la foto de perfil de alguien.")
     async def colors(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -120,7 +166,7 @@ class Image(
             )
             await ctx.reply(file=file_clrs, embed=embed)
 
-    @commands.hybrid_command(description="#Pride")
+    @commands.command(description="#Pride")
     async def gay(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -140,7 +186,7 @@ class Image(
             )
             await ctx.reply(file=file_gy, embed=embed)
 
-    @commands.hybrid_command(description="Para mandar a cualquiera a la carcel")
+    @commands.command(description="Para mandar a cualquiera a la carcel")
     async def jail(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -160,7 +206,7 @@ class Image(
             )
             await ctx.reply(file=file_jl, embed=embed)
 
-    @commands.hybrid_command(description="¿Alguien anda horny?")
+    @commands.command(description="¿Alguien anda horny?")
     async def bonk(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -180,7 +226,7 @@ class Image(
             )
             await ctx.reply(file=file_bnk, embed=embed)
 
-    @commands.hybrid_command(description="Borra a alguien de la existencia")
+    @commands.command(description="Borra a alguien de la existencia")
     async def delete(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -200,7 +246,7 @@ class Image(
             )
             await ctx.reply(file=file_dlt, embed=embed)
 
-    @commands.hybrid_command(description="KABOOM!")
+    @commands.command(description="KABOOM!")
     async def kaboom(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -220,7 +266,7 @@ class Image(
             )
             await ctx.reply(file=file_bmb, embed=embed)
 
-    @commands.hybrid_command(description="Porque todo es más bonito con el neón")
+    @commands.command(description="Porque todo es más bonito con el neón")
     async def neon(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -240,7 +286,7 @@ class Image(
             )
             await ctx.reply(file=file_nn, embed=embed)
 
-    @commands.hybrid_command(description="El más buscado por la ley")
+    @commands.command(description="El más buscado por la ley")
     async def wanted(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -260,7 +306,7 @@ class Image(
             )
             await ctx.reply(file=file_wtnd, embed=embed)
 
-    @commands.hybrid_command(description="RIP")
+    @commands.command(description="RIP")
     async def wasted(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -280,7 +326,7 @@ class Image(
             )
             await ctx.reply(file=file_wstd, embed=embed)
 
-    @commands.hybrid_command(description="Capitalismo FTW")
+    @commands.command(description="Capitalismo FTW")
     async def america(self, ctx: commands.Context, member: discord.Member = None):
         if member is None:
             member = ctx.author
@@ -300,7 +346,7 @@ class Image(
             )
             await ctx.reply(file=file_mrc, embed=embed)
 
-    @commands.hybrid_command(description="Pásale un filtro invertido a esa imagen de perfil")
+    @commands.command(description="Pásale un filtro invertido a esa imagen de perfil")
     async def invert(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -320,7 +366,7 @@ class Image(
             )
             await ctx.reply(file=file_nvrt, embed=embed)
 
-    @commands.hybrid_command(description="¿Te gustan las papas fritas?")
+    @commands.command(description="¿Te gustan las papas fritas?")
     async def deepfry(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -340,7 +386,7 @@ class Image(
             )
             await ctx.reply(file=file_dpfr, embed=embed)
 
-    @commands.hybrid_command(description="A S C I I")
+    @commands.command(description="A S C I I")
     async def ascii(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -360,7 +406,7 @@ class Image(
             )
             await ctx.reply(file=file_sc, embed=embed)
 
-    @commands.hybrid_command(description="El típico y ya conocido filtro sepia")
+    @commands.command(description="El típico y ya conocido filtro sepia")
     async def sepia(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -397,7 +443,7 @@ class Image(
     #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(file=file_gltch, embed=embed)
 
-    @commands.hybrid_command(description="Imprime esa imagen de perfil en una fotografía")
+    @commands.command(description="Imprime esa imagen de perfil en una fotografía")
     async def polaroid(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -417,7 +463,7 @@ class Image(
             )
             await ctx.reply(file=file_plrd, embed=embed)
 
-    @commands.hybrid_command(description="¿Cómo sería si te dibujase un artista?")
+    @commands.command(description="¿Cómo sería si te dibujase un artista?")
     async def sketch(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -437,7 +483,7 @@ class Image(
             )
             await ctx.reply(file=file_sktch, embed=embed)
 
-    @commands.hybrid_command(description="You spin me right round, baby")
+    @commands.command(description="You spin me right round, baby")
     async def spin(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -474,7 +520,7 @@ class Image(
     #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ dagpi.xyz", icon_url=member.avatar.url)
     #     await ctx.reply(file=file_dsslv, embed=embed)
 
-    @commands.hybrid_command(description="Usa este con cuidado")
+    @commands.command(description="Usa este con cuidado")
     async def magik(self, ctx: commands.Context, member: discord.Member = None):
         if not member:
             member = ctx.author
@@ -627,7 +673,15 @@ class Image(
     #     embed = discord.Embed(color=ctx.author.color)
     #     embed.set_image(url=f"https://some-random-api.ml/canvas/horny?avatar={url_hrn}")
     #     embed.set_footer(text=f"Solicitado por {ctx.message.author} │ some-random-api.ml", icon_url=member.avatar.url)
-    #     await ctx.reply(embed=embed)
+    #     await ctx.reply(embed=
+
+    @app_commands.command(name="filter")
+    @app_commands.choices(image_filter=[
+        app_commands.Choice(name=item['name'].capitalize(), value=item['name']) for item in image_features_list
+    ])
+    async def _filter(self, interaction: discord.Interaction, image_filter: app_commands.Choice[str],
+                      member: discord.Member):
+        await apply_filter(interaction, image_filter.value, member)
 
 
 async def setup(bot):

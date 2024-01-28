@@ -6,9 +6,9 @@
 
 SatanyaBot nació con la idea de crear una alternativa de código abierto a los bots en español de Discord como [Chocolat](https://top.gg/bot/379757424447455232), [Nekotina](https://top.gg/bot/429457053791158281), [Ruka](https://top.gg/bot/749462161713266738) y otros.
 
-![](https://img.shields.io/badge/Version-0.6.-2b2024?logo=github) [![Discord](https://img.shields.io/discord/819972811799265311?color=2b2024&label=Discord&logo=discord&logoColor=white)](https://discord.gg/bqcdKxuW3X) ![](https://img.shields.io/github/contributors/KuroCat56/SatanyaBot?color=2b2024&label=Contribuidores)
+![](https://img.shields.io/badge/Version-0.6.6-2b2024?logo=github) [![Discord](https://img.shields.io/discord/819972811799265311?color=2b2024&label=Discord&logo=discord&logoColor=white)](https://discord.gg/bqcdKxuW3X) ![](https://img.shields.io/github/contributors/KuroCat56/SatanyaBot?color=2b2024&label=Contribuidores)
 
-![](https://img.shields.io/github/stars/KuroCat56/SatanyaBot?label=Stars) ![](https://img.shields.io/github/forks/KuroCat56/SatanyaBot?label=Forks) ![](https://img.shields.io/github/commit-activity/m/KuroCat56/SatanyaBot?label=Commits) ![](https://img.shields.io/badge/python-3.8.9-brightgreen)
+![](https://img.shields.io/github/stars/KuroCat56/SatanyaBot?label=Stars) ![](https://img.shields.io/github/forks/KuroCat56/SatanyaBot?label=Forks) ![](https://img.shields.io/github/commit-activity/m/KuroCat56/SatanyaBot?label=Commits) ![](https://img.shields.io/badge/python-3.10-brightgreen)
 
 ## 🎀 Características
 
