@@ -37,4 +37,4 @@ class IA(commands.Cog):
 
 
 async def setup(bot: commands.Bot):
-    await bot.add_cog(CogIA(bot))
+    await bot.add_cog(IA(bot))
