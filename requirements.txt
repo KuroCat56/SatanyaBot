@@ -8,5 +8,6 @@ asyncdagpi~=4.1.5
 humanize
 asyncpraw~=7.7.1
 googlesearch-python
-aiohttp~=3.8.6
+aiohttp~=3.9.0
+openai==1.10.0
 beautifulsoup4~=4.12.2
