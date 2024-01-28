@@ -69,7 +69,6 @@ class ErrorHandler(commands.Cog):
             color=0xFF0000,
         )
         await ctx.send(embed=embed, delete_after=15)
-        raise error
 
 
 async def setup(bot):
